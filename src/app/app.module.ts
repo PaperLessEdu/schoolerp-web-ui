@@ -17,8 +17,8 @@ import { FuseSampleModule } from './main/content/sample/sample.module';
 
 const appRoutes: Routes = [
     {
-        path      : '**',
-        redirectTo: 'sample'
+        path: 'apps',
+        loadChildren: './main/content/apps/apps.module#AppsModule'
     }
 ];
 

@@ -18,6 +18,14 @@ export const navigation = [
                     'bg'   : '#F44336',
                     'fg'   : '#FFFFFF'
                 }
+            },
+            {
+                'id'   : 'employee',
+                'title': 'Employee',
+                'translate': 'NAV.EMPLOYEE',
+                'type' : 'item',
+                'icon' : 'school',
+                'url'  : '/apps/employee/list'
             }
         ]
     }
