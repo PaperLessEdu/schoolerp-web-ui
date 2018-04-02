@@ -6,7 +6,7 @@
 
         <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
 
-            <button mat-button class="toggle-button-navbar mat-icon-button"
+            <!-- <button mat-button class="toggle-button-navbar mat-icon-button"
                     *ngIf="!noNav"
                     (click)="toggleSidebarOpened('navbar')" fxHide.gt-md>
                 <mat-icon>menu</mat-icon>
@@ -22,7 +22,7 @@
 
             <div class="px-8 px-mat-16">
                 <fuse-shortcuts></fuse-shortcuts>
-            </div>
+            </div> -->
 
         </div>
 
@@ -44,10 +44,10 @@
                     <span>My Profile</span>
                 </button>
 
-                <button mat-menu-item class="">
+                <!-- <button mat-menu-item class="">
                     <mat-icon>mail</mat-icon>
                     <span>Inbox</span>
-                </button>
+                </button> -->
 
                 <button mat-menu-item class="">
                     <mat-icon>exit_to_app</mat-icon>
@@ -56,13 +56,13 @@
 
             </mat-menu>
 
-            <div class="toolbar-separator"></div>
+            <!-- <div class="toolbar-separator"></div>
 
             <fuse-search-bar (onInput)="search($event)"></fuse-search-bar>
 
-            <div class="toolbar-separator"></div>
+            <div class="toolbar-separator"></div> -->
 
-            <button mat-button fxHide fxShow.gt-xs
+            <!-- <button mat-button fxHide fxShow.gt-xs
                     class="language-button"
                     [matMenuTriggerFor]="languageMenu">
                 <div fxLayout="row" fxLayoutAlign="center center">
@@ -89,7 +89,7 @@
                     fuseMatSidenavToggler="quick-panel"
                     aria-label="Toggle quick panel">
                 <mat-icon class="icon">format_list_bulleted</mat-icon>
-            </button>
+            </button> -->
 
         </div>
     </div>

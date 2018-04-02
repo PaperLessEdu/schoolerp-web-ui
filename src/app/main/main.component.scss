@@ -73,3 +73,8 @@ fuse-main {
         @include mat-elevation(8);
     }
 }
+
+.page-layout.carded.fullwidth > .center .header {
+    min-height: 0px;
+    height: 85px;
+}

@@ -24,8 +24,8 @@ export const navigation = [
                 'title': 'Employee',
                 'translate': 'NAV.EMPLOYEE',
                 'type' : 'item',
-                'icon' : 'school',
-                'url'  : '/apps/employee/list'
+                'icon' : 'group',
+                'url'  : '/apps/employee'
             }
         ]
     }

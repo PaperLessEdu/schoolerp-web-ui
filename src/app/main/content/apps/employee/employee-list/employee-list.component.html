@@ -1,3 +1,45 @@
-<p>
-  employee-list works!
-</p>
+<div id="employees" class="page-layout carded fullwidth" fusePerfectScrollbar>    
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg mat-accent-bg"></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+    
+    <!-- HEADER -->
+    <div class="header white-fg"
+         fxLayout="column" fxLayoutAlign="center center"
+         fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+      
+      <!-- APP TITLE -->
+      <div class="logo my-12 m-sm-0"
+           fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">group</mat-icon>
+          <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Employees</span>
+      </div>
+      <!-- / APP TITLE -->
+        
+      <button mat-raised-button
+            [routerLink]="'/apps/employee/add-edit'"
+            class="add-product-button mat-white-bg my-12 mt-sm-0">
+        <span>Add New Employee</span>
+      </button>
+
+    </div>
+    <!-- CONTENT CARD -->
+    <div class="content-card mat-white-bg">
+        <mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="first_name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let user">{{user.first_name}} {{user.last_name}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef> E-Mail </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+  </div>
+</div>
