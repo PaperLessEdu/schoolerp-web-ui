@@ -26,6 +26,14 @@ export const navigation = [
                 'type' : 'item',
                 'icon' : 'group',
                 'url'  : '/apps/employee'
+            },
+            {
+                'id'   : 'student',
+                'title': 'Student',
+                'translate': 'NAV.STUDENT',
+                'type' : 'item',
+                'icon' : 'group',
+                'url'  : '/apps/student'
             }
         ]
     }

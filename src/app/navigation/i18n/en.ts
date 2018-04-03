@@ -4,7 +4,8 @@ export const locale = {
         'NAV': {
             'APPLICATIONS': 'Applications',
             'EMPLOYEE': 'Employee',
-            'SAMPLE'        : {
+            'STUDENT': 'Student',
+            'SAMPLE': {
                 'TITLE': 'Sample',
                 'BADGE': '25'
             }
