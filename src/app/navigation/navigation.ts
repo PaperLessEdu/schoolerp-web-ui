@@ -14,6 +14,9 @@ export const navigation = [
                 'url'  : '/apps/student'
             },
             {
+                'id'   : 'employee',
+                'title': 'Employee',
+                'translate': 'NAV.EMPLOYEE',
                 'type'     : 'collapse',
                 'icon'     : 'group',
                 'children' : [
