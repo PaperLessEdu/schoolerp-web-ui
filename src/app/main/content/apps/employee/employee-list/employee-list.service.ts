@@ -5,10 +5,39 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
-export class EmployeeListService {
-    constructor(private http: HttpClient) {}
+export class EmployeeListService implements Resolve<any> {
+    employees: any[];
+    constructor(private http: HttpClient) { }
     
-    getEmployees() {
-        return this.http.get("api/employees");    
+    onEmployeesChanged: BehaviorSubject<any> = new BehaviorSubject({});
+
+    /**
+     * Resolve
+     * @param {ActivatedRouteSnapshot} route
+     * @param {RouterStateSnapshot} state
+     * @returns {Observable<any> | Promise<any> | any}
+     */
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
+        return new Promise((resolve, reject) => {
+            Promise.all([
+                this.getEmployees()
+            ]).then(
+                () => {
+                    resolve();
+                },
+                reject
+            );
+        });
+    }
+
+    getEmployees(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.http.get('api/employees')
+                .subscribe((response: any) => {
+                    this.employees = response;
+                    this.onEmployeesChanged.next(this.employees);
+                    resolve(response);
+                }, reject);
+        });
     }
 }

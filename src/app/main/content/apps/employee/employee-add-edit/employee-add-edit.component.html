@@ -28,6 +28,19 @@
           </div>
         </div>
 
+        <button mat-raised-button
+                class="save-product-button mat-white-bg mt-16 mt-sm-0"
+                [disabled]="horizontalStepperStep1.invalid || horizontalStepperStep2.invalid || horizontalStepperStep3.invalid"
+                *ngIf="pageType ==='new'" (click)="addEmployee()">
+            <span>ADD</span>
+        </button>
+
+        <button mat-raised-button
+                class="save-product-button mat-white-bg mt-16 mt-sm-0"
+                [disabled]="horizontalStepperStep1.invalid || horizontalStepperStep2.invalid || horizontalStepperStep3.invalid"
+                *ngIf="pageType ==='edit'" (click)="saveEmployee()">
+            <span>SAVE</span>
+        </button>
       </div>
 
       <div>
@@ -121,11 +134,11 @@
                             </mat-form-field>
 
                             <mat-form-field fxFlex="33">
-                                <mat-select placeholder="Gender" formControlName="gender" required>
-                                    <mat-option [value]="'male'">
+                                <mat-select [(ngModel)]="employee.gender" placeholder="Gender" formControlName="gender" required>
+                                    <mat-option [value]="'Male'">
                                         Male
                                     </mat-option>
-                                    <mat-option [value]="'female'">
+                                    <mat-option [value]="'Female'">
                                         Female
                                     </mat-option>
                                 </mat-select>
@@ -140,8 +153,8 @@
                         </div>
                         <div>
                             <mat-form-field fxFlex="33">
-                                <mat-select placeholder="Marital status" formControlName="maritalStatus" required>
-                                    <mat-option [value]="'married'">
+                                <mat-select [(ngModel)]="employee.maritalStatus" placeholder="Marital status" formControlName="maritalStatus" required>
+                                    <mat-option [value]="'Married'">
                                         Married
                                     </mat-option>
                                     <mat-option [value]="'Unmarried'">
@@ -165,14 +178,14 @@
                       <ng-template matStepLabel>Other Details</ng-template>
                       <div>
                           <mat-form-field fxFlex="50">
-                              <mat-select placeholder="Qualification" formControlName="qualification" required>
-                                  <mat-option [value]="'underGraduation'">
+                              <mat-select placeholder="Qualification" [(ngModel)]="employee.qualification" formControlName="qualification" required>
+                                  <mat-option [value]="'Under Graduation'">
                                       Under Graduation
                                   </mat-option>
-                                  <mat-option [value]="'graduation'">
+                                  <mat-option [value]="'Graduation'">
                                       Graduation
                                   </mat-option>
-                                  <mat-option [value]="'postGraduation'">
+                                  <mat-option [value]="'Post Graduation'">
                                       Post Graduation
                                   </mat-option>
                               </mat-select>
@@ -198,19 +211,19 @@
                       </div>
                       <div>
                           <mat-form-field fxFlex="50">
-                              <mat-select placeholder="Joined as" formControlName="joinedAs" required>
-                                  <mat-option [value]="'fullTime'">
+                              <mat-select placeholder="Job type" [(ngModel)]="employee.jobType" formControlName="jobType" required>
+                                  <mat-option [value]="'Full Time'">
                                       Full Time
                                   </mat-option>
-                                  <mat-option [value]="'contractor'">
+                                  <mat-option [value]="'Contractor'">
                                       Contractor
                                   </mat-option>
-                                  <mat-option [value]="'intern'">
+                                  <mat-option [value]="'Intern'">
                                       Intern
                                   </mat-option>
                               </mat-select>
-                              <mat-error *ngIf="horizontalStepperStep2Errors.joinedAs.required">
-                                  Joined as is required!
+                              <mat-error *ngIf="horizontalStepperStep2Errors.jobType.required">
+                                  Job type is required!
                               </mat-error>
                           </mat-form-field>
                       </div>
@@ -281,8 +294,11 @@
                     <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
                         Previous
                     </button>
-                    <button mat-raised-button type="button" color="accent" (click)="finishHorizontalStepper()">
-                        Finish
+                    <button mat-raised-button type="button" color="accent" (click)="addEmployee()" *ngIf="pageType ==='new'">
+                        Add
+                    </button>
+                    <button mat-raised-button type="button" color="accent" (click)="saveEmployee()" *ngIf="pageType ==='edit'">
+                        Save
                     </button>
                 </div>
             </mat-step>

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CdkTableModule } from '@angular/cdk/table';
-import { MatButtonModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatRippleModule, MatSelectModule, MatSortModule, MatTableModule, MatTabsModule, MatStepperModule, MatDividerModule, MatCardModule, MatDatepickerModule } from '@angular/material';
+import { MatButtonModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatRippleModule, MatSelectModule, MatSortModule, MatTableModule, MatTabsModule, MatStepperModule, MatDividerModule, MatCardModule, MatDatepickerModule, MatSnackBarModule } from '@angular/material';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AgmCoreModule } from '@agm/core';
 
@@ -12,17 +12,25 @@ import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeAddEditComponent } from './employee-add-edit/employee-add-edit.component';
 import { EmployeeListService } from './employee-list/employee-list.service';
+import { EmployeeAddEditService } from './employee-add-edit/employee-add-edit.service';
 
 const routes = [
   {
     path: 'list',
-    component: EmployeeListComponent
-  },
-  {
-    path: 'add-edit',
+    component: EmployeeListComponent,
+    resolve  : {
+        data: EmployeeListService
+    }
+  }, {
+    path: 'new',
     component: EmployeeAddEditComponent
-  },
-  {
+  }, {
+      path     : 'list/:id',
+      component: EmployeeAddEditComponent,
+      resolve  : {
+          data: EmployeeAddEditService
+      }
+  }, {
     path: '**',
     redirectTo: 'list'
   }
@@ -49,6 +57,7 @@ const routes = [
     MatDividerModule,
     MatCardModule,
     MatDatepickerModule,
+    MatSnackBarModule,
 
     NgxChartsModule,
     AgmCoreModule.forRoot({
@@ -63,7 +72,8 @@ const routes = [
     EmployeeAddEditComponent
   ],
   providers: [
-    EmployeeListService
+    EmployeeListService,
+    EmployeeAddEditService
   ]
 })
 export class EmployeeModule { }
