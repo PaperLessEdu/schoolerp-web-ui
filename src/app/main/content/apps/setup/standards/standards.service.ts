@@ -33,13 +33,13 @@ export class StandardsService {
     }
 
     getStandards(): Promise<any> {
-            return new Promise((resolve, reject) => {
-                this.http.get('api/standards')
-                    .subscribe((response: any) => {
-                        this.standards = response;
-                        this.onStandardsChanged.next(this.standards);
-                        resolve(response);
-                    }, reject);
-            });
-        }
+        return new Promise((resolve, reject) => {
+            this.http.get('api/standards')
+                .subscribe((response: any) => {
+                    this.standards = response;
+                    this.onStandardsChanged.next(this.standards);
+                    resolve(response);
+                }, reject);
+        });
+    }
 }

@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator, MatSort, MatSnackBar } from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material';
 
@@ -36,7 +36,8 @@ export class StandardsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog,
-              private standardsService: StandardsService) { }
+              private standardsService: StandardsService,
+              public snackBar: MatSnackBar) { }
 
   ngOnInit() { 
     this.dataSource = new StandardsDataSource(this.standardsService, this.paginator, this.sort);
@@ -53,18 +54,16 @@ export class StandardsComponent implements OnInit {
 
   openDialog(): void {
     let dialogRef = this.dialog.open(StandardAddComponent, {
-      width: '250px',
-      data : { 
-        standardName: this.standardName
-      }
+      width: '250px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.standardName = result;
-      //make post call
-      //refresh list
-
+      this.refresh();     
     });
+  }
+
+  refresh() {
+    this.standardsService.getStandards();
   }
 }
 
@@ -119,8 +118,7 @@ export class StandardsDataSource extends DataSource<any> {
   }
 
   filterData(data) {
-      if ( !this.filter )
-      {
+      if (!this.filter){
           return data;
       }
       return FuseUtils.filterArrayByString(data, this.filter);
