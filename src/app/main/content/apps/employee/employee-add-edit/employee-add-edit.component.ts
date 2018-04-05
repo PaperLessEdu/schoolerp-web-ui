@@ -83,23 +83,10 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        // this.horizontalStepperStep1.valueChanges.subscribe(() => {
-        //     this.onFormValuesChanged();
-        // });
-
-        // this.horizontalStepperStep2.valueChanges.subscribe(() => {
-        //     this.onFormValuesChanged();
-        // });
-
-        // this.horizontalStepperStep3.valueChanges.subscribe(() => {
-        //     this.onFormValuesChanged();
-        // });
-
         // Subscribe to update product on changes
         this.onEmployeeChanged =
         this.employeeAddEditService.onEmployeeChanged
             .subscribe(employee => {
-                debugger;
                 if (employee && employee.id) {
                     this.employee = new Employee(employee);
                     this.pageType = 'edit';
@@ -155,8 +142,6 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
         this.onEmployeeChanged.unsubscribe();
     }
 
-    onFormValuesChanged() { }
-
     finishHorizontalStepper() {
         //alert('You have finished the horizontal stepper!');
         if (this.pageType === 'edit') {
@@ -181,7 +166,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
             let msg = 'Employee '+data.firstName+' '+data.lastName+' added successfully';
             this.snackBar.open(msg, 'OK', {
                 verticalPosition: 'top',
-                duration        : 2000
+                duration        : 3000
             });
         });
     }
@@ -201,7 +186,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
             let msg = 'Employee '+data.firstName+' '+data.lastName+' updated successfully';
             this.snackBar.open(msg, 'OK', {
                 verticalPosition: 'top',
-                duration        : 2000
+                duration        : 3000
             });
         });
     }

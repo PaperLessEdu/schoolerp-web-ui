@@ -6,6 +6,21 @@ export const navigation = [
         'type'    : 'group',
         'children': [
             {
+                'id'   : 'setup',
+                'title': 'Setup',
+                'translate': 'NAV.SETUP',
+                'type'     : 'collapse',
+                'icon'     : 'settings',
+                'children' : [
+                    {
+                        'id'   : 'standards',
+                        'title': 'Standards',
+                        'type' : 'item',
+                        'url'  : '/apps/setup/standards'
+                    }
+                ]
+            },
+            {
                 'id'   : 'student',
                 'title': 'Student',
                 'translate': 'NAV.STUDENT',

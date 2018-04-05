@@ -65,7 +65,7 @@ const routes = [
     }),
 
     FuseSharedModule,
-    FuseWidgetModule,
+    FuseWidgetModule
   ],
   declarations: [
     EmployeeListComponent,

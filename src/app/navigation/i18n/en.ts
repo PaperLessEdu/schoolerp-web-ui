@@ -5,6 +5,7 @@ export const locale = {
             'APPLICATIONS': 'Applications',
             'EMPLOYEE': 'Employee',
             'STUDENT': 'Student',
+            'SETUP': 'Setup',
             'SAMPLE': {
                 'TITLE': 'Sample',
                 'BADGE': '25'
