@@ -15,20 +15,18 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseUtils } from '@fuse/utils';
 
-import { StandardAddComponent } from '../standard-add/standard-add.component';
-import { StandardsService } from './standards.service';
+import { SubjectAddEditComponent } from '../subject-add-edit/subject-add-edit.component';
+import { SubjectListService } from './subject-list.service';
 
 @Component({
-  selector: 'app-standards',
-  templateUrl: './standards.component.html',
-  styleUrls: ['./standards.component.scss'],
+  selector: 'app-subject-list',
+  templateUrl: './subject-list.component.html',
+  styleUrls: ['./subject-list.component.scss'],
   animations : fuseAnimations
 })
-export class StandardsComponent implements OnInit {
-
-  standardName: string;
+export class SubjectListComponent implements OnInit {
   
-  dataSource: StandardsDataSource | null;
+  dataSource: SubjectsDataSource | null;
   displayedColumns = ['name'];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -36,11 +34,11 @@ export class StandardsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog,
-              private standardsService: StandardsService,
+              private subjectListService: SubjectListService,
               public snackBar: MatSnackBar) { }
 
   ngOnInit() { 
-    this.dataSource = new StandardsDataSource(this.standardsService, this.paginator, this.sort);
+    this.dataSource = new SubjectsDataSource(this.subjectListService, this.paginator, this.sort);
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
               .debounceTime(150)
               .distinctUntilChanged()
@@ -53,7 +51,7 @@ export class StandardsComponent implements OnInit {
   }
 
   openDialog(): void {
-    let dialogRef = this.dialog.open(StandardAddComponent, {
+    let dialogRef = this.dialog.open(SubjectAddEditComponent, {
       width: '250px'
     });
 
@@ -63,11 +61,11 @@ export class StandardsComponent implements OnInit {
   }
 
   refresh() {
-    this.standardsService.getStandards();
+    this.subjectListService.getSubjects();
   }
 }
 
-export class StandardsDataSource extends DataSource<any> {
+export class SubjectsDataSource extends DataSource<any> {
   _filterChange = new BehaviorSubject('');
   _filteredDataChange = new BehaviorSubject('');
 
@@ -87,24 +85,24 @@ export class StandardsDataSource extends DataSource<any> {
       this._filterChange.next(filter);
   }
 
-  constructor(private standardsService: StandardsService,
+  constructor(private subjectListService: SubjectListService,
               private _paginator: MatPaginator,
               private _sort: MatSort) {
     super();
-    this.filteredData = this.standardsService.standards;
+    this.filteredData = this.subjectListService.subjects;
   }
   
   connect(): Observable<any> {
     //return this.standardsService.getStandards();
     const displayDataChanges = [
-      this.standardsService.onStandardsChanged,
+      this.subjectListService.onSubjectsChanged,
       this._paginator.page,
       this._filterChange,
       this._sort.sortChange
     ];
     
     return Observable.merge(...displayDataChanges).map(() => {
-      let data = this.standardsService.standards.slice();
+      let data = this.subjectListService.subjects.slice();
       data = this.filterData(data);
       
       this.filteredData = [...data];

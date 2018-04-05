@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
-export class StandardsService {
-    private serviceUrl = '/api/standards';
+export class StandardListService {
+    private serviceUrl = 'api/standards';
     
     standards: any[];
     onStandardsChanged: BehaviorSubject<any> = new BehaviorSubject({});
@@ -34,7 +34,7 @@ export class StandardsService {
 
     getStandards(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.http.get('api/standards')
+            this.http.get(this.serviceUrl)
                 .subscribe((response: any) => {
                     this.standards = response;
                     this.onStandardsChanged.next(this.standards);

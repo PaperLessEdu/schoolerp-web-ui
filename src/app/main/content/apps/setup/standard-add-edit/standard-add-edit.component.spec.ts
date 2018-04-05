@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StandardAddComponent } from './standard-add.component';
+import { StandardAddEditComponent } from './standard-add-edit.component';
 
 describe('StandardAddComponent', () => {
-  let component: StandardAddComponent;
-  let fixture: ComponentFixture<StandardAddComponent>;
+  let component: StandardAddEditComponent;
+  let fixture: ComponentFixture<StandardAddEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StandardAddComponent ]
+      declarations: [ StandardAddEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StandardAddComponent);
+    fixture = TestBed.createComponent(StandardAddEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

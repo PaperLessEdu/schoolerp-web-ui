@@ -6,20 +6,20 @@ import { StandardAddEditService } from './standard-add-edit.service';
 
 @Component({
   selector: 'app-standard-add',
-  templateUrl: './standard-add.component.html',
-  styleUrls: ['./standard-add.component.scss']
+  templateUrl: './standard-add-edit.component.html',
+  styleUrls: ['./standard-add-edit.component.scss']
 })
-export class StandardAddComponent {
+export class StandardAddEditComponent {
 
   standardName: string;
 
   constructor(private snackBar: MatSnackBar,
               private standardAddEditService: StandardAddEditService,
-              private dialogRef: MatDialogRef<StandardAddComponent>,
+              private dialogRef: MatDialogRef<StandardAddEditComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
-  addStandard(standardName): void {
+  addStandard(): void {
     let data = {
       name: this.standardName
     };
@@ -34,7 +34,7 @@ export class StandardAddComponent {
               duration        : 3000
           });
       });
-}
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
