@@ -127,7 +127,9 @@
                         </div>
                         <div>
                             <mat-form-field fxFlex="34">
-                                <input matInput placeholder="Date of birth" formControlName="dob" required>
+                                <input matInput [matDatepicker]="picker" placeholder="Date of birth" formControlName="dob" required>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
                                 <mat-error *ngIf="horizontalStepperStep1Errors.dob.required">
                                     Date of birth is required!
                                 </mat-error>

@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
 
 import { FuseContentComponent } from 'app/main/content/content.component';
+import { MatNativeDateModule } from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -11,8 +12,8 @@ import { FuseContentComponent } from 'app/main/content/content.component';
     ],
     imports     : [
         RouterModule,
-
-        FuseSharedModule,
+        MatNativeDateModule,
+        FuseSharedModule
     ],
     exports: [
         FuseContentComponent
