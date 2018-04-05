@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CdkTableModule } from '@angular/cdk/table';
-import { MatButtonModule, MatIconModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule, MatDialogModule } from '@angular/material';
+import { MatSnackBarModule, MatButtonModule, MatIconModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule, MatDialogModule } from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
 
 import { FuseSharedModule } from '@fuse/shared.module';
@@ -9,6 +9,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { StandardsComponent } from './standards/standards.component';
 import { StandardAddComponent } from './standard-add/standard-add.component';
 import { StandardsService } from './standards/standards.service';
+import { StandardAddEditService } from './standard-add/standard-add-edit.service';
 
 const routes = [
   {
@@ -33,6 +34,7 @@ const routes = [
     MatSortModule,
     MatTableModule,
     MatDialogModule,
+    MatSnackBarModule,
 
     FuseSharedModule
   ],
@@ -41,7 +43,8 @@ const routes = [
     StandardAddComponent
   ],
   providers: [
-    StandardsService
+    StandardsService,
+    StandardAddEditService
   ],
   entryComponents: [StandardAddComponent]
 })
