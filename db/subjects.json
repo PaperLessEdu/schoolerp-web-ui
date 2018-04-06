@@ -1,10 +1,12 @@
 [
     {
       "id": 1,
-      "name": "Marathi"
+      "name": "Marathi",
+      "abbreviation": "MAR"
     },
     {
       "id": 2,
-      "name": "Hindi"
+      "name": "Hindi",
+      "abbreviation": "HIN"
     }    
   ]

@@ -12,6 +12,7 @@ import { SubjectAddEditService } from './subject-add-edit.service';
 export class SubjectAddEditComponent implements OnInit {
 
   subjectName: string;
+  subjectAbb: string;
 
   constructor(private snackBar: MatSnackBar,
       private subjectAddEditService: SubjectAddEditService,
@@ -23,7 +24,8 @@ export class SubjectAddEditComponent implements OnInit {
 
   addSubject(): void {
     let data = {
-      name: this.subjectName
+      name: this.subjectName,
+      abbreviation: this.subjectAbb
     };
     this.subjectAddEditService.addSubject(data)
       .then(() => {

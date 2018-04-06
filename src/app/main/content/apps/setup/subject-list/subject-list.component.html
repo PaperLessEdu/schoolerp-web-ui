@@ -49,7 +49,12 @@
                         <p class="text-truncate">{{subject.name}}</p>
                     </mat-cell>
                 </ng-container>
-  
+                <ng-container cdkColumnDef="abbreviation">
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header="abbreviation">Abbreviation</mat-header-cell>
+                    <mat-cell *cdkCellDef="let subject">
+                        <p class="text-truncate">{{subject.abbreviation}}</p>
+                    </mat-cell>
+                </ng-container>
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let empl; columns: displayedColumns;"></mat-row>
               </mat-table>

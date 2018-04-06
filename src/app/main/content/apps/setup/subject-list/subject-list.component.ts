@@ -27,7 +27,7 @@ import { SubjectListService } from './subject-list.service';
 export class SubjectListComponent implements OnInit {
   
   dataSource: SubjectsDataSource | null;
-  displayedColumns = ['name'];
+  displayedColumns = ['name', 'abbreviation'];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('filter') filter: ElementRef;
