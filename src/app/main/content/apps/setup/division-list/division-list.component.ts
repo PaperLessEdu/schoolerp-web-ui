@@ -15,18 +15,19 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseUtils } from '@fuse/utils';
 
-import { StandardAddEditComponent } from '../standard-add-edit/standard-add-edit.component';
-import { StandardListService } from './standard-list.service';
+import { DivisionAddEditComponent } from '../division-add-edit/division-add-edit.component';
+import { DivisionListService } from './division-list.service';
+import { debug } from 'util';
 
 @Component({
-  selector: 'app-standards',
-  templateUrl: './standard-list.component.html',
-  styleUrls: ['./standard-list.component.scss'],
+  selector: 'app-division-list',
+  templateUrl: './division-list.component.html',
+  styleUrls: ['./division-list.component.scss'],
   animations : fuseAnimations
 })
-export class StandardListComponent implements OnInit {
- 
-  dataSource: StandardsDataSource | null;
+export class DivisionListComponent implements OnInit {
+  
+  dataSource: DivisionsDataSource | null;
   displayedColumns = ['name'];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -34,11 +35,11 @@ export class StandardListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog,
-              private standardsService: StandardListService,
+              private divisionListService: DivisionListService,
               public snackBar: MatSnackBar) { }
 
   ngOnInit() { 
-    this.dataSource = new StandardsDataSource(this.standardsService, this.paginator, this.sort);
+    this.dataSource = new DivisionsDataSource(this.divisionListService, this.paginator, this.sort);
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
               .debounceTime(150)
               .distinctUntilChanged()
@@ -51,21 +52,29 @@ export class StandardListComponent implements OnInit {
   }
 
   openDialog(): void {
-    let dialogRef = this.dialog.open(StandardAddEditComponent, {
-      width: '250px'
+    let dialogRef = this.dialog.open(DivisionAddEditComponent, {
+      width: '350px'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.refresh();     
+    dialogRef.afterClosed().subscribe(response => {
+      if (!response) {
+          return;
+      }
+      const actionType: string = response[0];
+      switch ( actionType ) {
+        case 'save': this.refresh(); break; 
+        case 'close': break;
+      }
+      //this.refresh();     
     });
   }
 
   refresh() {
-    this.standardsService.getStandards();
+    this.divisionListService.getDivisions();
   }
 }
 
-export class StandardsDataSource extends DataSource<any> {
+export class DivisionsDataSource extends DataSource<any> {
   _filterChange = new BehaviorSubject('');
   _filteredDataChange = new BehaviorSubject('');
 
@@ -85,24 +94,23 @@ export class StandardsDataSource extends DataSource<any> {
       this._filterChange.next(filter);
   }
 
-  constructor(private standardsService: StandardListService,
+  constructor(private divisionListService: DivisionListService,
               private _paginator: MatPaginator,
               private _sort: MatSort) {
     super();
-    this.filteredData = this.standardsService.standards;
+    this.filteredData = this.divisionListService.divisions;
   }
   
   connect(): Observable<any> {
-    //return this.standardsService.getStandards();
     const displayDataChanges = [
-      this.standardsService.onStandardsChanged,
+      this.divisionListService.onDivisionsChanged,
       this._paginator.page,
       this._filterChange,
       this._sort.sortChange
     ];
     
     return Observable.merge(...displayDataChanges).map(() => {
-      let data = this.standardsService.standards.slice();
+      let data = this.divisionListService.divisions.slice();
       data = this.filterData(data);
       
       this.filteredData = [...data];

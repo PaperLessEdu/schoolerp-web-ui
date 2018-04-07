@@ -23,6 +23,12 @@ export const navigation = [
                         'title': 'Subjects',
                         'type' : 'item',
                         'url'  : '/apps/setup/subjects'
+                    },
+                    {
+                        'id'   : 'divisions',
+                        'title': 'Divisions',
+                        'type' : 'item',
+                        'url'  : '/apps/setup/divisions'
                     }
                 ]
             },
