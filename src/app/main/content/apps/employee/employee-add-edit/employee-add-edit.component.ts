@@ -70,7 +70,8 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
             qualification: {},
             occupation: {},
             dateOfJoining : {},
-            jobType: {}
+            jobType: {},
+            employeeType: {}
         };
 
         this.horizontalStepperStep3Errors = {
@@ -124,7 +125,8 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
             qualification: [this.employee.qualification || '', Validators.required],
             occupation: [this.employee.occupation || '', Validators.required],
             dateOfJoining: [this.employee.dateOfJoining || '', Validators.required],
-            jobType: [this.employee.jobType || '', Validators.required]
+            jobType: [this.employee.jobType || '', Validators.required],
+            employeeType: [this.employee.employeeType || '', Validators.required]
         });
     }
 

@@ -21,6 +21,7 @@ export class Employee {
     qualification;
     occupation;
     jobType;
+    employeeType;
     dateOfJoining;
     bankName;
     bankAccountNumber;
@@ -47,6 +48,7 @@ export class Employee {
         this.qualification = employee.qualification || '';
         this.occupation = employee.occupation || '';
         this.jobType = employee.jobType || '';
+        this.employeeType = employee.employeeType || '';
         this.dateOfJoining = employee.dateOfJoining || '';
         this.bankName = employee.bankName || '';
         this.bankAccountNumber = employee.bankAccountNumber || '';

@@ -228,6 +228,19 @@
                                   Job type is required!
                               </mat-error>
                           </mat-form-field>
+                          <mat-form-field fxFlex="50">
+                                <mat-select placeholder="Employee type" [(ngModel)]="employee.employeeType" formControlName="employeeType" required>
+                                <mat-option [value]="'Teaching Staff'">
+                                    Teaching Staff
+                                </mat-option>
+                                <mat-option [value]="'Non Teaching Staff'">
+                                    Non Teaching Staff
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="horizontalStepperStep2Errors.employeeType.required">
+                                Employee type is required!
+                            </mat-error>
+                        </mat-form-field>
                       </div>
                       <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
                           <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
