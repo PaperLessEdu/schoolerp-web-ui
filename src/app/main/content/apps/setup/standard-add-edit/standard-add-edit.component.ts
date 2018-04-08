@@ -1,6 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { StandardAddEditService } from './standard-add-edit.service';
 
@@ -9,23 +10,32 @@ import { StandardAddEditService } from './standard-add-edit.service';
   templateUrl: './standard-add-edit.component.html',
   styleUrls: ['./standard-add-edit.component.scss']
 })
-export class StandardAddEditComponent {
+export class StandardAddEditComponent implements OnInit {
 
-  standardName: string;
+  standardForm: FormGroup;
+  standardFormErrors: any;
 
-  constructor(private snackBar: MatSnackBar,
+  constructor(private formBuilder: FormBuilder,
+              private snackBar: MatSnackBar,
               private standardAddEditService: StandardAddEditService,
               private dialogRef: MatDialogRef<StandardAddEditComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.standardFormErrors = {
+      name: {}
+    };
+  }
+
+  ngOnInit() {
+    this.standardForm = this.formBuilder.group({
+      name: ['', Validators.required]
+    });  
   }
 
   addStandard(): void {
-    let data = {
-      name: this.standardName
-    };
+    let data = this.standardForm.getRawValue();
     this.standardAddEditService.addStandard(data)
       .then(() => {
-          this.dialogRef.close();
+        this.dialogRef.close(['save',this.standardForm]); 
           
           //Show the success message
           let msg = 'Standard added successfully';
