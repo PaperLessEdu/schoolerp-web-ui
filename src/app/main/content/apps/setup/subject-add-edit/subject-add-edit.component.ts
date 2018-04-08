@@ -1,35 +1,47 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { SubjectAddEditService } from './subject-add-edit.service';
 
 @Component({
   selector: 'app-subject-add-edit',
   templateUrl: './subject-add-edit.component.html',
-  styleUrls: ['./subject-add-edit.component.scss']
+  styleUrls: ['./subject-add-edit.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SubjectAddEditComponent implements OnInit {
 
-  subjectName: string;
-  subjectAbb: string;
+  //subjectName: string;
+  //subjectAbb: string;
 
-  constructor(private snackBar: MatSnackBar,
-      private subjectAddEditService: SubjectAddEditService,
-      private dialogRef: MatDialogRef<SubjectAddEditService>,
-      @Inject(MAT_DIALOG_DATA) public data: any) {
+  subjectForm: FormGroup;
+  subjectFormErrors: any;
+
+  constructor(private formBuilder: FormBuilder,
+              private snackBar: MatSnackBar,
+              private subjectAddEditService: SubjectAddEditService,
+              private dialogRef: MatDialogRef<SubjectAddEditService>,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.subjectFormErrors = {
+      name: {},
+      abbreviation: {}
+    };
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.subjectForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      abbreviation: ['', Validators.required]
+    });  
+  }
 
   addSubject(): void {
-    let data = {
-      name: this.subjectName,
-      abbreviation: this.subjectAbb
-    };
+    let data = this.subjectForm.getRawValue();
     this.subjectAddEditService.addSubject(data)
       .then(() => {
-          this.dialogRef.close();
+          this.dialogRef.close(['save',this.subjectForm]);  
           
           //Show the success message
           let msg = 'Subject added successfully';

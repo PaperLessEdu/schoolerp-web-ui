@@ -52,11 +52,18 @@ export class SubjectListComponent implements OnInit {
 
   openDialog(): void {
     let dialogRef = this.dialog.open(SubjectAddEditComponent, {
-      width: '250px'
+      width: '350px'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.refresh();     
+    dialogRef.afterClosed().subscribe(response => {
+      if (!response) {
+          return;
+      }
+      const actionType: string = response[0];
+      switch ( actionType ) {
+        case 'save': this.refresh(); break; 
+        case 'close': break;
+      }     
     });
   }
 

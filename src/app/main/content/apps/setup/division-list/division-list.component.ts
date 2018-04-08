@@ -64,8 +64,7 @@ export class DivisionListComponent implements OnInit {
       switch ( actionType ) {
         case 'save': this.refresh(); break; 
         case 'close': break;
-      }
-      //this.refresh();     
+      }   
     });
   }
 

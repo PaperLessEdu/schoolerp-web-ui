@@ -36,7 +36,6 @@ export class DivisionAddEditComponent implements OnInit {
     this.divisionAddEditService.addDivision(data)
       .then(() => {
         this.dialogRef.close(['save',this.divisionForm]);  
-        //this.dialogRef.close();
           
         //Show the success message
         let msg = 'Division added successfully';
