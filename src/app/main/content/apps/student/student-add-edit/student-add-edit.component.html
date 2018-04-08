@@ -1,0 +1,286 @@
+<div id="student-add-edit" class="page-layout carded fullwidth" fusePerfectScrollbar>
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg mat-accent-bg"></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+    <!-- HEADER -->
+    <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+
+      <!-- APP TITLE -->
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="'/apps/student/list'">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+          <mat-icon class="s-48">person_outline</mat-icon>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+          <div class="h2">
+            New Student
+          </div>
+          <div class="subtitle secondary-text">
+            <span>Student Registration</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="horizontal-stepper-wrapper">
+        <!-- HORIZONTAL STEPPER -->
+        <mat-horizontal-stepper class="mat-elevation-z4" [linear]="true">
+          <!-- STEP 1 -->
+          <mat-step [stepControl]="generalInfo">
+            <form [formGroup]="generalInfo">
+              <ng-template matStepLabel>General Information</ng-template>
+              <div>
+                <!-- Academic Year -->
+                <mat-form-field fxFlex="50">
+                  <mat-select placeholder="Academic Year" formControlName="academicYear" required>
+                    <mat-option [value]="'2010-2011'">
+                      2010-2011
+                    </mat-option>
+                    <mat-option [value]="'2011-2012'">
+                      2011-2012
+                    </mat-option>
+                    <mat-option [value]="'2012-2013'">
+                      2012-2013
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="generalInfoErrors.academicYear.required">
+                    Academic Year is required!
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Name -->
+                <mat-form-field fxFlex="33">
+                  <input matInput placeholder="Full Name" formControlName="name" required>
+                  <mat-error *ngIf="generalInfoErrors.name.required">
+                    Name is required!
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Date of Birth -->
+                <mat-form-field fxFlex="34">
+                  <input matInput [matDatepicker]="picker" placeholder="Date of birth" formControlName="dob" required>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-error *ngIf="generalInfoErrors.dob.required">
+                    Date of birth is required!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div>
+                <!-- Country -->
+                <mat-form-field fxFlex="33">
+                  <input matInput placeholder="Country" formControlName="country" required>
+                  <mat-error *ngIf="generalInfoErrors.country.required">
+                    City is required!
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- State -->
+                <mat-form-field fxFlex="34">
+                  <input matInput placeholder="state" formControlName="state" required>
+                  <mat-error *ngIf="generalInfoErrors.state.required">
+                    State is required!
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- City -->
+                <mat-form-field fxFlex="34">
+                  <input matInput placeholder="City" formControlName="city" required>
+                  <mat-error *ngIf="generalInfoErrors.city.required">
+                    State is required!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div>
+                <!-- Permanent Address -->
+                <mat-form-field fxFlex="33">
+                  <textarea matInput placeholder="Permanent Address" formControlName="permanentAddress" required>
+                  </textarea>
+                  <mat-error *ngIf="generalInfoErrors.permanentAddress.required">
+                    Permanent Address is required!
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Correspondence Address -->
+                <mat-form-field fxFlex="34">
+                  <textarea matInput placeholder="Correspondence Address" formControlName="correspondenceAddress" required>
+                    </textarea>
+                  <mat-error *ngIf="generalInfoErrors.correspondenceAddress.required">
+                    Correspondence Address is required!
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Postal Code -->
+                <mat-form-field fxFlex="33">
+                  <input matInput #postalCode placeholder="Postal Code" formControlName="postalCode" required>
+                  <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+                  <mat-error *ngIf="generalInfoErrors.postalCode.maxlength">
+                    Postal Code needs to be max. {{generalInfoErrors.postalCode.maxlength.requiredLength}} characters
+                  </mat-error>
+                  <mat-error *ngIf="generalInfoErrors.postalCode.required">
+                    Postal Code is required!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div>
+                <!-- Category -->
+                <mat-form-field fxFlex="33">
+                  <input matInput placeholder="Category" formControlName="category" required>
+                  <mat-error *ngIf="generalInfoErrors.category.required">
+                    Category is required!
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Caste -->
+                <mat-form-field fxFlex="34">
+                  <input matInput placeholder="Caste" formControlName="caste" required>
+                  <mat-error *ngIf="generalInfoErrors.caste.required">
+                    Caste is required!
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- City -->
+                <mat-form-field fxFlex="34">
+                  <input matInput placeholder="Religion" formControlName="religion" required>
+                  <mat-error *ngIf="generalInfoErrors.religion.required">
+                    Religion is required!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div>
+                <!-- Gender -->
+                <div class="mat-input-infix mat-form-field-infix">
+                  <mat-radio-group formControlName="gender">
+                    <mat-radio-button name="gender" value="Male">Male</mat-radio-button>
+                    <mat-radio-button name="gender" value="Female">Female</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+
+                <!-- Blood Group -->
+                <mat-form-field fxFlex="70">
+                  <mat-select placeholder="Blood Group" formControlName="bloodGroup" required>
+                    <mat-option [value]="'A+'">
+                      A+
+                    </mat-option>
+                    <mat-option [value]="'A-'">
+                      A-
+                    </mat-option>
+                    <mat-option [value]="'B+'">
+                      B+
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="generalInfoErrors.bloodGroup.required">
+                    Blood Group is required!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
+                <button mat-raised-button matStepperNext type="button" color="accent">
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+
+          <!-- STEP 2 -->
+          <mat-step [stepControl]="parentsInfo">
+            <form [formGroup]="parentsInfo">
+              <ng-template matStepLabel>Parents Information</ng-template>
+              <div>
+                <!-- Fathers Name -->
+                <mat-form-field fxFlex="50">
+                  <input matInput placeholder="Fathers Name" formControlName="fathersName" required>
+                  <mat-error *ngIf="parentsInfoErrors.fathersName.required">
+                    Fathers Name is required!
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Mothers Name -->
+                <mat-form-field fxFlex="50">
+                  <input matInput placeholder="Mothers Name" formControlName="mothersName" required>
+                  <mat-error *ngIf="parentsInfoErrors.mothersName.required">
+                    City is required!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div>
+                <!-- Qualification -->
+                <mat-form-field fxFlex="50">
+                  <input matInput placeholder="Qualification" formControlName="qualification" required>
+                  <mat-error *ngIf="parentsInfoErrors.qualification.required">
+                    qualification is required!
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Occupation -->
+                <mat-form-field fxFlex="50">
+                  <input matInput placeholder="Occupation" formControlName="occupation" required>
+                  <mat-error *ngIf="parentsInfoErrors.occupation.required">
+                    Occupation is required!
+                  </mat-error>
+                </mat-form-field>
+
+              </div>
+
+              <div>
+                <!-- Phone Number -->
+                <mat-form-field fxFlex="50">
+                  <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
+                  <mat-error *ngIf="parentsInfoErrors.phoneNumber.required">
+                    Phone Number is required!
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Email Id -->
+                <mat-form-field fxFlex="50">
+                  <input matInput placeholder="Email" formControlName="emailId" required>
+                  <mat-error *ngIf="parentsInfoErrors.emailId.required">
+                    Email is required!
+                  </mat-error>
+                </mat-form-field>
+
+              </div>
+
+              <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
+                <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                  Previous
+                </button>
+                <button mat-raised-button matStepperNext type="button" color="accent">
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <div class="h2 m-16" fxLayout="row" fxLayoutAlign="center center">
+              Thank your for filling out our form.
+            </div>
+            <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
+              <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                Previous
+              </button>
+              <button mat-raised-button type="button" color="accent">
+                Add
+              </button>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </div>
+    </div>
+  </div>
+</div>

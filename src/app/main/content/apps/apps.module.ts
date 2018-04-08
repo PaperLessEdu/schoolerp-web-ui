@@ -5,8 +5,8 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 const routes = [
   {
-      path      : 'employee',
-      loadChildren: './employee/employee.module#EmployeeModule'
+    path: 'employee',
+    loadChildren: './employee/employee.module#EmployeeModule'
   },
   {
     path: 'student',

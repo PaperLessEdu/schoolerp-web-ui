@@ -17,11 +17,14 @@ import { MatIconModule,
   MatStepperModule,
   MatTabsModule,
   MatTableModule,
-  MatSortModule} from '@angular/material';
+  MatSortModule,
+  MatRadioModule} from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseWidgetModule } from '@fuse/components';
 import { StudentListService } from 'app/main/content/apps/student/student-list/student-list.service';
 import { CdkTableModule } from '@angular/cdk/table';
+import { StudentAddEditComponent } from './student-add-edit/student-add-edit.component';
+import { StudentAddEditService } from './student-add-edit/student-add-edit.service';
 
 const routes = [
   {
@@ -30,6 +33,10 @@ const routes = [
     resolve: {
       data: StudentListService
     }
+  },
+  {
+    path: 'new',
+    component: StudentAddEditComponent
   },
   {
     path: '**',
@@ -58,15 +65,18 @@ const routes = [
     MatDividerModule,
     MatDatepickerModule,
     MatSnackBarModule,
+    MatRadioModule,
 
     FuseSharedModule, // To add title on card panel
     FuseWidgetModule
   ],
   declarations: [
-    StudentListComponent
+    StudentListComponent,
+    StudentAddEditComponent
   ],
   providers: [
-    StudentListService
+    StudentListService,
+    StudentAddEditService
   ]
 })
 export class StudentModule { }

@@ -1,63 +1,76 @@
 export const navigation = [
     {
-        'id'      : 'applications',
-        'title'   : 'Applications',
+        'id': 'applications',
+        'title': 'Applications',
         'translate': 'NAV.APPLICATIONS',
-        'type'    : 'group',
+        'type': 'group',
         'children': [
             {
-                'id'   : 'setup',
+                'id': 'setup',
                 'title': 'Setup',
                 'translate': 'NAV.SETUP',
-                'type'     : 'collapse',
-                'icon'     : 'settings',
-                'children' : [
+                'type': 'collapse',
+                'icon': 'settings',
+                'children': [
                     {
-                        'id'   : 'standards',
+                        'id': 'standards',
                         'title': 'Standards',
-                        'type' : 'item',
-                        'url'  : '/apps/setup/standards'
+                        'type': 'item',
+                        'url': '/apps/setup/standards'
                     },
                     {
-                        'id'   : 'subjects',
+                        'id': 'subjects',
                         'title': 'Subjects',
-                        'type' : 'item',
-                        'url'  : '/apps/setup/subjects'
+                        'type': 'item',
+                        'url': '/apps/setup/subjects'
                     },
                     {
-                        'id'   : 'divisions',
+                        'id': 'divisions',
                         'title': 'Divisions',
-                        'type' : 'item',
-                        'url'  : '/apps/setup/divisions'
+                        'type': 'item',
+                        'url': '/apps/setup/divisions'
                     }
                 ]
             },
             {
-                'id'   : 'student',
+                'id': 'student',
                 'title': 'Student',
                 'translate': 'NAV.STUDENT',
-                'type' : 'item',
-                'icon' : 'group',
-                'url'  : '/apps/student'
-            },
-            {
-                'id'   : 'employee',
-                'title': 'Employee',
-                'translate': 'NAV.EMPLOYEE',
-                'type'     : 'collapse',
-                'icon'     : 'group',
-                'children' : [
+                'type': 'collapse',
+                'icon': 'group',
+                'children': [
                     {
-                        'id'   : 'list',
-                        'title': 'All Employees',
-                        'type' : 'item',
-                        'url'  : '/apps/employee/list'
+                        'id': 'list',
+                        'title': 'All Students',
+                        'type': 'item',
+                        'url': '/apps/student'
                     },
                     {
-                        'id'   : 'add',
+                        'id': 'add',
                         'title': 'Register',
-                        'type' : 'item',
-                        'url'  : '/apps/employee/new'
+                        'type': 'item',
+                        'url': '/apps/student/new'
+                    }
+                ]
+            },
+            {
+                'id': 'employee',
+                'title': 'Employee',
+                'translate': 'NAV.EMPLOYEE',
+                'type': 'collapse',
+                'icon': 'group',
+                'children': [
+                    {
+                        'id': 'list',
+                        'title': 'All Employees',
+                        'type': 'item',
+                        'url': '/apps/employee/list'
+                    },
+                    {
+                        'id': 'add',
+                        'title': 'Register',
+                        'type': 'item',
+                        'url': '/apps/employee/new'
                     }
                 ]
             }
