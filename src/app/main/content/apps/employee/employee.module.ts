@@ -2,7 +2,23 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CdkTableModule } from '@angular/cdk/table';
-import { MatCheckboxModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatRippleModule, MatSelectModule, MatSortModule, MatTableModule, MatStepperModule, MatDividerModule, MatCardModule, MatDatepickerModule, MatSnackBarModule } from '@angular/material';
+import { 
+  MatCheckboxModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSortModule,
+  MatTableModule,
+  MatStepperModule,
+  MatDividerModule,
+  MatCardModule,
+  MatDatepickerModule,
+  MatSnackBarModule, 
+  MatMenuModule} from '@angular/material';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AgmCoreModule } from '@agm/core';
 
@@ -56,6 +72,7 @@ const routes = [
     MatDatepickerModule,
     MatSnackBarModule,
     MatCheckboxModule,
+    MatMenuModule,
 
     NgxChartsModule,
     AgmCoreModule.forRoot({

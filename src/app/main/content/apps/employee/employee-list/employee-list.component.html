@@ -28,26 +28,34 @@
     </div>
     <!-- CONTENT CARD -->
     <div class="mat-white-bg">
-        <div class="grid-action-bar" style="height:50px; padding:10px; display:inline-flex;">
-            <div class="grid-action" style=" height: 30px; width: 70px; font-size: 15px;">
-                <span>ADD</span>   
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center">
+                <button mat-button class="font-weight-400"><mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon> ADD</button>
+                <button mat-button class="font-weight-400"><mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">edit</mat-icon> EDIT</button>
+                <button mat-button class="font-weight-400"><mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">delete</mat-icon> DELETE</button>
+                <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_horiz</mat-icon></button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon class="s-20">dialpad</mat-icon>
+                        <span>Action</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                        <mat-icon class="s-20">voicemail</mat-icon>
+                        <span>Action</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon class="s-20">notifications_off</mat-icon>
+                        <span>Action</span>
+                    </button>
+                </mat-menu>
             </div>
-            <div class="grid-action" style=" height: 30px; width: 70px; font-size: 15px;" (click)="onEditAction();">
-                <span>EDIT</span>   
+            <!-- SEARCH -->
+            <div style="margin-right: 10px;">
+                <mat-form-field floatPlaceholder="never">
+                    <input id="search" matInput #filter placeholder="Search" class="full-right">
+                </mat-form-field>
             </div>
-            <div class="grid-action" style=" height: 30px; width: 70px; font-size: 15px;">
-                <span>DELETE</span>   
-            </div>
-            <div class="grid-action" style=" height: 30px; width: 70px; font-size: 15px;">
-                <span>ACTIONS</span>   
-            </div>
-
-            <input
-                type='text'
-                style='padding:8px;margin:15px auto;width:30%;'
-                placeholder='Type to filter the name column...'
-                (keyup)='updateFilter($event)'
-            />
+            <!-- / SEARCH -->
         </div>
         
         <ngx-datatable
