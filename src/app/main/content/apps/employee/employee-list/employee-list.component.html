@@ -19,18 +19,6 @@
       </div>
       <!-- / APP TITLE -->
 
-      <!-- SEARCH -->
-      <div class="search-input-wrapper mx-12 m-md-0"
-            fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
-          <label for="search" class="mr-8">
-              <mat-icon class="secondary-text">search</mat-icon>
-          </label>
-          <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
-              <input id="search" matInput #filter placeholder="Search">
-          </mat-form-field>
-      </div>
-      <!-- / SEARCH -->
-
       <button mat-raised-button
             [routerLink]="'/apps/employee/list/new'"
             class="add-product-button mat-white-bg my-12 mt-sm-0">
@@ -39,58 +27,73 @@
 
     </div>
     <!-- CONTENT CARD -->
-    <div class="content-card mat-white-bg">
-        <mat-table [dataSource]="dataSource" 
-                   matSort #table 
-                   [@animateStagger]="{value:'50'}"
-                   fusePerfectScrollbar>
+    <div class="mat-white-bg">
+        <div class="grid-action-bar" style="height:50px; padding:10px; display:inline-flex;">
+            <div class="grid-action" style=" height: 30px; width: 70px; font-size: 15px;">
+                <span>ADD</span>   
+            </div>
+            <div class="grid-action" style=" height: 30px; width: 70px; font-size: 15px;" (click)="onEditAction();">
+                <span>EDIT</span>   
+            </div>
+            <div class="grid-action" style=" height: 30px; width: 70px; font-size: 15px;">
+                <span>DELETE</span>   
+            </div>
+            <div class="grid-action" style=" height: 30px; width: 70px; font-size: 15px;">
+                <span>ACTIONS</span>   
+            </div>
+
+            <input
+                type='text'
+                style='padding:8px;margin:15px auto;width:30%;'
+                placeholder='Type to filter the name column...'
+                (keyup)='updateFilter($event)'
+            />
+        </div>
+        
+        <ngx-datatable
+            #table
+            class="material"
+            [rows]="rows"
+            [loadingIndicator]="loadingIndicator"
+            [columnMode]="'force'"
+            [headerHeight]="48"
+            [footerHeight]="56"
+            [rowHeight]="'auto'"
+            [scrollbarH]="true"
+            [reorderable]="reorderable"
+            [selectionType]="'checkbox'"
+            [limit]="10"
+            (select)='onSelect($event)'>
+
+            <ngx-datatable-column [width]="48"
+                                  [canAutoResize]="false"
+                                  [sortable]="false">
+                <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                            let-selectFn="selectFn">
+                    <mat-checkbox [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></mat-checkbox>
+                </ng-template>
+
+                <ng-template ngx-datatable-cell-template 
+                            let-value="value" 
+                            let-isSelected="isSelected"
+                            let-onCheckboxChangeFn="onCheckboxChangeFn"
+                            let-row="row">
+                    <mat-checkbox [checked]="isSelected" (change)="onCheckboxChangeFn(row)"></mat-checkbox>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Name">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <a>{{row.firstName}} {{row.lastName}}</a>
+                </ng-template>
+            </ngx-datatable-column>
             
-            <ng-container cdkColumnDef="firstName">
-                <mat-header-cell *cdkHeaderCellDef mat-sort-header="firstName">Name</mat-header-cell>
-                <mat-cell *cdkCellDef="let empl">
-                    <p class="text-truncate">{{empl.firstName}} {{empl.lastName}}</p>
-                </mat-cell>
-            </ng-container>
+            <ngx-datatable-column name="Employee Type" prop="employeeType"></ngx-datatable-column>
 
-            <ng-container cdkColumnDef="jobType">
-                <mat-header-cell *cdkHeaderCellDef mat-sort-header>Job Type</mat-header-cell>
-                <mat-cell *cdkCellDef="let empl">
-                    <p class="text-truncate">{{empl.jobType}}</p>
-                </mat-cell>
-            </ng-container>
-            
-            <ng-container cdkColumnDef="phoneNumber">
-                <mat-header-cell *cdkHeaderCellDef>Phone Number</mat-header-cell>
-                <mat-cell *cdkCellDef="let empl">
-                    <p class="text-truncate">{{empl.phoneNumber}}</p>
-                </mat-cell>
-            </ng-container>
+            <ngx-datatable-column name="Phone Number" prop="phoneNumber"></ngx-datatable-column>
 
-            <ng-container cdkColumnDef="emailId">
-                <mat-header-cell *cdkHeaderCellDef mat-sort-header>Email Id</mat-header-cell>
-                <mat-cell *cdkCellDef="let empl">
-                    <p class="text-truncate">{{empl.emailId}}</p>
-                </mat-cell>
-            </ng-container>
-
-            <ng-container cdkColumnDef="dateOfJoining">
-                <mat-header-cell *cdkHeaderCellDef>Date Of Joining</mat-header-cell>
-                <mat-cell *cdkCellDef="let empl">
-                    <p class="text-truncate">{{empl.dateOfJoining}}</p>
-                </mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            
-            <mat-row *matRowDef="let empl; columns: displayedColumns;"
-                    [routerLink]="'/apps/employee/list/'+empl.id">
-            </mat-row>
-        </mat-table>
-        <mat-paginator #paginator
-                [length]="dataSource.filteredData.length"
-                [pageIndex]="0"
-                [pageSize]="10">
-        </mat-paginator>
+            <ngx-datatable-column name="Email Id" prop="emailId"></ngx-datatable-column>
+        </ngx-datatable>
     </div>
   </div>
 </div>
