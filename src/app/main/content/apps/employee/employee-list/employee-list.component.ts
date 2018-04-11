@@ -20,7 +20,7 @@ export class EmployeeListComponent implements OnInit {
     reorderable = true;
     selectedEmpl: any[];
 
-    @ViewChild(DatatableComponent) table: DatatableComponent
+    @ViewChild(DatatableComponent) table: DatatableComponent;
 
     constructor(private emplService: EmployeeListService,
                 private router: Router) { }

@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CdkTableModule } from '@angular/cdk/table';
-import { MatSnackBarModule, MatButtonModule, MatIconModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule, MatDialogModule, MatToolbarModule } from '@angular/material';
+import { MatCheckboxModule, MatSnackBarModule, MatButtonModule, MatIconModule, MatInputModule, MatDialogModule, MatToolbarModule } from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
-
 import { FuseSharedModule } from '@fuse/shared.module';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { StandardListComponent } from './standard-list/standard-list.component';
 import { StandardAddEditComponent } from './standard-add-edit/standard-add-edit.component';
@@ -22,47 +21,40 @@ import { DivisionAddEditService } from './division-add-edit/division-add-edit.se
 const routes = [
   {
     path: 'standards',
-    component: StandardListComponent,
-    resolve  : {
-        data: StandardListService
-    }
+    component: StandardListComponent
   },
   {
     path: 'subjects',
-    component: SubjectListComponent,
-    resolve  : {
-        data: SubjectListService
-    }
+    component: SubjectListComponent
   },
   {
     path: 'divisions',
-    component: DivisionListComponent,
-    resolve  : {
-        data: DivisionListService
-    }
+    component: DivisionListComponent
   }
 ];
 
 @NgModule({
   imports: [
     RouterModule.forChild(routes),
-    
-    CdkTableModule,
 
+    MatCheckboxModule,
     MatButtonModule,
     MatIconModule,
     MatInputModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatTableModule,
     MatDialogModule,
     MatSnackBarModule,
     MatToolbarModule,
 
-    FuseSharedModule
+    FuseSharedModule,
+    NgxDatatableModule
   ],
   declarations: [
-    StandardListComponent, StandardAddEditComponent, SubjectListComponent, SubjectAddEditComponent, DivisionListComponent, DivisionAddEditComponent
+    StandardListComponent, 
+    StandardAddEditComponent, 
+    SubjectListComponent, 
+    SubjectAddEditComponent, 
+    DivisionListComponent, 
+    DivisionAddEditComponent
   ],
   providers: [
     StandardListService,

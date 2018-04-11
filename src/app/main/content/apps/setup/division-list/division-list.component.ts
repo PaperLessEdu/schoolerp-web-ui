@@ -1,23 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatSnackBar } from '@angular/material';
-import { DataSource } from '@angular/cdk/collections';
-import { MatDialog } from '@angular/material';
-
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/observable/fromEvent';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
-import { FuseUtils } from '@fuse/utils';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
 
 import { DivisionAddEditComponent } from '../division-add-edit/division-add-edit.component';
 import { DivisionListService } from './division-list.service';
-import { debug } from 'util';
 
 @Component({
   selector: 'app-division-list',
@@ -26,29 +13,24 @@ import { debug } from 'util';
   animations : fuseAnimations
 })
 export class DivisionListComponent implements OnInit {
+  rows: any[];
+  temp: any[];
+  loadingIndicator = true;
+  reorderable = true;
+  selectedStd: any[];
   
-  dataSource: DivisionsDataSource | null;
-  displayedColumns = ['name'];
-  
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild('filter') filter: ElementRef;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(DatatableComponent) table: DatatableComponent;
 
   constructor(public dialog: MatDialog,
               private divisionListService: DivisionListService,
               public snackBar: MatSnackBar) { }
 
   ngOnInit() { 
-    this.dataSource = new DivisionsDataSource(this.divisionListService, this.paginator, this.sort);
-    Observable.fromEvent(this.filter.nativeElement, 'keyup')
-              .debounceTime(150)
-              .distinctUntilChanged()
-              .subscribe(() => {
-                  if ( !this.dataSource ) {
-                      return;
-                  }
-                  this.dataSource.filter = this.filter.nativeElement.value;
-              });
+    this.divisionListService.getDivisions().subscribe((standards: any) => {
+        this.temp = [...standards];
+        this.rows = standards;
+        this.loadingIndicator = false;
+    });
   }
 
   openDialog(): void {
@@ -71,85 +53,28 @@ export class DivisionListComponent implements OnInit {
   refresh() {
     this.divisionListService.getDivisions();
   }
-}
 
-export class DivisionsDataSource extends DataSource<any> {
-  _filterChange = new BehaviorSubject('');
-  _filteredDataChange = new BehaviorSubject('');
+  updateFilter(event): void {
+    const val = event.target.value.toLowerCase();
 
-  get filteredData(): any {
-      return this._filteredDataChange.value;
+    // filter our data
+    const temp = this.temp.filter(function(d) {
+        return d.firstName.toLowerCase().indexOf(val) !== -1 ||
+                d.lastName.toLowerCase().indexOf(val) !== -1 ||
+                !val;
+    });
+
+    // update the rows
+    this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
   }
 
-  set filteredData(value: any) {
-      this._filteredDataChange.next(value);
+  onSelect(obj): void {
+      this.selectedStd = obj.selected;
   }
 
-  get filter(): string {
-      return this._filterChange.value;
-  }
-
-  set filter(filter: string) {
-      this._filterChange.next(filter);
-  }
-
-  constructor(private divisionListService: DivisionListService,
-              private _paginator: MatPaginator,
-              private _sort: MatSort) {
-    super();
-    this.filteredData = this.divisionListService.divisions;
-  }
-  
-  connect(): Observable<any> {
-    const displayDataChanges = [
-      this.divisionListService.onDivisionsChanged,
-      this._paginator.page,
-      this._filterChange,
-      this._sort.sortChange
-    ];
-    
-    return Observable.merge(...displayDataChanges).map(() => {
-      let data = this.divisionListService.divisions.slice();
-      data = this.filterData(data);
+  onEditAction(): void {
       
-      this.filteredData = [...data];
-
-      data = this.sortData(data);
-
-      // Grab the page's slice of data.
-      const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-      return data.splice(startIndex, this._paginator.pageSize);
-    });
   }
-
-  filterData(data) {
-      if (!this.filter){
-          return data;
-      }
-      return FuseUtils.filterArrayByString(data, this.filter);
-  }
-
-  sortData(data): any[] {
-    if ( !this._sort.active || this._sort.direction === '' ) {
-        return data;
-    }
-
-    return data.sort((a, b) => {
-        let propertyA: number | string = '';
-        let propertyB: number | string = '';
-
-        switch ( this._sort.active ) {
-          case 'name':
-            [propertyA, propertyB] = [a.name, b.name];
-            break;
-        }
-
-        const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
-        const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
-
-        return (valueA < valueB ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1);
-    });
-}
-
-  disconnect() {}
 }
