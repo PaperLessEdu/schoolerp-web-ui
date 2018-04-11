@@ -51,7 +51,6 @@ export class EmployeeAddEditService implements Resolve<any> {
 
     updateEmployee(employee) {
         return new Promise((resolve, reject) => {
-            debugger;
             this.http.put('api/employees/' + employee.id, employee)
                 .subscribe((response: any) => {
                     resolve(response);

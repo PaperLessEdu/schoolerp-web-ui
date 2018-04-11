@@ -1,25 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { CdkTableModule } from '@angular/cdk/table';
 import { 
   MatCheckboxModule,
   MatButtonModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatPaginatorModule,
-  MatRippleModule,
   MatSelectModule,
-  MatSortModule,
-  MatTableModule,
   MatStepperModule,
   MatDividerModule,
-  MatCardModule,
   MatDatepickerModule,
   MatSnackBarModule, 
-  MatMenuModule} from '@angular/material';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+  MatMenuModule } from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
 
 import { FuseSharedModule } from '@fuse/shared.module';
@@ -54,27 +47,19 @@ const routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(routes),
-    
-    CdkTableModule,
 
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatPaginatorModule,
-    MatRippleModule,
     MatSelectModule,
-    MatSortModule,
-    MatTableModule,
     MatStepperModule,
     MatDividerModule,
-    MatCardModule,
     MatDatepickerModule,
     MatSnackBarModule,
     MatCheckboxModule,
     MatMenuModule,
 
-    NgxChartsModule,
     AgmCoreModule.forRoot({
         apiKey: 'AIzaSyD81ecsCj4yYpcXSLFcYU97PvRsE_X8Bx8'
     }),
