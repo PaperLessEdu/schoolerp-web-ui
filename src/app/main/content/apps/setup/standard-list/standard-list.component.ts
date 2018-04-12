@@ -26,11 +26,7 @@ export class StandardListComponent implements OnInit {
               public snackBar: MatSnackBar) { }
 
   ngOnInit() { 
-    this.standardsService.getStandards().subscribe((standards: any) => {
-        this.temp = [...standards];
-        this.rows = standards;
-        this.loadingIndicator = false;
-    });
+    this.doRefresh();
   }
 
   openDialog(): void {
@@ -44,14 +40,18 @@ export class StandardListComponent implements OnInit {
       }
       const actionType: string = response[0];
       switch ( actionType ) {
-        case 'save': this.refresh(); break; 
+        case 'save': this.doRefresh(); break; 
         case 'close': break;
       }     
     });
   }
 
-  refresh() {
-    this.standardsService.getStandards();
+  doRefresh() {
+    this.standardsService.getStandards().subscribe((standards: any) => {
+        this.temp = [...standards];
+        this.rows = standards;
+        this.loadingIndicator = false;
+    });
   }
 
   updateFilter(event): void {

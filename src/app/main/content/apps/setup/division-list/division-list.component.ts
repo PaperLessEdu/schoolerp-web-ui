@@ -26,11 +26,7 @@ export class DivisionListComponent implements OnInit {
               public snackBar: MatSnackBar) { }
 
   ngOnInit() { 
-    this.divisionListService.getDivisions().subscribe((standards: any) => {
-        this.temp = [...standards];
-        this.rows = standards;
-        this.loadingIndicator = false;
-    });
+    this.doEefresh();
   }
 
   openDialog(): void {
@@ -44,14 +40,18 @@ export class DivisionListComponent implements OnInit {
       }
       const actionType: string = response[0];
       switch ( actionType ) {
-        case 'save': this.refresh(); break; 
+        case 'save': this.doEefresh(); break; 
         case 'close': break;
       }   
     });
   }
 
-  refresh() {
-    this.divisionListService.getDivisions();
+  doEefresh() {
+    this.divisionListService.getDivisions().subscribe((standards: any) => {
+        this.temp = [...standards];
+        this.rows = standards;
+        this.loadingIndicator = false;
+    });
   }
 
   updateFilter(event): void {
