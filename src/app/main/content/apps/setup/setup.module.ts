@@ -30,6 +30,10 @@ const routes = [
   {
     path: 'divisions',
     component: DivisionListComponent
+  },
+  {
+    path: 'timetable',
+    loadChildren: './timetable/timetable.module#TimetableModule'
   }
 ];
 

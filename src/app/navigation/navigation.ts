@@ -29,6 +29,19 @@ export const navigation = [
                         'title': 'Divisions',
                         'type': 'item',
                         'url': '/apps/setup/divisions'
+                    },
+                    {
+                        'id': 'timetable',
+                        'title': 'Timetable',
+                        'type': 'collapse',
+                        'children': [
+                            {
+                                'id': 'templates',
+                                'title': 'Templates',
+                                'type': 'item',
+                                'url': '/apps/setup/timetable/templates/list'
+                            }
+                        ]
                     }
                 ]
             },
@@ -43,7 +56,7 @@ export const navigation = [
                         'id': 'list',
                         'title': 'All Students',
                         'type': 'item',
-                        'url': '/apps/student'
+                        'url': '/apps/student/list'
                     },
                     {
                         'id': 'add',

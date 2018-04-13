@@ -1,0 +1,52 @@
+<div id="divisions" class="page-layout carded fullwidth" fusePerfectScrollbar>    
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg mat-accent-bg"></div>
+
+  <!-- CENTER -->
+  <div class="center">
+    <!-- HEADER -->
+    <div class="header white-fg"
+        fxLayout="column" fxLayoutAlign="center center"
+        fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+        <!-- APP TITLE -->
+        <div class="logo my-12 m-sm-0"
+              fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">settings</mat-icon>
+            <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Template</span>
+        </div>
+        <!-- / APP TITLE -->
+
+        <button mat-raised-button 
+                class="mat-white-bg my-12 mt-sm-0" 
+                (click)="addNewRow();">
+          Add New Row
+        </button>
+    </div>
+
+     <!-- CONTENT CARD -->
+    <div class="content-card mat-white-bg">
+      <div class="tt-wrapper">
+        <mat-grid-list cols="6" rowHeight="50px">
+          <mat-grid-tile
+              *ngFor="let tile of tiles"
+              (click)="onTileClick(tile);"
+              [colspan]="tile.cols"
+              [rowspan]="tile.rows"
+              [ngClass]="{'tt-header' : tile.slotInfo.isHeader, 'tt-slot' : !tile.slotInfo.isHeader}">
+            <div *ngIf="tile.slotInfo.isHeader">
+              {{tile.text}}
+            </div>
+            <div *ngIf="!tile.slotInfo.isHeader && tile.slotInfo.startTime && tile.slotInfo.endTime">
+              <div>{{tile.slotInfo.name}}</div>
+              <div>
+                {{tile.slotInfo.startTime}} - {{tile.slotInfo.endTime}}
+              </div>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
+  </div>
+
+</div>

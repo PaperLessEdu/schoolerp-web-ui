@@ -1,0 +1,43 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Add Timetable Slot</span>
+            <button mat-button class="mat-icon-button"
+                    (click)="dialogRef.close()"
+                    aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+    <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+        <form [formGroup]="timePickerForm">
+            <div>
+                <mat-form-field fxFlex="100">
+                    <input matInput [(ngModel)]="data.selectedSlot.name" formControlName="name" placeholder="Slot Name">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field fxFlex="50">
+                    <input matInput [(ngModel)]="data.selectedSlot.startTime" formControlName="startTime" placeholder="Start time" required>
+                </mat-form-field>
+                <mat-form-field fxFlex="50">
+                    <input matInput [(ngModel)]="data.selectedSlot.endTime" formControlName="endTime" placeholder="End time" required>
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-button 
+                mat-raised-button
+                [disabled]="timePickerForm.invalid"
+                (click)="addSlot()"
+                class="save-button mat-accent"
+                aria-label="SAVE">
+                Add
+        </button>
+        <button mat-button 
+        (click)="dialogRef.close(['close',timePickerForm])">
+                Close
+        </button>
+    </div>
+</div>
