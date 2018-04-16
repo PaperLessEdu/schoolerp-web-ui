@@ -18,7 +18,7 @@ export class EmployeeListComponent implements OnInit {
     temp: any[];
     loadingIndicator = true;
     reorderable = true;
-    selectedEmpl: any[];
+    selectedEmpl: any[] = [];
 
     @ViewChild(DatatableComponent) table: DatatableComponent;
 
