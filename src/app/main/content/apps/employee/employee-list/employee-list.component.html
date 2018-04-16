@@ -28,11 +28,11 @@
                     ADD
                 </button>
                 <button (click)="onEditAction()" mat-button class="font-weight-400" [disabled]="selectedEmpl.length == 0 || selectedEmpl.length > 1">
-                    <mat-icon class="s-20 mat-icon material-icons" [class.accent-600-fg]="selectedEmpl.length == 1" role="img" aria-hidden="true">edit</mat-icon> 
+                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedEmpl.length === 1, 'primary-100-fg': selectedEmpl.length === 0 || selectedEmpl.length > 1}" role="img" aria-hidden="true">edit</mat-icon> 
                     EDIT
                 </button>
                 <button mat-button class="font-weight-400" [disabled]="selectedEmpl.length == 0">
-                    <mat-icon class="s-20 mat-icon material-icons" [class.accent-600-fg]="selectedEmpl.length >= 1" role="img" aria-hidden="true">delete</mat-icon> 
+                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedEmpl.length >= 1, 'primary-100-fg': selectedEmpl.length < 1}" role="img" aria-hidden="true">delete</mat-icon> 
                     DELETE
                 </button>
                 <!-- <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_horiz</mat-icon></button>
