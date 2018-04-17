@@ -7,14 +7,18 @@ import {
   MatIconModule,
   MatFormFieldModule,
   MatButtonModule,
-  MatInputModule
+  MatInputModule,
+  MatToolbarModule,
+  MatDialogModule,
+  MatSnackBarModule
   } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 
 import { HolidayListComponent } from './holiday-list/holiday-list.component';
 import { HolidayListService } from './holiday-list/holiday-list.service';
-
+import { HolidayAddEditComponent } from './holiday-add-edit/holiday-add-edit.component';
+import { HolidayAddEditService } from './holiday-add-edit/holiday-add-edit.service';
 
 const routes = [
   {
@@ -33,14 +37,22 @@ const routes = [
     NgxDatatableModule,
     MatButtonModule,
     MatInputModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatSnackBarModule,
     FuseSharedModule,
     FuseWidgetModule
   ],
   declarations: [
-    HolidayListComponent
+    HolidayListComponent,
+    HolidayAddEditComponent
   ],
   providers: [
-    HolidayListService
+    HolidayListService,
+    HolidayAddEditService
+  ],
+  entryComponents: [
+    HolidayAddEditComponent
   ]
 })
-export class HolidaysModule { }
+export class HolidaysModule {  }

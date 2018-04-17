@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
-import { Router } from '@angular/router'; 
+import { MatDialog } from '@angular/material';
 
-import {HolidayListService} from './holiday-list.service';
+import { HolidayAddEditComponent } from '../holiday-add-edit/holiday-add-edit.component';
+import { HolidayListService } from './holiday-list.service';
 
 @Component({
   selector: 'app-holiday-list',
@@ -17,19 +18,50 @@ export class HolidayListComponent implements OnInit {
   loadingIndicator = true;
   reorderable = true;
   selectedholidays: any[] = [];
+  pageType: string = 'add';
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
   constructor(private holidayListService: HolidayListService,
-              private router: Router) { }
-    ngOnInit() {
-      this.holidayListService.getHolidays().subscribe((holidays: any) => {
-        this.temp = [...holidays];
-        this.rows = holidays;
-        this.loadingIndicator = false;
+              public dialog: MatDialog) { }
+  
+  ngOnInit() {
+    this.doRefresh();
+  }
+
+  doRefresh() : void {
+    this.selectedholidays = [];
+    this.holidayListService.getHolidays().subscribe((holidays: any) => {
+      this.temp = [...holidays];
+      this.rows = holidays;
+      this.loadingIndicator = false;
     });
   }
 
+  openDialog(): void {
+    let holidayObj = this.pageType == 'add' ? { date: '', name: '' } : this.selectedholidays[0];
+    let dialogRef = this.dialog.open(HolidayAddEditComponent, {
+      width: '350px',
+      data: {
+        pageType: this.pageType,
+        selectedHoliday: holidayObj
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(response => {
+      if (!response) {
+          return;
+      }
+      const actionType: string = response[0];
+      switch ( actionType ) {
+        case 'save': 
+          this.doRefresh(); 
+          break; 
+        case 'close': break;
+      }   
+    });
+  }
+  
   updateFilter(event): void {
       const val = event.target.value.toLowerCase();
 
@@ -48,7 +80,13 @@ export class HolidayListComponent implements OnInit {
       this.selectedholidays = obj.selected;
   }
 
+  onAddAction(): void {
+    this.pageType = 'add';
+    this.openDialog();
+  }
+
   onEditAction(): void {
-      
+    this.pageType = 'edit';
+    this.openDialog();
   }
 }

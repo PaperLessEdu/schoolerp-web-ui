@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 
@@ -22,8 +22,7 @@ export class DivisionListComponent implements OnInit {
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
   constructor(public dialog: MatDialog,
-              private divisionListService: DivisionListService,
-              public snackBar: MatSnackBar) { }
+              private divisionListService: DivisionListService) { }
 
   ngOnInit() { 
     this.doEefresh();
