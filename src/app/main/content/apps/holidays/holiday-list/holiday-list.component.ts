@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 
+import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/confirmation-dialog.component';
 import { HolidayAddEditComponent } from '../holiday-add-edit/holiday-add-edit.component';
 import { HolidayListService } from './holiday-list.service';
 
@@ -23,6 +24,7 @@ export class HolidayListComponent implements OnInit {
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
   constructor(private holidayListService: HolidayListService,
+              private snackBar: MatSnackBar,
               public dialog: MatDialog) { }
   
   ngOnInit() {
@@ -88,5 +90,43 @@ export class HolidayListComponent implements OnInit {
   onEditAction(): void {
     this.pageType = 'edit';
     this.openDialog();
+  }
+
+  onDeleteAction(): void {
+    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: { 
+        title: 'Confirmation',
+        content: 'Are you sure you want delete this holiday?'
+      }
+    });
+    
+    dialogRef.afterClosed().subscribe(response => {
+      if (!response) {
+          return;
+      }
+      const actionType: string = response[0];
+      switch ( actionType ) {
+        case 'yes': 
+          this.deleteHoliday(); 
+          break; 
+        case 'no': break;
+      }   
+    });
+  }
+
+  deleteHoliday(): void {
+    let me = this;
+    me.holidayListService.deleteHolidays(this.selectedholidays[0]).subscribe((res: any) => {
+     me.displayNotification("Holiday deleted successfully");
+     me.doRefresh();
+    });  
+  }
+
+  displayNotification(msg): void {
+    this.snackBar.open(msg, 'OK', {
+      verticalPosition: 'top',
+      duration        : 3000
+  });
   }
 }

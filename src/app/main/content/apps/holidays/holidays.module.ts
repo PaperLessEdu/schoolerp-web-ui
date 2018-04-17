@@ -14,6 +14,7 @@ import {
   } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
+import { SharedModule } from './../shared/shared.module';
 
 import { HolidayListComponent } from './holiday-list/holiday-list.component';
 import { HolidayListService } from './holiday-list/holiday-list.service';
@@ -41,7 +42,8 @@ const routes = [
     MatDialogModule,
     MatSnackBarModule,
     FuseSharedModule,
-    FuseWidgetModule
+    FuseWidgetModule,
+    SharedModule
   ],
   declarations: [
     HolidayListComponent,

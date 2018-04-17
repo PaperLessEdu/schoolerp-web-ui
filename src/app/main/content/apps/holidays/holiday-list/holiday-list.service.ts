@@ -8,4 +8,8 @@ export class HolidayListService {
     getHolidays() {
         return this.http.get('api/holidays');
     }
+
+    deleteHolidays(holiday) {
+        return this.http.delete('api/holidays/'+holiday.id);
+    }
 }

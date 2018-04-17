@@ -27,11 +27,11 @@
                     <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon> 
                     ADD
                 </button>
-                <button (click)="onEditAction()" mat-button class="font-weight-400" [disabled]="selectedholidays.length == 0 || selectedholidays.length > 1">
+                <button (click)="onEditAction();" mat-button class="font-weight-400" [disabled]="selectedholidays.length == 0 || selectedholidays.length > 1">
                     <mat-icon class="s-20 mat-icon material-icons" [class.accent-600-fg]="selectedholidays.length == 1" role="img" aria-hidden="true">edit</mat-icon> 
                     EDIT
                 </button>
-                <button mat-button class="font-weight-400" [disabled]="selectedholidays.length == 0">
+                <button (click)="onDeleteAction();" mat-button class="font-weight-400" [disabled]="selectedholidays.length == 0 || selectedholidays.length > 1">
                     <mat-icon class="s-20 mat-icon material-icons" [class.accent-600-fg]="selectedholidays.length >= 1" role="img" aria-hidden="true">delete</mat-icon> 
                     DELETE
                 </button>
