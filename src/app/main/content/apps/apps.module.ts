@@ -14,6 +14,10 @@ const routes = [
   {
     path: 'setup',
     loadChildren: './setup/setup.module#SetupModule'
+  },
+  {
+    path: 'holidays',
+    loadChildren: './holidays/holidays.module#HolidaysModule'
   }
 ];
 

@@ -86,6 +86,14 @@ export const navigation = [
                         'url': '/apps/employee/new'
                     }
                 ]
+            },
+            {
+                'id': 'holidays',
+                'title': 'Holidays',
+                'translate': 'NAV.HOLIDAYS',
+                'type': 'item',
+                'icon': 'today',
+                'url': '/apps/holidays/list'
             }
         ]
     }

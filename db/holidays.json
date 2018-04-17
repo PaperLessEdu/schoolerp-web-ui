@@ -1,0 +1,12 @@
+[
+    {
+      "id": 1,
+      "name": "Holi",
+      "date": "01/02/2018"
+    },
+    {
+        "id": 2,
+        "name": "Independance Day",
+        "date": "08/15/2018"
+      }    
+  ]

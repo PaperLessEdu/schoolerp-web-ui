@@ -1,0 +1,89 @@
+<div id="holidays" class="page-layout carded fullwidth" fusePerfectScrollbar>    
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg mat-accent-bg"></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+    
+    <!-- HEADER -->
+    <div class="header white-fg"
+         fxLayout="column" fxLayoutAlign="center center"
+         fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+      
+      <!-- APP TITLE -->
+      <div class="logo my-12 m-sm-0"
+           fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">today</mat-icon>
+          <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Holidays</span>
+      </div>
+      <!-- / APP TITLE -->
+    </div>
+    <!-- CONTENT CARD -->
+    <div class="mat-white-bg">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center">
+                <button mat-button class="font-weight-400">
+                    <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon> 
+                    ADD
+                </button>
+                <button (click)="onEditAction()" mat-button class="font-weight-400" [disabled]="selectedholidays.length == 0 || selectedholidays.length > 1">
+                    <mat-icon class="s-20 mat-icon material-icons" [class.accent-600-fg]="selectedholidays.length == 1" role="img" aria-hidden="true">edit</mat-icon> 
+                    EDIT
+                </button>
+                <button mat-button class="font-weight-400" [disabled]="selectedholidays.length == 0">
+                    <mat-icon class="s-20 mat-icon material-icons" [class.accent-600-fg]="selectedholidays.length >= 1" role="img" aria-hidden="true">delete</mat-icon> 
+                    DELETE
+                </button>
+            </div>
+            <!-- SEARCH -->
+            <div style="margin-right: 10px;">
+                <mat-form-field floatPlaceholder="never">
+                    <input id="search" (keyup)='updateFilter($event)' matInput #filter placeholder="Search" class="full-right">
+                </mat-form-field>
+            </div>
+        </div>
+        
+        <ngx-datatable
+            #table
+            class="material"
+            [rows]="rows"
+            [loadingIndicator]="loadingIndicator"
+            [columnMode]="'force'"
+            [headerHeight]="48"
+            [footerHeight]="56"
+            [rowHeight]="'auto'"
+            [scrollbarH]="true"
+            [reorderable]="reorderable"
+            [selectionType]="'checkbox'"
+            [limit]="10"
+            (select)='onSelect($event)'>
+
+            <ngx-datatable-column [width]="48"
+                                  [canAutoResize]="false"
+                                  [sortable]="false">
+                <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                            let-selectFn="selectFn">
+                    <mat-checkbox [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></mat-checkbox>
+                </ng-template>
+
+                <ng-template ngx-datatable-cell-template 
+                            let-value="value" 
+                            let-isSelected="isSelected"
+                            let-onCheckboxChangeFn="onCheckboxChangeFn"
+                            let-row="row">
+                    <mat-checkbox [checked]="isSelected" (change)="onCheckboxChangeFn(row)"></mat-checkbox>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Date">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <a>{{row.date}}</a>
+                </ng-template>
+            </ngx-datatable-column>
+            
+            <ngx-datatable-column name="Name" prop="name"></ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+  </div>
+</div>
