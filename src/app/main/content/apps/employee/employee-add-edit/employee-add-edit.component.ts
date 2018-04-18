@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
@@ -41,6 +41,23 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
     horizontalStepperStep2Errors: any;
     horizontalStepperStep3Errors: any;
 
+    // getters for form control
+    get firstName(): FormControl {
+        return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('firstName'));
+    }
+
+    get lastName(): FormControl {
+        return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('lastName'));
+    }
+
+    get dob(): FormControl {
+        return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('dob'));
+    }
+
+    get bloodGroup(): FormControl {
+        return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('bloodGroup'));
+    }
+    
     constructor(private formBuilder: FormBuilder,
         private router: Router,
         public snackBar: MatSnackBar,
@@ -48,31 +65,32 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
         // Reactive form errors  
         // Horizontal Stepper form error
         this.horizontalStepperStep1Errors = {
-            firstName: {},
             middleName: {},
             lastName: {},
-            city: {},
-            state: {},
-            postalCode: {},
-            gender: {},
             dob: {},
-            bloodGroup: {},
+            gender: {},
             maritalStatus: {},
-            aadharCardNumber: {}
+            nationality: {},
+            bloodGroup: {},
+            aadharCardNumber: {},
+            dateOfJoining: {}
         };
 
         this.horizontalStepperStep2Errors = {
+            country: {},
+            state: {},
+            city: {},
             permanentAddress: {},
             correspondenceAddress: {},
+            postalCode: {},
+            emailId: {},
             phoneNumber: {},
-            alternatePhoneNumber: {},
-            emailId: {}
+            alternatePhoneNumber: {}
         };
 
         this.horizontalStepperStep3Errors = {
             qualification: {},
             occupation: {},
-            dateOfJoining: {},
             jobType: {},
             employeeType: {}
         };
@@ -93,6 +111,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
                     this.horizontalStepperStep1 = this.horizontalStepperStep1Form();
                     this.horizontalStepperStep2 = this.horizontalStepperStep2Form();
                     this.horizontalStepperStep3 = this.horizontalStepperStep3Form();
+                    this.setDefaultValue();
                 });
     }
 
@@ -102,9 +121,8 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
             firstName: [this.employee.firstName || '', Validators.required],
             middleName: [this.employee.middleName || ''],
             lastName: [this.employee.lastName || '', Validators.required],
-            city: [this.employee.city || '', Validators.required],
-            state: [this.employee.state || '', Validators.required],
-            postalCode: [this.employee.postalCode || '', [Validators.required, Validators.maxLength(6)]],
+            nationality: [this.employee.nationality || '', Validators.required],
+            dateOfJoining: [this.employee.dateOfJoining || '', Validators.required],
             gender: [this.employee.gender || '', Validators.required],
             dob: [this.employee.dob || '', Validators.required],
             bloodGroup: [this.employee.bloodGroup || ''],
@@ -115,11 +133,15 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
 
     horizontalStepperStep2Form() {
         return this.formBuilder.group({
+            country: [this.employee.country || '', Validators.required],
+            state: [this.employee.state || '', Validators.required],
+            city: [this.employee.city || '', Validators.required],
             permanentAddress: [this.employee.permanentAddress || '', Validators.required],
             correspondenceAddress: [this.employee.correspondenceAddress || '', Validators.required],
+            postalCode: [this.employee.postalCode || '', [Validators.required, Validators.maxLength(6)]],
+            emailId: [this.employee.emailId || '', Validators.required],
             phoneNumber: [this.employee.phoneNumber || '', Validators.required],
-            alternatePhoneNumber: [this.employee.alternatePhoneNumber || '', Validators.required],
-            emailId: [this.employee.emailId || '', Validators.required]
+            alternatePhoneNumber: [this.employee.alternatePhoneNumber || '', Validators.required]
         });
     }
 
@@ -127,9 +149,21 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
         return this.formBuilder.group({
             qualification: [this.employee.qualification || '', Validators.required],
             occupation: [this.employee.occupation || '', Validators.required],
-            dateOfJoining: [this.employee.dateOfJoining || '', Validators.required],
             jobType: [this.employee.jobType || '', Validators.required],
             employeeType: [this.employee.employeeType || '', Validators.required]
+        });
+    }
+
+    setDefaultValue(): void {
+        this.horizontalStepperStep1.patchValue({
+            nationality: 'Indian',
+            gender: 'Male',
+            maritalStatus: 'Unmarried'
+        });
+
+        this.horizontalStepperStep2.patchValue({
+            country: 'India',
+            state: 'Maharashtra'
         });
     }
 

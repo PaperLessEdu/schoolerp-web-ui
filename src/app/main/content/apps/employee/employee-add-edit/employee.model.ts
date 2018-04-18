@@ -28,6 +28,8 @@ export class Employee {
     bankAccountNumber;
     bankIFSCCode;
     alternatePhoneNumber;
+    nationality;
+    country;
 
     constructor(employee?) {
         employee = employee || {};
@@ -37,20 +39,23 @@ export class Employee {
         this.firstName = employee.firstName || '';
         this.middleName = employee.middleName || '';
         this.lastName = employee.lastName || '';
+        this.dateOfJoining = employee.dateOfJoining || '';
+        this.nationality = employee.nationality || '';
         this.dob = employee.dob || '';
-        this.city = employee.city || '';
-        this.state = employee.state || '';
-        this.postalCode = employee.postalCode || '';
         this.gender = employee.gender || '';
         this.maritalStatus = employee.maritalStatus || '';
         this.bloodGroup = employee.bloodGroup || '';
         this.aadharCardNumber = employee.aadharCardNumber || '';
 
         // Contact Details
+        this.country = employee.country || '';
+        this.state = employee.state || '';
+        this.city = employee.city || '';
         this.permanentAddress = employee.permanentAddress || '';
         this.correspondenceAddress = employee.correspondenceAddress || '';
-        this.phoneNumber = employee.phoneNumber || '';
+        this.postalCode = employee.postalCode || '';
         this.emailId = employee.emailId || '';
+        this.phoneNumber = employee.phoneNumber || '';
         this.alternatePhoneNumber = employee.alternatePhoneNumber || '';
 
         // Occupation Details
@@ -58,6 +63,5 @@ export class Employee {
         this.occupation = employee.occupation || '';
         this.jobType = employee.jobType || '';
         this.employeeType = employee.employeeType || '';
-        this.dateOfJoining = employee.dateOfJoining || '';
     }
 }
