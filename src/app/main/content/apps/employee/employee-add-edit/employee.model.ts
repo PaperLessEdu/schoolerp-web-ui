@@ -7,7 +7,8 @@ export class Employee {
     middleName: string;
     lastName: string;
     dob;
-    address;
+    permanentAddress;
+    correspondenceAddress;
     city;
     state;
     postalCode;
@@ -26,32 +27,37 @@ export class Employee {
     bankName;
     bankAccountNumber;
     bankIFSCCode;
+    alternatePhoneNumber;
 
     constructor(employee?) {
         employee = employee || {};
+
+        // General Information
         this.id = employee.id || '';
         this.firstName = employee.firstName || '';
         this.middleName = employee.middleName || '';
         this.lastName = employee.lastName || '';
         this.dob = employee.dob || '';
-        this.address = employee.address || '';
         this.city = employee.city || '';
         this.state = employee.state || '';
         this.postalCode = employee.postalCode || '';
-        this.phoneNumber = employee.phoneNumber || '';
-        this.emailId = employee.emailId || '';
         this.gender = employee.gender || '';
         this.maritalStatus = employee.maritalStatus || '';
         this.bloodGroup = employee.bloodGroup || '';
         this.aadharCardNumber = employee.aadharCardNumber || '';
-        this.panCardNumber = employee.panCardNumber || '';
+
+        // Contact Details
+        this.permanentAddress = employee.permanentAddress || '';
+        this.correspondenceAddress = employee.correspondenceAddress || '';
+        this.phoneNumber = employee.phoneNumber || '';
+        this.emailId = employee.emailId || '';
+        this.alternatePhoneNumber = employee.alternatePhoneNumber || '';
+
+        // Occupation Details
         this.qualification = employee.qualification || '';
         this.occupation = employee.occupation || '';
         this.jobType = employee.jobType || '';
         this.employeeType = employee.employeeType || '';
         this.dateOfJoining = employee.dateOfJoining || '';
-        this.bankName = employee.bankName || '';
-        this.bankAccountNumber = employee.bankAccountNumber || '';
-        this.bankIFSCCode =  employee.bankIFSCCode || '';
     }
 }
