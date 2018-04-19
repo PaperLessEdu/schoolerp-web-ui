@@ -120,13 +120,13 @@ export class HolidayListComponent implements OnInit {
     me.holidayListService.deleteHolidays(this.selectedholidays[0]).subscribe((res: any) => {
      me.displayNotification("Holiday deleted successfully");
      me.doRefresh();
-    });  
+    });
   }
 
   displayNotification(msg): void {
     this.snackBar.open(msg, 'OK', {
       verticalPosition: 'top',
       duration        : 3000
-  });
+    });
   }
 }

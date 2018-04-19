@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatCheckboxModule, MatSnackBarModule, MatButtonModule, MatIconModule, MatInputModule, MatDialogModule, MatToolbarModule } from '@angular/material';
-import { AgmCoreModule } from '@agm/core';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
@@ -34,6 +33,10 @@ const routes = [
   {
     path: 'timetable',
     loadChildren: './timetable/timetable.module#TimetableModule'
+  },
+  {
+    path: 'roles',
+    loadChildren: './role/role.module#RoleModule'
   }
 ];
 

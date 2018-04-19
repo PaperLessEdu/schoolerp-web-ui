@@ -5,6 +5,7 @@ module.exports = function() {
     students: require('./student-list.json'),
     subjects: require('./subjects.json'),
     divisions: require('./divisions.json'),
-    holidays: require('./holidays.json')
+    holidays: require('./holidays.json'),
+    roles: require('./roles.json')
   }
 }

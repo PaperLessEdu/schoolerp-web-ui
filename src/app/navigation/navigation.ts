@@ -42,6 +42,12 @@ export const navigation = [
                                 'url': '/apps/setup/timetable/templates/list'
                             }
                         ]
+                    },
+                    {
+                        'id': 'role',
+                        'title': 'Roles',
+                        'type': 'item',
+                        'url': '/apps/setup/roles/list'
                     }
                 ]
             },
