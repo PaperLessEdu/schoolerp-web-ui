@@ -1,0 +1,35 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Change Role - {{data.selectedEmpl.firstName}} {{data.selectedEmpl.lastName}}</span>
+            <button mat-button class="mat-icon-button"
+                    (click)="dialogRef.close()"
+                    aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+    <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+       <mat-select placeholder="Role" 
+                   (change)="onRoleChange($event)"
+                   [(ngModel)]="selectedRoleId">
+          <mat-option [value]='0'>Select</mat-option>
+          <mat-option *ngFor='let role of roles' [value]='role.id'>
+              {{role.name}}
+          </mat-option>
+       </mat-select>
+    </div>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-button 
+              mat-raised-button
+              (click)="updateRole()"
+              class="save-button mat-accent"
+              aria-label="SAVE">
+              Update
+        </button>
+        <button mat-button 
+        (click)="dialogRef.close(['close'])">
+                Close
+        </button>
+    </div>
+  </div>

@@ -12,7 +12,9 @@ import {
   MatDividerModule,
   MatDatepickerModule,
   MatSnackBarModule, 
-  MatMenuModule, 
+  MatMenuModule,
+  MatDialogModule,
+  MatToolbarModule, 
   MatRadioModule} from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
 
@@ -25,6 +27,8 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeAddEditComponent } from './employee-add-edit/employee-add-edit.component';
 import { EmployeeListService } from './employee-list/employee-list.service';
 import { EmployeeAddEditService } from './employee-add-edit/employee-add-edit.service';
+import { ChangeRoleComponent } from './change-role/change-role.component';
+import { ChangeRoleService } from './change-role/change-role.service';
 
 const routes = [
   {
@@ -61,6 +65,8 @@ const routes = [
     MatCheckboxModule,
     MatMenuModule,
     MatRadioModule,
+    MatDialogModule,
+    MatToolbarModule,
 
     AgmCoreModule.forRoot({
         apiKey: 'AIzaSyD81ecsCj4yYpcXSLFcYU97PvRsE_X8Bx8'
@@ -73,11 +79,16 @@ const routes = [
   ],
   declarations: [
     EmployeeListComponent,
-    EmployeeAddEditComponent
+    EmployeeAddEditComponent,
+    ChangeRoleComponent
   ],
   providers: [
     EmployeeListService,
-    EmployeeAddEditService
+    EmployeeAddEditService,
+    ChangeRoleService
+  ],
+  entryComponents: [
+    ChangeRoleComponent
   ]
 })
 export class EmployeeModule { }

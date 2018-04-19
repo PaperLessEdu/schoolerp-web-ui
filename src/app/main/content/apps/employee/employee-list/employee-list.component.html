@@ -35,21 +35,13 @@
                     <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedEmpl.length >= 1, 'primary-100-fg': selectedEmpl.length < 1}" role="img" aria-hidden="true">delete</mat-icon> 
                     DELETE
                 </button>
-                <!-- <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_horiz</mat-icon></button>
+                <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_horiz</mat-icon></button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item>
-                        <mat-icon class="s-20">dialpad</mat-icon>
-                        <span>Action</span>
+                    <button mat-menu-item (click)="changeRole()" [disabled]="selectedEmpl.length == 0 || selectedEmpl.length > 1">
+                        <mat-icon class="s-20">chevron_right</mat-icon>
+                        <span>Change role</span>
                     </button>
-                    <button mat-menu-item disabled>
-                        <mat-icon class="s-20">voicemail</mat-icon>
-                        <span>Action</span>
-                    </button>
-                    <button mat-menu-item>
-                        <mat-icon class="s-20">notifications_off</mat-icon>
-                        <span>Action</span>
-                    </button>
-                </mat-menu> -->
+                </mat-menu>
             </div>
             <!-- SEARCH -->
             <div style="margin-right: 10px;">

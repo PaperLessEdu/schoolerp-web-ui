@@ -3,8 +3,10 @@ import { Observable } from 'rxjs/Observable';
 import { fuseAnimations } from '@fuse/animations';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Router } from '@angular/router'; 
+import { MatDialog } from '@angular/material';
 
-import {EmployeeListService} from './employee-list.service';
+import { EmployeeListService } from './employee-list.service';
+import { ChangeRoleComponent } from '../change-role/change-role.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -23,9 +25,14 @@ export class EmployeeListComponent implements OnInit {
     @ViewChild(DatatableComponent) table: DatatableComponent;
 
     constructor(private emplService: EmployeeListService,
-                private router: Router) { }
+                private router: Router,
+                public dialog: MatDialog) { }
     
     ngOnInit() {
+        this.doRefresh();
+    }
+
+    doRefresh(): void {
         this.emplService.getEmployees().subscribe((empls: any) => {
             this.temp = [...empls];
             this.rows = empls;
@@ -57,5 +64,27 @@ export class EmployeeListComponent implements OnInit {
         if (this.selectedEmpl && this.selectedEmpl.length === 1) {
             this.router.navigate(['/apps/employee/list/' + this.selectedEmpl[0].id]);
         }
+    }
+
+    changeRole(): void {
+        let dialogRef = this.dialog.open(ChangeRoleComponent, {
+        width: '350px',
+        data: {
+            selectedEmpl: this.selectedEmpl[0]
+        }
+        });
+
+        dialogRef.afterClosed().subscribe(response => {
+            if (!response) {
+                return;
+            }
+            const actionType: string = response[0];
+            switch ( actionType ) {
+                case 'save': 
+                this.doRefresh(); 
+                break; 
+                case 'close': break;
+            }   
+        });
     }
 }
