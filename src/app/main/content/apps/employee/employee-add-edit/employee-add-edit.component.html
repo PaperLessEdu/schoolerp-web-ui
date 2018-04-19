@@ -75,7 +75,7 @@
                             </mat-form-field>
     
                             <mat-form-field fxFlex="33">
-                                <input matInput #postalCode placeholder="Postal Code" type=number formControlName="postalCode"
+                                <input matInput #postalCode placeholder="Postal Code" formControlName="postalCode"
                                         required>
                                 <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
                                 <mat-error *ngIf="horizontalStepperStep1Errors.postalCode.maxlength">
@@ -167,13 +167,13 @@
                         </div>
                         <div>
                             <mat-form-field fxFlex="34">
-                                <input matInput placeholder="Phone Number" type=number formControlName="phoneNumber" required>
+                                <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
                                 <mat-error *ngIf="horizontalStepperStep2Errors.phoneNumber.required">
                                     Phone number is required!
                                 </mat-error>
                             </mat-form-field>
                             <mat-form-field fxFlex="34">
-                                <input matInput placeholder="Alternate Phone Number" type=number formControlName="alternatePhoneNumber" required>
+                                <input matInput placeholder="Alternate Phone Number" formControlName="alternatePhoneNumber" required>
                                 <mat-error *ngIf="horizontalStepperStep2Errors.alternatePhoneNumber.required">
                                     Alternate Phone number is required!
                                 </mat-error>
@@ -199,7 +199,7 @@
                 <!-- Occupation Details -->
                 <mat-step [stepControl]="horizontalStepperStep3">
                   <form [formGroup]="horizontalStepperStep3">
-                      <ng-template matStepLabel>Other Details</ng-template>
+                      <ng-template matStepLabel>Occupation Details</ng-template>
                       <div>
                           <mat-form-field fxFlex="50">
                               <mat-select placeholder="Qualification" [(ngModel)]="employee.qualification" formControlName="qualification" required>
