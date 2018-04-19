@@ -23,7 +23,8 @@
       "aadharCardNumber": "1111-2222-3333",
       "bankName": "ICICI Bank",
       "bankAccountNumber": "ICIC0000985",
-      "bankIFSCCode": "098501538045"
+      "bankIFSCCode": "098501538045",
+      "roleId": 1
     },
     {
       "id": 2,
@@ -49,7 +50,8 @@
       "dateOfJoining": "01/04/2017",
       "bankName": "ICICI Bank",
       "bankAccountNumber": "ICIC0000985",
-      "bankIFSCCode": "098501538045"
+      "bankIFSCCode": "098501538045",
+      "roleId": 4
     },
     {
       "id": 3,
@@ -75,7 +77,8 @@
       "dateOfJoining": "01/04/2017",
       "bankName": "ICICI Bank",
       "bankAccountNumber": "ICIC0000985",
-      "bankIFSCCode": "098501538045"
+      "bankIFSCCode": "098501538045",
+      "roleId": 3
     },
     {
       "id": 4,
@@ -101,7 +104,8 @@
       "aadharCardNumber": "aaa",
       "bankName": "a",
       "bankAccountNumber": "a",
-      "bankIFSCCode": "aaa"
+      "bankIFSCCode": "aaa",
+      "roleId": 2
     },
     {
       "id": 5,
@@ -127,7 +131,8 @@
       "aadharCardNumber": "ss",
       "bankName": "s",
       "bankAccountNumber": "s",
-      "bankIFSCCode": "s"
+      "bankIFSCCode": "s",
+      "roleId": 1
     },
     {
       "id": 6,
@@ -153,7 +158,8 @@
       "aadharCardNumber": "qqq",
       "bankName": "q",
       "bankAccountNumber": "q",
-      "bankIFSCCode": "qqq"
+      "bankIFSCCode": "qqq",
+      "roleId": 4
     },
     {
       "id": 7,
@@ -179,7 +185,8 @@
       "aadharCardNumber": "xxx",
       "bankName": "xxxx",
       "bankAccountNumber": "xxxx",
-      "bankIFSCCode": "xxxxx"
+      "bankIFSCCode": "xxxxx",
+      "roleId": 3
     },
     {
       "id": 8,
@@ -205,7 +212,8 @@
       "aadharCardNumber": "zzzz",
       "bankName": "zzzz",
       "bankAccountNumber": "zzzz",
-      "bankIFSCCode": "zzzz"
+      "bankIFSCCode": "zzzz",
+      "roleId": 2
     },
     {
       "id": 9,
@@ -231,6 +239,7 @@
       "aadharCardNumber": "1111-2222-3333",
       "bankName": "Axis Bank",
       "bankAccountNumber": "1234567890",
-      "bankIFSCCode": "AXISI1213"
+      "bankIFSCCode": "AXISI1213",
+      "roleId": 1
     }
   ]

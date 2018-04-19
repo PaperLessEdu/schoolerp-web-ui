@@ -6,5 +6,13 @@
     {
       "id": 2,
       "name": "Teacher"
+    },
+    {
+      "id": 3,
+      "name": "Principle"
+    },
+    {
+      "id": 4,
+      "name": "Vice Principle"
     }    
   ]
