@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MatCheckboxModule, MatSnackBarModule, MatButtonModule, MatIconModule, MatInputModule, MatDialogModule, MatToolbarModule } from '@angular/material';
+import { MatMenuModule, MatCheckboxModule, MatSnackBarModule, MatButtonModule, MatIconModule, MatInputModule, MatDialogModule, MatToolbarModule } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
+import { SharedModule } from '../shared/shared.module';
 import { StandardListComponent } from './standard-list/standard-list.component';
 import { StandardAddEditComponent } from './standard-add-edit/standard-add-edit.component';
 import { StandardListService } from './standard-list/standard-list.service';
@@ -51,9 +52,11 @@ const routes = [
     MatDialogModule,
     MatSnackBarModule,
     MatToolbarModule,
+    MatMenuModule,
 
     FuseSharedModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    SharedModule
   ],
   declarations: [
     StandardListComponent, 

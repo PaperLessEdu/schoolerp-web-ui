@@ -14,4 +14,13 @@ export class DivisionAddEditService {
                 }, reject);
         });
     }
+
+    updateDivision(division) {
+        return new Promise((resolve, reject) => {
+            this.http.put('api/divisions/'+division.id, division)
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+    }
 }

@@ -36,18 +36,32 @@ export class DivisionAddEditComponent implements OnInit {
     let data = this.divisionForm.getRawValue();
     this.divisionAddEditService.addDivision(data)
       .then(() => {
-        this.dialogRef.close(['save',this.divisionForm]);  
+        this.dialogRef.close(['save', this.divisionForm]);  
           
         //Show the success message
-        let msg = 'Division added successfully';
-        this.snackBar.open(msg, 'OK', {
-            verticalPosition: 'top',
-            duration        : 3000
-        });
+        this.displayNotification('Division added successfully');
+      });
+  }
+
+  updateDivision(): void {
+    let data = this.data.selectedDivision;
+    this.divisionAddEditService.updateDivision(data)
+      .then(() => {
+        this.dialogRef.close(['save', this.divisionForm]);  
+          
+        //Show the success message
+        this.displayNotification('Division updated successfully');
       });
   }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  displayNotification(msg): void {
+    this.snackBar.open(msg, 'OK', {
+        verticalPosition: 'top',
+        duration        : 3000
+    });
   }
 }

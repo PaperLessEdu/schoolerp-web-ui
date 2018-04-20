@@ -118,8 +118,8 @@ export class HolidayListComponent implements OnInit {
   deleteHoliday(): void {
     let me = this;
     me.holidayListService.deleteHolidays(this.selectedholidays[0]).subscribe((res: any) => {
-     me.displayNotification("Holiday deleted successfully");
-     me.doRefresh();
+      me.displayNotification("Holiday deleted successfully");
+      me.doRefresh();
     });
   }
 

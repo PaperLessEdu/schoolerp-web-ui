@@ -26,6 +26,29 @@
       </div>
       <!-- CONTENT CARD -->
       <div class="mat-white-bg">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center">
+                <button (click)="onAddAction()" mat-button class="font-weight-400">
+                    <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon> 
+                    ADD
+                </button>
+                <button (click)="onEditAction()" mat-button class="font-weight-400" [disabled]="selectedDivisions.length == 0 || selectedDivisions.length > 1">
+                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedDivisions.length === 1, 'primary-100-fg': selectedDivisions.length === 0 || selectedDivisions.length > 1}" role="img" aria-hidden="true">edit</mat-icon> 
+                    EDIT
+                </button>
+                <button (click)="onDeleteAction()" mat-button class="font-weight-400" [disabled]="selectedDivisions.length == 0 || selectedDivisions.length > 1">
+                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedDivisions.length === 1, 'primary-100-fg': selectedDivisions.length === 0 || selectedDivisions.length > 1}" role="img" aria-hidden="true">delete</mat-icon> 
+                    DELETE
+                </button>
+            </div>
+            <!-- SEARCH -->
+            <div style="margin-right: 10px;">
+                <mat-form-field floatPlaceholder="never">
+                    <input id="search" (keyup)='updateFilter($event)' matInput #filter placeholder="Search" class="full-right">
+                </mat-form-field>
+            </div>
+            <!-- / SEARCH -->
+        </div>
         <ngx-datatable
             #table
             class="material"
@@ -39,6 +62,7 @@
             [reorderable]="reorderable"
             [selectionType]="'checkbox'"
             [limit]="10"
+            [selected]="selectedDivisions"
             (select)='onSelect($event)'>
 
             <ngx-datatable-column [width]="48"

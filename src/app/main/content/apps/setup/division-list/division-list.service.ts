@@ -8,4 +8,8 @@ export class DivisionListService {
     getDivisions() {
         return this.http.get('api/divisions');
     }
+
+    deleteDivision(division) {
+        return this.http.delete('api/divisions/'+division.id);
+    }
 }
