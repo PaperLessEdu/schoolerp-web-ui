@@ -35,5 +35,6 @@ export class ChangeRoleComponent implements OnInit {
 
   updateRole(): void {
     //TODO: update role api call to backend
+    this.dialogRef.close(['save']);
   }
 }

@@ -80,9 +80,7 @@ export class EmployeeListComponent implements OnInit {
             }
             const actionType: string = response[0];
             switch ( actionType ) {
-                case 'save': 
-                this.doRefresh(); 
-                break; 
+                case 'save': this.doRefresh(); break; 
                 case 'close': break;
             }   
         });
