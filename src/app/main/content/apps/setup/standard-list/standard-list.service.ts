@@ -8,4 +8,8 @@ export class StandardListService {
     getStandards() {
         return this.http.get('api/standards');
     }
+
+    deleteStandard(standard) {
+        return this.http.delete('api/standards/'+standard.id);
+    }
 }

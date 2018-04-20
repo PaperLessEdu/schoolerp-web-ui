@@ -17,15 +17,32 @@
           <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Standards</span>
       </div>
       <!-- / APP TITLE -->
-
-      <button mat-raised-button
-            (click)="openDialog()"
-            class="add-product-button mat-white-bg my-12 mt-sm-0">
-        <span>Add Standard</span>
-      </button>
     </div>
     <!-- CONTENT CARD -->
     <div class="mat-white-bg">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center">
+                <button (click)="onAddAction()" mat-button class="font-weight-400">
+                    <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon> 
+                    ADD
+                </button>
+                <button (click)="onEditAction()" mat-button class="font-weight-400" [disabled]="selectedStds.length == 0 || selectedStds.length > 1">
+                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedStds.length === 1, 'primary-100-fg': selectedStds.length === 0 || selectedStds.length > 1}" role="img" aria-hidden="true">edit</mat-icon> 
+                    EDIT
+                </button>
+                <button (click)="onDeleteAction()" mat-button class="font-weight-400" [disabled]="selectedStds.length == 0 || selectedStds.length > 1">
+                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedStds.length === 1, 'primary-100-fg': selectedStds.length === 0 || selectedStds.length > 1}" role="img" aria-hidden="true">delete</mat-icon> 
+                    DELETE
+                </button>
+            </div>
+            <!-- SEARCH -->
+            <div style="margin-right: 10px;">
+                <mat-form-field floatPlaceholder="never">
+                    <input id="search" (keyup)='updateFilter($event)' matInput #filter placeholder="Search" class="full-right">
+                </mat-form-field>
+            </div>
+            <!-- / SEARCH -->
+        </div>
         <ngx-datatable
             #table
             class="material"
@@ -39,6 +56,7 @@
             [reorderable]="reorderable"
             [selectionType]="'checkbox'"
             [limit]="10"
+            [selected]="selectedStds"
             (select)='onSelect($event)'>
 
             <ngx-datatable-column [width]="48"

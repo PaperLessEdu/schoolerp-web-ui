@@ -68,9 +68,7 @@ export class DivisionListComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function(d) {
-        return d.firstName.toLowerCase().indexOf(val) !== -1 ||
-                d.lastName.toLowerCase().indexOf(val) !== -1 ||
-                !val;
+        return d.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     // update the rows

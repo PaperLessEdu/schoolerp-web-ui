@@ -1,8 +1,9 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
-            <span class="title dialog-title">Add Standard</span>
-            <button mat-button class="mat-icon-button"
+                <span *ngIf="data.pageType=='add'" class="title dialog-title">Add Standard</span>
+                <span *ngIf="data.pageType=='edit'" class="title dialog-title">Update Standard</span>
+                <button mat-button class="mat-icon-button"
                     (click)="dialogRef.close()"
                     aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
@@ -12,7 +13,7 @@
     <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
         <form [formGroup]="standardForm" class="event-form w-100-p" fxLayout="column" fxFlex>
             <mat-form-field>
-                <input matInput formControlName="name" placeholder="Standard Name" required>
+                <input [(ngModel)]="data.selectedStd.name" matInput formControlName="name" placeholder="Standard Name" required>
                 <mat-error *ngIf="standardFormErrors.name.required">
                     Standard name is required!
                 </mat-error>
@@ -22,11 +23,21 @@
     <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
         <button mat-button 
                 mat-raised-button
+                *ngIf="data.pageType=='add'"
                 [disabled]="standardForm.invalid"
                 (click)="addStandard()"
                 class="save-button mat-accent"
                 aria-label="SAVE">
                 Add
+        </button>
+        <button mat-button 
+                mat-raised-button
+                *ngIf="data.pageType=='edit'"
+                [disabled]="standardForm.invalid"
+                (click)="updateStandard()"
+                class="save-button mat-accent"
+                aria-label="SAVE">
+                Update
         </button>
         <button mat-button 
         (click)="dialogRef.close(['close',standardForm])">

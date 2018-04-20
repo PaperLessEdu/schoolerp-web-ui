@@ -1,7 +1,8 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
-            <span class="title dialog-title">Add Division</span>
+            <span *ngIf="data.pageType=='add'" class="title dialog-title">Add Division</span>
+            <span *ngIf="data.pageType=='edit'" class="title dialog-title">Update Division</span>
             <button mat-button class="mat-icon-button"
                     (click)="dialogRef.close()"
                     aria-label="Close dialog">

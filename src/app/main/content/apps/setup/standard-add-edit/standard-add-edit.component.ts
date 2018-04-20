@@ -38,15 +38,29 @@ export class StandardAddEditComponent implements OnInit {
         this.dialogRef.close(['save',this.standardForm]); 
           
           //Show the success message
-          let msg = 'Standard added successfully';
-          this.snackBar.open(msg, 'OK', {
-              verticalPosition: 'top',
-              duration        : 3000
-          });
+          this.displayNotification('Standard added successfully');
+      });
+  }
+
+  updateDivision(): void {
+    let data = this.data.selectedDivision;
+    this.standardAddEditService.updateStandard(data)
+      .then(() => {
+        this.dialogRef.close(['save', this.standardForm]);  
+          
+        //Show the success message
+        this.displayNotification('Standard updated successfully');
       });
   }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  displayNotification(msg): void {
+    this.snackBar.open(msg, 'OK', {
+        verticalPosition: 'top',
+        duration        : 3000
+    });
   }
 }

@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { cloneDeep } from 'lodash';
 
+import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/confirmation-dialog.component';
 import { StandardAddEditComponent } from '../standard-add-edit/standard-add-edit.component';
 import { StandardListService } from './standard-list.service';
 
@@ -17,7 +19,8 @@ export class StandardListComponent implements OnInit {
   temp: any[];
   loadingIndicator = true;
   reorderable = true;
-  selectedStd: any[];
+  selectedStds: any[] = [];
+  pageType: string = 'add';
   
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
@@ -30,8 +33,13 @@ export class StandardListComponent implements OnInit {
   }
 
   openDialog(): void {
+    let stdObj = this.pageType == 'add' ? { name: '' } : this.selectedStds[0];
     let dialogRef = this.dialog.open(StandardAddEditComponent, {
-      width: '350px'
+      width: '350px',
+      data: {
+        pageType: this.pageType,
+        selectedStd: cloneDeep(stdObj)
+      }
     });
 
     dialogRef.afterClosed().subscribe(response => {
@@ -47,6 +55,7 @@ export class StandardListComponent implements OnInit {
   }
 
   doRefresh() {
+    this.selectedStds = [];
     this.standardsService.getStandards().subscribe((standards: any) => {
         this.temp = [...standards];
         this.rows = standards;
@@ -59,9 +68,7 @@ export class StandardListComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function(d) {
-        return d.firstName.toLowerCase().indexOf(val) !== -1 ||
-                d.lastName.toLowerCase().indexOf(val) !== -1 ||
-                !val;
+        return d.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     // update the rows
@@ -71,10 +78,54 @@ export class StandardListComponent implements OnInit {
   }
 
   onSelect(obj): void {
-      this.selectedStd = obj.selected;
+      this.selectedStds = obj.selected;
+  }
+
+  onAddAction(): void {
+    this.pageType = 'add';
+    this.openDialog();
   }
 
   onEditAction(): void {
-      
+    this.pageType = 'edit';
+    this.openDialog();
+  }
+
+  onDeleteAction(): void {
+    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: { 
+        title: 'Confirmation',
+        content: 'Are you sure you want delete this standard?'
+      }
+    });
+    
+    dialogRef.afterClosed().subscribe(response => {
+      if (!response) {
+          return;
+      }
+      const actionType: string = response[0];
+      switch ( actionType ) {
+        case 'yes': 
+          this.deleteDivision(); 
+          break; 
+        case 'no': break;
+      }   
+    });
+  }
+
+  deleteDivision(): void {
+    let me = this;
+    me.standardsService.deleteStandard(this.selectedStds[0]).subscribe((res: any) => {
+     me.displayNotification("Standard deleted successfully");
+     me.doRefresh();
+    });  
+  }
+
+  displayNotification(msg): void {
+    this.snackBar.open(msg, 'OK', {
+      verticalPosition: 'top',
+      duration        : 3000
+    });
   }
 }

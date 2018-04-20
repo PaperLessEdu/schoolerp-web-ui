@@ -14,4 +14,13 @@ export class StandardAddEditService {
                 }, reject);
         });
     }
+
+    updateStandard(standard) {
+        return new Promise((resolve, reject) => {
+            this.http.put('api/standards/'+standard.id, standard)
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+    }
 }
