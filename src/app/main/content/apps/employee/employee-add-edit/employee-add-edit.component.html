@@ -78,7 +78,7 @@
                                 <input matInput [matDatepicker]="doj" placeholder="Date of joining" formControlName="dateOfJoining" required>
                                 <mat-datepicker-toggle matSuffix [for]="doj"></mat-datepicker-toggle>
                                 <mat-datepicker #doj></mat-datepicker>
-                                <mat-error *ngIf="horizontalStepperStep1Errors.dateOfJoining.required">
+                                <mat-error *ngIf="dateOfJoining.errors?.required">
                                     Date of joining is required!
                                 </mat-error>
                             </mat-form-field>
@@ -104,7 +104,7 @@
                             <!-- Naationality -->
                             <mat-form-field fxFlex="33">
                                 <input matInput placeholder="Nationality" formControlName="nationality" required>
-                                <mat-error *ngIf="horizontalStepperStep1Errors.nationality.required">
+                                <mat-error *ngIf="nationality.errors?.required">
                                     Nationality is required!
                                 </mat-error>
                             </mat-form-field>

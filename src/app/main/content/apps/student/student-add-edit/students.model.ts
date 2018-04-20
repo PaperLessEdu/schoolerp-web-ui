@@ -4,8 +4,19 @@ export class Student {
 
     id: string;
     academicYear: string;
-    name: string;
+    firstName: string;
+    middleName: string;
+    lastName: string;
     dob: string;
+    gender: string;
+    bloodGroup: string;
+    category: string;
+    caste: string;
+    religion: string;
+    standard: string;
+    division: string;
+    nationality: string;
+
     permanentAddress: string;
     correspondenceAddress: string;
     country: string;
@@ -13,17 +24,13 @@ export class Student {
     state: string;
     postalCode: string;
     phoneNumber: string;
-    category: string;
-    caste: string;
-    religion: string;
+    
     emailId: string;
-    gender: string;
-    bloodGroup: string;
+    
     aadharCardNumber: string;
     birthPlace: string;
-    nationality: string;
+    
     previousSchoolName: string;
-    standard: string;
     fathersName: string;
     mothersName: string;
     qualification: string;
@@ -31,9 +38,23 @@ export class Student {
 
     constructor(student?) {
         student = student || {};
+
+        // General Information
         this.id = student.id || '';
-        this.name = student.name || '';
+        this.academicYear = student.academicYear || '';
+        this.firstName = student.firstName || '';
+        this.middleName = student.middleName || '';
+        this.lastName = student.lastName || '';
         this.dob = student.dob || '';
+        this.gender = student.gender || '';
+        this.bloodGroup = student.bloodGroup || '';
+        this.category = student.category || '';
+        this.caste = student.caste || '';
+        this.religion = student.religion || '';
+        this.standard = student.standard || '';
+        this.division = student.division || '';
+        this.nationality = student.nationality || '';
+
         this.permanentAddress = student.address || '';
         this.correspondenceAddress = student.correspondenceAddress || '';
         this.country = student.country || '';
@@ -41,17 +62,15 @@ export class Student {
         this.state = student.state || '';
         this.postalCode = student.postalCode || '';
         this.phoneNumber = student.phoneNumber || '';
-        this.category = student.category || '';
-        this.caste = student.caste || '';
-        this.religion = student.religion || '';
+        
         this.emailId = student.emailId || '';
-        this.gender = student.gender || '';
-        this.bloodGroup = student.bloodGroup || '';
+        
+        
         this.aadharCardNumber = student.aadharCardNumber || '';
         this.birthPlace = student.birthPlace || '';
-        this.nationality = student.nationality || '';
+        
         this.previousSchoolName = student.previousSchoolName || '';
-        this.standard = student.standard || '';
+
         this.fathersName = student.fathersName || '';
         this.mothersName = student.mothersName || '';
         this.qualification = student.qualification || '';

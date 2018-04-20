@@ -58,23 +58,18 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
         return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('bloodGroup'));
     }
     
+    get dateOfJoining(): FormControl {
+        return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('dateOfJoining'));
+    }
+
+    get nationality(): FormControl {
+        return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('nationality'));
+    }
+
     constructor(private formBuilder: FormBuilder,
         private router: Router,
         public snackBar: MatSnackBar,
         private employeeAddEditService: EmployeeAddEditService) {
-        // Reactive form errors  
-        // Horizontal Stepper form error
-        this.horizontalStepperStep1Errors = {
-            middleName: {},
-            lastName: {},
-            dob: {},
-            gender: {},
-            maritalStatus: {},
-            nationality: {},
-            bloodGroup: {},
-            aadharCardNumber: {},
-            dateOfJoining: {}
-        };
 
         this.horizontalStepperStep2Errors = {
             country: {},
@@ -127,7 +122,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
             dob: [this.employee.dob || '', Validators.required],
             bloodGroup: [this.employee.bloodGroup || ''],
             maritalStatus: [this.employee.maritalStatus || '', Validators.required],
-            aadharCardNumber: [this.employee.aadharCardNumber || '', Validators.required]
+            aadharCardNumber: [this.employee.aadharCardNumber || '']
         });
     }
 

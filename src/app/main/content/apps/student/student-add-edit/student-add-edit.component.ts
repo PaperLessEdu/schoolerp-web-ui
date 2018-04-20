@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { Student } from './students.model';
 import { Subscription } from 'rxjs/Subscription';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { StudentAddEditService } from './student-add-edit.service';
@@ -23,13 +23,106 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
   form: FormGroup;
   formErrors: any;
 
+  // getters for form control
+  get academicYear(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('academicYear'));
+  }
+
+  get firstName(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('firstName'));
+  }
+
+  get lastName(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('lastName'));
+  }
+
+  get dob(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('dob'));
+  }
+
+  get bloodGroup(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('bloodGroup'));
+  }
+
+  get category(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('category'));
+  }
+
+  get caste(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('caste'));
+  }
+
+  get religion(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('religion'));
+  }
+
+  get standard(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('standard'));
+  }
+
+  get division(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('division'));
+  }
+
+  get nationality(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('nationality'));
+  }
+
+  get permanentAddress(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('permanentAddress'));
+  }
+
+  get correspondenceAddress(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('correspondenceAddress'));
+  }
+
+  get country(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('country'));
+  }
+
+  get state(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('state'));
+  }
+
+  get city(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('city'));
+  }
+
+  get postalCode(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('postalCode'));
+  }
+
+  get fathersName(): FormControl {
+    return <FormControl>(this.parentsInfo && this.parentsInfo.get('fathersName'));
+  }
+
+  get mothersName(): FormControl {
+    return <FormControl>(this.parentsInfo && this.parentsInfo.get('mothersName'));
+  }
+
+  get qualification(): FormControl {
+    return <FormControl>(this.parentsInfo && this.parentsInfo.get('qualification'));
+  }
+
+  get occupation(): FormControl {
+    return <FormControl>(this.parentsInfo && this.parentsInfo.get('occupation'));
+  }
+
+  get phoneNumber(): FormControl {
+    return <FormControl>(this.parentsInfo && this.parentsInfo.get('phoneNumber'));
+  }
+
+  get emailId(): FormControl {
+    return <FormControl>(this.parentsInfo && this.parentsInfo.get('emailId'));
+  }
+
   // Horizontal Stepper
   generalInfo: FormGroup;
   parentsInfo: FormGroup;
   // horizontalStepperStep3: FormGroup;
 
-  generalInfoErrors: any;
-  parentsInfoErrors: any;
+  // generalInfoErrors: any;
+  // parentsInfoErrors: any;
   // horizontalStepperStep3Errors: any;
 
   constructor(
@@ -38,41 +131,6 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     public snackBar: MatSnackBar,
     private studentAddEditService: StudentAddEditService
   ) {
-    this.init();
-  }
-
-  private init(): void {
-    this.initFormErrors();
-  }
-
-  private initFormErrors(): void {
-    // Reactive form errors  
-    // Horizontal Stepper form error
-    this.generalInfoErrors = {
-      academicYear: {},
-      name: {},
-      dob: {},
-      permanentAddress: {},
-      correspondenceAddress: {},
-      country: {},
-      city: {},
-      state: {},
-      postalCode: {},
-      category: {},
-      caste: {},
-      religion: {},
-      gender: {},
-      bloodGroup: {},
-    };
-
-    this.parentsInfoErrors = {
-      fathersName: {},
-      mothersName: {},
-      qualification: {},
-      occupation: {},
-      phoneNumber: {},
-      emailId: {},
-    };
   }
 
   ngOnInit() {
@@ -90,26 +148,30 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
         .subscribe(student => {
           this.generalInfo = this.generalInfoForm();
           this.parentsInfo = this.parentsInfoForm();
-          // this.horizontalStepperStep3 = this.horizontalStepperStep3Form();
         });
   }
 
   private generalInfoForm(): FormGroup {
     return this.formBuilder.group({
       academicYear: [this.student.academicYear || '', Validators.required],
+      firstName: [this.student.firstName || '', Validators.required],
+      middleName: [this.student.middleName || ''],
+      lastName: [this.student.lastName || '', Validators.required],
       dob: [this.student.dob || '', Validators.required],
-      name: [this.student.name || '', Validators.required],
+      gender: [this.student.gender || '', Validators.required],
+      bloodGroup: [this.student.bloodGroup || '', Validators.required],
+      category: [this.student.category || '', Validators.required],
+      caste: [this.student.caste || '', Validators.required],
+      religion: [this.student.religion || '', Validators.required],
+      standard: [this.student.standard || '', Validators.required],
+      division: [this.student.division || '', Validators.required],
+      nationality: [this.student.nationality || '', Validators.required],
       permanentAddress: [this.student.permanentAddress || '', Validators.required],
       correspondenceAddress: [this.student.correspondenceAddress || '', Validators.required],
       country: [this.student.country || '', Validators.required],
       state: [this.student.state || '', Validators.required],
       city: [this.student.city || '', Validators.required],
-      postalCode: [this.student.postalCode || '', [Validators.required, Validators.maxLength(6)]],
-      category: [this.student.category || '', Validators.required],
-      caste: [this.student.caste || '', Validators.required],
-      religion: [this.student.religion || '', Validators.required],
-      gender: [this.student.gender || '', Validators.required],
-      bloodGroup: [this.student.bloodGroup || '']
+      postalCode: [this.student.postalCode || '', [Validators.required, Validators.maxLength(6)]]
     });
   }
 
