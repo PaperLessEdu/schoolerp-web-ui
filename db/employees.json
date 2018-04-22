@@ -10,7 +10,7 @@
       "postalCode": "411037",
       "emailId": "ygawade.edu@gmail.com",
       "phoneNumber": "7620676545",
-      "gender": "Male",
+      "gender": "Female",
       "dob": "28/07/1991",
       "bloodGroup": "A +ve",
       "maritalStatus": "Married",
@@ -21,9 +21,6 @@
       "employeeType": "Teaching Staff",
       "panCardNumber": "ATOPG7432D",
       "aadharCardNumber": "1111-2222-3333",
-      "bankName": "ICICI Bank",
-      "bankAccountNumber": "ICIC0000985",
-      "bankIFSCCode": "098501538045",
       "roleId": 1
     },
     {
@@ -48,9 +45,6 @@
       "jobType": "Full Time",
       "employeeType": "Teaching Staff",
       "dateOfJoining": "01/04/2017",
-      "bankName": "ICICI Bank",
-      "bankAccountNumber": "ICIC0000985",
-      "bankIFSCCode": "098501538045",
       "roleId": 4
     },
     {
@@ -75,9 +69,6 @@
       "jobType": "Contractor",
       "employeeType": "Teaching Staff",
       "dateOfJoining": "01/04/2017",
-      "bankName": "ICICI Bank",
-      "bankAccountNumber": "ICIC0000985",
-      "bankIFSCCode": "098501538045",
       "roleId": 3
     },
     {
@@ -102,9 +93,6 @@
       "employeeType": "Teaching Staff",
       "panCardNumber": "aaa",
       "aadharCardNumber": "aaa",
-      "bankName": "a",
-      "bankAccountNumber": "a",
-      "bankIFSCCode": "aaa",
       "roleId": 2
     },
     {
@@ -129,9 +117,6 @@
       "employeeType": "Teaching Staff",
       "panCardNumber": "sssSs",
       "aadharCardNumber": "ss",
-      "bankName": "s",
-      "bankAccountNumber": "s",
-      "bankIFSCCode": "s",
       "roleId": 1
     },
     {
@@ -156,9 +141,6 @@
       "employeeType": "Teaching Staff",
       "panCardNumber": "qqq",
       "aadharCardNumber": "qqq",
-      "bankName": "q",
-      "bankAccountNumber": "q",
-      "bankIFSCCode": "qqq",
       "roleId": 4
     },
     {
@@ -183,9 +165,6 @@
       "employeeType": "Teaching Staff",
       "panCardNumber": "xxx",
       "aadharCardNumber": "xxx",
-      "bankName": "xxxx",
-      "bankAccountNumber": "xxxx",
-      "bankIFSCCode": "xxxxx",
       "roleId": 3
     },
     {
@@ -210,9 +189,6 @@
       "employeeType": "Non Teaching Staff",
       "panCardNumber": "zzzzz",
       "aadharCardNumber": "zzzz",
-      "bankName": "zzzz",
-      "bankAccountNumber": "zzzz",
-      "bankIFSCCode": "zzzz",
       "roleId": 2
     },
     {
@@ -237,9 +213,6 @@
       "employeeType": "Non Teaching Staff",
       "panCardNumber": "ATOPG7431P",
       "aadharCardNumber": "1111-2222-3333",
-      "bankName": "Axis Bank",
-      "bankAccountNumber": "1234567890",
-      "bankIFSCCode": "AXISI1213",
       "roleId": 1
     }
   ]

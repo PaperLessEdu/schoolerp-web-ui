@@ -106,7 +106,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
                     this.horizontalStepperStep1 = this.horizontalStepperStep1Form();
                     this.horizontalStepperStep2 = this.horizontalStepperStep2Form();
                     this.horizontalStepperStep3 = this.horizontalStepperStep3Form();
-                    this.setDefaultValue();
+                    //this.setDefaultValue();
                 });
     }
 

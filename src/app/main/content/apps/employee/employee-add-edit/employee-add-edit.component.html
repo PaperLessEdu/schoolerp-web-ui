@@ -1,4 +1,4 @@
-<div id="employee" class="page-layout carded fullwidth" fusePerfectScrollbar>
+<div id="employee" class="page-layout carded fullwidth employee" fusePerfectScrollbar>
 
   <!-- TOP BACKGROUND -->
   <div class="top-bg mat-accent-bg"></div>
@@ -61,7 +61,6 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-
                         <div>
                             <!-- DOB -->
                             <mat-form-field fxFlex="33">
@@ -82,25 +81,8 @@
                                     Date of joining is required!
                                 </mat-error>
                             </mat-form-field>
-
-                            <!-- Gender -->
-                            <div class="mat-input-infix mat-form-field-infix" fxFlex="33" fxLayoutAlign="center center">
-                                <mat-radio-group formControlName="gender">
-                                <mat-radio-button name="gender" value="Male">Male</mat-radio-button>
-                                <mat-radio-button name="gender" value="Female">Female</mat-radio-button>
-                                </mat-radio-group>
-                            </div>
                         </div>
-
                         <div>
-                            <!-- Marital status -->
-                            <div class="mat-input-infix mat-form-field-infix" fxFlex="33">
-                                <mat-radio-group formControlName="maritalStatus">
-                                <mat-radio-button name="maritalStatus" value="Married">Married</mat-radio-button>
-                                <mat-radio-button name="maritalStatus" value="Unmarried">Unmarried</mat-radio-button>
-                                </mat-radio-group>
-                            </div>
-
                             <!-- Naationality -->
                             <mat-form-field fxFlex="33">
                                 <input matInput placeholder="Nationality" formControlName="nationality" required>
@@ -142,12 +124,28 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-
                         <div>
                             <!-- Aadhar Card Number -->
                             <mat-form-field fxFlex="33">
                                 <input matInput placeholder="Aadhar Card Number" formControlName="aadharCardNumber">
                             </mat-form-field>
+                        </div>
+                        <div>
+                            <!-- Gender -->
+                            <div class="mat-input-infix mat-form-field-infix" fxFlex="33">
+                                <mat-radio-group formControlName="gender">
+                                <mat-radio-button style="margin-right:10px;" name="gender" value="Male">Male</mat-radio-button>
+                                <mat-radio-button style="margin-right:10px;" name="gender" value="Female">Female</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+
+                            <!-- Marital status -->
+                            <div class="mat-input-infix mat-form-field-infix" fxFlex="33">
+                                <mat-radio-group formControlName="maritalStatus">
+                                <mat-radio-button style="margin-right:10px;" name="maritalStatus" value="Married">Married</mat-radio-button>
+                                <mat-radio-button style="margin-right:10px;" name="maritalStatus" value="Unmarried">Unmarried</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
                         </div>
                         <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
                             <button mat-raised-button matStepperNext type="button" color="accent">
@@ -161,32 +159,6 @@
                 <mat-step [stepControl]="horizontalStepperStep2">
                     <form [formGroup]="horizontalStepperStep2">
                         <ng-template matStepLabel>Contact Information</ng-template>
-                        <div>
-                            <!-- Country -->
-                            <mat-form-field fxFlex="33">
-                                <input matInput placeholder="Country" formControlName="country" required>
-                                <mat-error *ngIf="horizontalStepperStep2Errors.country.required">
-                                    Country is required!
-                                </mat-error>
-                            </mat-form-field>
-
-                            <!-- State -->
-                            <mat-form-field fxFlex="34">
-                                <input matInput placeholder="State" formControlName="state" required>
-                                <mat-error *ngIf="horizontalStepperStep2Errors.state.required">
-                                    State is required!
-                                </mat-error>
-                            </mat-form-field>
-
-                            <!-- City -->
-                            <mat-form-field fxFlex="33">
-                                <input matInput placeholder="City" formControlName="city" required>
-                                <mat-error *ngIf="horizontalStepperStep2Errors.city.required">
-                                    City is required!
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-    
                         <div>
                             <!-- Permanent Address -->
                             <mat-form-field fxFlex="50">
@@ -208,10 +180,17 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-
                         <div>
+                            <!-- City -->
+                            <mat-form-field fxFlex="33">
+                                <input matInput placeholder="City" formControlName="city" required>
+                                <mat-error *ngIf="horizontalStepperStep2Errors.city.required">
+                                    City is required!
+                                </mat-error>
+                            </mat-form-field>
+
                             <!-- Postal Code -->
-                            <mat-form-field fxFlex="50">
+                            <mat-form-field fxFlex="33">
                                 <input matInput #postalCode placeholder="Postal Code" formControlName="postalCode"
                                         required>
                                 <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
@@ -223,30 +202,48 @@
                                     Postal Code is required!
                                 </mat-error>
                             </mat-form-field>
-
-                            <!-- Email -->
-                            <mat-form-field fxFlex="50">
-                                <input matInput placeholder="Email" formControlName="emailId" required>
-                                <mat-error *ngIf="horizontalStepperStep2Errors.emailId.required">
-                                    Email is required!
+                        </div>
+                        <div>
+                            <!-- State -->
+                            <mat-form-field fxFlex="33">
+                                <input matInput placeholder="State" formControlName="state" required>
+                                <mat-error *ngIf="horizontalStepperStep2Errors.state.required">
+                                    State is required!
+                                </mat-error>
+                            </mat-form-field>
+                            
+                             <!-- Country -->
+                             <mat-form-field fxFlex="33">
+                                <input matInput placeholder="Country" formControlName="country" required>
+                                <mat-error *ngIf="horizontalStepperStep2Errors.country.required">
+                                    Country is required!
                                 </mat-error>
                             </mat-form-field>
                         </div>
 
                         <div>
-                            <!-- Phone Numbe --> 
-                            <mat-form-field fxFlex="50">
+                            <!-- Phone Number --> 
+                            <mat-form-field fxFlex="33">
                                 <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
                                 <mat-error *ngIf="horizontalStepperStep2Errors.phoneNumber.required">
                                     Phone number is required!
                                 </mat-error>
                             </mat-form-field>
 
-                            <!-- Alternate Phone Numbe --> 
-                            <mat-form-field fxFlex="50">
+                            <!-- Alternate Phone Number --> 
+                            <mat-form-field fxFlex="33">
                                 <input matInput placeholder="Alternate Phone Number" formControlName="alternatePhoneNumber" required>
                                 <mat-error *ngIf="horizontalStepperStep2Errors.alternatePhoneNumber.required">
                                     Alternate Phone number is required!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <!-- Email -->
+                            <mat-form-field fxFlex="33">
+                                <input matInput placeholder="Email" formControlName="emailId" required>
+                                <mat-error *ngIf="horizontalStepperStep2Errors.emailId.required">
+                                    Email is required!
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -339,7 +336,7 @@
                 <mat-step>
                     <ng-template matStepLabel>Done</ng-template>
                     <div class="h2 m-16" fxLayout="row" fxLayoutAlign="center center">
-                        Thank your for filling out our form.
+                        Click on the save button to submit this form.
                     </div>
                     <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
                         <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
