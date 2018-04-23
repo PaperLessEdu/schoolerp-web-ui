@@ -13,6 +13,10 @@ const routes = [
   {
     path: 'home',
     component: DashboardHomeComponent
+  },
+  {
+    path: '',
+    redirectTo: 'home'
   }
 ];
 @NgModule({

@@ -1,3 +1,153 @@
-<p>
-  employee-profile works!
-</p>
+<div id="profile" class="page-layout simple tabbed" fusePerfectScrollbar>
+  <!-- HEADER -->
+  <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center"> 
+    <!-- APP TITLE -->
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="'/apps/employee/list'">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <img class="profile-image avatar huge" src="assets/images/avatars/profile.jpg"
+           *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+      <div class="name" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+        {{emplDetails.firstName}} {{emplDetails.middleName}} {{emplDetails.lastName}} 
+      </div>
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="content">
+      <div id="about" class="p-24" fxLayout="row wrap">
+        <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="65">
+            <div class="profile-box info-box general" fxLayout="column">
+                <header class="mat-accent-bg">
+                    <div class="title">General Information</div>
+                </header>
+                <div class="content">
+                  <div style="width: 50%; float: left;">
+                      <div class="info-line">
+                          <div class="title">Gender</div>
+                          <div class="info">{{emplDetails.gender}}</div>
+                      </div>
+                      <div class="info-line">
+                          <div class="title">Birthday</div>
+                          <div class="info">{{emplDetails.dob}}</div>
+                      </div>
+                      <div class="info-line">
+                          <div class="title">Marital Status</div>
+                          <div class="info">{{emplDetails.maritalStatus}}</div>
+                      </div>
+                      <div class="info-line">
+                          <div class="title">Blood group</div>
+                          <div class="info">{{emplDetails.bloodGroup}}</div>
+                      </div>
+                      <div class="info-line">
+                          <div class="title">Aadhar card number</div>
+                          <div class="info">{{emplDetails.aadharCardNumber}}</div>
+                      </div>
+                  </div>
+                  <div style="width: 50%; float: left;">
+                      <div class="info-line">
+                          <div class="title">Nationality</div>
+                          <div class="info">{{emplDetails.nationality}}</div>
+                      </div>
+                      <div class="info-line">
+                          <div class="title">Employee Type</div>
+                          <div class="info">{{emplDetails.employeeType}}</div>
+                      </div>
+                      <div class="info-line">
+                          <div class="title">Date of joining</div>
+                          <div class="info">{{emplDetails.dateOfJoining}}</div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="profile-box info-box contact" fxLayout="column">
+                <header class="mat-accent-bg">
+                    <div class="title">Contact</div>
+                </header>
+                <div class="content">
+                  <div class="info-line">
+                      <div class="title">Permanent address</div>
+                      <div class="info">{{emplDetails.permanentAddress}}</div>
+                  </div>
+                  <div class="info-line">
+                      <div class="title">Correspondance address</div>
+                      <div class="info">
+                          <span>{{emplDetails.correspondenceAddress}}</span>
+                      </div>
+                  </div>
+                  <div class="info-line">
+                      <div class="title">Contact Number</div>
+                      <div class="info">
+                          <span>{{emplDetails.phoneNumber}}</span><br/>
+                          <span>{{emplDetails.alternatePhoneNumber}}</span>
+                      </div>
+                  </div>
+                  <div class="info-line">
+                      <div class="title">Emails</div>
+                      <div class="info">
+                          <span>{{emplDetails.emailId}}</span>
+                      </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="profile-box info-box contact" fxLayout="column">
+                <header class="mat-accent-bg">
+                  <div class="title">Occupation</div>
+                </header>
+                <div class="content">
+                  <div class="info-line">
+                      <div class="title">Qualification</div>
+                      <div class="info">
+                          <span>{{emplDetails.qualification}}</span>
+                      </div>
+                  </div>
+                  <div class="info-line">
+                      <div class="title">Occupation</div>
+                      <div class="info">
+                          <span>{{emplDetails.occupation}}</span>
+                      </div>
+                  </div>
+                  <div class="info-line">
+                      <div class="title">Job Type</div>
+                      <div class="info">
+                          <span>{{emplDetails.jobType}}</span>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="about-sidebar" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="35">
+          <div class="profile-box friends" fxLayout="column">
+              <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
+                  <div class="title">Subjects</div>
+              </header>
+              <div class="content" fxLayout="row wrap">
+                  
+              </div>
+          </div>
+  
+          <div class="profile-box groups" fxLayout="column">
+              <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
+                  <div class="title">Standards</div>
+              </header>
+              <div class="content">
+                  
+              </div>
+          </div>
+
+          <div class="profile-box groups" fxLayout="column">
+              <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
+                  <div class="title">Divisions</div>
+              </header>
+              <div class="content">
+                  
+              </div>
+          </div>
+        </div>
+    </div>          
+  </div>
+  <!-- / CONTENT -->
+</div>
