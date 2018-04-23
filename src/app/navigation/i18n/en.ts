@@ -8,6 +8,7 @@ export const locale = {
             'STUDENT': 'Student',
             'SETUP': 'Setup',
             'HOLIDAYS': 'Holidays',
+            'EXAMINATION': 'Examination',
             'SAMPLE': {
                 'TITLE': 'Sample',
                 'BADGE': '25'

@@ -1,0 +1,162 @@
+<div id="holidays" class="page-layout carded fullwidth" fusePerfectScrollbar>
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <button class="mr-0 mr-sm-16" mat-icon-button>
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+                <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <mat-icon class="s-48">person_outline</mat-icon>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2">
+                        Schedule Exam
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>Plan your exam</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg p-24">
+            <p>
+                Angular reactive forms facilitate a reactive style of programming that favors explicit management of the data flowing between
+                a non-UI data model (typically retrieved from a server) and a UI-oriented form model that retains the states
+                and values of the HTML controls on screen. Reactive forms offer the ease of using reactive patterns, testing,
+                and validation.
+            </p>
+
+            <div>
+                <label class="pr-24">Select Standard</label>
+                <mat-form-field>
+                    <mat-select placeholder="Standard" [(ngModel)]="standard" multiple>
+                        <mat-option *ngFor="let standard of standardList" [value]="standard.id">{{standard.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="pb-12" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center">
+                    <button mat-button class="font-weight-400 pl-0" style="text-align: left;" (click)="insertRowInTemplate()">
+                        <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon>
+                        ADD
+                    </button>
+                </div>
+            </div>
+
+            <div class="mat-elevation-z8" style="max-height:430px; min-height: 200px; overflow-y:scroll">
+                <!--<mat-table class="mat-table" #table [dataSource]="scheduleExamTemplate" renderRows>
+                    <!-- Select Subject Column --
+                    <ng-container matColumnDef="subject">
+                        <mat-header-cell *matHeaderCellDef> Subject</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-form-field fxFlex="80">
+                                <mat-select [(ngModel)]="element.subject" required>
+                                    <mat-option *ngFor="let subject of subjectList" [value]="subject.id">
+                                        {{subject.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column --
+                    <ng-container matColumnDef="date">
+                        <mat-header-cell *matHeaderCellDef> Date</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-form-field fxFlex="80">
+                                <input matInput [matDatepicker]="picker" [(ngModel)]="element.date" required>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- Weight Column --
+                    <ng-container matColumnDef="time">
+                        <mat-header-cell *matHeaderCellDef> Time</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-form-field fxFlex="80">
+                                <input matInput [(ngModel)]="element.time" required>
+                            </mat-form-field>
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- Color Column --
+                    <ng-container matColumnDef="marks">
+                        <mat-header-cell *matHeaderCellDef> Marks out of</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-form-field fxFlex="80">
+                                <input matInput [(ngModel)]="element.marksOutOf" required>
+                            </mat-form-field>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>-->
+                <mat-list>
+                    <mat-list-item>
+                        <div fxFlex="25">Subject</div>
+                        <div fxFlex="25">Date</div>
+                        <div fxFlex="25">Time</div>
+                        <div fxFlex="25">Marks out of</div>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item *ngFor="let element of scheduleExamTemplate; let i = index">
+                        <div fxFlex="25">
+                            <mat-form-field fxFlex="80">
+                                <mat-select [(ngModel)]="element.subject" required>
+                                    <mat-option *ngFor="let subject of subjectList" [value]="subject.id">
+                                        {{subject.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="25">
+                            <mat-form-field fxFlex="80">
+                                <input matInput [matDatepicker]="picker" [(ngModel)]="element.date" required>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="25">
+                            <mat-form-field fxFlex="80">
+                                <input matInput [(ngModel)]="element.time" required>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="25">
+                            <mat-form-field fxFlex="80">
+                                <input matInput [(ngModel)]="element.marksOutOf" required>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <button mat-button class="font-weight-400 p-0" (click)="deleteRowInTemplate(i)">
+                                <mat-icon>clear</mat-icon>
+                            </button>
+                        </div>
+                        <mat-divider></mat-divider>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+
+            <div class="pt-24" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center"></div>
+                <button mat-button class="mat-raised-button mat-accent" (click)="insertRowInTemplate()">
+                    PUBLISH
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

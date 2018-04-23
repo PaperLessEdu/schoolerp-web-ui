@@ -22,6 +22,10 @@ const routes = [
   {
     path: 'holidays',
     loadChildren: './holidays/holidays.module#HolidaysModule'
+  },
+  {
+    path: 'examination',
+    loadChildren: './examination/examination.module#ExaminationModule'
   }
 ];
 

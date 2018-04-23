@@ -10,6 +10,6 @@ export class HolidayListService {
     }
 
     deleteHolidays(holiday) {
-        return this.http.delete('api/holidays/'+holiday.id);
+        return this.http.delete('api/holidays/' + holiday.id);
     }
 }
