@@ -29,7 +29,8 @@ import { EmployeeListService } from './employee-list/employee-list.service';
 import { EmployeeAddEditService } from './employee-add-edit/employee-add-edit.service';
 import { ChangeRoleComponent } from './change-role/change-role.component';
 import { ChangeRoleService } from './change-role/change-role.service';
-
+import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
+import { EmployeeProfileService } from './employee-profile/employee-profile.service';
 const routes = [
   {
     path: 'list',
@@ -43,6 +44,9 @@ const routes = [
       resolve  : {
           data: EmployeeAddEditService
       }
+  },{
+      path     : 'profile/:id',
+      component: EmployeeProfileComponent
   }, {
     path: '**',
     redirectTo: 'list'
@@ -80,12 +84,14 @@ const routes = [
   declarations: [
     EmployeeListComponent,
     EmployeeAddEditComponent,
-    ChangeRoleComponent
+    ChangeRoleComponent,
+    EmployeeProfileComponent
   ],
   providers: [
     EmployeeListService,
     EmployeeAddEditService,
-    ChangeRoleService
+    ChangeRoleService,
+    EmployeeProfileService
   ],
   entryComponents: [
     ChangeRoleComponent

@@ -85,4 +85,8 @@ export class EmployeeListComponent implements OnInit {
             }   
         });
     }
+
+    showProfile(emplId): void {
+        this.router.navigate(['/apps/employee/profile/' + emplId]);
+    }
 }

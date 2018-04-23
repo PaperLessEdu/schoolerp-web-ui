@@ -18,15 +18,11 @@ export class Employee {
     maritalStatus;
     bloodGroup;
     aadharCardNumber;
-    panCardNumber;
     qualification;
     occupation;
     jobType;
     employeeType;
     dateOfJoining;
-    bankName;
-    bankAccountNumber;
-    bankIFSCCode;
     alternatePhoneNumber;
     nationality;
     country;
