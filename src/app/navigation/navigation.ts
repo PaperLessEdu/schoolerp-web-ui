@@ -6,6 +6,14 @@ export const navigation = [
         'type': 'group',
         'children': [
             {
+                'id': 'dashboard',
+                'title': 'Dashboard',
+                'translate': 'NAV.DASHBOARD',
+                'type': 'item',
+                'icon'     : 'dashboard',
+                'url': '/apps/dashboard/home'
+            },
+            {
                 'id': 'setup',
                 'title': 'Setup',
                 'translate': 'NAV.SETUP',

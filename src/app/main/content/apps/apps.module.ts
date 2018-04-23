@@ -4,6 +4,10 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 const routes = [
   {
+    path: 'dashboard',
+    loadChildren: './dashboard/dashboard.module#DashboardModule'
+  },
+  {
     path: 'employee',
     loadChildren: './employee/employee.module#EmployeeModule'
   },
