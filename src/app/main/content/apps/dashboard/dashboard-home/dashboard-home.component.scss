@@ -1,0 +1,41 @@
+.dashboard {
+    .dashboard-container {
+        height:550px; 
+        width: auto;
+        padding: 35px;
+        box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)
+    }
+
+    mat-card {
+        height: 125px;
+        width: 200px;
+        border-radius: 3px;
+        cursor: pointer;
+        float: left;
+        box-shadow: #d7d7d7 0 3px 0 0;
+        border: 1px solid #d7d7d7;
+        margin: 15px;
+    }
+
+    mat-card:hover {
+        box-shadow: #039be5 0 3px 0 0;
+        border: 1px solid #039be5;
+    }
+
+    mat-card-content {
+        text-align: center;
+    }
+
+    .card-icon {
+        height: 45px;
+        width: 45px;
+        font-size: 45px;
+        color: #039be5;
+        margin-right: 0px !important;
+    }
+
+    .card-lable {
+        color: #313131;
+        font-size: 16px;
+    }
+}

@@ -27,16 +27,16 @@ export const navigation = [
                         'url': '/apps/setup/standards'
                     },
                     {
-                        'id': 'subjects',
-                        'title': 'Subjects',
-                        'type': 'item',
-                        'url': '/apps/setup/subjects'
-                    },
-                    {
                         'id': 'divisions',
                         'title': 'Divisions',
                         'type': 'item',
                         'url': '/apps/setup/divisions'
+                    },
+                    {
+                        'id': 'subjects',
+                        'title': 'Subjects',
+                        'type': 'item',
+                        'url': '/apps/setup/subjects'
                     },
                     {
                         'id': 'timetable',
