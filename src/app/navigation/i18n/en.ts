@@ -9,10 +9,7 @@ export const locale = {
             'SETUP': 'Setup',
             'HOLIDAYS': 'Holidays',
             'EXAMINATION': 'Examination',
-            'SAMPLE': {
-                'TITLE': 'Sample',
-                'BADGE': '25'
-            }
+            'COMMUNICATION': 'Communication'
         }
     }
 };

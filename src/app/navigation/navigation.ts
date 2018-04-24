@@ -110,20 +110,19 @@ export const navigation = [
                 'url': '/apps/holidays/list'
             },
             {
+                'id': 'communication',
+                'title': 'Communication',
+                'translate': 'NAV.COMMUNICATION',
+                'type': 'item',
+                'icon': 'today',
+                'url': '/apps/communication/home'
+            },
+            {
                 'id': 'examination',
                 'title': 'Examination',
                 'translate': 'NAV.EXAMINATION',
                 'type': 'item',
-                'icon': 'today',
                 'url': '/apps/examination/list'
-            },
-            {
-                'id': 'examination',
-                'title': 'Schedule exam',
-                'translate': 'NAV.EXAMINATION',
-                'type': 'item',
-                'icon': 'today',
-                'url': '/apps/examination/new'
             }
         ]
     }

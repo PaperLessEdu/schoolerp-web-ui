@@ -26,6 +26,10 @@ const routes = [
   {
     path: 'examination',
     loadChildren: './examination/examination.module#ExaminationModule'
+  },
+  {
+    path: 'communication',
+    loadChildren: './communication/communication.module#CommunicationModule'
   }
 ];
 
