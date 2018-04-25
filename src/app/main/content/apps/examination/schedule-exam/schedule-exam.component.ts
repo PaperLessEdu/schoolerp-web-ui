@@ -12,20 +12,14 @@ import { ScheduleExamService } from './schedule-exam.service';
 export class ScheduleExamComponent implements OnInit {
 
     displayedColumns = ['subject', 'date', 'time', 'marks'];
-    scheduleExamTemplate = [
-        {
-            subject: null,
-            date: null,
-            time: null,
-            marksOutOf: null
-        },
-        {
-            subject: null,
-            date: null,
-            time: null,
-            marksOutOf: null
-        }
-    ];
+    scheduleExamTemplate = [];
+
+    examObj = {
+        subjectName: null,
+        date: null,
+        time: null,
+        marksOutOf: null
+    };
 
     standardList: any;
     subjectList: any;
@@ -56,19 +50,11 @@ export class ScheduleExamComponent implements OnInit {
         });
     }
 
-    insertRowInTemplate(): void {
-        this.scheduleExamTemplate.push(
-            {
-                subject: null,
-                date: null,
-                time: null,
-                marksOutOf: null
-            }
-        );
+    insertRowInTemplate(examObj: any): void {
+        this.scheduleExamTemplate.push(examObj);
     }
 
     deleteRowInTemplate(index: number): void {
-        console.log("$$$$" + index);
         this.scheduleExamTemplate.splice(index, 1);
     }
 }
