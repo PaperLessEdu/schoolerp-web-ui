@@ -1,77 +1,65 @@
-<div id="employees" class="page-layout carded fullwidth employees" fusePerfectScrollbar>    
-  <!-- TOP BACKGROUND -->
-  <div class="top-bg mat-accent-bg"></div>
-  <!-- / TOP BACKGROUND -->
+<div id="employees" class="page-layout carded fullwidth employees" fusePerfectScrollbar>
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
 
-  <!-- CENTER -->
-  <div class="center">
-    
-    <!-- HEADER -->
-    <div class="header white-fg"
-         fxLayout="column" fxLayoutAlign="center center"
-         fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
-      
-      <!-- APP TITLE -->
-      <div class="logo my-12 m-sm-0"
-           fxLayout="row" fxLayoutAlign="start center">
-          <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">group</mat-icon>
-          <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Employees</span>
-      </div>
-      <!-- / APP TITLE -->
-    </div>
-    <!-- CONTENT CARD -->
-    <div class="mat-white-bg">
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-            <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center">
-                <button mat-button class="font-weight-400" [routerLink]="'/apps/employee/new'">
-                    <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon> 
-                    ADD
-                </button>
-                <button (click)="onEditAction()" mat-button class="font-weight-400" [disabled]="selectedEmpl.length == 0 || selectedEmpl.length > 1">
-                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedEmpl.length === 1, 'primary-100-fg': selectedEmpl.length === 0 || selectedEmpl.length > 1}" role="img" aria-hidden="true">edit</mat-icon> 
-                    EDIT
-                </button>
-                <button mat-button class="font-weight-400" [disabled]="selectedEmpl.length == 0">
-                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedEmpl.length >= 1, 'primary-100-fg': selectedEmpl.length < 1}" role="img" aria-hidden="true">delete</mat-icon> 
-                    DELETE
-                </button>
-                <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_horiz</mat-icon></button>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="changeRole()" [disabled]="selectedEmpl.length == 0 || selectedEmpl.length > 1">
-                        <mat-icon class="s-20">chevron_right</mat-icon>
-                        <span>Change role</span>
-                    </button>
-                    <button mat-menu-item (click)="changeStdSub()" [disabled]="selectedEmpl.length == 0 || selectedEmpl.length > 1">
-                        <mat-icon class="s-20">chevron_right</mat-icon>
-                        <span>Change standards and subjects</span>
-                    </button>
-                </mat-menu>
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header white-fg" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">group</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Employees</span>
             </div>
-            <!-- SEARCH -->
-            <div style="margin-right: 10px;">
-                <mat-form-field floatPlaceholder="never">
-                    <input id="search" (keyup)='updateFilter($event)' matInput #filter placeholder="Search" class="full-right">
-                </mat-form-field>
-            </div>
-            <!-- / SEARCH -->
+            <!-- / APP TITLE -->
         </div>
-        
-        <ngx-datatable
-            #table
-            class="material"
-            [rows]="rows"
-            [loadingIndicator]="loadingIndicator"
-            [columnMode]="'force'"
-            [headerHeight]="48"
-            [footerHeight]="56"
-            [rowHeight]="'auto'"
-            [scrollbarH]="true"
-            [reorderable]="reorderable"
-            [selectionType]="'single'"
-            [limit]="10"
-            (select)='onSelect($event)'>
+        <!-- CONTENT CARD -->
+        <div class="mat-white-bg">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center">
+                    <button mat-button class="font-weight-400" [routerLink]="'/apps/employee/new'">
+                        <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon>
+                        ADD
+                    </button>
+                    <button (click)="onEditAction()" mat-button class="font-weight-400" [disabled]="selectedEmpl.length == 0 || selectedEmpl.length > 1">
+                        <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedEmpl.length === 1, 'primary-100-fg': selectedEmpl.length === 0 || selectedEmpl.length > 1}"
+                            role="img" aria-hidden="true">edit</mat-icon>
+                        EDIT
+                    </button>
+                    <button mat-button class="font-weight-400" [disabled]="selectedEmpl.length == 0">
+                        <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedEmpl.length >= 1, 'primary-100-fg': selectedEmpl.length < 1}"
+                            role="img" aria-hidden="true">delete</mat-icon>
+                        DELETE
+                    </button>
+                    <button mat-button class="font-weight-400" [matMenuTriggerFor]="menu">
+                        <mat-icon class="s-20 mat-icon material-icons accent-600-fg">settings</mat-icon> ACTIONS
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="changeRole()" [disabled]="selectedEmpl.length == 0 || selectedEmpl.length > 1">
+                            <mat-icon class="s-20">chevron_right</mat-icon> Change role
+                        </button>
+                        <button mat-menu-item (click)="changeStdSub()" [disabled]="selectedEmpl.length == 0 || selectedEmpl.length > 1">
+                            <mat-icon class="s-20">chevron_right</mat-icon> Change standards and subjects
+                        </button>
+                    </mat-menu>
+                </div>
+                <!-- SEARCH -->
+                <div style="margin-right: 10px;">
+                    <mat-form-field floatPlaceholder="never">
+                        <input id="search" (keyup)='updateFilter($event)' matInput #filter placeholder="Search" class="full-right">
+                    </mat-form-field>
+                </div>
+                <!-- / SEARCH -->
+            </div>
 
-            <!-- <ngx-datatable-column [width]="48"
+            <ngx-datatable #table class="material" [rows]="rows" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="48"
+                [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [selectionType]="'single'"
+                [limit]="10" (select)='onSelect($event)'>
+
+                <!-- <ngx-datatable-column [width]="48"
                                   [canAutoResize]="false"
                                   [sortable]="false">
                 <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
@@ -88,18 +76,18 @@
                 </ng-template>
             </ngx-datatable-column> -->
 
-            <ngx-datatable-column name="Name">
-                <ng-template let-row="row" ngx-datatable-cell-template>
-                    <a class="empl-name" (click)="showProfile(row.id);">{{row.firstName}} {{row.lastName}}</a>
-                </ng-template>
-            </ngx-datatable-column>
-            
-            <ngx-datatable-column name="Employee Type" prop="employeeType"></ngx-datatable-column>
+                <ngx-datatable-column name="Name">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <a class="empl-name" (click)="showProfile(row.id);">{{row.firstName}} {{row.lastName}}</a>
+                    </ng-template>
+                </ngx-datatable-column>
 
-            <ngx-datatable-column name="Phone Number" prop="phoneNumber"></ngx-datatable-column>
+                <ngx-datatable-column name="Employee Type" prop="employeeType"></ngx-datatable-column>
 
-            <ngx-datatable-column name="Email Id" prop="emailId"></ngx-datatable-column>
-        </ngx-datatable>
+                <ngx-datatable-column name="Phone Number" prop="phoneNumber"></ngx-datatable-column>
+
+                <ngx-datatable-column name="Email Id" prop="emailId"></ngx-datatable-column>
+            </ngx-datatable>
+        </div>
     </div>
-  </div>
 </div>
