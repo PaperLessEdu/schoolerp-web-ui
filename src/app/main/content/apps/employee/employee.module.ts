@@ -31,6 +31,9 @@ import { ChangeRoleComponent } from './change-role/change-role.component';
 import { ChangeRoleService } from './change-role/change-role.service';
 import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
 import { EmployeeProfileService } from './employee-profile/employee-profile.service';
+import { ChangeStandardSubjectComponent } from './change-standard-subject/change-standard-subject.component';
+import { ChangeStandardSubjectService } from './change-standard-subject/change-standard-subject.service';
+
 const routes = [
   {
     path: 'list',
@@ -85,16 +88,19 @@ const routes = [
     EmployeeListComponent,
     EmployeeAddEditComponent,
     ChangeRoleComponent,
-    EmployeeProfileComponent
+    EmployeeProfileComponent,
+    ChangeStandardSubjectComponent
   ],
   providers: [
     EmployeeListService,
     EmployeeAddEditService,
     ChangeRoleService,
-    EmployeeProfileService
+    EmployeeProfileService,
+    ChangeStandardSubjectService
   ],
   entryComponents: [
-    ChangeRoleComponent
+    ChangeRoleComponent,
+    ChangeStandardSubjectComponent
   ]
 })
 export class EmployeeModule { }

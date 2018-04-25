@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material';
 
 import { EmployeeListService } from './employee-list.service';
 import { ChangeRoleComponent } from '../change-role/change-role.component';
+import { ChangeStandardSubjectComponent } from '../change-standard-subject/change-standard-subject.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -68,10 +69,10 @@ export class EmployeeListComponent implements OnInit {
 
     changeRole(): void {
         let dialogRef = this.dialog.open(ChangeRoleComponent, {
-        width: '350px',
-        data: {
-            selectedEmpl: this.selectedEmpl[0]
-        }
+            width: '350px',
+            data: {
+                selectedEmpl: this.selectedEmpl[0]
+            }
         });
 
         dialogRef.afterClosed().subscribe(response => {
@@ -88,5 +89,14 @@ export class EmployeeListComponent implements OnInit {
 
     showProfile(emplId): void {
         this.router.navigate(['/apps/employee/profile/' + emplId]);
+    }
+
+    changeStdSub(): void {
+        let dialogRef = this.dialog.open(ChangeStandardSubjectComponent, {
+            width: '550px',
+            data: {
+                selectedEmpl: this.selectedEmpl[0]
+            }
+        });
     }
 }

@@ -41,6 +41,10 @@
                         <mat-icon class="s-20">chevron_right</mat-icon>
                         <span>Change role</span>
                     </button>
+                    <button mat-menu-item (click)="changeStdSub()" [disabled]="selectedEmpl.length == 0 || selectedEmpl.length > 1">
+                        <mat-icon class="s-20">chevron_right</mat-icon>
+                        <span>Change standards and subjects</span>
+                    </button>
                 </mat-menu>
             </div>
             <!-- SEARCH -->

@@ -1,0 +1,39 @@
+<div class="dialog-content-wrapper change-std-sub">
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+          <span class="title dialog-title">
+            Change Standards and Subjects - {{data.selectedEmpl.firstName}} {{data.selectedEmpl.lastName}}
+          </span>
+          <button mat-button class="mat-icon-button"
+                  (click)="dialogRef.close()"
+                  aria-label="Close dialog">
+              <mat-icon>close</mat-icon>
+          </button>
+      </div>
+  </mat-toolbar>
+  <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+    <div style="width:50%; float:left;">
+        <div *ngFor="let sub of subjects" class="checkbox-wrapper">
+          <mat-checkbox class="example-margin" [checked]="true">{{sub.name}}</mat-checkbox>
+        </div>
+    </div>  
+    <div style="width:50%; float:left;">
+        <div *ngFor="let std of standards" class="checkbox-wrapper">
+          <mat-checkbox class="example-margin">{{std.name}}</mat-checkbox>
+        </div>
+    </div>
+  </div>
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-button 
+            mat-raised-button
+            (click)="update()"
+            class="save-button mat-accent"
+            aria-label="SAVE">
+            Update
+      </button>
+      <button mat-button 
+      (click)="dialogRef.close(['close'])">
+              Close
+      </button>
+  </div>
+</div>
