@@ -67,11 +67,11 @@
             [rowHeight]="'auto'"
             [scrollbarH]="true"
             [reorderable]="reorderable"
-            [selectionType]="'checkbox'"
+            [selectionType]="'single'"
             [limit]="10"
             (select)='onSelect($event)'>
 
-            <ngx-datatable-column [width]="48"
+            <!-- <ngx-datatable-column [width]="48"
                                   [canAutoResize]="false"
                                   [sortable]="false">
                 <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
@@ -86,7 +86,7 @@
                             let-row="row">
                     <mat-checkbox [checked]="isSelected" (change)="onCheckboxChangeFn(row)"></mat-checkbox>
                 </ng-template>
-            </ngx-datatable-column>
+            </ngx-datatable-column> -->
 
             <ngx-datatable-column name="Name">
                 <ng-template let-row="row" ngx-datatable-cell-template>
