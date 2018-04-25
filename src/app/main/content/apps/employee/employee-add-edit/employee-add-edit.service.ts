@@ -66,4 +66,8 @@ export class EmployeeAddEditService implements Resolve<any> {
                 }, reject);
         });
     }
+
+    getRoles() {
+        return this.http.get('api/roles');
+    }
 }

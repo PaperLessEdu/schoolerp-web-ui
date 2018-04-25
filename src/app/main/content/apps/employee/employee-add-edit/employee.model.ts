@@ -26,7 +26,8 @@ export class Employee {
     alternatePhoneNumber;
     nationality;
     country;
-
+    roleId;
+    
     constructor(employee?) {
         employee = employee || {};
 
@@ -42,6 +43,7 @@ export class Employee {
         this.maritalStatus = employee.maritalStatus || '';
         this.bloodGroup = employee.bloodGroup || '';
         this.aadharCardNumber = employee.aadharCardNumber || '';
+        this.roleId = employee.roleId || '';
 
         // Contact Details
         this.country = employee.country || '';

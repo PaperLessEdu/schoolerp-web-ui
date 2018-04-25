@@ -28,6 +28,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
     employee = new Employee();
     onEmployeeChanged: Subscription;
     pageType: string;
+    roles: any[] = [];
 
     form: FormGroup;
     formErrors: any;
@@ -64,6 +65,10 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
 
     get nationality(): FormControl {
         return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('nationality'));
+    }
+
+    get roleId(): FormControl {
+        return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('roleId'));
     }
 
     constructor(private formBuilder: FormBuilder,
@@ -108,6 +113,9 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
                     this.horizontalStepperStep3 = this.horizontalStepperStep3Form();
                     //this.setDefaultValue();
                 });
+        this.employeeAddEditService.getRoles().subscribe((roles: any) => {
+            this.roles = roles;
+        });
     }
 
     horizontalStepperStep1Form() {
@@ -122,7 +130,8 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
             dob: [this.employee.dob || '', Validators.required],
             bloodGroup: [this.employee.bloodGroup || ''],
             maritalStatus: [this.employee.maritalStatus || '', Validators.required],
-            aadharCardNumber: [this.employee.aadharCardNumber || '']
+            aadharCardNumber: [this.employee.aadharCardNumber || ''],
+            roleId: [this.employee.roleId || '']
         });
     }
 
@@ -195,6 +204,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
     }
 
     saveEmployee() {
+        debugger;
         const step1Data = this.horizontalStepperStep1.getRawValue();
         const step2Data = this.horizontalStepperStep2.getRawValue();
         const step3Data = this.horizontalStepperStep3.getRawValue();

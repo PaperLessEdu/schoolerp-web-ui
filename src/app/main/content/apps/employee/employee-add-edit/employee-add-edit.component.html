@@ -129,21 +129,32 @@
                             <mat-form-field fxFlex="33">
                                 <input matInput placeholder="Aadhar Card Number" formControlName="aadharCardNumber">
                             </mat-form-field>
+                            <mat-form-field fxFlex="33">
+                                <mat-select placeholder="Role" 
+                                            formControlName="roleId"
+                                            [(ngModel)]="employee.roleId" 
+                                            required>
+                                    <mat-option [value]='0'>Select</mat-option>
+                                    <mat-option *ngFor='let role of roles' [value]='role.id'>
+                                        {{role.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
                         </div>
                         <div>
                             <!-- Gender -->
                             <div class="mat-input-infix mat-form-field-infix" fxFlex="33">
                                 <mat-radio-group formControlName="gender">
-                                <mat-radio-button style="margin-right:10px;" name="gender" value="Male">Male</mat-radio-button>
-                                <mat-radio-button style="margin-right:10px;" name="gender" value="Female">Female</mat-radio-button>
+                                    <mat-radio-button style="margin-right:10px;" name="gender" value="Male">Male</mat-radio-button>
+                                    <mat-radio-button style="margin-right:10px;" name="gender" value="Female">Female</mat-radio-button>
                                 </mat-radio-group>
                             </div>
 
                             <!-- Marital status -->
                             <div class="mat-input-infix mat-form-field-infix" fxFlex="33">
                                 <mat-radio-group formControlName="maritalStatus">
-                                <mat-radio-button style="margin-right:10px;" name="maritalStatus" value="Married">Married</mat-radio-button>
-                                <mat-radio-button style="margin-right:10px;" name="maritalStatus" value="Unmarried">Unmarried</mat-radio-button>
+                                    <mat-radio-button style="margin-right:10px;" name="maritalStatus" value="Married">Married</mat-radio-button>
+                                    <mat-radio-button style="margin-right:10px;" name="maritalStatus" value="Unmarried">Unmarried</mat-radio-button>
                                 </mat-radio-group>
                             </div>
                         </div>
