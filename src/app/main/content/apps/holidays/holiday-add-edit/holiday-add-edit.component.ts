@@ -19,7 +19,7 @@ export class HolidayAddEditComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private snackBar: MatSnackBar,
               private holidayAddEditService: HolidayAddEditService,
-              private dialogRef: MatDialogRef<HolidayAddEditComponent>,
+              public dialogRef: MatDialogRef<HolidayAddEditComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) { 
       this.holidayFormErrors = {
         date: {},

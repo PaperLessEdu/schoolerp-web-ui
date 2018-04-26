@@ -13,7 +13,7 @@ export class ChangeStandardSubjectComponent implements OnInit {
   subjects: any[] = [];
 
   constructor(private changeStdSubService: ChangeStandardSubjectService,
-              private dialogRef: MatDialogRef<ChangeStandardSubjectComponent>,
+              public dialogRef: MatDialogRef<ChangeStandardSubjectComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {

@@ -22,7 +22,7 @@ export class SubjectAddEditComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private snackBar: MatSnackBar,
               private subjectAddEditService: SubjectAddEditService,
-              private dialogRef: MatDialogRef<SubjectAddEditService>,
+              public dialogRef: MatDialogRef<SubjectAddEditService>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.subjectFormErrors = {
       name: {},

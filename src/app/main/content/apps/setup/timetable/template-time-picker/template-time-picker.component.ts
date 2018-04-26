@@ -13,7 +13,7 @@ export class TemplateTimePickerComponent implements OnInit {
   timePickerFormErrors: any;
 
   constructor(private formBuilder: FormBuilder,
-              private dialogRef: MatDialogRef<TemplateTimePickerComponent>,
+              public dialogRef: MatDialogRef<TemplateTimePickerComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) { 
     this.timePickerFormErrors = { 
       startTime: {},

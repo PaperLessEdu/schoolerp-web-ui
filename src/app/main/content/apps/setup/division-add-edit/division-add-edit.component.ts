@@ -19,7 +19,7 @@ export class DivisionAddEditComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private snackBar: MatSnackBar,
               private divisionAddEditService: DivisionAddEditService,
-              private dialogRef: MatDialogRef<DivisionAddEditComponent>,
+              public dialogRef: MatDialogRef<DivisionAddEditComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.divisionFormErrors = {
       name: {}

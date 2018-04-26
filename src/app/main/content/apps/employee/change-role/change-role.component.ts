@@ -12,7 +12,7 @@ export class ChangeRoleComponent implements OnInit {
   selectedRoleId: number = 0; 
 
   constructor(private changeRoleService: ChangeRoleService,
-              private dialogRef: MatDialogRef<ChangeRoleComponent>,
+              public dialogRef: MatDialogRef<ChangeRoleComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     if (this.data && this.data.selectedEmpl) {
       this.selectedRoleId = this.data.selectedEmpl.roleId;

@@ -18,7 +18,7 @@ export class RoleAddEditComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private snackBar: MatSnackBar,
               private roleAddEditService: RoleAddEditService,
-              private dialogRef: MatDialogRef<RoleAddEditComponent>,
+              public dialogRef: MatDialogRef<RoleAddEditComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
       this.roleFormErrors = {
         name: {}

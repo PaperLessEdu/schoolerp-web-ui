@@ -18,7 +18,7 @@ export class StandardAddEditComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private snackBar: MatSnackBar,
               private standardAddEditService: StandardAddEditService,
-              private dialogRef: MatDialogRef<StandardAddEditComponent>,
+              public dialogRef: MatDialogRef<StandardAddEditComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.standardFormErrors = {
       name: {}
