@@ -10,7 +10,7 @@ export const navigation = [
                 'title': 'Dashboard',
                 'translate': 'NAV.DASHBOARD',
                 'type': 'item',
-                'icon'     : 'dashboard',
+                'icon': 'dashboard',
                 'url': '/apps/dashboard/home'
             },
             {
@@ -100,6 +100,14 @@ export const navigation = [
                         'url': '/apps/employee/new'
                     }
                 ]
+            },
+            {
+                'id': 'attendance',
+                'title': 'Attendance',
+                'translate': 'NAV.ATTENDANCE',
+                'type': 'item',
+                'icon': 'today',
+                'url': '/apps/attendance/taker'
             },
             {
                 'id': 'holidays',

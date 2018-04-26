@@ -16,6 +16,10 @@ const routes = [
     loadChildren: './student/student.module#StudentModule'
   },
   {
+    path: 'attendance',
+    loadChildren: './attendance/attendance.module#AttendanceModule'
+  },
+  {
     path: 'setup',
     loadChildren: './setup/setup.module#SetupModule'
   },

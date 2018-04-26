@@ -9,7 +9,8 @@ export const locale = {
             'SETUP': 'Setup',
             'HOLIDAYS': 'Holidays',
             'EXAMINATION': 'Examination',
-            'COMMUNICATION': 'Communication'
+            'COMMUNICATION': 'Communication',
+            'ATTENDANCE': 'Attendance'
         }
     }
 };
