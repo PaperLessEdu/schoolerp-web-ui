@@ -11,7 +11,6 @@ import {
 import { AttendanceTakerComponent } from './attendance-taker/attendance-taker.component';
 import { AttendanceTakerService } from './attendance-taker/attendance-taker.service';
 
-
 const routes = [
   {
     path: 'taker',
@@ -28,6 +27,9 @@ const routes = [
     FuseSharedModule,
     FuseWidgetModule
   ],
-  declarations: [AttendanceTakerComponent]
+  declarations: [AttendanceTakerComponent],
+  providers: [
+    AttendanceTakerService
+  ]
 })
 export class AttendanceModule { }

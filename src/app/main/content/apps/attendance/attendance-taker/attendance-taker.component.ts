@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
+import { AttendanceTakerService } from './attendance-taker.service';
 
 @Component({
   selector: 'app-attendance-taker',
@@ -9,9 +10,7 @@ import { fuseAnimations } from '@fuse/animations';
 })
 export class AttendanceTakerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private attendanceTakerService: AttendanceTakerService) { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() { }
 }
