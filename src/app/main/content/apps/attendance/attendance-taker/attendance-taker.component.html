@@ -1,0 +1,24 @@
+<div id="holidays" class="page-layout carded fullwidth" fusePerfectScrollbar>    
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg mat-accent-bg"></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+    <!-- HEADER -->
+    <div class="header white-fg"
+        fxLayout="column" fxLayoutAlign="center center"
+        fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+      <!-- APP TITLE -->
+      <div class="logo my-12 m-sm-0"
+            fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">today</mat-icon>
+          <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Attendance Taker</span>
+      </div>
+      <!-- / APP TITLE -->
+    </div>
+  </div>
+  <!-- CONTENT CARD -->
+  <div class="mat-white-bg">
+  </div>
+</div>

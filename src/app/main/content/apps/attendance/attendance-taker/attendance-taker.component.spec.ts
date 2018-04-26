@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AttendaceTakerComponent } from './attendace-taker.component';
+import { AttendanceTakerComponent } from './attendance-taker.component';
 
-describe('AttendaceTakerComponent', () => {
-  let component: AttendaceTakerComponent;
-  let fixture: ComponentFixture<AttendaceTakerComponent>;
+describe('AttendanceTakerComponent', () => {
+  let component: AttendanceTakerComponent;
+  let fixture: ComponentFixture<AttendanceTakerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AttendaceTakerComponent ]
+      declarations: [ AttendanceTakerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AttendaceTakerComponent);
+    fixture = TestBed.createComponent(AttendanceTakerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
