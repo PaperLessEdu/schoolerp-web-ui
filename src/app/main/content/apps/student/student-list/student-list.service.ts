@@ -5,39 +5,11 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
-export class StudentListService implements Resolve<any> {
-    studentList: any[];
-    onStudentChanged: BehaviorSubject<any> = new BehaviorSubject({});
+export class StudentListService {
 
     constructor(private http: HttpClient) { }
 
-    /**
-     * Resolve
-     * @param {ActivatedRouteSnapshot} route
-     * @param {RouterStateSnapshot} state
-     * @returns {Observable<any> | Promise<any> | any}
-     */
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-        return new Promise((resolve, reject) => {
-            Promise.all([
-                this.getStudentList()
-            ]).then(
-                () => {
-                    resolve();
-                },
-                reject
-            );
-        });
-    }
-
-    getStudentList(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            this.http.get('api/students')
-                .subscribe((response: any) => {
-                    this.studentList = response;
-                    this.onStudentChanged.next(this.studentList);
-                    resolve(response);
-                }, reject);
-        });
+    getStudentList() {
+        return this.http.get('api/students');
     }
 }
