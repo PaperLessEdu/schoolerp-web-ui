@@ -14,23 +14,27 @@ export class ScheduleExamComponent implements OnInit {
     displayedColumns = ['subject', 'date', 'time', 'marks'];
     scheduleExamTemplate = [];
 
-    examObj = {
-        subjectName: null,
-        date: null,
-        time: null,
-        marksOutOf: null
-    };
+    examObj: any;
 
     standardList: any;
     subjectList: any;
     standard;
-    academicYear = {};
+
 
     constructor(
         private formBuilder: FormBuilder,
         private scheduleExamService: ScheduleExamService,
     ) {
+        this.init();
+    }
 
+    init(): void {
+        this.examObj = {
+            subjectName: null,
+            date: null,
+            time: null,
+            marksOutOf: null
+        };
     }
 
     ngOnInit() {
@@ -52,6 +56,12 @@ export class ScheduleExamComponent implements OnInit {
 
     insertRowInTemplate(examObj: any): void {
         this.scheduleExamTemplate.push(examObj);
+        this.examObj = {
+            subjectName: '',
+            date: '',
+            time: '',
+            marksOutOf: ''
+        };
     }
 
     deleteRowInTemplate(index: number): void {

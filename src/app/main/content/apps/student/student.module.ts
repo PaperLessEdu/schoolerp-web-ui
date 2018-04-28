@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { StudentListComponent } from './student-list/student-list.component';
-import { MatIconModule,
+import {
+  MatIconModule,
   MatButtonModule,
-  MatCardModule, 
+  MatCardModule,
   MatChipsModule,
   MatFormFieldModule,
   MatInputModule,
@@ -18,21 +19,21 @@ import { MatIconModule,
   MatTabsModule,
   MatTableModule,
   MatSortModule,
-  MatRadioModule} from '@angular/material';
+  MatRadioModule,
+  MatMenuModule
+} from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseWidgetModule } from '@fuse/components';
 import { StudentListService } from 'app/main/content/apps/student/student-list/student-list.service';
 import { CdkTableModule } from '@angular/cdk/table';
 import { StudentAddEditComponent } from './student-add-edit/student-add-edit.component';
 import { StudentAddEditService } from './student-add-edit/student-add-edit.service';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 const routes = [
   {
     path: 'list',
-    component: StudentListComponent,
-    resolve: {
-      data: StudentListService
-    }
+    component: StudentListComponent
   },
   {
     path: 'new',
@@ -66,6 +67,8 @@ const routes = [
     MatDatepickerModule,
     MatSnackBarModule,
     MatRadioModule,
+    MatMenuModule,
+    NgxDatatableModule,
 
     FuseSharedModule, // To add title on card panel
     FuseWidgetModule

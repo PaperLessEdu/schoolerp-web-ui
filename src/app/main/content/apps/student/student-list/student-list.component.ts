@@ -13,42 +13,39 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
 
 @Component({
-  selector: 'app-student-list',
-  templateUrl: './student-list.component.html',
-  styleUrls: ['./student-list.component.scss'],
-  animations : fuseAnimations
+    selector: 'app-student-list',
+    templateUrl: './student-list.component.html',
+    styleUrls: ['./student-list.component.scss'],
+    animations: fuseAnimations
 })
 export class StudentListComponent implements OnInit {
-  dataSource: FilesDataSource | null;
-  displayedColumns = ['name', 'address'];
-  
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild('filter') filter: ElementRef;
-  @ViewChild(MatSort) sort: MatSort;
+    studentList: any[];
+    loadingIndicator = true;
+    reorderable = true;
 
-  constructor(
-    private studentListService: StudentListService
-  ) { 
-    const data = this.studentListService.studentList;
-  }
+    @ViewChild(DatatableComponent) table: DatatableComponent;
 
-  ngOnInit() {
-    this.dataSource = new FilesDataSource(this.studentListService, this.paginator, this.sort);
-      Observable.fromEvent(this.filter.nativeElement, 'keyup')
-                .debounceTime(150)
-                .distinctUntilChanged()
-                .subscribe(() => {
-                    if ( !this.dataSource ) {
-                        return;
-                    }
-                    this.dataSource.filter = this.filter.nativeElement.value;
-                });
-  }
+    constructor(
+        private studentListService: StudentListService
+    ) {}
+
+    ngOnInit() {
+        this.fetchStudentList();
+    }
+
+    fetchStudentList(): void {
+        this.loadingIndicator = true;
+        this.studentListService.getStudentList().subscribe((students: any) => {
+            this.studentList = [...students];
+            this.loadingIndicator = false;
+        });
+    }
 }
 
-export class FilesDataSource extends DataSource<any> {
+/*export class FilesDataSource extends DataSource<any> {
   _filterChange = new BehaviorSubject('');
   _filteredDataChange = new BehaviorSubject('');
 
@@ -77,7 +74,7 @@ export class FilesDataSource extends DataSource<any> {
       this.filteredData = this.studentListService.studentList;
   }
 
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
+  /** Connect function called by the table to retrieve one stream containing the data to render. *
   connect(): Observable<any[]> {
       const displayDataChanges = [
           this.studentListService.onStudentChanged,
@@ -137,4 +134,4 @@ export class FilesDataSource extends DataSource<any> {
   }
 
   disconnect() { }
-}
+}*/
