@@ -38,8 +38,14 @@ export class DashboardHomeComponent implements OnInit {
       title: 'Subjects',
       icon: 'import_contacts',
       url: '/apps/setup/subjects'
+    },
+    {
+      title: 'Communication',
+      icon: 'forum',
+      url: '/apps/communication/home'
     }
   ];
+  
   constructor() { }
 
   ngOnInit() {

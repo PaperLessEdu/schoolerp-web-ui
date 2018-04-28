@@ -55,27 +55,10 @@
             [rowHeight]="'auto'"
             [scrollbarH]="true"
             [reorderable]="reorderable"
-            [selectionType]="'checkbox'"
+            [selectionType]="'single'"
             [limit]="10"
             [selected]="selectedholidays"
             (select)='onSelect($event)'>
-
-            <ngx-datatable-column [width]="48"
-                                  [canAutoResize]="false"
-                                  [sortable]="false">
-                <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
-                            let-selectFn="selectFn">
-                    <mat-checkbox [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></mat-checkbox>
-                </ng-template>
-
-                <ng-template ngx-datatable-cell-template 
-                            let-value="value" 
-                            let-isSelected="isSelected"
-                            let-onCheckboxChangeFn="onCheckboxChangeFn"
-                            let-row="row">
-                    <mat-checkbox [checked]="isSelected" (change)="onCheckboxChangeFn(row)"></mat-checkbox>
-                </ng-template>
-            </ngx-datatable-column>
 
             <ngx-datatable-column name="Date">
                 <ng-template let-row="row" ngx-datatable-cell-template>
@@ -84,6 +67,7 @@
             </ngx-datatable-column>
             
             <ngx-datatable-column name="Name" prop="name"></ngx-datatable-column>
+            
         </ngx-datatable>
     </div>
   </div>

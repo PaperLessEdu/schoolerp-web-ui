@@ -122,7 +122,7 @@ export const navigation = [
                 'title': 'Communication',
                 'translate': 'NAV.COMMUNICATION',
                 'type': 'item',
-                'icon': 'today',
+                'icon': 'forum',
                 'url': '/apps/communication/home'
             },
             {
