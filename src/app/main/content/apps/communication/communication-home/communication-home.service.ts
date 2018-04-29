@@ -16,4 +16,8 @@ export class CommunicationHomeService {
     getEmployees() {
         return this.http.get('api/employees');
     }
+
+    getStudents() {
+        return this.http.get('api/students');
+    }
 }

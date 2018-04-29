@@ -41,11 +41,20 @@ export class CommunicationHomeComponent implements OnInit {
     this.getDivisions();
   }
 
-  fetchEmployees(): void {
+  fetchEmployeesDetails(): void {
     this.communicationHomeService.getEmployees().subscribe((empls: any) => {
         this.selected = [...empls];
         this.temp = [...empls];
         this.rows = empls;
+        this.loadingIndicator = false;
+    });
+  }
+
+  fetchStudentDetails(): void {
+    this.communicationHomeService.getStudents().subscribe((students: any) => {
+        this.selected = [...students];
+        this.temp = [...students];
+        this.rows = students;
         this.loadingIndicator = false;
     });
   }
@@ -64,7 +73,11 @@ export class CommunicationHomeComponent implements OnInit {
 
   onChangeRecipients(event): void {
     this.selectedRecipient = event.value;
-    this.fetchEmployees();
+    if (event.value === 'students') {
+      this.fetchStudentDetails();
+    } else {
+      this.fetchEmployeesDetails();
+    }
   }
 
   onChange(event): void {
@@ -79,7 +92,7 @@ export class CommunicationHomeComponent implements OnInit {
   createComposeForm() {
       return this.formBuilder.group({
           from   : {
-              value   : ['team@clpudscripts.com'],
+              value   : ['team@cloudscripts.com'],
               disabled: [true]
           },
           subject: [''],
@@ -88,9 +101,6 @@ export class CommunicationHomeComponent implements OnInit {
   }
 
   onSelect({ selected }) {
-    debugger;
-    console.log('Select Event', selected, this.selected);
-
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
   }
