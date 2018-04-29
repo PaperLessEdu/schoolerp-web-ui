@@ -19,10 +19,10 @@
       <!-- / APP TITLE -->
     </div>
     <!-- CONTENT CARD -->
-    <div class="mat-white-bg communication-container">
-      <div style="height: 20%; width: 100%; padding: 10px 20px;">
+    <div *ngIf="" class="mat-white-bg communication-container">
+      <div style="height: 70px; width: 100%; padding: 10px 20px;">
           <mat-form-field style="width:150px; margin-right: 20px;">
-              <mat-select placeholder="Recipients" [(ngModel)]="selectedRecipient" (change)="onChanveRecipients($event)">
+              <mat-select placeholder="Recipients" [(ngModel)]="selectedRecipient" (change)="onChangeRecipients($event)">
                   <mat-option value="students"> Students </mat-option>
                   <mat-option value="employees"> Employees </mat-option>
               </mat-select>
@@ -50,13 +50,86 @@
               </mat-select>
           </mat-form-field>
       </div>
-      <div *ngIf="selectedRecipient==='students'" style="height: 10%; width: 100%; padding-left: 20px;">
-          <mat-checkbox (change)="onChange($event)" value="father">Father</mat-checkbox>
-          <mat-checkbox (change)="onChange($event)" value="mother">Mother</mat-checkbox>
-          <mat-checkbox (change)="onChange($event)" value="gaurdian">Gaurdian</mat-checkbox>
+      <div *ngIf="selectedRecipient==='students'" style="height: 50px; width: 100%; padding-left: 20px;">
+          <mat-checkbox style="margin-right:15px;" (change)="onChange($event)" value="father">Father</mat-checkbox>
+          <mat-checkbox style="margin-right:15px;" (change)="onChange($event)" value="mother">Mother</mat-checkbox>
+          <mat-checkbox style="margin-right:15px;" (change)="onChange($event)" value="gaurdian">Gaurdian</mat-checkbox>
       </div>
-      <div style="border:1px solid; height: 65%; width: 30%; float:left"></div>
-      <div style="border:1px solid; height: 65%; width: 70%; float:left"></div>
+      <div style="border:1px solid; height: 500px; width: 30%; float:left">
+          <ngx-datatable #table 
+                class="material" 
+                [rows]="rows" 
+                [loadingIndicator]="loadingIndicator" 
+                [columnMode]="'force'" 
+                [headerHeight]="48"
+                [footerHeight]="56" 
+                [rowHeight]="'auto'" 
+                [scrollbarH]="true" 
+                [reorderable]="reorderable" 
+                [selectionType]="'checkbox'"
+                [limit]="10"
+                [selected]="selected"
+                (select)='onSelect($event)'>
+
+              <ngx-datatable-column [width]="48"
+                                [canAutoResize]="false"
+                                [sortable]="false">
+                  <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                              let-selectFn="selectFn">
+                      <mat-checkbox [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></mat-checkbox>
+                  </ng-template>
+
+                  <ng-template ngx-datatable-cell-template 
+                              let-value="value" 
+                              let-isSelected="isSelected"
+                              let-onCheckboxChangeFn="onCheckboxChangeFn"
+                              let-row="row">
+                      <mat-checkbox [checked]="isSelected" (change)="onCheckboxChangeFn(row)"></mat-checkbox>
+                  </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column name="Name">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      <a class="empl-name" (click)="showProfile(row.id);">{{row.firstName}} {{row.lastName}}</a>
+                  </ng-template>
+              </ngx-datatable-column>
+          </ngx-datatable>
+      </div>
+      <div style="border:1px solid; height: 500px; width: 70%; float:left; padding: 10px;">
+        <div>
+          <form *ngIf="selectedType=='byEmail'" name="composeForm" [formGroup]="composeForm" class="compose-form" fxLayout="column" fxFlex>
+            <mat-form-field>
+                <input matInput name="from"
+                        placeholder="From"
+                        formControlName="from"
+                        type="email">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput name="subject"
+                        placeholder="Subject"
+                        formControlName="subject">
+            </mat-form-field>
+
+            <mat-form-field>
+              <textarea matInput name="message"
+                        placeholder="Message"
+                        formControlName="message"
+                        rows="6">
+              </textarea>
+            </mat-form-field>
+          </form>
+          <form *ngIf="selectedType=='byTextMessage'" name="composeForm" [formGroup]="composeForm" class="compose-form" fxLayout="column" fxFlex>
+              <mat-form-field>
+                <textarea matInput name="message"
+                          placeholder="Message"
+                          formControlName="message"
+                          rows="6">
+                </textarea>
+              </mat-form-field>
+            </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>

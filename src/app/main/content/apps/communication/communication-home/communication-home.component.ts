@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
+
 import { CommunicationHomeService } from './communication-home.service';
 
 @Component({
@@ -9,6 +12,13 @@ import { CommunicationHomeService } from './communication-home.service';
   animations : fuseAnimations
 })
 export class CommunicationHomeComponent implements OnInit {
+  rows: any[];
+  temp: any[];
+  loadingIndicator = true;
+  reorderable = true;
+  selectedEmpl: any[] = [];
+
+  @ViewChild(DatatableComponent) table: DatatableComponent;
 
   standards: any[] = [];
   divisions: any[] = [];
@@ -18,13 +28,26 @@ export class CommunicationHomeComponent implements OnInit {
   selectedType: string = 'byEmail';
   selectedStdRecipient: any[] = [];
 
-  constructor(private communicationHomeService: CommunicationHomeService) { 
-
+  composeForm: FormGroup;
+  selected = [];
+  
+  constructor(private communicationHomeService: CommunicationHomeService,
+              private formBuilder: FormBuilder) { 
+    this.composeForm = this.createComposeForm();
   }
 
   ngOnInit() {
     this.getStandards();
     this.getDivisions();
+  }
+
+  fetchEmployees(): void {
+    this.communicationHomeService.getEmployees().subscribe((empls: any) => {
+        this.selected = [...empls];
+        this.temp = [...empls];
+        this.rows = empls;
+        this.loadingIndicator = false;
+    });
   }
 
   getStandards(): void {
@@ -39,8 +62,9 @@ export class CommunicationHomeComponent implements OnInit {
     });
   }
 
-  onChanveRecipients(event): void {
+  onChangeRecipients(event): void {
     this.selectedRecipient = event.value;
+    this.fetchEmployees();
   }
 
   onChange(event): void {
@@ -50,5 +74,24 @@ export class CommunicationHomeComponent implements OnInit {
       let index = this.selectedStdRecipient.indexOf(event.source.value);
       this.selectedStdRecipient.splice(index, 1);
     }
+  }
+
+  createComposeForm() {
+      return this.formBuilder.group({
+          from   : {
+              value   : ['team@clpudscripts.com'],
+              disabled: [true]
+          },
+          subject: [''],
+          message: ['']
+      });
+  }
+
+  onSelect({ selected }) {
+    debugger;
+    console.log('Select Event', selected, this.selected);
+
+    this.selected.splice(0, this.selected.length);
+    this.selected.push(...selected);
   }
 }

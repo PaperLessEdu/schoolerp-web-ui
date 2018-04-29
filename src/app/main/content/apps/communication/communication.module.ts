@@ -14,6 +14,7 @@ import {
   } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { CommunicationHomeComponent } from './communication-home/communication-home.component';
 import { CommunicationHomeService } from './communication-home/communication-home.service';
@@ -37,9 +38,10 @@ const routes = [
     MatDialogModule,
     MatSnackBarModule,
     MatSelectModule,
-    
+
     FuseWidgetModule,
-    FuseSharedModule
+    FuseSharedModule,
+    NgxDatatableModule
   ],
   declarations: [CommunicationHomeComponent],
   providers: [CommunicationHomeService]

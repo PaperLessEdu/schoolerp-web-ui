@@ -12,4 +12,8 @@ export class CommunicationHomeService {
     getDivisions() {
         return this.http.get('api/divisions');
     }
+
+    getEmployees() {
+        return this.http.get('api/employees');
+    }
 }
