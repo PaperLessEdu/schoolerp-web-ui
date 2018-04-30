@@ -75,7 +75,8 @@ fuse-main {
 }
 
 .page-layout.carded.fullwidth > .center .header {
-    min-height: 0px;
+    min-height: 85px;
+    max-height: 85px;
     height: 85px;
 }
 
