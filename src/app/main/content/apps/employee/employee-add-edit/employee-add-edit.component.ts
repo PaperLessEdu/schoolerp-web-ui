@@ -131,7 +131,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
             bloodGroup: [this.employee.bloodGroup || ''],
             maritalStatus: [this.employee.maritalStatus || '', Validators.required],
             aadharCardNumber: [this.employee.aadharCardNumber || ''],
-            roleId: [this.employee.roleId || '']
+            roleId: [this.employee.roleId || '', Validators.required]
         });
     }
 

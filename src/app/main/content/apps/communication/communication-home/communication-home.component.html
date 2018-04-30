@@ -20,14 +20,14 @@
     </div>
     <!-- CONTENT CARD -->
     <div class="mat-white-bg communication-container">
-      <div style="height: 70px; width: 100%; padding: 10px 20px;">
-          <mat-form-field style="width:150px; margin-right: 20px;">
+      <div class="top-bar">
+            <mat-form-field class="form-field">
               <mat-select placeholder="Recipients" [(ngModel)]="selectedRecipient" (change)="onChangeRecipients($event)">
                   <mat-option value="students"> Students </mat-option>
                   <mat-option value="employees"> Employees </mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field style="width:150px; margin-right: 20px;">    
+            <mat-form-field class="form-field">    
               <mat-select placeholder="Standard" [(ngModel)]="selectedStd" [disabled]="selectedRecipient===''">
                   <mat-option value="0"> All </mat-option>
                   <mat-option *ngFor="let std of standards" [value]="std.id">
@@ -35,7 +35,7 @@
                   </mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field style="width:150px; margin-right: 20px;"> 
+            <mat-form-field class="form-field"> 
               <mat-select placeholder="Division" [(ngModel)]="selectedDiv" [disabled]="selectedRecipient===''">
                   <mat-option value="0"> All </mat-option>
                   <mat-option *ngFor="let div of divisions" [value]="div.id">
@@ -43,20 +43,20 @@
                   </mat-option>
               </mat-select>
           </mat-form-field>
-          <mat-form-field style="width:200px; margin-right: 20px;"> 
+          <mat-form-field class="form-field"> 
               <mat-select placeholder="Communication Type" [(ngModel)]="selectedType" [disabled]="selectedRecipient===''">
                   <mat-option value="byEmail"> By Email </mat-option>
                   <mat-option value="byTextMessage"> By Text Message </mat-option>
               </mat-select>
           </mat-form-field>
       </div>
-      <div *ngIf="selectedRecipient==='students'" style="height: 50px; width: 100%; padding-left: 20px;">
+      <div *ngIf="selectedRecipient==='students'" class="check-box">
           <mat-checkbox style="margin-right:15px;" (change)="onChange($event)" value="father">Father</mat-checkbox>
           <mat-checkbox style="margin-right:15px;" (change)="onChange($event)" value="mother">Mother</mat-checkbox>
           <mat-checkbox style="margin-right:15px;" (change)="onChange($event)" value="gaurdian">Gaurdian</mat-checkbox>
       </div>
-      <div style="height: 500px; border-top: 1px solid gray;">
-        <div *ngIf="selectedRecipient!==''" style="height: 500px; width: 30%; float:left">
+      <div class="main-container">
+        <div *ngIf="selectedRecipient!==''" class="list">
             <ngx-datatable #table 
                   class="material" 
                   [rows]="rows" 
@@ -96,7 +96,7 @@
                 </ngx-datatable-column>
             </ngx-datatable>
         </div>
-        <div *ngIf="selectedRecipient!==''" style="height: 500px; width: 70%; float:left; padding: 10px;">
+        <div *ngIf="selectedRecipient!==''" class="msg-mail-box">
           <div>
             <form *ngIf="selectedType=='byEmail'" name="composeForm" [formGroup]="composeForm" class="compose-form" fxLayout="column" fxFlex>
               <mat-form-field>

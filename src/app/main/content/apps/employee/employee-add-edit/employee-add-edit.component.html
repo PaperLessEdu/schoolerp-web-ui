@@ -139,6 +139,9 @@
                                         {{role.name}}
                                     </mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="roleId.errors?.required">
+                                    Role is required!
+                                </mat-error>
                             </mat-form-field>
                         </div>
                         <div>
