@@ -1,3 +1,8 @@
 :host {
     z-index: 1;
 }
+
+:host /deep/ .datatable-body-row.active .datatable-row-group {
+    background-color: #53ace1 !important;
+    color: red !important;
+}

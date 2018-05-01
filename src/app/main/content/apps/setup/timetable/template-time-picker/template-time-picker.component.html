@@ -18,10 +18,10 @@
             </div>
             <div>
                 <mat-form-field fxFlex="50">
-                    <input matInput [(ngModel)]="data.selectedSlot.startTime" formControlName="startTime" placeholder="Start time" required>
+                    <input matInput type="time" [(ngModel)]="data.selectedSlot.startTime" formControlName="startTime" placeholder="Start time" required>
                 </mat-form-field>
                 <mat-form-field fxFlex="50">
-                    <input matInput [(ngModel)]="data.selectedSlot.endTime" formControlName="endTime" placeholder="End time" required>
+                    <input matInput type="time" [(ngModel)]="data.selectedSlot.endTime" formControlName="endTime" placeholder="End time" required>
                 </mat-form-field>
             </div>
         </form>

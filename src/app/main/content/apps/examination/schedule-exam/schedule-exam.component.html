@@ -73,7 +73,7 @@
                         </div>
                         <div fxFlex="25">
                             <mat-form-field fxFlex="80">
-                                <input matInput placeholder="Time" [(ngModel)]="examObj.time">
+                                <input matInput type="time" placeholder="Time" [(ngModel)]="examObj.time">
                             </mat-form-field>
                         </div>
                         <div fxFlex="25">
@@ -112,7 +112,7 @@
                             {{element.date | date:'EEEE, dd-MM-yyyy'}}
                         </div>
                         <div fxFlex="22">
-                            {{element.time}}
+                            {{element.time | date: "shortTime"}}
                         </div>
                         <div fxFlex="22">
                             {{element.marksOutOf}}
