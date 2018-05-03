@@ -194,6 +194,14 @@
                     Division is required!
                   </mat-error>
                 </mat-form-field>
+
+                <!-- Nationality -->
+                <mat-form-field fxFlex="33">
+                  <input matInput placeholder="Nationality" formControlName="nationality" required>
+                  <mat-error *ngIf="nationality.errors?.required">
+                    Nationality is required!
+                  </mat-error>
+                </mat-form-field>
               </div>
               <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
                 <button mat-raised-button matStepperNext type="button" color="accent">
@@ -207,15 +215,6 @@
           <mat-step [stepControl]="contactInfo">
             <form [formGroup]="contactInfo">
               <ng-template matStepLabel>Contact Information</ng-template>
-              <div>
-                <!-- Nationality -->
-                <mat-form-field fxFlex="33">
-                  <input matInput placeholder="Nationality" formControlName="nationality" required>
-                  <mat-error *ngIf="nationality.errors?.required">
-                    Nationality is required!
-                  </mat-error>
-                </mat-form-field>
-              </div>
 
               <div>
                 <!-- Permanent Address -->

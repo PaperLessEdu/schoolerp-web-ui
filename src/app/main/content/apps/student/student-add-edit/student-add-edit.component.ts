@@ -64,7 +64,7 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
   }
 
   get nationality(): FormControl {
-    return <FormControl>(this.contactInfo && this.contactInfo.get('nationality'));
+    return <FormControl>(this.generalInfo && this.generalInfo.get('nationality'));
   }
 
   get permanentAddress(): FormControl {
@@ -160,13 +160,13 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
       caste: [this.student.caste || '', Validators.required],
       religion: [this.student.religion || '', Validators.required],
       standard: [this.student.standard || '', Validators.required],
-      division: [this.student.division || '', Validators.required]
+      division: [this.student.division || '', Validators.required],
+      nationality: [this.student.nationality || '', Validators.required]
     });
   }
 
   private contactInfoForm(): FormGroup {
     return this.formBuilder.group({
-      nationality: [this.student.nationality || '', Validators.required],
       permanentAddress: [this.student.permanentAddress || '', Validators.required],
       correspondenceAddress: [this.student.correspondenceAddress || '', Validators.required],
       country: [this.student.country || '', Validators.required],
