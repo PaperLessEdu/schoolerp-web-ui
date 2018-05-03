@@ -30,10 +30,13 @@ export class ScheduleExamComponent implements OnInit {
 
     init(): void {
         this.examObj = {
-            subjectName: null,
+            subjectId: null,
             date: null,
-            time: null,
-            marksOutOf: null
+            startTime: null,
+            endTime: null,
+            marksOutOf: null,
+            scoreType: null,
+            passingMarks: null
         };
     }
 
@@ -66,5 +69,22 @@ export class ScheduleExamComponent implements OnInit {
 
     deleteRowInTemplate(index: number): void {
         this.scheduleExamTemplate.splice(index, 1);
+    }
+
+    getSubjectName(subjectId: number): void {
+        const subjectObj = this.subjectList.find(function (obj) { return obj.id === subjectId; });
+        return subjectObj.name;
+    }
+
+    tConvert (time): string {
+        // Check correct time format and split into components
+        time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+     
+         if (time.length > 1) { // If time format correct
+           time = time.slice (1);  // Remove full string match value
+           time[5] = +time[0] < 12 ? ' AM' : ' PM'; // Set AM/PM
+           time[0] = +time[0] % 12 || 12; // Adjust hours
+         }
+         return time.join (''); // return adjusted time or original string
     }
 }
