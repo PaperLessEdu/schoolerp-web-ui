@@ -49,9 +49,9 @@
             <div class="mat-elevation-z8">
                 <mat-list class="p-20">
                     <mat-list-item>
-                        <div fxFlex="25">
+                        <div fxFlex="20">
                             <mat-form-field fxFlex="80">
-                                <mat-select placeholder="Select Subject" name="subject" [(ngModel)]="examObj.subjectName" #subject="ngModel" required>
+                                <mat-select placeholder="Select Subject" name="subject" [(ngModel)]="examObj.subjectId" #subject="ngModel" required>
                                     <mat-option *ngFor="let subject of subjectList" [value]="subject.id">
                                         {{subject.name}}
                                     </mat-option>
@@ -61,9 +61,9 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-                        <div fxFlex="25">
+                        <div fxFlex="15">
                             <mat-form-field fxFlex="80">
-                                <input matInput placeholder="Select Date of Exam" name="date" [matDatepicker]="picker" [(ngModel)]="examObj.date" #date="ngModel" required>
+                                <input matInput placeholder="Date of Exam" name="date" [matDatepicker]="picker" [(ngModel)]="examObj.date" #date="ngModel" required>
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                                 <mat-error *ngIf="date.errors?.required">
@@ -71,21 +71,45 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-                        <div fxFlex="25">
+                        <div fxFlex="11">
                             <mat-form-field fxFlex="80">
-                                <input matInput placeholder="Time" [(ngModel)]="examObj.time">
+                                <input matInput type="time" placeholder="Start Time" [(ngModel)]="examObj.startTime">
                             </mat-form-field>
                         </div>
-                        <div fxFlex="25">
+                        <div fxFlex="11">
                             <mat-form-field fxFlex="80">
-                                <input matInput type="number" placeholder="Marks out of" name="marks" [(ngModel)]="examObj.marksOutOf" #marks="ngModel" required>
-                                <mat-error *ngIf="marks.errors?.required">
+                                <input matInput type="time" placeholder="End Time" [(ngModel)]="examObj.endTime">
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="15">
+                            <mat-form-field fxFlex="80">
+                                <mat-select placeholder="Score Type" name="scoreType" [(ngModel)]="examObj.scoreType" #scoreType="ngModel" required>
+                                    <mat-option [value]="'marks'">Marks</mat-option>
+                                    <mat-option [value]="'grade'">Grade</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="scoreType.errors?.required">
+                                    Score Type is required!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="20" *ngIf="examObj.scoreType === 'marks'">
+                            <mat-form-field fxFlex="80">
+                                <input matInput type="number" placeholder="Marks out of" name="marksOutOf" [(ngModel)]="examObj.marksOutOf" #marksOutOf="ngModel" required>
+                                <mat-error *ngIf="marksOutOf.errors?.required">
+                                    Marks is required!
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="20" *ngIf="examObj.scoreType === 'marks'">
+                            <mat-form-field fxFlex="80">
+                                <input matInput type="number" placeholder="Passing marks" name="passingMarks" [(ngModel)]="examObj.passingMarks" #passingMarks="ngModel" required>
+                                <mat-error *ngIf="passingMarks.errors?.required">
                                     Marks is required!
                                 </mat-error>
                             </mat-form-field>
                         </div>
                         <div>
-                            <button mat-button class="mat-raised-button mat-accent" [disabled]="subject.invalid || date.invalid || marks.invalid" (click)="insertRowInTemplate(examObj)">
+                            <button mat-button class="mat-raised-button mat-accent" [disabled]="subject.invalid || date.invalid" (click)="insertRowInTemplate(examObj)">
                                 <mat-icon class="s-20 mat-icon material-icons white-fg" role="img" aria-hidden="true">add</mat-icon>
                                 ADD
                             </button>
@@ -97,27 +121,39 @@
             <div class="mat-elevation-z8 mt-36" style="max-height:430px; min-height: 200px; overflow-y:scroll">
                 <mat-list>
                     <mat-list-item>
-                        <div fxFlex="22">Subject</div>
-                        <div fxFlex="24">Date</div>
-                        <div fxFlex="22">Time</div>
-                        <div fxFlex="22">Marks out of</div>
-                        <div fxFlex="10">Actions</div>
+                        <div fxFlex="13">Subject</div>
+                        <div fxFlex="17">Date</div>
+                        <div fxFlex="10">Start Time</div>
+                        <div fxFlex="10">End Time</div>
+                        <div fxFlex="12">Score Type</div>
+                        <div fxFlex="12">Marks out of</div>
+                        <div fxFlex="15">Passing marks</div>
+                        <div fxFlex="11">Actions</div>
                     </mat-list-item>
                     <mat-divider></mat-divider>
                     <mat-list-item *ngFor="let element of scheduleExamTemplate; let i = index">
-                        <div fxFlex="22">
-                            {{element.subjectName}}
+                        <div fxFlex="13">
+                            {{getSubjectName(element.subjectId)}}
                         </div>
-                        <div fxFlex="24">
+                        <div fxFlex="17">
                             {{element.date | date:'EEEE, dd-MM-yyyy'}}
                         </div>
-                        <div fxFlex="22">
-                            {{element.time}}
-                        </div>
-                        <div fxFlex="22">
-                            {{element.marksOutOf}}
+                        <div fxFlex="10">
+                            {{element.startTime ? tConvert(element.startTime) : '-'}}
                         </div>
                         <div fxFlex="10">
+                            {{element.endTime ? tConvert(element.endTime) : '-'}}
+                        </div>
+                        <div fxFlex="12">
+                            {{element.scoreType}}
+                        </div>
+                        <div fxFlex="12">
+                            {{element.marksOutOf}}
+                        </div>
+                        <div fxFlex="15">
+                            {{element.passingMarks}}
+                        </div>
+                        <div fxFlex="11">
                             <mat-icon class="accent-600-fg" style="cursor: pointer">edit</mat-icon>
                             <mat-icon class="accent-600-fg" style="cursor: pointer" (click)="deleteRowInTemplate(i)">delete</mat-icon>
                         </div>

@@ -21,7 +21,6 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
   pageType: string;
 
   form: FormGroup;
-  formErrors: any;
 
   // getters for form control
   get academicYear(): FormControl {
@@ -69,27 +68,27 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
   }
 
   get permanentAddress(): FormControl {
-    return <FormControl>(this.generalInfo && this.generalInfo.get('permanentAddress'));
+    return <FormControl>(this.contactInfo && this.contactInfo.get('permanentAddress'));
   }
 
   get correspondenceAddress(): FormControl {
-    return <FormControl>(this.generalInfo && this.generalInfo.get('correspondenceAddress'));
+    return <FormControl>(this.contactInfo && this.contactInfo.get('correspondenceAddress'));
   }
 
   get country(): FormControl {
-    return <FormControl>(this.generalInfo && this.generalInfo.get('country'));
+    return <FormControl>(this.contactInfo && this.contactInfo.get('country'));
   }
 
   get state(): FormControl {
-    return <FormControl>(this.generalInfo && this.generalInfo.get('state'));
+    return <FormControl>(this.contactInfo && this.contactInfo.get('state'));
   }
 
   get city(): FormControl {
-    return <FormControl>(this.generalInfo && this.generalInfo.get('city'));
+    return <FormControl>(this.contactInfo && this.contactInfo.get('city'));
   }
 
   get postalCode(): FormControl {
-    return <FormControl>(this.generalInfo && this.generalInfo.get('postalCode'));
+    return <FormControl>(this.contactInfo && this.contactInfo.get('postalCode'));
   }
 
   get fathersName(): FormControl {
@@ -118,12 +117,8 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
 
   // Horizontal Stepper
   generalInfo: FormGroup;
+  contactInfo: FormGroup;
   parentsInfo: FormGroup;
-  // horizontalStepperStep3: FormGroup;
-
-  // generalInfoErrors: any;
-  // parentsInfoErrors: any;
-  // horizontalStepperStep3Errors: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -147,6 +142,7 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
       this.studentAddEditService.onStudentChanged
         .subscribe(student => {
           this.generalInfo = this.generalInfoForm();
+          this.contactInfo = this.contactInfoForm();
           this.parentsInfo = this.parentsInfoForm();
         });
   }
@@ -165,7 +161,12 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
       religion: [this.student.religion || '', Validators.required],
       standard: [this.student.standard || '', Validators.required],
       division: [this.student.division || '', Validators.required],
-      nationality: [this.student.nationality || '', Validators.required],
+      nationality: [this.student.nationality || '', Validators.required]
+    });
+  }
+
+  private contactInfoForm(): FormGroup {
+    return this.formBuilder.group({
       permanentAddress: [this.student.permanentAddress || '', Validators.required],
       correspondenceAddress: [this.student.correspondenceAddress || '', Validators.required],
       country: [this.student.country || '', Validators.required],

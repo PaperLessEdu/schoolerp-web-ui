@@ -32,7 +32,7 @@
       <div class="horizontal-stepper-wrapper">
         <!-- HORIZONTAL STEPPER -->
         <mat-horizontal-stepper class="mat-elevation-z4" [linear]="true">
-          <!-- STEP 1 -->
+          <!-- STEP 1: General Information-->
           <mat-step [stepControl]="generalInfo">
             <form [formGroup]="generalInfo">
               <ng-template matStepLabel>General Information</ng-template>
@@ -202,8 +202,19 @@
                     Nationality is required!
                   </mat-error>
                 </mat-form-field>
-
               </div>
+              <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
+                <button mat-raised-button matStepperNext type="button" color="accent">
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+
+          <!-- STEP 2: Contact Information -->
+          <mat-step [stepControl]="contactInfo">
+            <form [formGroup]="contactInfo">
+              <ng-template matStepLabel>Contact Information</ng-template>
 
               <div>
                 <!-- Permanent Address -->
@@ -257,7 +268,7 @@
                   <input matInput #postalCode placeholder="Postal Code" formControlName="postalCode" required>
                   <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
                   <mat-error *ngIf="postalCode.errors?.maxlength">
-                    Postal Code needs to be max. {{generalInfoErrors.postalCode.maxlength.requiredLength}} characters
+                    Postal Code needs to be max 6 characters
                   </mat-error>
                   <mat-error *ngIf="postalCode.errors?.required">
                     Postal Code is required!
