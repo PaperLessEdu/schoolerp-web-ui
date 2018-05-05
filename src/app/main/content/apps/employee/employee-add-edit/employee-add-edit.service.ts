@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import  * as constants from '../../shared/constants';
 
 @Injectable()
 export class EmployeeAddEditService implements Resolve<any> {
@@ -39,7 +40,7 @@ export class EmployeeAddEditService implements Resolve<any> {
                 this.onEmployeeChanged.next(false);
                 resolve(false);
             } else {
-                this.http.get('api/employees/' + this.routeParams.id)
+                this.http.get(constants.BACKEND_URL + 'employees/' + this.routeParams.id)
                     .subscribe((response: any) => {
                         this.employee = response;
                         this.onEmployeeChanged.next(this.employee);
@@ -51,7 +52,7 @@ export class EmployeeAddEditService implements Resolve<any> {
 
     updateEmployee(employee) {
         return new Promise((resolve, reject) => {
-            this.http.put('api/employees/' + employee.id, employee)
+            this.http.put(constants.BACKEND_URL + 'employees/' + employee.id, employee)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);
@@ -60,7 +61,7 @@ export class EmployeeAddEditService implements Resolve<any> {
 
     addEmployee(employee) {
         return new Promise((resolve, reject) => {
-            this.http.post('api/employees', employee)
+            this.http.post(constants.BACKEND_URL + 'employees', employee)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);
@@ -68,6 +69,6 @@ export class EmployeeAddEditService implements Resolve<any> {
     }
 
     getRoles() {
-        return this.http.get('api/roles');
+        return this.http.get(constants.BACKEND_URL + 'roles');
     }
 }
