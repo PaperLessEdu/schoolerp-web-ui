@@ -178,12 +178,36 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
 
   private parentsInfoForm(): FormGroup {
     return this.formBuilder.group({
-      fathersName: [this.student.fathersName || '', Validators.required],
-      mothersName: [this.student.mothersName || '', Validators.required],
-      qualification: [this.student.qualification || '', Validators.required],
-      occupation: [this.student.occupation || '', Validators.required],
-      phoneNumber: [this.student.phoneNumber || '', Validators.required],
-      emailId: [this.student.emailId || '', Validators.required],
+      fathersDetails: this.formBuilder.group({
+        name: ['Nancy', Validators.required],
+        occupation: ['', Validators.required],
+        qualification: ['', Validators.required],
+        phoneNumber: ['', Validators.required],
+        emailId: ['', Validators.required]
+      }),
+      mothersDetails: this.formBuilder.group({
+        name: ['ABC', Validators.required],
+        occupation: ['', Validators.required],
+        qualification: ['', Validators.required],
+        phoneNumber: ['', Validators.required],
+        emailId: ['', Validators.required]
+      }),
+      guardianDetails: this.formBuilder.group({
+        name: ['ABC', Validators.required],
+        occupation: ['', Validators.required],
+        qualification: ['', Validators.required],
+        phoneNumber: ['', Validators.required],
+        emailId: ['', Validators.required]
+      }),
     });
+  }
+
+  addStudent() {
+    const step1Data = this.generalInfo.getRawValue();
+    const step2Data = this.contactInfo.getRawValue();
+    const step3Data = this.parentsInfo.getRawValue();
+    const data = { ...step1Data, ...step2Data, ...step3Data };
+
+    console.log('$$$' + data);
   }
 }
