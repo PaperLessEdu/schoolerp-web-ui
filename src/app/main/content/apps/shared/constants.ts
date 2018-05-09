@@ -1,1 +1,1 @@
-export const BACKEND_URL: string = 'http://18.221.99.177:8080/';
+export const BACKEND_URL: string = 'http://dev.cloudscripts.co.in:9090/';
