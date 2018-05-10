@@ -15,6 +15,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { FuseUtils } from '@fuse/utils';
 import { Employee } from './employee.model';
 import { EmployeeAddEditService } from './employee-add-edit.service';
+import { Constants } from '../../shared/constants';
 
 @Component({
     selector: 'app-employee-add-edit',
@@ -111,7 +112,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
                     this.horizontalStepperStep1 = this.horizontalStepperStep1Form();
                     this.horizontalStepperStep2 = this.horizontalStepperStep2Form();
                     this.horizontalStepperStep3 = this.horizontalStepperStep3Form();
-                    //this.setDefaultValue();
+                    this.setDefaultValue();
                 });
         this.employeeAddEditService.getRoles().subscribe((roles: any) => {
             this.roles = roles;
@@ -160,14 +161,14 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
 
     setDefaultValue(): void {
         this.horizontalStepperStep1.patchValue({
-            nationality: 'Indian',
-            gender: 'Male',
-            maritalStatus: 'Unmarried'
+            nationality: Constants.DEFAULT_NATIONALITY,
+            gender: Constants.DEFAULT_GENDER_SELECTION,
+            maritalStatus: Constants.DEFAULT_MARITAL_STATUS_SELECTION
         });
 
         this.horizontalStepperStep2.patchValue({
-            country: 'India',
-            state: 'Maharashtra'
+            country: Constants.DEFAULT_COUNTRY,
+            state: Constants.DEFAULT_STATE
         });
     }
 
