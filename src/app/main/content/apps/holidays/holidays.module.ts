@@ -25,8 +25,7 @@ import { AuthGuard } from 'app/main/content/authentication/auth.guard';
 const routes = [
   {
     path: 'list',
-    component: HolidayListComponent,
-    canActivate: [AuthGuard]
+    component: HolidayListComponent
   }
 ];
 

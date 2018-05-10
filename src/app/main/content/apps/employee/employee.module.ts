@@ -38,12 +38,10 @@ import { AuthGuard } from 'app/main/content/authentication/auth.guard';
 const routes = [
   {
     path: 'list',
-    component: EmployeeListComponent,
-    canActivate: [AuthGuard]
+    component: EmployeeListComponent
   }, {
     path: 'new',
-    component: EmployeeAddEditComponent,
-    canActivate: [AuthGuard]
+    component: EmployeeAddEditComponent
   }, {
       path     : 'list/:id',
       component: EmployeeAddEditComponent,
@@ -53,12 +51,10 @@ const routes = [
       canActivate: [AuthGuard]
   }, {
       path     : 'profile/:id',
-      component: EmployeeProfileComponent,
-      canActivate: [AuthGuard]
+      component: EmployeeProfileComponent
   }, {
     path: '**',
-    redirectTo: 'list',
-    canActivate: [AuthGuard]
+    redirectTo: 'list'
   }
 ];
 
