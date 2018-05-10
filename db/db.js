@@ -6,6 +6,7 @@ module.exports = function() {
     subjects: require('./subjects.json'),
     divisions: require('./divisions.json'),
     holidays: require('./holidays.json'),
-    roles: require('./roles.json')
+    roles: require('./roles.json'),
+    token: require('./token.json')
   }
 }

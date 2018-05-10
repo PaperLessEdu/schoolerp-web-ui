@@ -3,6 +3,8 @@ import { fuseAnimations } from '@fuse/animations';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from './login.service';
+import { HttpErrorResponse } from '@angular/common/http/src/response';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +13,8 @@ import { Router } from '@angular/router';
   animations: fuseAnimations
 })
 export class LoginComponent implements OnInit {
-
   loginForm: FormGroup;
+  isLoginError = false;
 
   // getters for form control
   get username(): FormControl {
@@ -26,7 +28,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fuseConfig: FuseConfigService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private loginService: LoginService
   ) {
     this.fuseConfig.setConfig({
       layout: {
@@ -49,9 +52,17 @@ export class LoginComponent implements OnInit {
   }
 
   doLogin(): void {
-    console.log(this.username.value+"------"+this.password.value);
     if (this.username.value === 'admin' && this.password.value === 'admin') {
+      localStorage.setItem('userToken', 'sfsf-sdfsd-fsdfds-fsdf-dsf-dsf-sdf');
       this.router.navigate(['/apps/dashboard/home']);
     }
+
+    // @TODO: Integrate with actual API
+    // this.loginService.userAuthentication(this.username.value, this.password.value).subscribe((data) => {
+    //   localStorage.setItem('userToken', data['access_token']);
+    //   this.router.navigate(['/apps/dashboard/home']);
+    // }, (err: HttpErrorResponse) => {
+    //   this.isLoginError = true;
+    // });
   }
 }

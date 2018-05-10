@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login.component';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
+import { LoginComponent } from './login.component';
+import { LoginService } from './login.service';
 
 const routes = [
   {
@@ -23,6 +24,7 @@ const routes = [
 
     FuseSharedModule
   ],
-  declarations: [LoginComponent]
+  declarations: [LoginComponent],
+  providers: [LoginService]
 })
 export class LoginModule { }

@@ -33,26 +33,32 @@ import { EmployeeProfileComponent } from './employee-profile/employee-profile.co
 import { EmployeeProfileService } from './employee-profile/employee-profile.service';
 import { ChangeStandardSubjectComponent } from './change-standard-subject/change-standard-subject.component';
 import { ChangeStandardSubjectService } from './change-standard-subject/change-standard-subject.service';
+import { AuthGuard } from 'app/main/content/authentication/auth.guard';
 
 const routes = [
   {
     path: 'list',
-    component: EmployeeListComponent
+    component: EmployeeListComponent,
+    canActivate: [AuthGuard]
   }, {
     path: 'new',
-    component: EmployeeAddEditComponent
+    component: EmployeeAddEditComponent,
+    canActivate: [AuthGuard]
   }, {
       path     : 'list/:id',
       component: EmployeeAddEditComponent,
       resolve  : {
           data: EmployeeAddEditService
-      }
-  },{
+      },
+      canActivate: [AuthGuard]
+  }, {
       path     : 'profile/:id',
-      component: EmployeeProfileComponent
+      component: EmployeeProfileComponent,
+      canActivate: [AuthGuard]
   }, {
     path: '**',
-    redirectTo: 'list'
+    redirectTo: 'list',
+    canActivate: [AuthGuard]
   }
 ];
 
