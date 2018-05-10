@@ -9,3 +9,15 @@ export class Constants {
     public static readonly DEFAULT_GENDER_SELECTION = 'Male';
     public static readonly DEFAULT_MARITAL_STATUS_SELECTION = 'Unmarried';
 }
+
+export const MY_FORMATS = {
+    parse  : {
+        dateInput: 'LL'
+    },
+    display: {
+        dateInput         : 'LL',
+        monthYearLabel    : 'MMM YYYY',
+        dateA11yLabel     : 'LL',
+        monthYearA11yLabel: 'MMMM YYYY'
+    }
+};

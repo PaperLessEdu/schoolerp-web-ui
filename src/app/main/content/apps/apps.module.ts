@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
+import { MomentDateModule } from '@angular/material-moment-adapter';
 
 const routes = [
   {
@@ -40,7 +41,8 @@ const routes = [
 @NgModule({
   imports: [
     FuseSharedModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MomentDateModule
   ],
   declarations: []
 })

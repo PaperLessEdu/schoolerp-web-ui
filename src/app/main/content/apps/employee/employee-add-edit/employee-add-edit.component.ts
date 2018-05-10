@@ -15,14 +15,27 @@ import { fuseAnimations } from '@fuse/animations';
 import { FuseUtils } from '@fuse/utils';
 import { Employee } from './employee.model';
 import { EmployeeAddEditService } from './employee-add-edit.service';
-import { Constants } from '../../shared/constants';
+import { Constants, MY_FORMATS } from '../../shared/constants';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-employee-add-edit',
     templateUrl: './employee-add-edit.component.html',
     styleUrls: ['./employee-add-edit.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    animations: fuseAnimations
+    animations: fuseAnimations,
+    providers  : [
+        {provide    : DateAdapter,
+            useClass: MomentDateAdapter,
+            deps    : [MAT_DATE_LOCALE]
+        },
+
+        {provide    : MAT_DATE_FORMATS,
+            useValue: MY_FORMATS
+        }
+    ]
 })
 export class EmployeeAddEditComponent implements OnInit, OnDestroy {
 
@@ -163,7 +176,9 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
         this.horizontalStepperStep1.patchValue({
             nationality: Constants.DEFAULT_NATIONALITY,
             gender: Constants.DEFAULT_GENDER_SELECTION,
-            maritalStatus: Constants.DEFAULT_MARITAL_STATUS_SELECTION
+            maritalStatus: Constants.DEFAULT_MARITAL_STATUS_SELECTION,
+            dateOfJoining: new FormControl(moment()),
+            dob: new FormControl(moment())
         });
 
         this.horizontalStepperStep2.patchValue({
