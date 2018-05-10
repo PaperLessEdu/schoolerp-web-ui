@@ -294,7 +294,7 @@
                   <!-- Fathers Name -->
                   <mat-form-field fxFlex="50" formGroupName="fathersDetails">
                     <input matInput placeholder="Fathers Name" formControlName="name" required>
-                    <mat-error *ngIf="parentsInfo.controls.fathersDetails.controls.name.errors?.required">
+                    <mat-error *ngIf="parentsInfo['controls'].fathersDetails['controls'].name.errors?.required">
                       Fathers Name is required!
                     </mat-error>
                   </mat-form-field>
@@ -302,7 +302,7 @@
                   <!-- Email Id -->
                   <mat-form-field fxFlex="50" formGroupName="fathersDetails">
                     <input matInput placeholder="Email" formControlName="emailId" required>
-                    <mat-error *ngIf="parentsInfo.controls.fathersDetails.controls.emailId.errors?.required">
+                    <mat-error *ngIf="parentsInfo['controls'].fathersDetails['controls'].emailId.errors?.required">
                       Email is required!
                     </mat-error>
                   </mat-form-field>
@@ -312,7 +312,7 @@
                   <!-- Qualification -->
                   <mat-form-field fxFlex="50" formGroupName="fathersDetails">
                     <input matInput placeholder="Qualification" formControlName="qualification" required>
-                    <mat-error *ngIf="parentsInfo.controls.fathersDetails.controls.qualification.errors?.required">
+                    <mat-error *ngIf="parentsInfo['controls'].fathersDetails['controls'].qualification.errors?.required">
                       qualification is required!
                     </mat-error>
                   </mat-form-field>
@@ -320,7 +320,7 @@
                   <!-- Occupation -->
                   <mat-form-field fxFlex="50" formGroupName="fathersDetails">
                     <input matInput placeholder="Occupation" formControlName="occupation" required>
-                    <mat-error *ngIf="parentsInfo.controls.fathersDetails.controls.occupation.errors?.required">
+                    <mat-error *ngIf="parentsInfo['controls'].fathersDetails['controls'].occupation.errors?.required">
                       Occupation is required!
                     </mat-error>
                   </mat-form-field>
@@ -330,7 +330,7 @@
                   <!-- Phone Number -->
                   <mat-form-field fxFlex="50" formGroupName="fathersDetails">
                     <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
-                    <mat-error *ngIf="parentsInfo.controls.fathersDetails.controls.phoneNumber.errors?.required">
+                    <mat-error *ngIf="parentsInfo['controls'].fathersDetails['controls'].phoneNumber.errors?.required">
                       Phone Number is required!
                     </mat-error>
                   </mat-form-field>
@@ -343,7 +343,7 @@
                   <!-- Mothers Name -->
                   <mat-form-field fxFlex="50" formGroupName="mothersDetails">
                     <input matInput placeholder="Fathers Name" formControlName="name" required>
-                    <mat-error *ngIf="parentsInfo.controls.mothersDetails.controls.name.errors?.required">
+                    <mat-error *ngIf="parentsInfo['controls'].mothersDetails['controls'].name.errors?.required">
                       Fathers Name is required!
                     </mat-error>
                   </mat-form-field>
@@ -351,7 +351,7 @@
                   <!-- Email Id -->
                   <mat-form-field fxFlex="50" formGroupName="mothersDetails">
                     <input matInput placeholder="Email" formControlName="emailId" required>
-                    <mat-error *ngIf="parentsInfo.controls.mothersDetails.controls.emailId.errors?.required">
+                    <mat-error *ngIf="parentsInfo['controls'].mothersDetails['controls'].emailId.errors?.required">
                       Email is required!
                     </mat-error>
                   </mat-form-field>
@@ -361,7 +361,7 @@
                   <!-- Qualification -->
                   <mat-form-field fxFlex="50" formGroupName="mothersDetails">
                     <input matInput placeholder="Qualification" formControlName="qualification" required>
-                    <mat-error *ngIf="parentsInfo.controls.mothersDetails.controls.qualification.errors?.required">
+                    <mat-error *ngIf="parentsInfo['controls'].mothersDetails['controls'].qualification.errors?.required">
                       qualification is required!
                     </mat-error>
                   </mat-form-field>
@@ -369,7 +369,7 @@
                   <!-- Occupation -->
                   <mat-form-field fxFlex="50" formGroupName="mothersDetails">
                     <input matInput placeholder="Occupation" formControlName="occupation" required>
-                    <mat-error *ngIf="parentsInfo.controls.mothersDetails.controls.occupation.errors?.required">
+                    <mat-error *ngIf="parentsInfo['controls'].mothersDetails['controls'].occupation.errors?.required">
                       Occupation is required!
                     </mat-error>
                   </mat-form-field>
@@ -380,7 +380,7 @@
                   <!-- Phone Number -->
                   <mat-form-field fxFlex="50" formGroupName="mothersDetails">
                     <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
-                    <mat-error *ngIf="parentsInfo.controls.mothersDetails.controls.phoneNumber.errors?.required">
+                    <mat-error *ngIf="parentsInfo['controls'].mothersDetails['controls'].phoneNumber.errors?.required">
                       Phone Number is required!
                     </mat-error>
                   </mat-form-field>
@@ -394,7 +394,7 @@
                   <!-- Guardian Name -->
                   <mat-form-field fxFlex="50" formGroupName="guardianDetails">
                     <input matInput placeholder="Fathers Name" formControlName="name" required>
-                    <mat-error *ngIf="parentsInfo.controls.guardianDetails.controls.name.errors?.required">
+                    <mat-error *ngIf="parentsInfo['controls'].guardianDetails['controls'].name.errors?.required">
                       Fathers Name is required!
                     </mat-error>
                   </mat-form-field>
@@ -402,7 +402,7 @@
                   <!-- Email Id -->
                   <mat-form-field fxFlex="50" formGroupName="guardianDetails">
                     <input matInput placeholder="Email" formControlName="emailId" required>
-                    <mat-error *ngIf="parentsInfo.controls.guardianDetails.controls.emailId.errors?.required">
+                    <mat-error *ngIf="parentsInfo['controls'].guardianDetails['controls'].emailId.errors?.required">
                       Email is required!
                     </mat-error>
                   </mat-form-field>
@@ -412,7 +412,7 @@
                   <!-- Qualification -->
                   <mat-form-field fxFlex="50" formGroupName="guardianDetails">
                     <input matInput placeholder="Qualification" formControlName="qualification" required>
-                    <mat-error *ngIf="parentsInfo.controls.guardianDetails.controls.qualification.errors?.required">
+                    <mat-error *ngIf="parentsInfo['controls'].guardianDetails['controls'].qualification.errors?.required">
                       qualification is required!
                     </mat-error>
                   </mat-form-field>
@@ -420,7 +420,7 @@
                   <!-- Occupation -->
                   <mat-form-field fxFlex="50" formGroupName="guardianDetails">
                     <input matInput placeholder="Occupation" formControlName="occupation" required>
-                    <mat-error *ngIf="parentsInfo.controls.guardianDetails.controls.occupation.errors?.required">
+                    <mat-error *ngIf="parentsInfo['controls'].guardianDetails['controls'].occupation.errors?.required">
                       Occupation is required!
                     </mat-error>
                   </mat-form-field>
@@ -431,17 +431,12 @@
                   <!-- Phone Number -->
                   <mat-form-field fxFlex="50" formGroupName="guardianDetails">
                     <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
-                    <mat-error *ngIf="parentsInfo.controls.guardianDetails.controls.phoneNumber.errors?.required">
+                    <mat-error *ngIf="parentsInfo['controls'].guardianDetails['controls'].phoneNumber.errors?.required">
                       Phone Number is required!
                     </mat-error>
                   </mat-form-field>
                 </div>
               </fieldset>
-
-
-              {{ parentsInfo.value | json}}
-
-
 
               <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
                 <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
