@@ -7,7 +7,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 
 const routes = [
   {
-    path: 'forgot',
+    path: '',
     component: ForgotPasswordComponent
   }
 ];

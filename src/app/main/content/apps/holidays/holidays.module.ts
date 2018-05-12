@@ -20,7 +20,6 @@ import { HolidayListComponent } from './holiday-list/holiday-list.component';
 import { HolidayListService } from './holiday-list/holiday-list.service';
 import { HolidayAddEditComponent } from './holiday-add-edit/holiday-add-edit.component';
 import { HolidayAddEditService } from './holiday-add-edit/holiday-add-edit.service';
-import { AuthGuard } from 'app/main/content/authentication/auth.guard';
 
 const routes = [
   {

@@ -8,7 +8,7 @@ import { LoginService } from './login.service';
 
 const routes = [
   {
-    path: 'login',
+    path: '',
     component: LoginComponent
   }
 ];

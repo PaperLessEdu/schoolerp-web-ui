@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { MomentDateModule } from '@angular/material-moment-adapter';
-import { AuthGuard } from 'app/main/content/authentication/auth.guard';
 
 const routes = [
   {
@@ -39,13 +38,11 @@ const routes = [
   },
   {
     path: '**',
-    redirectTo: 'dashboard',
-    canActivate: [AuthGuard]
+    redirectTo: 'dashboard'
   },
   {
     path: '',
-    redirectTo: 'dashboard',
-    canActivate: [AuthGuard]
+    redirectTo: 'dashboard'
   }
 ];
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { FuseMainModule } from './main/main.module';
 import { FuseSampleModule } from './main/content/sample/sample.module';
 import { AuthGuard } from 'app/main/content/authentication/auth.guard';
+import { AuthInterceptor } from 'app/main/content/authentication/auth.interceptor';
 
 const appRoutes: Routes = [
     {
@@ -54,7 +55,12 @@ const appRoutes: Routes = [
         AppComponent
     ],
     providers: [
-        AuthGuard
+        AuthGuard,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        }
     ]
 })
 export class AppModule
