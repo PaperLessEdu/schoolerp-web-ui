@@ -26,13 +26,15 @@ import * as moment from 'moment';
     styleUrls: ['./employee-add-edit.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations,
-    providers  : [
-        {provide    : DateAdapter,
+    providers: [
+        {
+            provide: DateAdapter,
             useClass: MomentDateAdapter,
-            deps    : [MAT_DATE_LOCALE]
+            deps: [MAT_DATE_LOCALE]
         },
 
-        {provide    : MAT_DATE_FORMATS,
+        {
+            provide: MAT_DATE_FORMATS,
             useValue: MY_FORMATS
         }
     ]
@@ -72,7 +74,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
     get bloodGroup(): FormControl {
         return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('bloodGroup'));
     }
-    
+
     get dateOfJoining(): FormControl {
         return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('dateOfJoining'));
     }
@@ -84,6 +86,8 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
     get roleId(): FormControl {
         return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('roleId'));
     }
+
+    get aadharCardNumber() { return this.horizontalStepperStep1.get('aadharCardNumber'); }
 
     constructor(private formBuilder: FormBuilder,
         private router: Router,
@@ -144,8 +148,10 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
             dob: [this.employee.dob || '', Validators.required],
             bloodGroup: [this.employee.bloodGroup || ''],
             maritalStatus: [this.employee.maritalStatus || '', Validators.required],
-            aadharCardNumber: [this.employee.aadharCardNumber || ''],
-            roleId: [this.employee.roleId || '', Validators.required]
+            roleId: [this.employee.roleId || '', Validators.required],
+            aadharCardNumber: new FormControl(this.employee.aadharCardNumber || '', [
+                Validators.required
+            ]),
         });
     }
 

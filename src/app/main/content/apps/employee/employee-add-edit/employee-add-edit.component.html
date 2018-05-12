@@ -127,7 +127,13 @@
                         <div>
                             <!-- Aadhar Card Number -->
                             <mat-form-field fxFlex="33">
-                                <input matInput placeholder="Aadhar Card Number" formControlName="aadharCardNumber">
+                                <input matInput placeholder="Aadhar Card Number" pattern="^[0-9]{4}-[0-9]{4}-[0-9]{4}$" formControlName="aadharCardNumber">
+                                <mat-error *ngIf="aadharCardNumber.errors?.required">
+                                    Aadhar Card Number is required!
+                                </mat-error>
+                                <mat-error *ngIf="aadharCardNumber.errors?.pattern">
+                                    Please enter valid aadhar no
+                                </mat-error>
                             </mat-form-field>
                             <mat-form-field fxFlex="33">
                                 <mat-select placeholder="Role" 
