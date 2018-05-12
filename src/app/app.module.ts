@@ -16,6 +16,7 @@ import { FuseMainModule } from './main/main.module';
 import { FuseSampleModule } from './main/content/sample/sample.module';
 import { AuthGuard } from 'app/main/content/authentication/auth.guard';
 import { AuthInterceptor } from 'app/main/content/authentication/auth.interceptor';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 const appRoutes: Routes = [
     {
@@ -60,6 +61,9 @@ const appRoutes: Routes = [
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true
+        },
+        { provide: LocationStrategy, 
+            useClass: HashLocationStrategy
         }
     ]
 })
