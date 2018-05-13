@@ -32,13 +32,13 @@ export class RoleAddEditComponent implements OnInit {
   }
 
   addRole(): void {
-    let data = this.roleForm.getRawValue();
+    const data = this.roleForm.getRawValue();
     this.roleAddEditService.addRole(data)
       .then(() => {
-        this.dialogRef.close(['save',this.roleForm]);  
+        this.dialogRef.close(['save', this.roleForm]);  
           
-        //Show the success message
-        let msg = 'Role added successfully';
+        // Show the success message
+        const msg = 'Role added successfully';
         this.snackBar.open(msg, 'OK', {
             verticalPosition: 'top',
             duration        : 3000
@@ -47,13 +47,13 @@ export class RoleAddEditComponent implements OnInit {
   }
 
   updateRole(): void {
-    let data = this.data.selectedRole;
+    const data = this.data.selectedRole;
     this.roleAddEditService.updateRole(data)
       .then(() => {
-        this.dialogRef.close(['save',this.roleForm]);  
+        this.dialogRef.close(['save', this.roleForm]);  
           
-        //Show the success message
-        let msg = 'Role updated successfully';
+        // Show the success message
+        const msg = 'Role updated successfully';
         this.snackBar.open(msg, 'OK', {
             verticalPosition: 'top',
             duration        : 3000

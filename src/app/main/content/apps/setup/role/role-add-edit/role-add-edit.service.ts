@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ApiConst } from '../../../shared/constants';
 
 @Injectable()
 export class RoleAddEditService {
@@ -8,7 +9,7 @@ export class RoleAddEditService {
 
     addRole(role) {
         return new Promise((resolve, reject) => {
-            this.http.post('api/roles', role)
+            this.http.post(ApiConst.BASE_URL + 'userRoles', role)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);
@@ -17,7 +18,7 @@ export class RoleAddEditService {
 
     updateRole(role) {
         return new Promise((resolve, reject) => {
-            this.http.put('api/roles/'+role.id, role)
+            this.http.put('api/roles/' + role.id, role)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);
