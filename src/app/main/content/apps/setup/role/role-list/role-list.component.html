@@ -53,7 +53,7 @@
               [rowHeight]="'auto'"
               [scrollbarH]="true"
               [reorderable]="reorderable"
-              [selectionType]="'checkbox'"
+              [selectionType]="'single'"
               [limit]="10"
               [selected]="selectedRoles"
               (select)='onSelect($event)'>
@@ -77,7 +77,7 @@
   
               <ngx-datatable-column name="Name">
                   <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{row.name}}
+                      {{row.role}}
                   </ng-template>
               </ngx-datatable-column>
           </ngx-datatable>

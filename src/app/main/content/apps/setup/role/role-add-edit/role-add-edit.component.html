@@ -13,7 +13,7 @@
     <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
         <form [formGroup]="roleForm" class="event-form w-100-p" fxLayout="column" fxFlex>
             <mat-form-field>
-                <input matInput [(ngModel)]="data.selectedRole.name" formControlName="name" placeholder="Role Name" required>
+                <input matInput [(ngModel)]="data.selectedRole.name" formControlName="role" placeholder="Role Name" required>
                 <mat-error *ngIf="roleFormErrors.name.required">
                     Role name is required!
                 </mat-error>
