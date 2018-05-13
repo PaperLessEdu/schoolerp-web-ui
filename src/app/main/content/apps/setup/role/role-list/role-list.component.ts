@@ -19,7 +19,7 @@ export class RoleListComponent implements OnInit {
   loadingIndicator = true;
   reorderable = true;
   selectedRoles: any[] = [];
-  pageType: string = 'add';
+  pageType = 'add';
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
@@ -32,8 +32,8 @@ export class RoleListComponent implements OnInit {
   }
 
   openDialog(): void {
-    let roleObj = this.pageType == 'add' ? { name: '' } : this.selectedRoles[0];
-    let dialogRef = this.dialog.open(RoleAddEditComponent, {
+    const roleObj = this.pageType === 'add' ? { name: '' } : this.selectedRoles[0];
+    const dialogRef = this.dialog.open(RoleAddEditComponent, {
       width: '350px',
       data: {
         pageType: this.pageType,
@@ -91,7 +91,7 @@ export class RoleListComponent implements OnInit {
   }
 
   onDeleteAction(): void {
-    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
       data: { 
         title: 'Confirmation',
@@ -114,7 +114,7 @@ export class RoleListComponent implements OnInit {
   }
 
   deleteHoliday(): void {
-    let me = this;
+    const me = this;
     me.roleListService.deleteRole(this.selectedRoles[0]).subscribe((res: any) => {
      me.displayNotification("Role deleted successfully");
      me.doRefresh();
