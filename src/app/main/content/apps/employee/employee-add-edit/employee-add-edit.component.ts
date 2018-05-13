@@ -89,29 +89,36 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
 
     get aadharCardNumber() { return this.horizontalStepperStep1.get('aadharCardNumber'); }
 
+    get permanentAddress() { return this.horizontalStepperStep2.get('permanentAddress'); }
+
+    get correspondenceAddress() { return this.horizontalStepperStep2.get('correspondenceAddress'); }
+
+    get country() { return this.horizontalStepperStep2.get('country'); }
+
+    get state() { return this.horizontalStepperStep2.get('state'); }
+
+    get city() { return this.horizontalStepperStep2.get('city'); }
+
+    get postalCode() { return this.horizontalStepperStep2.get('postalCode'); }
+
+    get phoneNumber() { return this.horizontalStepperStep2.get('phoneNumber'); }
+
+    get alternatePhoneNumber() { return this.horizontalStepperStep2.get('alternatePhoneNumber'); }
+
+    get emailId() { return this.horizontalStepperStep2.get('emailId'); }
+
+    get qualification() { return this.horizontalStepperStep3.get('qualification'); }
+
+    get occupation() { return this.horizontalStepperStep3.get('occupation'); }
+
+    get jobType() { return this.horizontalStepperStep3.get('jobType'); }
+
+    get employeeType() { return this.horizontalStepperStep3.get('employeeType'); }
+
     constructor(private formBuilder: FormBuilder,
         private router: Router,
         public snackBar: MatSnackBar,
         private employeeAddEditService: EmployeeAddEditService) {
-
-        this.horizontalStepperStep2Errors = {
-            country: {},
-            state: {},
-            city: {},
-            permanentAddress: {},
-            correspondenceAddress: {},
-            postalCode: {},
-            emailId: {},
-            phoneNumber: {},
-            alternatePhoneNumber: {}
-        };
-
-        this.horizontalStepperStep3Errors = {
-            qualification: {},
-            occupation: {},
-            jobType: {},
-            employeeType: {}
-        };
     }
 
     ngOnInit() {
@@ -157,24 +164,24 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
 
     horizontalStepperStep2Form() {
         return this.formBuilder.group({
-            country: [this.employee.country || '', Validators.required],
-            state: [this.employee.state || '', Validators.required],
-            city: [this.employee.city || '', Validators.required],
-            permanentAddress: [this.employee.permanentAddress || '', Validators.required],
-            correspondenceAddress: [this.employee.correspondenceAddress || '', Validators.required],
-            postalCode: [this.employee.postalCode || '', [Validators.required, Validators.maxLength(6)]],
-            emailId: [this.employee.emailId || '', Validators.required],
-            phoneNumber: [this.employee.phoneNumber || '', Validators.required],
-            alternatePhoneNumber: [this.employee.alternatePhoneNumber || '', Validators.required]
+            country: new FormControl(this.employee.country || '', Validators.required),
+            state: new FormControl(this.employee.state || '', Validators.required),
+            city: new FormControl(this.employee.city || '', Validators.required),
+            permanentAddress: new FormControl(this.employee.permanentAddress || '', Validators.required),
+            correspondenceAddress: new FormControl(this.employee.correspondenceAddress || '', Validators.required),
+            postalCode: new FormControl(this.employee.postalCode || '', [Validators.required]),
+            emailId: new FormControl(this.employee.emailId || '', Validators.required),
+            phoneNumber: new FormControl(this.employee.phoneNumber || '', Validators.required),
+            alternatePhoneNumber: new FormControl(this.employee.alternatePhoneNumber || '', Validators.required)
         });
     }
 
     horizontalStepperStep3Form() {
         return this.formBuilder.group({
-            qualification: [this.employee.qualification || '', Validators.required],
-            occupation: [this.employee.occupation || '', Validators.required],
-            jobType: [this.employee.jobType || '', Validators.required],
-            employeeType: [this.employee.employeeType || '', Validators.required]
+            qualification: new FormControl(this.employee.qualification || '', Validators.required),
+            occupation: new FormControl(this.employee.occupation || '', Validators.required),
+            jobType: new FormControl(this.employee.jobType || '', Validators.required),
+            employeeType: new FormControl(this.employee.employeeType || '', Validators.required)
         });
     }
 
@@ -226,7 +233,6 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
     }
 
     saveEmployee() {
-        debugger;
         const step1Data = this.horizontalStepperStep1.getRawValue();
         const step2Data = this.horizontalStepperStep2.getRawValue();
         const step3Data = this.horizontalStepperStep3.getRawValue();
