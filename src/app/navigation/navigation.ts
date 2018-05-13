@@ -32,25 +32,25 @@ export const navigation = [
                         'type': 'item',
                         'url': '/apps/setup/divisions'
                     },
-                    {
-                        'id': 'subjects',
-                        'title': 'Subjects',
-                        'type': 'item',
-                        'url': '/apps/setup/subjects'
-                    },
-                    {
-                        'id': 'timetable',
-                        'title': 'Timetable',
-                        'type': 'collapse',
-                        'children': [
-                            {
-                                'id': 'templates',
-                                'title': 'Templates',
-                                'type': 'item',
-                                'url': '/apps/setup/timetable/templates/list'
-                            }
-                        ]
-                    },
+                    // {
+                    //     'id': 'subjects',
+                    //     'title': 'Subjects',
+                    //     'type': 'item',
+                    //     'url': '/apps/setup/subjects'
+                    // },
+                    // {
+                    //     'id': 'timetable',
+                    //     'title': 'Timetable',
+                    //     'type': 'collapse',
+                    //     'children': [
+                    //         {
+                    //             'id': 'templates',
+                    //             'title': 'Templates',
+                    //             'type': 'item',
+                    //             'url': '/apps/setup/timetable/templates/list'
+                    //         }
+                    //     ]
+                    // },
                     {
                         'id': 'role',
                         'title': 'Roles',
@@ -101,14 +101,14 @@ export const navigation = [
                     }
                 ]
             },
-            {
-                'id': 'attendance',
-                'title': 'Attendance',
-                'translate': 'NAV.ATTENDANCE',
-                'type': 'item',
-                'icon': 'today',
-                'url': '/apps/attendance/taker'
-            },
+            // {
+            //     'id': 'attendance',
+            //     'title': 'Attendance',
+            //     'translate': 'NAV.ATTENDANCE',
+            //     'type': 'item',
+            //     'icon': 'today',
+            //     'url': '/apps/attendance/taker'
+            // },
             {
                 'id': 'holidays',
                 'title': 'Holidays',
@@ -124,14 +124,14 @@ export const navigation = [
                 'type': 'item',
                 'icon': 'forum',
                 'url': '/apps/communication/home'
-            },
-            {
-                'id': 'examination',
-                'title': 'Examination',
-                'translate': 'NAV.EXAMINATION',
-                'type': 'item',
-                'url': '/apps/examination/list'
             }
+            // {
+            //     'id': 'examination',
+            //     'title': 'Examination',
+            //     'translate': 'NAV.EXAMINATION',
+            //     'type': 'item',
+            //     'url': '/apps/examination/list'
+            // }
         ]
     }
 ];

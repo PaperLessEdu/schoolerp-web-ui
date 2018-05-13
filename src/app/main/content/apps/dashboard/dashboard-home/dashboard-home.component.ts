@@ -34,11 +34,11 @@ export class DashboardHomeComponent implements OnInit {
       icon: 'group_work',
       url: '/apps/setup/divisions'
     },
-    {
-      title: 'Subjects',
-      icon: 'import_contacts',
-      url: '/apps/setup/subjects'
-    },
+    // {
+    //   title: 'Subjects',
+    //   icon: 'import_contacts',
+    //   url: '/apps/setup/subjects'
+    // },
     {
       title: 'Communication',
       icon: 'forum',
