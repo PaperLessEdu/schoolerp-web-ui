@@ -32,7 +32,6 @@ import * as moment from 'moment';
             useClass: MomentDateAdapter,
             deps: [MAT_DATE_LOCALE]
         },
-
         {
             provide: MAT_DATE_FORMATS,
             useValue: MY_FORMATS
@@ -138,9 +137,6 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
                     this.horizontalStepperStep3 = this.horizontalStepperStep3Form();
                     this.setDefaultValue();
                 });
-        this.employeeAddEditService.getRoles().subscribe((roles: any) => {
-            this.roles = roles;
-        });
     }
 
     horizontalStepperStep1Form() {

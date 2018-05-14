@@ -6,13 +6,29 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { StudentAddEditService } from './student-add-edit.service';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import * as moment from 'moment';
+import { Constants, MY_FORMATS } from 'app/main/content/apps/shared/constants';
 
 @Component({
   selector: 'app-student-add-edit',
   templateUrl: './student-add-edit.component.html',
   styleUrls: ['./student-add-edit.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  animations: fuseAnimations
+  animations: fuseAnimations,
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE]
+    },
+
+    {
+      provide: MAT_DATE_FORMATS,
+      useValue: MY_FORMATS
+    }
+  ]
 })
 export class StudentAddEditComponent implements OnInit, OnDestroy {
 
@@ -144,7 +160,22 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
           this.generalInfo = this.generalInfoForm();
           this.contactInfo = this.contactInfoForm();
           this.parentsInfo = this.parentsInfoForm();
+
+          this.setDefaultValue();
         });
+  }
+
+  setDefaultValue(): void {
+    this.generalInfo.patchValue({
+      nationality: Constants.DEFAULT_NATIONALITY,
+      gender: Constants.DEFAULT_GENDER_SELECTION,
+      dob: new FormControl(moment())
+    });
+
+    this.contactInfo.patchValue({
+      country: Constants.DEFAULT_COUNTRY,
+      state: Constants.DEFAULT_STATE
+    });
   }
 
   private generalInfoForm(): FormGroup {
@@ -179,25 +210,25 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
   private parentsInfoForm(): FormGroup {
     return this.formBuilder.group({
       fathersDetails: this.formBuilder.group({
-        name: ['Nancy', Validators.required],
+        name: ['', Validators.required],
         occupation: ['', Validators.required],
         qualification: ['', Validators.required],
         phoneNumber: ['', Validators.required],
         emailId: ['', Validators.required]
       }),
       mothersDetails: this.formBuilder.group({
-        name: ['ABC', Validators.required],
+        name: ['', Validators.required],
         occupation: ['', Validators.required],
         qualification: ['', Validators.required],
         phoneNumber: ['', Validators.required],
         emailId: ['', Validators.required]
       }),
       guardianDetails: this.formBuilder.group({
-        name: ['ABC', Validators.required],
-        occupation: ['', Validators.required],
-        qualification: ['', Validators.required],
-        phoneNumber: ['', Validators.required],
-        emailId: ['', Validators.required]
+        name: [''],
+        occupation: [''],
+        qualification: [''],
+        phoneNumber: [''],
+        emailId: ['']
       }),
     });
   }

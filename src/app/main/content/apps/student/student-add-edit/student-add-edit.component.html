@@ -82,9 +82,9 @@
               <div>
                 <!-- Date of Birth -->
                 <mat-form-field fxFlex="33">
-                  <input matInput [matDatepicker]="picker" placeholder="Date of birth" formControlName="dob" required>
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
+                  <input matInput [matDatepicker]="birthdate" placeholder="Date of birth" formControlName="dob" required>
+                  <mat-datepicker-toggle matSuffix [for]="birthdate"></mat-datepicker-toggle>
+                  <mat-datepicker #birthdate></mat-datepicker>
                   <mat-error *ngIf="dob.errors?.required">
                     Date of birth is required!
                   </mat-error>
@@ -283,7 +283,7 @@
             </form>
           </mat-step>
 
-          <!-- STEP 2 -->
+          <!-- STEP 3: Parents Information -->
           <mat-step [stepControl]="parentsInfo">
             <form [formGroup]="parentsInfo">
               <ng-template matStepLabel>Parents Information</ng-template>
@@ -387,42 +387,29 @@
                 </div>
               </fieldset>
 
-
               <fieldset>
                 <legend>Guardian Details</legend>
                 <div>
                   <!-- Guardian Name -->
                   <mat-form-field fxFlex="50" formGroupName="guardianDetails">
-                    <input matInput placeholder="Fathers Name" formControlName="name" required>
-                    <mat-error *ngIf="parentsInfo['controls'].guardianDetails['controls'].name.errors?.required">
-                      Fathers Name is required!
-                    </mat-error>
+                    <input matInput placeholder="Fathers Name" formControlName="name">
                   </mat-form-field>
 
                   <!-- Email Id -->
                   <mat-form-field fxFlex="50" formGroupName="guardianDetails">
-                    <input matInput placeholder="Email" formControlName="emailId" required>
-                    <mat-error *ngIf="parentsInfo['controls'].guardianDetails['controls'].emailId.errors?.required">
-                      Email is required!
-                    </mat-error>
+                    <input matInput placeholder="Email" formControlName="emailId">
                   </mat-form-field>
                 </div>
 
                 <div>
                   <!-- Qualification -->
                   <mat-form-field fxFlex="50" formGroupName="guardianDetails">
-                    <input matInput placeholder="Qualification" formControlName="qualification" required>
-                    <mat-error *ngIf="parentsInfo['controls'].guardianDetails['controls'].qualification.errors?.required">
-                      qualification is required!
-                    </mat-error>
+                    <input matInput placeholder="Qualification" formControlName="qualification">
                   </mat-form-field>
 
                   <!-- Occupation -->
                   <mat-form-field fxFlex="50" formGroupName="guardianDetails">
-                    <input matInput placeholder="Occupation" formControlName="occupation" required>
-                    <mat-error *ngIf="parentsInfo['controls'].guardianDetails['controls'].occupation.errors?.required">
-                      Occupation is required!
-                    </mat-error>
+                    <input matInput placeholder="Occupation" formControlName="occupation">
                   </mat-form-field>
 
                 </div>
@@ -430,10 +417,7 @@
                 <div>
                   <!-- Phone Number -->
                   <mat-form-field fxFlex="50" formGroupName="guardianDetails">
-                    <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
-                    <mat-error *ngIf="parentsInfo['controls'].guardianDetails['controls'].phoneNumber.errors?.required">
-                      Phone Number is required!
-                    </mat-error>
+                    <input matInput placeholder="Phone Number" formControlName="phoneNumber">
                   </mat-form-field>
                 </div>
               </fieldset>
