@@ -225,10 +225,13 @@
 
                                 <!-- Postal Code -->
                                 <mat-form-field fxFlex="33">
-                                    <input type="number" matInput placeholder="Postal Code" formControlName="postalCode" required>
+                                    <input matInput placeholder="Postal Code" formControlName="postalCode" pattern="^[0-9]{6}" required>
                                     <!--<mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>-->
                                     <mat-error *ngIf="postalCode.errors?.required">
                                         Postal Code is required!
+                                    </mat-error>
+                                    <mat-error *ngIf="postalCode.errors?.pattern">
+                                        Enter valid postal code.
                                     </mat-error>
                                 </mat-form-field>
                             </div>
@@ -253,9 +256,12 @@
                             <div>
                                 <!-- Email -->
                                 <mat-form-field fxFlex="33">
-                                    <input matInput placeholder="Email" formControlName="emailId" required>
+                                    <input matInput placeholder="Email" formControlName="emailId" required email="true">
                                     <mat-error *ngIf="emailId.errors?.required">
                                         Email is required!
+                                    </mat-error>
+                                    <mat-error *ngIf="emailId.errors?.email">
+                                        Enter valid email id
                                     </mat-error>
                                 </mat-form-field>
                             </div>
