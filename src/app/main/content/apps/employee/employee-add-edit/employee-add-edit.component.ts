@@ -82,9 +82,9 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
         return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('nationality'));
     }
 
-    get roleId(): FormControl {
-        return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('roleId'));
-    }
+    // get roleId(): FormControl {
+    //     return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('roleId'));
+    // }
 
     get aadharCardNumber() { return this.horizontalStepperStep1.get('aadharCardNumber'); }
 
@@ -151,7 +151,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
             dob: [this.employee.dob || '', Validators.required],
             bloodGroup: [this.employee.bloodGroup || ''],
             maritalStatus: [this.employee.maritalStatus || '', Validators.required],
-            roleId: [this.employee.roleId || '', Validators.required],
+            // roleId: [this.employee.roleId || '', Validators.required],
             aadharCardNumber: new FormControl(this.employee.aadharCardNumber || '', [
                 Validators.required
             ]),
@@ -213,14 +213,16 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
         const step2Data = this.horizontalStepperStep2.getRawValue();
         const step3Data = this.horizontalStepperStep3.getRawValue();
         const data = { ...step1Data, ...step2Data, ...step3Data };
-
+        
+        // for 1st release we are giving Admin roles to all the employees
+        data.roleId = 1;
         this.employeeAddEditService.addEmployee(data)
             .then(() => {
                 // Trigger the subscription with new data
                 this.employeeAddEditService.onEmployeeChanged.next(data);
                 this.router.navigate(['/apps/employee/list']);
                 // Show the success message
-                let msg = 'Employee ' + data.firstName + ' ' + data.lastName + ' added successfully';
+                const msg = 'Employee ' + data.firstName + ' ' + data.lastName + ' added successfully';
                 this.snackBar.open(msg, 'OK', {
                     verticalPosition: 'top',
                     duration: 3000

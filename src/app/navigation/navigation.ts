@@ -51,12 +51,12 @@ export const navigation = [
                     //         }
                     //     ]
                     // },
-                    {
-                        'id': 'role',
-                        'title': 'Roles',
-                        'type': 'item',
-                        'url': '/apps/setup/roles/list'
-                    }
+                    // {
+                    //     'id': 'role',
+                    //     'title': 'Roles',
+                    //     'type': 'item',
+                    //     'url': '/apps/setup/roles/list'
+                    // }
                 ]
             },
             {
