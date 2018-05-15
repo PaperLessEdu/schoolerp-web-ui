@@ -265,8 +265,8 @@
                                     </mat-error>
                                 </mat-form-field>
                             </div>
-                            <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
-                                <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                            <div class="pt-24 pb-24" fxLayout="row" fxLayoutAlign="center center">
+                                <button class="mr-8" mat-raised-button matStepperPrevious type="button">
                                     Previous
                                 </button>
                                 <button mat-raised-button matStepperNext type="button" color="accent">
@@ -339,8 +339,8 @@
                                     </mat-error>
                                 </mat-form-field>
                             </div>
-                            <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
-                                <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                            <div class="pt-24 pb-24" fxLayout="row" fxLayoutAlign="center center">
+                                <button class="mr-8" mat-raised-button matStepperPrevious type="button">
                                     Previous
                                 </button>
                                 <button mat-raised-button matStepperNext type="button" color="accent">
@@ -354,14 +354,14 @@
                     <mat-step>
                         <ng-template matStepLabel>Done</ng-template>
                         <div class="h2 m-16" fxLayout="row" fxLayoutAlign="center center">
-                            Click on the save button to submit this form.
+                            {{pageType ==='new' ? 'Click on the Submit button to register new employee' : 'Click on the Save button to update employee details'}}
                         </div>
-                        <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
-                            <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                        <div class="pt-24 pb-24" fxLayout="row" fxLayoutAlign="center center">
+                            <button class="mr-8" mat-raised-button matStepperPrevious type="button">
                                 Previous
                             </button>
                             <button mat-raised-button type="button" color="accent" (click)="addEmployee()" *ngIf="pageType ==='new'">
-                                Add
+                                Submit
                             </button>
                             <button mat-raised-button type="button" color="accent" (click)="saveEmployee()" *ngIf="pageType ==='edit'">
                                 Save
