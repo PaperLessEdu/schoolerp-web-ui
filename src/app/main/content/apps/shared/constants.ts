@@ -1,5 +1,5 @@
 export class ApiConst {
-    public static readonly BASE_URL = 'http://dev.cloudscripts.co.in:8081/';
+    public static readonly BASE_URL = 'http://dev.cloudscripts.co.in:8081/schoolManagement/';
 }
 
 export class Constants {
