@@ -19,7 +19,7 @@ import { ChangeStandardSubjectComponent } from '../change-standard-subject/chang
 export class EmployeeListComponent implements OnInit {
     rows: any[];
     temp: any[];
-    loadingIndicator = true;
+    loadingIndicator = false;
     reorderable = true;
     selectedEmpl: any[] = [];
 
@@ -34,6 +34,7 @@ export class EmployeeListComponent implements OnInit {
     }
 
     doRefresh(): void {
+        this.loadingIndicator = true;
         this.emplService.getEmployees().subscribe((empls: any) => {
             this.temp = [...empls];
             this.rows = empls;
@@ -68,7 +69,7 @@ export class EmployeeListComponent implements OnInit {
     }
 
     changeRole(): void {
-        let dialogRef = this.dialog.open(ChangeRoleComponent, {
+        const dialogRef = this.dialog.open(ChangeRoleComponent, {
             width: '350px',
             data: {
                 selectedEmpl: this.selectedEmpl[0]
@@ -92,7 +93,7 @@ export class EmployeeListComponent implements OnInit {
     }
 
     changeStdSub(): void {
-        let dialogRef = this.dialog.open(ChangeStandardSubjectComponent, {
+        const dialogRef = this.dialog.open(ChangeStandardSubjectComponent, {
             width: '550px',
             data: {
                 selectedEmpl: this.selectedEmpl[0]

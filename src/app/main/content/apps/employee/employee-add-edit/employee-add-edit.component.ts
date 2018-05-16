@@ -235,7 +235,9 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
         const step2Data = this.horizontalStepperStep2.getRawValue();
         const step3Data = this.horizontalStepperStep3.getRawValue();
         const data = { ...step1Data, ...step2Data, ...step3Data };
-
+        // for 1st release we are giving Admin roles to all the employees
+        data.roleId = 1;
+        
         this.employeeAddEditService.updateEmployee(data)
             .then(() => {
                 // Trigger the subscription with new data
