@@ -43,12 +43,13 @@
           </mat-error>
         </mat-form-field>
 
-        <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+        <!-- We will target for 2nd release
+          <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
 
           <a class="forgot-password" [routerLink]="'/auth/forgot'">
             Forgot Password?
           </a>
-        </div>
+        </div>-->
 
         <button mat-raised-button color="accent" class="submit-button" aria-label="LOGIN" [disabled]="loginForm.invalid" (click)="doLogin()">
           LOGIN
