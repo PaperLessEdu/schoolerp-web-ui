@@ -244,7 +244,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
                 this.employeeAddEditService.onEmployeeChanged.next(data);
                 this.router.navigate(['/apps/employee/list']);
                 // Show the success message
-                let msg = 'Employee ' + data.firstName + ' ' + data.lastName + ' updated successfully';
+                const msg = 'Employee ' + data.firstName + ' ' + data.lastName + ' updated successfully';
                 this.snackBar.open(msg, 'OK', {
                     verticalPosition: 'top',
                     duration: 3000

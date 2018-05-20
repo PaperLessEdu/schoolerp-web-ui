@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { MatSnackBar } from '@angular/material';
 
 import { CommunicationHomeService } from './communication-home.service';
 
@@ -22,18 +23,23 @@ export class CommunicationHomeComponent implements OnInit {
 
   standards: any[] = [];
   divisions: any[] = [];
-  selectedRecipient: string = '';
-  selectedStd: string = '0';
-  selectedDiv: string = '0';
-  selectedType: string = 'byEmail';
+  selectedRecipient = '';
+  selectedStd = '0';
+  selectedDiv = '0';
+  selectedType = 'byEmail';
   selectedStdRecipient: any[] = [];
 
-  composeForm: FormGroup;
+  composeEmailForm: FormGroup;
+  composeTextMsgForm: FormGroup;
   selected = [];
+
+  mailSubject = '';
+  mailBody = '';
   
   constructor(private communicationHomeService: CommunicationHomeService,
+              public snackBar: MatSnackBar,
               private formBuilder: FormBuilder) { 
-    this.composeForm = this.createComposeForm();
+    this.composeEmailForm = this.createComposeEmailForm();
   }
 
   ngOnInit() {
@@ -84,24 +90,68 @@ export class CommunicationHomeComponent implements OnInit {
     if (event.checked) {
       this.selectedStdRecipient.push(event.source.value);
     } else {
-      let index = this.selectedStdRecipient.indexOf(event.source.value);
+      const index = this.selectedStdRecipient.indexOf(event.source.value);
       this.selectedStdRecipient.splice(index, 1);
     }
   }
 
-  createComposeForm() {
+  createComposeEmailForm() {
       return this.formBuilder.group({
           from   : {
               value   : ['team@cloudscripts.com'],
               disabled: [true]
           },
-          subject: [''],
-          message: ['']
+          subject: ['', Validators.required],
+          message: ['', Validators.required]
       });
   }
 
   onSelect({ selected }) {
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
+  }
+
+  sendEmail() {
+    if (this.selectedRecipient === 'employees') {
+      const toEmailIds = this.getEmployeeEmailIds();
+      const emailObj = {
+        toEmailId: 'ygawade.edu@gmail.com',
+        subject: this.mailSubject,
+        body: this.mailBody
+      };
+      this.communicationHomeService.sendEmail(emailObj)
+        .then((res) => {
+          // reset subject and body
+          this.mailSubject = '';
+          this.mailBody = '';
+
+          const msg = 'Your message has been sent.';
+          this.snackBar.open(msg, 'OK', {
+            verticalPosition: 'top',
+            duration: 3000
+          });
+        });
+    } else {
+
+    }
+  }
+
+  /**
+   * This method will return employee email Ids csv of selected employees
+   */
+  getEmployeeEmailIds() {
+    const emailIds = this.selected.map((obj) => obj.emailId);
+    return emailIds.join(',');
+  }
+
+  /**
+   * This method will return student's father, mother, guardian email Ids csv of selected students
+   */
+  getStudentEmailIds() {
+
+  }
+
+  sendMessage() {
+
   }
 }

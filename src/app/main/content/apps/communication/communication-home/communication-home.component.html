@@ -23,11 +23,11 @@
       <div class="top-bar">
             <mat-form-field class="form-field">
               <mat-select placeholder="Recipients" [(ngModel)]="selectedRecipient" (change)="onChangeRecipients($event)">
-                  <mat-option value="students"> Students </mat-option>
+                  <!-- <mat-option value="students"> Students </mat-option> -->
                   <mat-option value="employees"> Employees </mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field class="form-field">    
+            <mat-form-field class="form-field" *ngIf="selectedRecipient === 'students'">    
               <mat-select placeholder="Standard" [(ngModel)]="selectedStd" [disabled]="selectedRecipient===''">
                   <mat-option value="0"> All </mat-option>
                   <mat-option *ngFor="let std of standards" [value]="std.id">
@@ -35,7 +35,7 @@
                   </mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field class="form-field"> 
+            <mat-form-field class="form-field" *ngIf="selectedRecipient === 'students'"> 
               <mat-select placeholder="Division" [(ngModel)]="selectedDiv" [disabled]="selectedRecipient===''">
                   <mat-option value="0"> All </mat-option>
                   <mat-option *ngFor="let div of divisions" [value]="div.id">
@@ -98,29 +98,40 @@
         </div>
         <div *ngIf="selectedRecipient!==''" class="msg-mail-box">
           <div>
-            <form *ngIf="selectedType=='byEmail'" name="composeForm" [formGroup]="composeForm" class="compose-form" fxLayout="column" fxFlex>
+            <form *ngIf="selectedType=='byEmail'" name="composeEmailForm" [formGroup]="composeEmailForm" class="compose-form" fxLayout="column" fxFlex>
               <mat-form-field>
-                  <input matInput name="from"
-                          placeholder="From"
-                          formControlName="from"
-                          type="email">
+                <input matInput name="from"
+                        placeholder="From"
+                        formControlName="from"
+                        type="email">
               </mat-form-field>
 
               <mat-form-field>
-                  <input matInput name="subject"
-                          placeholder="Subject"
-                          formControlName="subject">
+                <input matInput name="subject"
+                        placeholder="Subject"
+                        formControlName="subject"
+                        [(ngModel)]="mailSubject">
               </mat-form-field>
 
               <mat-form-field>
                 <textarea matInput name="message"
                           placeholder="Message"
                           formControlName="message"
-                          rows="6">
+                          rows="6"
+                          [(ngModel)]="mailBody">
                 </textarea>
               </mat-form-field>
+              <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
+                <button mat-raised-button matStepperNext 
+                        type="submit" 
+                        [disabled]="!composeEmailForm.valid" 
+                        color="accent" 
+                        (click)="sendEmail();">
+                    Send
+                </button>
+              </div>
             </form>
-            <form *ngIf="selectedType=='byTextMessage'" name="composeForm" [formGroup]="composeForm" class="compose-form" fxLayout="column" fxFlex>
+            <form *ngIf="selectedType=='byTextMessage'" name="composeTextMsgForm" [formGroup]="composeTextMsgForm" class="compose-form" fxLayout="column" fxFlex>
                 <mat-form-field>
                   <textarea matInput name="message"
                             placeholder="Message"
