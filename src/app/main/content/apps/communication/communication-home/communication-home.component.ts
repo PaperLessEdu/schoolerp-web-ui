@@ -112,6 +112,10 @@ export class CommunicationHomeComponent implements OnInit {
   }
 
   sendEmail() {
+    if (this.selected.length === 0) {
+      this.displayToastMsg('Please select at least one recipient.');
+      return;
+    }
     if (this.selectedRecipient === 'employees') {
       const toEmailIds = this.getEmployeeEmailIds();
       const emailObj = {
@@ -125,11 +129,7 @@ export class CommunicationHomeComponent implements OnInit {
           this.mailSubject = '';
           this.mailBody = '';
 
-          const msg = 'Your message has been sent.';
-          this.snackBar.open(msg, 'OK', {
-            verticalPosition: 'top',
-            duration: 3000
-          });
+          this.displayToastMsg('Your message has been sent.');
         });
     } else {
 
@@ -153,5 +153,12 @@ export class CommunicationHomeComponent implements OnInit {
 
   sendMessage() {
 
+  }
+
+  displayToastMsg(msg) {
+    this.snackBar.open(msg, 'OK', {
+      verticalPosition: 'top',
+      duration: 3000
+    });
   }
 }
