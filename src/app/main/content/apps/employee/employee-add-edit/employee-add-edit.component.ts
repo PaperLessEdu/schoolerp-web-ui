@@ -121,7 +121,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        // Subscribe to update product on changes
+        // Subscribe to update employee on changes
         this.onEmployeeChanged =
             this.employeeAddEditService.onEmployeeChanged
                 .subscribe(employee => {
@@ -131,11 +131,21 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
                     } else {
                         this.pageType = 'new';
                         this.employee = new Employee();
+                        // this.setDefaultValue();
                     }
                     this.horizontalStepperStep1 = this.horizontalStepperStep1Form();
                     this.horizontalStepperStep2 = this.horizontalStepperStep2Form();
                     this.horizontalStepperStep3 = this.horizontalStepperStep3Form();
-                    this.setDefaultValue();
+
+                    if (this.pageType === 'new') {
+                        this.setDefaultValue();
+                    }
+                    
+                    // Country is not coming from backend, Added UI Fix.
+                    // Need to fix this in backend. Once country added in backend we will delete this code.
+                    this.horizontalStepperStep2.patchValue({
+                        country: Constants.DEFAULT_COUNTRY
+                    });
                 });
     }
 
@@ -150,7 +160,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
             gender: [this.employee.gender || '', Validators.required],
             dob: [this.employee.dob || '', Validators.required],
             bloodGroup: [this.employee.bloodGroup || ''],
-            maritalStatus: [this.employee.maritalStatus || '', Validators.required],
+            maritalStatus: new FormControl(this.employee.maritalStatus), // [this.employee.maritalStatus || '', Validators.required],
             // roleId: [this.employee.roleId || '', Validators.required],
             aadharCardNumber: new FormControl(this.employee.aadharCardNumber || '', [
                 Validators.required
