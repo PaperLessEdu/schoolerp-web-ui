@@ -119,7 +119,7 @@ export class CommunicationHomeComponent implements OnInit {
     if (this.selectedRecipient === 'employees') {
       const toEmailIds = this.getEmployeeEmailIds();
       const emailObj = {
-        toEmailId: 'ygawade.edu@gmail.com',
+        toEmailId: toEmailIds,
         subject: this.mailSubject,
         body: this.mailBody
       };
