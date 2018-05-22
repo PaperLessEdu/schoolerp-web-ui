@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { ApiConst } from '../../shared/constants';
 @Injectable()
 export class StandardAddEditService {
 
@@ -8,7 +8,7 @@ export class StandardAddEditService {
 
     addStandard(standard) {
         return new Promise((resolve, reject) => {
-            this.http.post('api/standards', standard)
+            this.http.post(ApiConst.BASE_URL + 'standards', standard)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);
@@ -17,7 +17,7 @@ export class StandardAddEditService {
 
     updateStandard(standard) {
         return new Promise((resolve, reject) => {
-            this.http.put('api/standards/'+standard.id, standard)
+            this.http.put(ApiConst.BASE_URL + 'standards/' + standard.standard_id, standard)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);

@@ -32,23 +32,23 @@ export class StandardAddEditComponent implements OnInit {
   }
 
   addStandard(): void {
-    let data = this.standardForm.getRawValue();
+    const data = this.standardForm.getRawValue();
     this.standardAddEditService.addStandard(data)
       .then(() => {
-        this.dialogRef.close(['save',this.standardForm]); 
+        this.dialogRef.close(['save', this.standardForm]); 
           
-          //Show the success message
+          // Show the success message
           this.displayNotification('Standard added successfully');
       });
   }
 
-  updateDivision(): void {
-    let data = this.data.selectedDivision;
+  updateStandard(): void {
+    const data = this.data.selectedStd;
     this.standardAddEditService.updateStandard(data)
       .then(() => {
         this.dialogRef.close(['save', this.standardForm]);  
           
-        //Show the success message
+        // Show the success message
         this.displayNotification('Standard updated successfully');
       });
   }

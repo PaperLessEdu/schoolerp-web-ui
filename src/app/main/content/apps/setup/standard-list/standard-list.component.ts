@@ -20,7 +20,7 @@ export class StandardListComponent implements OnInit {
   loadingIndicator = true;
   reorderable = true;
   selectedStds: any[] = [];
-  pageType: string = 'add';
+  pageType = 'add';
   
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
@@ -33,8 +33,8 @@ export class StandardListComponent implements OnInit {
   }
 
   openDialog(): void {
-    let stdObj = this.pageType == 'add' ? { name: '' } : this.selectedStds[0];
-    let dialogRef = this.dialog.open(StandardAddEditComponent, {
+    const stdObj = this.pageType === 'add' ? { name: '' } : this.selectedStds[0];
+    const dialogRef = this.dialog.open(StandardAddEditComponent, {
       width: '350px',
       data: {
         pageType: this.pageType,
@@ -92,7 +92,7 @@ export class StandardListComponent implements OnInit {
   }
 
   onDeleteAction(): void {
-    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
       data: { 
         title: 'Confirmation',
@@ -115,9 +115,9 @@ export class StandardListComponent implements OnInit {
   }
 
   deleteDivision(): void {
-    let me = this;
+    const me = this;
     me.standardsService.deleteStandard(this.selectedStds[0]).subscribe((res: any) => {
-     me.displayNotification("Standard deleted successfully");
+     me.displayNotification('Standard deleted successfully');
      me.doRefresh();
     });  
   }
