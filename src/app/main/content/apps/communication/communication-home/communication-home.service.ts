@@ -30,4 +30,13 @@ export class CommunicationHomeService {
                 }, reject);
         });
     }
+
+    sendSms(smsObj) {
+        return new Promise((resolve, reject) => {
+            this.http.post(ApiConst.BASE_URL + 'notification/sendSms', smsObj)
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+    }
 }

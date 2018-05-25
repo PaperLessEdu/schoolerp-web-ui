@@ -136,9 +136,19 @@
                   <textarea matInput name="message"
                             placeholder="Message"
                             formControlName="message"
-                            rows="6">
+                            rows="6"
+                            [(ngModel)]="msgBody">
                   </textarea>
                 </mat-form-field>
+                <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
+                    <button mat-raised-button matStepperNext 
+                            type="submit" 
+                            [disabled]="!composeTextMsgForm.valid" 
+                            color="accent" 
+                            (click)="sendMessage();">
+                        Send
+                    </button>
+                </div>
               </form>
           </div>
         </div>

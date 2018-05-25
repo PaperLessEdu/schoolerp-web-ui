@@ -35,11 +35,13 @@ export class CommunicationHomeComponent implements OnInit {
 
   mailSubject = '';
   mailBody = '';
+  msgBody = '';
   
   constructor(private communicationHomeService: CommunicationHomeService,
               public snackBar: MatSnackBar,
               private formBuilder: FormBuilder) { 
     this.composeEmailForm = this.createComposeEmailForm();
+    this.composeTextMsgForm = this.createComposeMessageForm();
   }
 
   ngOnInit() {
@@ -106,6 +108,12 @@ export class CommunicationHomeComponent implements OnInit {
       });
   }
 
+  createComposeMessageForm() {
+    return this.formBuilder.group({
+        message: ['', Validators.required]
+    });
+  }
+
   onSelect({ selected }) {
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
@@ -143,7 +151,7 @@ export class CommunicationHomeComponent implements OnInit {
     const emailIds = this.selected.map((obj) => obj.emailId);
     return emailIds.join(',');
   }
-
+  
   /**
    * This method will return student's father, mother, guardian email Ids csv of selected students
    */
@@ -152,7 +160,33 @@ export class CommunicationHomeComponent implements OnInit {
   }
 
   sendMessage() {
+    if (this.selected.length === 0) {
+      this.displayToastMsg('Please select at least one recipient.');
+      return;
+    }
+    let mobileNos = null;
+    const msgObj = { };
+    if (this.selectedRecipient === 'employees') { 
+      mobileNos = this.getEmployeeMobileNumbers();
+      // obj['phonenumber'] = this.getEmployeeMobileNumbers();
+      msgObj['phonenumber'] = '7620676545';
+    } else {
+      // for stundent's parents 
+    }
+    msgObj['body'] = this.msgBody;
+    this.communicationHomeService.sendEmail(msgObj)
+      .then((res) => {
+        this.msgBody = '';
+        this.displayToastMsg('Your message has been sent.');
+      });
+  }
 
+  /**
+   * This method will return employee email Ids csv of selected employees
+   */
+  getEmployeeMobileNumbers() {
+    const mobileNos = this.selected.map((obj) => obj.phoneNumber);
+    return mobileNos.join(',');
   }
 
   displayToastMsg(msg) {
