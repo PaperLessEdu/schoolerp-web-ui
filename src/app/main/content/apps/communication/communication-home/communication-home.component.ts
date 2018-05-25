@@ -174,7 +174,7 @@ export class CommunicationHomeComponent implements OnInit {
       // for stundent's parents 
     }
     msgObj['body'] = this.msgBody;
-    this.communicationHomeService.sendEmail(msgObj)
+    this.communicationHomeService.sendSms(msgObj)
       .then((res) => {
         this.msgBody = '';
         this.displayToastMsg('Your message has been sent.');
