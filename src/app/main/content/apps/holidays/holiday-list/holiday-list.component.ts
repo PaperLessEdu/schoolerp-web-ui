@@ -19,7 +19,7 @@ export class HolidayListComponent implements OnInit {
   loadingIndicator = true;
   reorderable = true;
   selectedholidays: any[] = [];
-  pageType: string = 'add';
+  pageType = 'add';
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
@@ -31,7 +31,7 @@ export class HolidayListComponent implements OnInit {
     this.doRefresh();
   }
 
-  doRefresh() : void {
+  doRefresh(): void {
     this.selectedholidays = [];
     this.holidayListService.getHolidays().subscribe((holidays: any) => {
       this.temp = [...holidays];
@@ -41,8 +41,8 @@ export class HolidayListComponent implements OnInit {
   }
 
   openDialog(): void {
-    let holidayObj = this.pageType == 'add' ? { date: '', name: '' } : this.selectedholidays[0];
-    let dialogRef = this.dialog.open(HolidayAddEditComponent, {
+    const holidayObj = this.pageType === 'add' ? { date: '', name: '' } : this.selectedholidays[0];
+    const dialogRef = this.dialog.open(HolidayAddEditComponent, {
       width: '350px',
       data: {
         pageType: this.pageType,
@@ -93,7 +93,7 @@ export class HolidayListComponent implements OnInit {
   }
 
   onDeleteAction(): void {
-    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
       data: { 
         title: 'Confirmation',
@@ -116,9 +116,9 @@ export class HolidayListComponent implements OnInit {
   }
 
   deleteHoliday(): void {
-    let me = this;
+    const me = this;
     me.holidayListService.deleteHolidays(this.selectedholidays[0]).subscribe((res: any) => {
-      me.displayNotification("Holiday deleted successfully");
+      me.displayNotification('Holiday deleted successfully');
       me.doRefresh();
     });
   }

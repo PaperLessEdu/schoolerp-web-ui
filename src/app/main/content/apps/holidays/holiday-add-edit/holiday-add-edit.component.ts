@@ -35,13 +35,13 @@ export class HolidayAddEditComponent implements OnInit {
   }
 
   addHoliday(): void {
-    let data = this.holidayForm.getRawValue();
+    const data = this.holidayForm.getRawValue();
     this.holidayAddEditService.addHoliday(data)
       .then(() => {
-        this.dialogRef.close(['save',this.holidayForm]);  
+        this.dialogRef.close(['save', this.holidayForm]);  
           
-        //Show the success message
-        let msg = 'Holiday added successfully';
+        // Show the success message
+        const msg = 'Holiday added successfully';
         this.snackBar.open(msg, 'OK', {
             verticalPosition: 'top',
             duration        : 3000
@@ -50,13 +50,13 @@ export class HolidayAddEditComponent implements OnInit {
   }
 
   updateHoliday(): void {
-    let data = this.data.selectedHoliday;
+    const data = this.data.selectedHoliday;
     this.holidayAddEditService.updateHoliday(data)
       .then(() => {
-        this.dialogRef.close(['save',this.holidayForm]);  
+        this.dialogRef.close(['save', this.holidayForm]);  
           
-        //Show the success message
-        let msg = 'Holiday updated successfully';
+        // Show the success message
+        const msg = 'Holiday updated successfully';
         this.snackBar.open(msg, 'OK', {
             verticalPosition: 'top',
             duration        : 3000
