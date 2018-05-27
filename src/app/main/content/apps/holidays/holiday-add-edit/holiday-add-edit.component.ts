@@ -2,35 +2,48 @@ import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatSnackBar } from '@angular/material';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
 import { HolidayAddEditService } from './holiday-add-edit.service';
+import { MY_FORMATS } from '../../shared/constants';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-holiday-add-edit',
   templateUrl: './holiday-add-edit.component.html',
   styleUrls: ['./holiday-add-edit.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE]
+    },
+    {
+      provide: MAT_DATE_FORMATS,
+      useValue: MY_FORMATS
+    }
+  ]
 })
 export class HolidayAddEditComponent implements OnInit {
 
   holidayForm: FormGroup;
-  holidayFormErrors: any;
+
+  get date() { return this.holidayForm.get('date'); }
+
+  get name() { return this.holidayForm.get('name'); }
 
   constructor(private formBuilder: FormBuilder,
-              private snackBar: MatSnackBar,
-              private holidayAddEditService: HolidayAddEditService,
-              public dialogRef: MatDialogRef<HolidayAddEditComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { 
-      this.holidayFormErrors = {
-        date: {},
-        name: {}
-      };  
-    }
+    private snackBar: MatSnackBar,
+    private holidayAddEditService: HolidayAddEditService,
+    public dialogRef: MatDialogRef<HolidayAddEditComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
 
   ngOnInit() {
     this.holidayForm = this.formBuilder.group({
-      date: ['', Validators.required],
-      name: ['', Validators.required]
+      date: new FormControl(moment(), Validators.required),
+      name: new FormControl('', Validators.required)
     });
   }
 
@@ -38,13 +51,13 @@ export class HolidayAddEditComponent implements OnInit {
     const data = this.holidayForm.getRawValue();
     this.holidayAddEditService.addHoliday(data)
       .then(() => {
-        this.dialogRef.close(['save', this.holidayForm]);  
-          
+        this.dialogRef.close(['save', this.holidayForm]);
+
         // Show the success message
         const msg = 'Holiday added successfully';
         this.snackBar.open(msg, 'OK', {
-            verticalPosition: 'top',
-            duration        : 3000
+          verticalPosition: 'top',
+          duration: 3000
         });
       });
   }
@@ -53,13 +66,13 @@ export class HolidayAddEditComponent implements OnInit {
     const data = this.data.selectedHoliday;
     this.holidayAddEditService.updateHoliday(data)
       .then(() => {
-        this.dialogRef.close(['save', this.holidayForm]);  
-          
+        this.dialogRef.close(['save', this.holidayForm]);
+
         // Show the success message
         const msg = 'Holiday updated successfully';
         this.snackBar.open(msg, 'OK', {
-            verticalPosition: 'top',
-            duration        : 3000
+          verticalPosition: 'top',
+          duration: 3000
         });
       });
   }

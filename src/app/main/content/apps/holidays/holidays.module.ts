@@ -10,7 +10,8 @@ import {
   MatInputModule,
   MatToolbarModule,
   MatDialogModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatDatepickerModule
   } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
@@ -43,7 +44,8 @@ const routes = [
     MatSnackBarModule,
     FuseSharedModule,
     FuseWidgetModule,
-    SharedModule
+    SharedModule,
+    MatDatepickerModule
   ],
   declarations: [
     HolidayListComponent,

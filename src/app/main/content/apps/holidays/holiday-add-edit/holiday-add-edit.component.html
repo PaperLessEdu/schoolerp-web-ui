@@ -1,53 +1,42 @@
 <div class="dialog-content-wrapper">
-  <mat-toolbar matDialogTitle class="mat-accent m-0">
-      <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
-          <span *ngIf="data.pageType=='add'" class="title dialog-title">Add Holiday</span>
-          <span *ngIf="data.pageType=='edit'" class="title dialog-title">Update Holiday</span>
-          <button mat-button class="mat-icon-button"
-                  (click)="dialogRef.close()"
-                  aria-label="Close dialog">
-              <mat-icon>close</mat-icon>
-          </button>
-      </div>
-  </mat-toolbar>
-  <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
-      <form [formGroup]="holidayForm" class="event-form w-100-p" fxLayout="column" fxFlex>
-          <mat-form-field>
-              <input matInput [(ngModel)]="data.selectedHoliday.date" formControlName="date" placeholder="Holiday Date" required>
-              <mat-error *ngIf="holidayFormErrors.date.required">
-                  Holiday date is required!
-              </mat-error>
-          </mat-form-field>
-          <mat-form-field>
-              <input matInput [(ngModel)]="data.selectedHoliday.name" formControlName="name" placeholder="Holiday Name" required>
-              <mat-error *ngIf="holidayFormErrors.name.required">
-                  Holiday name is required!
-              </mat-error>
-          </mat-form-field>
-      </form>
-  </div>
-  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
-      <button mat-button 
-            *ngIf="data.pageType=='add'"
-            mat-raised-button
-            [disabled]="holidayForm.invalid"
-            (click)="addHoliday()"
-            class="save-button mat-accent"
-            aria-label="SAVE">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span *ngIf="data.pageType=='add'" class="title dialog-title">Add Holiday</span>
+            <span *ngIf="data.pageType=='edit'" class="title dialog-title">Update Holiday</span>
+            <button mat-button class="mat-icon-button" (click)="dialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+    <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+        <form [formGroup]="holidayForm" class="event-form w-100-p" fxLayout="column" fxFlex>
+            <mat-form-field>
+                <input matInput [matDatepicker]="holidayDate" placeholder="Holiday Date" formControlName="date" required>
+                <mat-datepicker-toggle matSuffix [for]="holidayDate"></mat-datepicker-toggle>
+                <mat-datepicker #holidayDate></mat-datepicker>
+                <mat-error *ngIf="date.errors?.required">
+                    Holiday date is required!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput [(ngModel)]="data.selectedHoliday.name" formControlName="name" placeholder="Holiday Name" required>
+                <mat-error *ngIf="name.errors?.required">
+                    Holiday name is required!
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-button *ngIf="data.pageType=='add'" mat-raised-button [disabled]="holidayForm.invalid" (click)="addHoliday()"
+            class="save-button mat-accent" aria-label="SAVE">
             Add
-      </button>
-      <button mat-button 
-            *ngIf="data.pageType=='edit'"
-            mat-raised-button
-            [disabled]="holidayForm.invalid"
-            (click)="updateHoliday()"
-            class="save-button mat-accent"
-            aria-label="SAVE">
+        </button>
+        <button mat-button *ngIf="data.pageType=='edit'" mat-raised-button [disabled]="holidayForm.invalid" (click)="updateHoliday()"
+            class="save-button mat-accent" aria-label="SAVE">
             Update
-      </button>
-      <button mat-button 
-      (click)="dialogRef.close(['close',holidayFormErrors])">
-              Close
-      </button>
-  </div>
+        </button>
+        <button mat-button (click)="dialogRef.close(['close',holidayFormErrors])">
+            Close
+        </button>
+    </div>
 </div>
