@@ -14,30 +14,28 @@ import { DivisionAddEditService } from './division-add-edit.service';
 export class DivisionAddEditComponent implements OnInit {
 
   divisionForm: FormGroup;
-  divisionFormErrors: any;
+
+  get name() { return this.divisionForm.get('name'); }
 
   constructor(private formBuilder: FormBuilder,
-              private snackBar: MatSnackBar,
-              private divisionAddEditService: DivisionAddEditService,
-              public dialogRef: MatDialogRef<DivisionAddEditComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.divisionFormErrors = {
-      name: {}
-    };
+    private snackBar: MatSnackBar,
+    private divisionAddEditService: DivisionAddEditService,
+    public dialogRef: MatDialogRef<DivisionAddEditComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {
     this.divisionForm = this.formBuilder.group({
-      name: ['', Validators.required]
-    });  
+      name: new FormControl('', Validators.required)
+    });
   }
 
   addDivision(): void {
     const data = this.divisionForm.getRawValue();
     this.divisionAddEditService.addDivision(data)
       .then(() => {
-        this.dialogRef.close(['save', this.divisionForm]);  
-          
+        this.dialogRef.close(['save', this.divisionForm]);
+
         // Show the success message
         this.displayNotification('Division added successfully');
       });
@@ -47,8 +45,8 @@ export class DivisionAddEditComponent implements OnInit {
     const data = this.data.selectedDivision;
     this.divisionAddEditService.updateDivision(data)
       .then(() => {
-        this.dialogRef.close(['save', this.divisionForm]);  
-          
+        this.dialogRef.close(['save', this.divisionForm]);
+
         // Show the success message
         this.displayNotification('Division updated successfully');
       });
@@ -60,8 +58,8 @@ export class DivisionAddEditComponent implements OnInit {
 
   displayNotification(msg): void {
     this.snackBar.open(msg, 'OK', {
-        verticalPosition: 'top',
-        duration        : 3000
+      verticalPosition: 'top',
+      duration: 3000
     });
   }
 }

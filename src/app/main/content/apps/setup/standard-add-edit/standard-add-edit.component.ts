@@ -13,32 +13,30 @@ import { StandardAddEditService } from './standard-add-edit.service';
 export class StandardAddEditComponent implements OnInit {
 
   standardForm: FormGroup;
-  standardFormErrors: any;
+
+  get name(){ return this.standardForm.get('name'); }
 
   constructor(private formBuilder: FormBuilder,
-              private snackBar: MatSnackBar,
-              private standardAddEditService: StandardAddEditService,
-              public dialogRef: MatDialogRef<StandardAddEditComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.standardFormErrors = {
-      name: {}
-    };
+    private snackBar: MatSnackBar,
+    private standardAddEditService: StandardAddEditService,
+    public dialogRef: MatDialogRef<StandardAddEditComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {
     this.standardForm = this.formBuilder.group({
-      name: ['', Validators.required]
-    });  
+      name: new FormControl('', Validators.required)
+    });
   }
 
   addStandard(): void {
     const data = this.standardForm.getRawValue();
     this.standardAddEditService.addStandard(data)
       .then(() => {
-        this.dialogRef.close(['save', this.standardForm]); 
-          
-          // Show the success message
-          this.displayNotification('Standard added successfully');
+        this.dialogRef.close(['save', this.standardForm]);
+
+        // Show the success message
+        this.displayNotification('Standard added successfully');
       });
   }
 
@@ -46,8 +44,8 @@ export class StandardAddEditComponent implements OnInit {
     const data = this.data.selectedStd;
     this.standardAddEditService.updateStandard(data)
       .then(() => {
-        this.dialogRef.close(['save', this.standardForm]);  
-          
+        this.dialogRef.close(['save', this.standardForm]);
+
         // Show the success message
         this.displayNotification('Standard updated successfully');
       });
@@ -59,8 +57,8 @@ export class StandardAddEditComponent implements OnInit {
 
   displayNotification(msg): void {
     this.snackBar.open(msg, 'OK', {
-        verticalPosition: 'top',
-        duration        : 3000
+      verticalPosition: 'top',
+      duration: 3000
     });
   }
 }
