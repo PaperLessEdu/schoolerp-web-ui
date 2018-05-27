@@ -15,6 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http/src/response';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isLoginError = false;
+  isValidUser = true;
 
   // getters for form control
   get username(): FormControl {
@@ -55,6 +56,8 @@ export class LoginComponent implements OnInit {
     if (this.username.value === 'admin' && this.password.value === 'admin') {
       localStorage.setItem('userToken', 'sfsf-sdfsd-fsdfds-fsdf-dsf-dsf-sdf');
       this.router.navigate(['/apps/dashboard/home']);
+    } else {
+      this.isValidUser = false;
     }
 
     // @TODO: Integrate with actual API

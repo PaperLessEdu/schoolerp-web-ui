@@ -42,6 +42,10 @@
           </mat-error>
         </mat-form-field>
 
+        <div class="alert alert-danger" *ngIf="!isValidUser">
+          <strong>Oops!</strong> Invalid Username or Password.
+        </div>
+
         <!-- We will target for 2nd release
           <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
 

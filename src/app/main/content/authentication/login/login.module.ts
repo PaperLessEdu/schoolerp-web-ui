@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatIconModule } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { LoginComponent } from './login.component';
 import { LoginService } from './login.service';
@@ -21,7 +21,7 @@ const routes = [
     MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
-
+    MatIconModule,
     FuseSharedModule
   ],
   declarations: [LoginComponent],
