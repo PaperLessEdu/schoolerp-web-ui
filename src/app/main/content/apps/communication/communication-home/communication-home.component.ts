@@ -169,7 +169,7 @@ export class CommunicationHomeComponent implements OnInit {
     if (this.selectedRecipient === 'employees') { 
       mobileNos = this.getEmployeeMobileNumbers();
       // obj['phonenumber'] = this.getEmployeeMobileNumbers();
-      msgObj['phonenumber'] = '917620676545';
+      msgObj['phonenumber'] = '919834778400';
     } else {
       // for stundent's parents 
     }
