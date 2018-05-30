@@ -35,6 +35,8 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
   student = new Student();
   onStudentChanged: Subscription;
   pageType: string;
+  standards;
+  divisions;
 
   form: FormGroup;
 
@@ -146,6 +148,8 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscribeStudentChangeEvent();
+    this.fetchStandardList();
+    this.fetchDivisionList();
   }
 
   ngOnDestroy() {
@@ -233,12 +237,39 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     });
   }
 
-  addStudent() {
-    const step1Data = this.generalInfo.getRawValue();
-    const step2Data = this.contactInfo.getRawValue();
-    const step3Data = this.parentsInfo.getRawValue();
-    const data = { ...step1Data, ...step2Data, ...step3Data };
+  private fetchStandardList(): void {
+    this.studentAddEditService.getStandards().subscribe((standards: any) => {
+      console.log(JSON.stringify(standards));
+      this.standards = standards;
+    });
+  }
 
-    console.log('$$$' + data);
+  private fetchDivisionList(): void {
+    this.studentAddEditService.getDivisions().subscribe((divisions: any) => {
+      console.log(JSON.stringify(divisions));
+      this.divisions = divisions;
+    });
+  }
+
+  addStudent() {
+    const generalInfo = this.generalInfo.getRawValue();
+    const contactInfo = this.contactInfo.getRawValue();
+    const parentsInfo = this.parentsInfo.getRawValue();
+    const data = { ...generalInfo, ...contactInfo, ...parentsInfo };
+
+    console.log('$$$' + JSON.stringify(data));
+
+    this.studentAddEditService.addStudent(data)
+      .then(() => {
+        // Trigger the subscription with new data
+        this.studentAddEditService.onStudentChanged.next(data);
+        this.router.navigate(['/apps/student/list']);
+        // Show the success message
+        const msg = 'Student ' + data.firstName + ' ' + data.lastName + ' added successfully';
+        this.snackBar.open(msg, 'OK', {
+          verticalPosition: 'top',
+          duration: 3000
+        });
+      });
   }
 }

@@ -162,14 +162,8 @@
                 <!-- Standard -->
                 <mat-form-field fxFlex="33">
                   <mat-select placeholder="Standard" formControlName="standard" required>
-                    <mat-option [value]="'1st'">
-                      1st
-                    </mat-option>
-                    <mat-option [value]="'2nd'">
-                      2nd
-                    </mat-option>
-                    <mat-option [value]="'3rd'">
-                      3rd
+                    <mat-option *ngFor="let std of standards" [value]="std.standard_id">
+                      {{std.name}}
                     </mat-option>
                   </mat-select>
                   <mat-error *ngIf="standard.errors?.required">
@@ -180,14 +174,8 @@
                 <!-- Division -->
                 <mat-form-field fxFlex="33">
                   <mat-select placeholder="Division" formControlName="division" required>
-                    <mat-option [value]="'1st'">
-                      1st
-                    </mat-option>
-                    <mat-option [value]="'2nd'">
-                      2nd
-                    </mat-option>
-                    <mat-option [value]="'3rd'">
-                      3rd
+                    <mat-option *ngFor="let divi of divisions" [value]="divi.division_id">
+                      {{divi.name}}
                     </mat-option>
                   </mat-select>
                   <mat-error *ngIf="division.errors?.required">
