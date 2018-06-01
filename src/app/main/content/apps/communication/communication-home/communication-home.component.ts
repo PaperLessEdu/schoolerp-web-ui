@@ -36,10 +36,10 @@ export class CommunicationHomeComponent implements OnInit {
   mailSubject = '';
   mailBody = '';
   msgBody = '';
-  
+
   constructor(private communicationHomeService: CommunicationHomeService,
               public snackBar: MatSnackBar,
-              private formBuilder: FormBuilder) { 
+              private formBuilder: FormBuilder) {
     this.composeEmailForm = this.createComposeEmailForm();
     this.composeTextMsgForm = this.createComposeMessageForm();
   }
@@ -151,7 +151,7 @@ export class CommunicationHomeComponent implements OnInit {
     const emailIds = this.selected.map((obj) => obj.emailId);
     return emailIds.join(',');
   }
-  
+
   /**
    * This method will return student's father, mother, guardian email Ids csv of selected students
    */
@@ -164,14 +164,12 @@ export class CommunicationHomeComponent implements OnInit {
       this.displayToastMsg('Please select at least one recipient.');
       return;
     }
-    let mobileNos = null;
+    // let mobileNos = null;
     const msgObj = { };
-    if (this.selectedRecipient === 'employees') { 
-      mobileNos = this.getEmployeeMobileNumbers();
-      // obj['phonenumber'] = this.getEmployeeMobileNumbers();
-      msgObj['phonenumber'] = '919834778400';
+    if (this.selectedRecipient === 'employees') {
+      msgObj['phonenumber'] = this.getEmployeeMobileNumbers();
     } else {
-      // for stundent's parents 
+      // for stundent's parents
     }
     msgObj['body'] = this.msgBody;
     this.communicationHomeService.sendSms(msgObj)
@@ -185,7 +183,7 @@ export class CommunicationHomeComponent implements OnInit {
    * This method will return employee email Ids csv of selected employees
    */
   getEmployeeMobileNumbers() {
-    const mobileNos = this.selected.map((obj) => obj.phoneNumber);
+    const mobileNos = this.selected.map((obj) => '91' + obj.phoneNumber);
     return mobileNos.join(',');
   }
 
