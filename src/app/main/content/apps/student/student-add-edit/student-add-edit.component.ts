@@ -184,7 +184,7 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
 
   private generalInfoForm(): FormGroup {
     return this.formBuilder.group({
-      academicYear: [this.student.academicYear || '', Validators.required],
+      academicYear: [this.student.academicYear || ''],
       firstName: [this.student.firstName || '', Validators.required],
       middleName: [this.student.middleName || ''],
       lastName: [this.student.lastName || '', Validators.required],
@@ -239,14 +239,12 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
 
   private fetchStandardList(): void {
     this.studentAddEditService.getStandards().subscribe((standards: any) => {
-      console.log(JSON.stringify(standards));
       this.standards = standards;
     });
   }
 
   private fetchDivisionList(): void {
     this.studentAddEditService.getDivisions().subscribe((divisions: any) => {
-      console.log(JSON.stringify(divisions));
       this.divisions = divisions;
     });
   }
@@ -257,8 +255,7 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     const parentsInfo = this.parentsInfo.getRawValue();
     const data = { ...generalInfo, ...contactInfo, ...parentsInfo };
 
-    console.log('$$$' + JSON.stringify(data));
-
+    data.academicYear = 1;
     this.studentAddEditService.addStudent(data)
       .then(() => {
         // Trigger the subscription with new data

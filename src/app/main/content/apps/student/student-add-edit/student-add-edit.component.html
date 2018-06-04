@@ -36,8 +36,8 @@
           <mat-step [stepControl]="generalInfo">
             <form [formGroup]="generalInfo">
               <ng-template matStepLabel>General Information</ng-template>
-              <div>
-                <!-- Academic Year -->
+              <!-- <div>
+                 Academic Year
                 <mat-form-field fxFlex="33">
                   <mat-select placeholder="Academic Year" formControlName="academicYear" required>
                     <mat-option [value]="'1'">
@@ -54,7 +54,7 @@
                     Academic Year is required!
                   </mat-error>
                 </mat-form-field>
-              </div>
+              </div> -->
 
               <div>
                 <!-- First Name -->
@@ -333,9 +333,9 @@
                 <div>
                   <!-- Mothers Name -->
                   <mat-form-field fxFlex="50" formGroupName="mothersDetails">
-                    <input matInput placeholder="Fathers Name" formControlName="name" required>
+                    <input matInput placeholder="Mothers Name" formControlName="name" required>
                     <mat-error *ngIf="parentsInfo['controls'].mothersDetails['controls'].name.errors?.required">
-                      Fathers Name is required!
+                      Mothers Name is required!
                     </mat-error>
                   </mat-form-field>
 
@@ -383,7 +383,7 @@
                 <div>
                   <!-- Guardian Name -->
                   <mat-form-field fxFlex="50" formGroupName="guardianDetails">
-                    <input matInput placeholder="Fathers Name" formControlName="name">
+                    <input matInput placeholder="Guardian Name" formControlName="name">
                   </mat-form-field>
 
                   <!-- Email Id -->
