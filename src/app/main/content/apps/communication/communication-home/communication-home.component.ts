@@ -3,6 +3,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { MatSnackBar } from '@angular/material';
+import { ApiConst } from '../../shared/constants';
 
 import { CommunicationHomeService } from './communication-home.service';
 
@@ -37,6 +38,9 @@ export class CommunicationHomeComponent implements OnInit {
   mailBody = '';
   msgBody = '';
 
+  stundentsAPI = ApiConst.BASE_URL + 'students';
+  showDivs = false;
+
   constructor(private communicationHomeService: CommunicationHomeService,
               public snackBar: MatSnackBar,
               private formBuilder: FormBuilder) {
@@ -58,8 +62,8 @@ export class CommunicationHomeComponent implements OnInit {
     });
   }
 
-  fetchStudentDetails(): void {
-    this.communicationHomeService.getStudents().subscribe((students: any) => {
+  fetchStudentDetails(url): void {
+    this.communicationHomeService.getStudents(url).subscribe((students: any) => {
         this.selected = [...students];
         this.temp = [...students];
         this.rows = students;
@@ -82,7 +86,7 @@ export class CommunicationHomeComponent implements OnInit {
   onChangeRecipients(event): void {
     this.selectedRecipient = event.value;
     if (event.value === 'students') {
-      this.fetchStudentDetails();
+      this.fetchStudentDetails(this.stundentsAPI);
     } else {
       this.fetchEmployeesDetails();
     }
@@ -231,5 +235,25 @@ export class CommunicationHomeComponent implements OnInit {
       verticalPosition: 'top',
       duration: 3000
     });
+  }
+
+  onChangeStd(event): void {
+    let url = '';
+    this.selectedStd = event.value;
+    if (event.value === '0') {
+      // if user selects All Standards then hide divisions dropdown
+      this.showDivs = false;
+      url = this.stundentsAPI;
+    } else {
+      this.showDivs = true;
+      url = this.stundentsAPI + '?standardId=' + this.selectedStd;
+    }
+    this.fetchStudentDetails(url);
+  }
+
+  onChangeDiv(event): void {
+    this.selectedDiv = event.value;
+    const url = this.stundentsAPI + '?standardId=' + this.selectedStd + '&divisionId=' + this.selectedDiv;
+    this.fetchStudentDetails(url);
   }
 }

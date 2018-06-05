@@ -28,17 +28,17 @@
               </mat-select>
             </mat-form-field>
             <mat-form-field class="form-field" *ngIf="selectedRecipient === 'students'">
-              <mat-select placeholder="Standard" [(ngModel)]="selectedStd" [disabled]="selectedRecipient===''">
+              <mat-select placeholder="Standard" [(ngModel)]="selectedStd" [disabled]="selectedRecipient===''" (change)="onChangeStd($event)">
                   <mat-option value="0"> All </mat-option>
-                  <mat-option *ngFor="let std of standards" [value]="std.id">
+                  <mat-option *ngFor="let std of standards" [value]="std.standard_id">
                       {{std.name}}
                   </mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field class="form-field" *ngIf="selectedRecipient === 'students'">
-              <mat-select placeholder="Division" [(ngModel)]="selectedDiv" [disabled]="selectedRecipient===''">
+            <mat-form-field class="form-field" *ngIf="selectedRecipient === 'students' && showDivs">
+              <mat-select placeholder="Division" [(ngModel)]="selectedDiv" [disabled]="selectedRecipient===''" (change)="onChangeDiv($event)">
                   <mat-option value="0"> All </mat-option>
-                  <mat-option *ngFor="let div of divisions" [value]="div.id">
+                  <mat-option *ngFor="let div of divisions" [value]="div.division_id">
                       {{div.name}}
                   </mat-option>
               </mat-select>

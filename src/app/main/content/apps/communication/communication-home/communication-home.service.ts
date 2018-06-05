@@ -18,8 +18,8 @@ export class CommunicationHomeService {
         return this.http.get(ApiConst.BASE_URL + 'employees');
     }
 
-    getStudents() {
-        return this.http.get(ApiConst.BASE_URL + 'students');
+    getStudents(url) {
+        return this.http.get(url);
     }
 
     sendEmail(emailObj) {
