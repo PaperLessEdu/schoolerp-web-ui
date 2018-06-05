@@ -1,4 +1,4 @@
-<div id="holidays" class="page-layout carded fullwidth" fusePerfectScrollbar>    
+<div id="holidays" class="page-layout carded fullwidth" fusePerfectScrollbar>
   <!-- TOP BACKGROUND -->
   <div class="top-bg mat-accent-bg"></div>
   <!-- / TOP BACKGROUND -->
@@ -9,7 +9,7 @@
     <div class="header white-fg"
          fxLayout="column" fxLayoutAlign="center center"
          fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
-      
+
       <!-- APP TITLE -->
       <div class="logo my-12 m-sm-0"
            fxLayout="row" fxLayoutAlign="start center">
@@ -23,11 +23,11 @@
       <div class="top-bar">
             <mat-form-field class="form-field">
               <mat-select placeholder="Recipients" [(ngModel)]="selectedRecipient" (change)="onChangeRecipients($event)">
-                  <!-- <mat-option value="students"> Students </mat-option> -->
+                  <mat-option value="students"> Students </mat-option>
                   <mat-option value="employees"> Employees </mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field class="form-field" *ngIf="selectedRecipient === 'students'">    
+            <mat-form-field class="form-field" *ngIf="selectedRecipient === 'students'">
               <mat-select placeholder="Standard" [(ngModel)]="selectedStd" [disabled]="selectedRecipient===''">
                   <mat-option value="0"> All </mat-option>
                   <mat-option *ngFor="let std of standards" [value]="std.id">
@@ -35,7 +35,7 @@
                   </mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field class="form-field" *ngIf="selectedRecipient === 'students'"> 
+            <mat-form-field class="form-field" *ngIf="selectedRecipient === 'students'">
               <mat-select placeholder="Division" [(ngModel)]="selectedDiv" [disabled]="selectedRecipient===''">
                   <mat-option value="0"> All </mat-option>
                   <mat-option *ngFor="let div of divisions" [value]="div.id">
@@ -43,7 +43,7 @@
                   </mat-option>
               </mat-select>
           </mat-form-field>
-          <mat-form-field class="form-field"> 
+          <mat-form-field class="form-field">
               <mat-select placeholder="Communication Type" [(ngModel)]="selectedType" [disabled]="selectedRecipient===''">
                   <mat-option value="byEmail"> By Email </mat-option>
                   <mat-option value="byTextMessage"> By Text Message </mat-option>

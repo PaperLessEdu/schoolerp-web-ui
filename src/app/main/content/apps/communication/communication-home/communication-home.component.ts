@@ -120,28 +120,29 @@ export class CommunicationHomeComponent implements OnInit {
   }
 
   sendEmail() {
+    let toEmailIds = '';
     if (this.selected.length === 0) {
       this.displayToastMsg('Please select at least one recipient.');
       return;
     }
     if (this.selectedRecipient === 'employees') {
-      const toEmailIds = this.getEmployeeEmailIds();
-      const emailObj = {
-        toEmailId: toEmailIds,
-        subject: this.mailSubject,
-        body: this.mailBody
-      };
-      this.communicationHomeService.sendEmail(emailObj)
-        .then((res) => {
-          // reset subject and body
-          this.mailSubject = '';
-          this.mailBody = '';
-
-          this.displayToastMsg('Your message has been sent.');
-        });
+      toEmailIds = this.getEmployeeEmailIds();
     } else {
-
+      toEmailIds = this.getParentsEmailIds();
     }
+    const emailObj = {
+      toEmailId: toEmailIds,
+      subject: this.mailSubject,
+      body: this.mailBody
+    };
+    this.communicationHomeService.sendEmail(emailObj)
+      .then((res) => {
+        // reset subject and body
+        this.mailSubject = '';
+        this.mailBody = '';
+
+        this.displayToastMsg('Your message has been sent.');
+      });
   }
 
   /**
@@ -155,8 +156,23 @@ export class CommunicationHomeComponent implements OnInit {
   /**
    * This method will return student's father, mother, guardian email Ids csv of selected students
    */
-  getStudentEmailIds() {
-
+  getParentsEmailIds() {
+    console.log(this.selectedStdRecipient);
+    let emailIds = '';
+    for (let i = 0 ; i < this.selectedStdRecipient.length ; i++) {
+      const type = this.selectedStdRecipient[i];
+      if (type === 'father') {
+        const ids = this.selected.map((obj) => obj['father'].emailId);
+        emailIds += ids.join(',');
+      } else if (type === 'mother') {
+        const ids = this.selected.map((obj) => obj['mother'].emailId);
+        emailIds += ids.join(',');
+      } else {
+        const ids = this.selected.map((obj) => obj['guardian'].emailId);
+        emailIds += ids.join(',');
+      }
+    }
+    return emailIds;
   }
 
   sendMessage() {
@@ -167,9 +183,10 @@ export class CommunicationHomeComponent implements OnInit {
     // let mobileNos = null;
     const msgObj = { };
     if (this.selectedRecipient === 'employees') {
-      msgObj['phonenumber'] = this.getEmployeeMobileNumbers();
+      msgObj['phonenumber'] = this.getEmployeePhoneNumbers();
     } else {
       // for stundent's parents
+      msgObj['phonenumber'] = this.getParentsPhoneNumbers();
     }
     msgObj['body'] = this.msgBody;
     this.communicationHomeService.sendSms(msgObj)
@@ -182,9 +199,31 @@ export class CommunicationHomeComponent implements OnInit {
   /**
    * This method will return employee email Ids csv of selected employees
    */
-  getEmployeeMobileNumbers() {
+  getEmployeePhoneNumbers() {
     const mobileNos = this.selected.map((obj) => '91' + obj.phoneNumber);
     return mobileNos.join(',');
+  }
+
+  /**
+   * This method will return student's father, mother, guardian email Ids csv of selected students
+   */
+  getParentsPhoneNumbers() {
+    console.log(this.selectedStdRecipient);
+    let mobileNos = '';
+    for (let i = 0 ; i < this.selectedStdRecipient.length ; i++) {
+      const type = this.selectedStdRecipient[i];
+      if (type === 'father') {
+        const ids = this.selected.map((obj) => obj['father'].phoneNumber);
+        mobileNos += ids.join(',');
+      } else if (type === 'mother') {
+        const ids = this.selected.map((obj) => obj['mother'].phoneNumber);
+        mobileNos += ids.join(',');
+      } else {
+        const ids = this.selected.map((obj) => obj['guardian'].phoneNumber);
+        mobileNos += ids.join(',');
+      }
+    }
+    return mobileNos;
   }
 
   displayToastMsg(msg) {
