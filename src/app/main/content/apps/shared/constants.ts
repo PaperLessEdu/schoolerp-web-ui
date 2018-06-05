@@ -1,5 +1,5 @@
 export class ApiConst {
-    public static readonly BASE_URL = 'http://demo.cloudscripts.co.in/schoolManagementProd/';
+    public static readonly BASE_URL = 'http://demo.cloudscripts.co.in/schoolManagement/';
     public static readonly STUDENTS = '/students';
     // public static readonly BASE_URL = 'http://localhost:3000/';
 }
