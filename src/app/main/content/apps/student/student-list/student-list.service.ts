@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { ApiConst } from '../../shared/constants';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ApiConst } from 'app/main/content/apps/shared/constants';
 
 @Injectable()
 export class StudentListService {
