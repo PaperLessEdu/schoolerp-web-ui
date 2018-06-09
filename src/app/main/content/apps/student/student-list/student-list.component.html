@@ -48,7 +48,7 @@
                 <!-- SEARCH -->
                 <div style="margin-right: 10px;">
                     <mat-form-field floatPlaceholder="never">
-                        <input id="search" matInput #filter placeholder="Search" class="full-right">
+                        <input id="search" (keyup)='updateFilter($event)' matInput #filter placeholder="Search" class="full-right">
                     </mat-form-field>
                 </div>
                 <!-- / SEARCH -->

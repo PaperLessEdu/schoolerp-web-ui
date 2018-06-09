@@ -23,6 +23,7 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
 })
 export class StudentListComponent implements OnInit {
     studentList: any[];
+    temp: any[];
     loadingIndicator = true;
     reorderable = true;
 
@@ -39,9 +40,26 @@ export class StudentListComponent implements OnInit {
     fetchStudentList(): void {
         this.loadingIndicator = true;
         this.studentListService.getStudentList().subscribe((students: any) => {
+            this.temp = [...students];
             this.studentList = [...students];
             this.loadingIndicator = false;
         });
+    }
+
+    updateFilter(event): void {
+        const val = event.target.value.toLowerCase();
+
+        // filter our data
+        const temp = this.temp.filter(function(d) {
+            return d.firstName.toLowerCase().indexOf(val) !== -1 ||
+                    d.lastName.toLowerCase().indexOf(val) !== -1 ||
+                    !val;
+        });
+
+        // update the rows
+        this.studentList = temp;
+        // Whenever the filter changes, always go back to the first page
+        this.table.offset = 0;
     }
 }
 
