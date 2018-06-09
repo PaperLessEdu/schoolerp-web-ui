@@ -5,8 +5,17 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 import { 
   MatCheckboxModule,
-  MatIconModule
+  MatIconModule,
+  MatFormFieldModule,
+  MatButtonModule,
+  MatInputModule,
+  MatToolbarModule,
+  MatDialogModule,
+  MatSnackBarModule,
+  MatSelectModule,
+  MatDatepickerModule
   } from '@angular/material';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AttendanceTakerComponent } from './attendance-taker/attendance-taker.component';
 import { AttendanceTakerService } from './attendance-taker/attendance-taker.service';
@@ -24,8 +33,17 @@ const routes = [
     CommonModule,
     MatCheckboxModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    MatDatepickerModule,
     FuseSharedModule,
-    FuseWidgetModule
+    FuseWidgetModule,
+    NgxDatatableModule
   ],
   declarations: [AttendanceTakerComponent],
   providers: [

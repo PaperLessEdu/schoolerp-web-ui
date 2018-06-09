@@ -43,6 +43,11 @@ export class DashboardHomeComponent implements OnInit {
       title: 'Communication',
       icon: 'forum',
       url: '/apps/communication/home'
+    },
+    {
+      title: 'Attendance',
+      icon: 'forum',
+      url: '/apps/attendance/taker'
     }
   ];
   

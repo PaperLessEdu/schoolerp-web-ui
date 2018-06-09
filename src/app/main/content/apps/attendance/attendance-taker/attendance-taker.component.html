@@ -17,8 +17,59 @@
       </div>
       <!-- / APP TITLE -->
     </div>
-  </div>
-  <!-- CONTENT CARD -->
-  <div class="mat-white-bg">
+    <!-- CONTENT CARD -->
+    <div class="mat-white-bg attendance-taker-container">
+        <div class="top-bar">
+          <mat-form-field class="form-field">
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-select placeholder="Standard" [(ngModel)]="selectedStd" (change)="onChangeStd($event)">
+              <mat-option value="0"> Select </mat-option>
+              <mat-option *ngFor="let std of standards" [value]="std.standard_id">
+                  {{std.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-select placeholder="Division" [(ngModel)]="selectedDiv" (change)="onChangeDiv($event)">
+              <mat-option value="0"> Select </mat-option>
+              <mat-option *ngFor="let div of divisions" [value]="div.division_id">
+                  {{div.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-button mat-raised-button (click)="fetchStundets()" class="save-button mat-accent" aria-label="SAVE">
+              Go
+          </button>
+        </div>
+        <ngx-datatable #table class="material" [rows]="studentList" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
+          [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
+          [selectionType]="'checkbox'" [limit]="10">
+          <ngx-datatable-column [width]="48"
+          [canAutoResize]="false"
+          [sortable]="false">
+<ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+        let-selectFn="selectFn">
+<mat-checkbox [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></mat-checkbox>
+</ng-template>
+
+<ng-template ngx-datatable-cell-template 
+        let-value="value" 
+        let-isSelected="isSelected"
+        let-onCheckboxChangeFn="onCheckboxChangeFn"
+        let-row="row">
+<mat-checkbox [checked]="isSelected" (change)="onCheckboxChangeFn(row)"></mat-checkbox>
+</ng-template>
+</ngx-datatable-column>
+          <ngx-datatable-column name="Name" prop="name">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                  <a class="empl-name">{{row.firstName}} {{row.lastName}}</a>
+              </ng-template>
+          </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
   </div>
 </div>
