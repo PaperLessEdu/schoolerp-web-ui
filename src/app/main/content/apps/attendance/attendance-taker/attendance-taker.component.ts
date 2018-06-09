@@ -31,6 +31,7 @@ export class AttendanceTakerComponent implements OnInit {
   selectedDiv = '0';
   selected = [];
   loadingIndicator = true;
+  reorderable = true;
 
   constructor(private attendanceTakerService: AttendanceTakerService) { }
 
