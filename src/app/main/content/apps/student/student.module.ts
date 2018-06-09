@@ -29,6 +29,8 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { StudentAddEditComponent } from './student-add-edit/student-add-edit.component';
 import { StudentAddEditService } from './student-add-edit/student-add-edit.service';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { StudentProfileService } from 'app/main/content/apps/student/student-profile/student-profile.service';
 
 const routes = [
   {
@@ -38,6 +40,10 @@ const routes = [
   {
     path: 'new',
     component: StudentAddEditComponent
+  },
+  {
+    path: 'profile/:id',
+    component: StudentProfileComponent
   },
   {
     path: '**',
@@ -75,11 +81,13 @@ const routes = [
   ],
   declarations: [
     StudentListComponent,
-    StudentAddEditComponent
+    StudentAddEditComponent,
+    StudentProfileComponent
   ],
   providers: [
     StudentListService,
-    StudentAddEditService
+    StudentAddEditService,
+    StudentProfileService
   ]
 })
 export class StudentModule { }

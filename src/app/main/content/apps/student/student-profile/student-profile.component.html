@@ -1,0 +1,105 @@
+<div id="profile" class="page-layout simple tabbed" fusePerfectScrollbar>
+    <!-- HEADER -->
+    <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- APP TITLE -->
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="'/apps/student/list'">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <img class="profile-image avatar huge" src="assets/images/avatars/profile.jpg" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+            <div class="name" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                {{studentDetails.firstName}} {{studentDetails.middleName}} {{studentDetails.lastName}}
+            </div>
+        </div>
+    </div>
+    <!-- CONTENT -->
+    <div class="content">
+        <div id="about" class="p-24" fxLayout="row wrap">
+            <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="65">
+                <div class="profile-box info-box general" fxLayout="column">
+                    <header class="mat-accent-bg">
+                        <div class="title">General Information</div>
+                    </header>
+                    <div class="content">
+                        <div style="width: 40%; float: left;">
+                            <div class="info-line">
+                                <div class="title">Gender</div>
+                                <div class="info">{{studentDetails.gender}}</div>
+                            </div>
+                            <div class="info-line">
+                                <div class="title">Birthday</div>
+                                <div class="info">{{studentDetails.dob}}</div>
+                            </div>
+                            <div class="info-line">
+                                <div class="title">Blood group</div>
+                                <div class="info">{{studentDetails.bloodGroup}}</div>
+                            </div>
+                        </div>
+                        <div style="width: 30%; float: left;">
+                            <div class="info-line">
+                                <div class="title">Category</div>
+                                <div class="info">{{studentDetails.category}}</div>
+                            </div>
+                            <div class="info-line">
+                                <div class="title">Caste</div>
+                                <div class="info">{{studentDetails.caste}}</div>
+                            </div>
+                            <div class="info-line">
+                                <div class="title">Religion</div>
+                                <div class="info">{{studentDetails.religion}}</div>
+                            </div>
+                        </div>
+                        <div style="width: 30%; float: left;">
+                            <div class="info-line">
+                                <div class="title">Standard</div>
+                                <div class="info">{{studentDetails.standard}}</div>
+                            </div>
+                            <div class="info-line">
+                                <div class="title">Division</div>
+                                <div class="info">{{studentDetails.division}}</div>
+                            </div>
+                            <div class="info-line">
+                                <div class="title">Nationality</div>
+                                <div class="info">{{studentDetails.nationality}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                
+            </div>
+
+            <!-- <div class="about-sidebar" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="35">
+          <div class="profile-box friends" fxLayout="column">
+              <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
+                  <div class="title">Subjects</div>
+              </header>
+              <div class="content" fxLayout="row wrap">
+                  
+              </div>
+          </div>
+  
+          <div class="profile-box groups" fxLayout="column">
+              <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
+                  <div class="title">Standards</div>
+              </header>
+              <div class="content">
+                  
+              </div>
+          </div>
+
+          <div class="profile-box groups" fxLayout="column">
+              <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
+                  <div class="title">Divisions</div>
+              </header>
+              <div class="content">
+                  
+              </div>
+          </div>
+        </div> -->
+        </div>
+    </div>
+    <!-- / CONTENT -->
+</div>

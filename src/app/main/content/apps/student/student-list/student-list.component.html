@@ -33,17 +33,18 @@
                         <mat-icon class="s-20 mat-icon material-icons" role="img" aria-hidden="true">delete</mat-icon>
                         DELETE
                     </button>
-                    <button mat-button class="font-weight-400" [matMenuTriggerFor]="menu">
+                    <!-- TODO: for nect release
+                        <button mat-button class="font-weight-400" [matMenuTriggerFor]="menu">
                         <mat-icon class="s-20 mat-icon material-icons accent-600-fg">settings</mat-icon> ACTIONS
-                    </button>
-                    <mat-menu #menu="matMenu">
+                       </button>
+                        <mat-menu #menu="matMenu">
                         <button mat-menu-item>
                             <mat-icon class="s-20">chevron_right</mat-icon> Action 1
                         </button>
                         <button mat-menu-item>
                             <mat-icon class="s-20">chevron_right</mat-icon> Action 2
                         </button>
-                    </mat-menu>
+                    </mat-menu>-->
                 </div>
                 <!-- SEARCH -->
                 <div style="margin-right: 10px;">
@@ -60,7 +61,7 @@
 
                 <ngx-datatable-column name="Name" prop="name">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                        <a class="empl-name">{{row.firstName}} {{row.lastName}}</a>
+                        <a class="empl-name" (click)="showProfile(row.student_id);">{{row.firstName}} {{row.lastName}}</a>
                     </ng-template>
                 </ngx-datatable-column>
 
