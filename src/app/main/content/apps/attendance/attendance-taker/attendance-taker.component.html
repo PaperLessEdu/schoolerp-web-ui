@@ -21,7 +21,7 @@
     <div class="mat-white-bg attendance-taker-container">
         <div class="attendance-taker-form" *ngIf="studentList.length===0">
           <mat-form-field class="form-field">
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <input matInput [matDatepicker]="picker" placeholder="Select date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field> <br>
@@ -58,11 +58,10 @@
             <ngx-datatable-column [width]="48"
                         [canAutoResize]="false"
                         [sortable]="false">
-              <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
                       let-selectFn="selectFn">
-                <mat-checkbox [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></mat-checkbox>
+                  <mat-checkbox [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></mat-checkbox>
                 </ng-template>
-
                 <ng-template ngx-datatable-cell-template 
                         let-value="value" 
                         let-isSelected="isSelected"

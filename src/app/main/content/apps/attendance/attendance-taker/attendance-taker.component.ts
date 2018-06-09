@@ -4,6 +4,7 @@ import { MY_FORMATS } from '../../shared/constants';
 import { AttendanceTakerService } from './attendance-taker.service';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { ApiConst } from '../../shared/constants';
+import { MatSnackBar } from '@angular/material';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 @Component({
   selector: 'app-attendance-taker',
@@ -33,7 +34,8 @@ export class AttendanceTakerComponent implements OnInit {
   loadingIndicator = true;
   reorderable = true;
 
-  constructor(private attendanceTakerService: AttendanceTakerService) { }
+  constructor( public snackBar: MatSnackBar,
+               private attendanceTakerService: AttendanceTakerService) { }
 
   ngOnInit() {
     this.getStandards();
@@ -70,5 +72,13 @@ export class AttendanceTakerComponent implements OnInit {
 
   back() {
     this.studentList = [];
+  }
+
+  submitAttendance() {
+    this.studentList = [];
+    this.snackBar.open('Attendance updated successfully', 'OK', {
+      verticalPosition: 'top',
+      duration        : 3000
+    });
   }
 }
