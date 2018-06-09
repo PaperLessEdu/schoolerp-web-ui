@@ -20,14 +20,25 @@
     </div>
     <!-- CONTENT CARD -->
     <div class="mat-white-bg">
-      <div class="dashboard-container">
-          <mat-card *ngFor="let tile of dashboardTiles" [routerLink]="tile.url">
+        <div class="dashboard-container web-container">
+          <mat-card *ngFor="let tile of dashboardWebTiles" 
+                    [routerLink]="tile.url">
             <mat-card-content>
               <mat-icon class="card-icon">{{tile.icon}}</mat-icon>
               <div class="card-lable">{{tile.title}}</div>
             </mat-card-content>
           </mat-card>
-      </div>
+        </div>
+
+        <div class="dashboard-container mobile-container">  
+          <mat-card *ngFor="let tile of dashboardMobileTiles" 
+                    [routerLink]="tile.url">
+            <mat-card-content>
+              <mat-icon class="card-icon">{{tile.icon}}</mat-icon>
+              <div class="card-lable">{{tile.title}}</div>
+            </mat-card-content>
+          </mat-card>
+        </div>
     </div>
   </div>
 </div>

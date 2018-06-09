@@ -8,31 +8,36 @@ import { fuseAnimations } from '@fuse/animations';
   animations : fuseAnimations
 })
 export class DashboardHomeComponent implements OnInit {
-  dashboardTiles = [
+  dashboardWebTiles = [
     {
       title: 'Employees',
       icon: 'group',
-      url: '/apps/employee/list'
+      url: '/apps/employee/list',
+      css: 'web-module'
     },
     {
       title: 'Students',
       icon: 'group',
-      url: '/apps/student/list'
+      url: '/apps/student/list',
+      css: 'web-module'
     },
     {
       title: 'Holidays',
       icon: 'event_note',
-      url: '/apps/holidays/list'
+      url: '/apps/holidays/list',
+      css: 'web-module'
     },
     {
       title: 'Standards',
       icon: 'group_work',
-      url: '/apps/setup/standards'
+      url: '/apps/setup/standards',
+      css: 'web-module'
     },
     {
       title: 'Divisions',
       icon: 'group_work',
-      url: '/apps/setup/divisions'
+      url: '/apps/setup/divisions',
+      css: 'web-module'
     },
     // {
     //   title: 'Subjects',
@@ -42,12 +47,17 @@ export class DashboardHomeComponent implements OnInit {
     {
       title: 'Communication',
       icon: 'forum',
-      url: '/apps/communication/home'
-    },
+      url: '/apps/communication/home',
+      css: 'web-module'
+    }
+  ];
+  
+  dashboardMobileTiles = [
     {
       title: 'Attendance',
       icon: 'forum',
-      url: '/apps/attendance/taker'
+      url: '/apps/attendance/taker',
+      css: 'mobile-module'
     }
   ];
   
