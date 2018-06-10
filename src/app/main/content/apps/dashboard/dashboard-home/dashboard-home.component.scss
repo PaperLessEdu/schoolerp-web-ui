@@ -1,19 +1,53 @@
+@import "src/@fuse/scss/fuse";
 .dashboard {
-    .dashboard-container {
-        height:550px;
-        width: auto;
-        padding: 35px;
+    .content {
+        display: flex;
+        flex: 1 1 auto;
+        padding: 32px;
+        min-width: 0;
+
+        @include media-breakpoint-down('md') {
+            flex-direction: column;
+        }
+
+        .left {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto;
+            min-width: 0;
+
+            .widget {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+        }
+
+        .right {
+            display: flex;
+            flex: 0 0 auto;
+            width: 320px;
+            min-width: 320px;
+            max-width: 320px;
+
+            @include media-breakpoint-down('md') {
+                flex: 1 0 100%;
+                margin-top: 32px;
+                width: 100%;
+                min-width: 0;
+                max-width: none;
+            }
+        }
     }
 
     mat-card {
         height: 125px;
-        width: 185px;
+        width: 165px;
         border-radius: 3px;
         cursor: pointer;
         float: left;
         box-shadow: #d7d7d7 0 3px 0 0;
         border: 1px solid #d7d7d7;
-        margin: 15px;
+        margin: 0px 10px 10px 10px;
     }
 
     mat-card:hover {
@@ -43,13 +77,6 @@
     }
 
     .bday-widget {
-        .title {
-            font-size: 20px;
-            font-weight: 600;
-            text-align: center;
-            margin-top: 10px;
-        }
-
         ul {
             list-style: none;
             padding-left: 25px;
@@ -63,6 +90,9 @@
                     color: gray;
                 }
             }
+        }
+        .card-divider {
+            margin: 0 15px;
         }
     }
 }

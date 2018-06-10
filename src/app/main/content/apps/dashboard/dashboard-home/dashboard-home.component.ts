@@ -60,9 +60,6 @@ export class DashboardHomeComponent implements OnInit {
   ];
 
   constructor() {
-    setInterval(() => {
-      this.dateNow = Date.now();
-    }, 1000);
   }
 
   ngOnInit() {
