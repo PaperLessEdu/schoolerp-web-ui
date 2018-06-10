@@ -5,6 +5,7 @@ import { AttendanceTakerService } from './attendance-taker.service';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { ApiConst } from '../../shared/constants';
 import { MatSnackBar } from '@angular/material';
+import * as moment from 'moment';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 @Component({
   selector: 'app-attendance-taker',
@@ -28,6 +29,7 @@ export class AttendanceTakerComponent implements OnInit {
   divisions: any[] = [];
   studentList: any[] = [];
 
+  selectedDate = '';
   selectedStd = '0';
   selectedDiv = '0';
   selected = [];
@@ -63,6 +65,7 @@ export class AttendanceTakerComponent implements OnInit {
   }
 
   fetchStundets() {
+    this.selectedDate = moment(this.selectedDate).format('DD/MM/YYYY');
     const url = ApiConst.BASE_URL + 'students?standardId=' + this.selectedStd + '&divisionId=' + this.selectedDiv;
     this.attendanceTakerService.getStudents(url).subscribe((students: any) => {
         this.studentList = [...students];
@@ -75,10 +78,23 @@ export class AttendanceTakerComponent implements OnInit {
   }
 
   submitAttendance() {
-    this.studentList = [];
-    this.snackBar.open('Attendance updated successfully', 'OK', {
-      verticalPosition: 'top',
-      duration        : 3000
+    const absentStudentIds = [];
+    this.selected.forEach((student) => {
+      absentStudentIds.push(student.student_id);
+    });
+    const obj = {
+      date: this.selectedDate,
+      is_present: false,
+      standard: this.selectedStd,
+      division: this.selectedDiv,
+      studentIds: absentStudentIds
+    };
+    this.attendanceTakerService.postAttendance(obj).then((res) => {
+      this.studentList = [];
+      this.snackBar.open('Attendance updated successfully', 'OK', {
+        verticalPosition: 'top',
+        duration        : 3000
+      });
     });
   }
 }

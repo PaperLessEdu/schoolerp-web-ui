@@ -21,7 +21,7 @@
     <div class="mat-white-bg attendance-taker-container">
         <div class="attendance-taker-form" *ngIf="studentList.length===0">
           <mat-form-field class="form-field">
-            <input matInput [matDatepicker]="picker" placeholder="Select date">
+            <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" placeholder="Select date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field> <br>
@@ -41,20 +41,29 @@
               </mat-option>
             </mat-select>
           </mat-form-field> <br>
-          <button mat-button mat-raised-button (click)="fetchStundets()" class="save-button mat-accent" aria-label="SAVE">
+          <button mat-button mat-raised-button
+                  [disabled]="this.selectedDate=='' || selectedStd==0 || selectedDiv==0"
+                  (click)="fetchStundets()"
+                  class="save-button mat-accent"
+                  aria-label="SAVE">
               Go
           </button>
         </div>
         <div *ngIf="studentList.length>0">
-          <div class="top-bar">
-              <a mat-raised-button routerLink="." (click)="back()">Back</a>
-              <button mat-button mat-raised-button (click)="submitAttendance()" class="save-button mat-accent" aria-label="SAVE">
+          <div class="top-bar attendance-taker-top-bar">
+              <span class="attendance-date"><b>Date:</b> {{selectedDate}}</span>
+              <button mat-button mat-raised-button
+                      [disabled]="selected.length==0"
+                      (click)="submitAttendance()"
+                      class="save-button mat-accent"
+                      aria-label="SAVE">
                   Submit
               </button>
+              <a mat-raised-button routerLink="." (click)="back()">Back</a>
           </div>
           <ngx-datatable #table class="material" [rows]="studentList" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
             [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
-            [selectionType]="'checkbox'" [limit]="10">
+            [selectionType]="'checkbox'" [limit]="10" [selected]="selected">
             <ngx-datatable-column [width]="48"
                         [canAutoResize]="false"
                         [sortable]="false">
@@ -62,8 +71,8 @@
                       let-selectFn="selectFn">
                   <mat-checkbox [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></mat-checkbox>
                 </ng-template>
-                <ng-template ngx-datatable-cell-template 
-                        let-value="value" 
+                <ng-template ngx-datatable-cell-template
+                        let-value="value"
                         let-isSelected="isSelected"
                         let-onCheckboxChangeFn="onCheckboxChangeFn"
                         let-row="row">

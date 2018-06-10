@@ -16,4 +16,13 @@ export class AttendanceTakerService {
     getStudents(url) {
         return this.http.get(url);
     }
+
+    postAttendance(data) {
+        return new Promise((resolve, reject) => {
+            this.http.post(ApiConst.BASE_URL + 'attendance', data)
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+    }
 }

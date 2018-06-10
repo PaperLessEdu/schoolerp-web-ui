@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { 
+import {
   MatIconModule,
-  MatCardModule
+  MatCardModule,
+  MatListModule,
+  MatSidenavModule
   } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
@@ -25,6 +27,8 @@ const routes = [
     CommonModule,
     MatIconModule,
     MatCardModule,
+    MatListModule,
+    MatSidenavModule,
     FuseSharedModule,
     FuseWidgetModule
   ],

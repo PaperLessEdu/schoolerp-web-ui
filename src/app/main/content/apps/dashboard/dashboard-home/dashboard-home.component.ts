@@ -8,6 +8,8 @@ import { fuseAnimations } from '@fuse/animations';
   animations : fuseAnimations
 })
 export class DashboardHomeComponent implements OnInit {
+  dateNow = Date.now();
+
   dashboardWebTiles = [
     {
       title: 'Employees',
@@ -51,7 +53,7 @@ export class DashboardHomeComponent implements OnInit {
       css: 'web-module'
     }
   ];
-  
+
   dashboardMobileTiles = [
     {
       title: 'Attendance',
@@ -60,8 +62,12 @@ export class DashboardHomeComponent implements OnInit {
       css: 'mobile-module'
     }
   ];
-  
-  constructor() { }
+
+  constructor() {
+    setInterval(() => {
+      this.dateNow = Date.now();
+    }, 1000);
+  }
 
   ngOnInit() {
   }

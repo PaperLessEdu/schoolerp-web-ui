@@ -13,4 +13,13 @@
         text-align: center;
         margin-top: 15px;
     }
+
+    .attendance-taker-top-bar {
+        a, button {
+            float: right
+        }
+        .attendance-date {
+            font-size: 20px;
+        }
+    }
  }
