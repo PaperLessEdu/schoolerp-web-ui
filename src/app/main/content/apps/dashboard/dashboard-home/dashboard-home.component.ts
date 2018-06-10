@@ -53,7 +53,7 @@ export class DashboardHomeComponent implements OnInit {
       css: 'web-module'
     }, {
       title: 'Attendance',
-      icon: 'forum',
+      icon: 'check_box',
       url: '/apps/attendance/taker',
       css: 'mobile-module'
     }
