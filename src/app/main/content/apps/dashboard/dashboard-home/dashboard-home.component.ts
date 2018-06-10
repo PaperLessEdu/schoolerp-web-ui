@@ -51,11 +51,7 @@ export class DashboardHomeComponent implements OnInit {
       icon: 'forum',
       url: '/apps/communication/home',
       css: 'web-module'
-    }
-  ];
-
-  dashboardMobileTiles = [
-    {
+    }, {
       title: 'Attendance',
       icon: 'forum',
       url: '/apps/attendance/taker',
