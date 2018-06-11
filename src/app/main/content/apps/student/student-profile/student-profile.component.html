@@ -16,12 +16,13 @@
     <div class="content">
         <div id="about" class="p-24" fxLayout="row wrap">
             <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="65">
+                <!-- General Information -->
                 <div class="profile-box info-box general" fxLayout="column">
                     <header class="mat-accent-bg">
                         <div class="title">General Information</div>
                     </header>
                     <div class="content">
-                        <div style="width: 40%; float: left;">
+                        <div class="w-30-p" style="float: left;">
                             <div class="info-line">
                                 <div class="title">Gender</div>
                                 <div class="info">{{studentDetails.gender}}</div>
@@ -35,7 +36,7 @@
                                 <div class="info">{{studentDetails.bloodGroup}}</div>
                             </div>
                         </div>
-                        <div style="width: 30%; float: left;">
+                        <div class="w-30-p" style="float: left;">
                             <div class="info-line">
                                 <div class="title">Category</div>
                                 <div class="info">{{studentDetails.category}}</div>
@@ -49,7 +50,7 @@
                                 <div class="info">{{studentDetails.religion}}</div>
                             </div>
                         </div>
-                        <div style="width: 30%; float: left;">
+                        <div class="w-30-p" style="float: left;">
                             <div class="info-line">
                                 <div class="title">Standard</div>
                                 <div class="info">{{studentDetails.standard}}</div>
@@ -66,39 +67,149 @@
                     </div>
                 </div>
 
-                
+                <!-- Contact Information -->
+                <div class="profile-box info-box contact" fxLayout="column">
+                    <header class="mat-accent-bg">
+                        <div class="title">Contact Information</div>
+                    </header>
+                    <div class="content">
+                        <div class="w-50-p" style="float: left;">
+                            <div class="info-line">
+                                <div class="title">Permanent Address</div>
+                                <div class="info">{{studentDetails.permanentAddress}}</div>
+                            </div>
+                            <div class="info-line">
+                                <div class="title">Correspondence Address</div>
+                                <div class="info">
+                                    <span>{{studentDetails.correspondenceAddress}}</span>
+                                </div>
+                            </div>
+                            <div class="info-line">
+                                <div class="title">Country</div>
+                                <div class="info">
+                                    <span>{{studentDetails.country}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-50-p" style="float: left;">
+                            <div class="info-line">
+                                <div class="title">State</div>
+                                <div class="info">
+                                    <span>{{studentDetails.state}}</span>
+                                </div>
+                            </div>
+                            <div class="info-line">
+                                <div class="title">City</div>
+                                <div class="info">
+                                    <span>{{studentDetails.city}}</span>
+                                </div>
+                            </div>
+                            <div class="info-line">
+                                <div class="title">Postal Code</div>
+                                <div class="info">
+                                    <span>{{studentDetails.postalCode}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                
+                <!-- Parents Information -->
+                <div class="profile-box info-box general" fxLayout="column">
+                    <header class="mat-accent-bg">
+                        <div class="title">Parents Information</div>
+                    </header>
+                    <div class="content">
+                        <mat-accordion>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Father's Details
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+
+                                <div class="info-line">
+                                    <div class="title">Name</div>
+                                    <div class="info">{{studentDetails.fathersDetails?.name}}</div>
+                                </div>
+                                <div class="info-line">
+                                    <div class="title">Email Id</div>
+                                    <div class="info">{{studentDetails.fathersDetails?.emailId}}</div>
+                                </div>
+                                <div class="info-line">
+                                    <div class="title">Occupation</div>
+                                    <div class="info">{{studentDetails.fathersDetails?.occupation}}</div>
+                                </div>
+                                <div class="info-line">
+                                    <div class="title">Qualification</div>
+                                    <div class="info">{{studentDetails.fathersDetails?.occupation}}</div>
+                                </div>
+                                <div class="info-line">
+                                    <div class="title">Mobile Number</div>
+                                    <div class="info">{{studentDetails.fathersDetails?.phoneNumber}}</div>
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Mother's Details
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+
+                                <div class="info-line">
+                                    <div class="title">Name</div>
+                                    <div class="info">{{studentDetails.mothersDetails?.name}}</div>
+                                </div>
+                                <div class="info-line">
+                                    <div class="title">Email Id</div>
+                                    <div class="info">{{studentDetails.mothersDetails?.emailId}}</div>
+                                </div>
+                                <div class="info-line">
+                                    <div class="title">Occupation</div>
+                                    <div class="info">{{studentDetails.mothersDetails?.occupation}}</div>
+                                </div>
+                                <div class="info-line">
+                                    <div class="title">Qualification</div>
+                                    <div class="info">{{studentDetails.mothersDetails?.occupation}}</div>
+                                </div>
+                                <div class="info-line">
+                                    <div class="title">Mobile Number</div>
+                                    <div class="info">{{studentDetails.mothersDetails?.phoneNumber}}</div>
+                                </div>
+                            </mat-expansion-panel>
+
+                            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Guardian Details
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+
+                                <div class="info-line">
+                                    <div class="title">Name</div>
+                                    <div class="info">{{studentDetails.guardianDetails?.name}}</div>
+                                </div>
+                                <div class="info-line">
+                                    <div class="title">Email Id</div>
+                                    <div class="info">{{studentDetails.guardianDetails?.emailId}}</div>
+                                </div>
+                                <div class="info-line">
+                                    <div class="title">Occupation</div>
+                                    <div class="info">{{studentDetails.guardianDetails?.occupation}}</div>
+                                </div>
+                                <div class="info-line">
+                                    <div class="title">Qualification</div>
+                                    <div class="info">{{studentDetails.guardianDetails?.occupation}}</div>
+                                </div>
+                                <div class="info-line">
+                                    <div class="title">Mobile Number</div>
+                                    <div class="info">{{studentDetails.guardianDetails?.phoneNumber}}</div>
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div>
+                </div>
             </div>
-
-            <!-- <div class="about-sidebar" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="35">
-          <div class="profile-box friends" fxLayout="column">
-              <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
-                  <div class="title">Subjects</div>
-              </header>
-              <div class="content" fxLayout="row wrap">
-                  
-              </div>
-          </div>
-  
-          <div class="profile-box groups" fxLayout="column">
-              <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
-                  <div class="title">Standards</div>
-              </header>
-              <div class="content">
-                  
-              </div>
-          </div>
-
-          <div class="profile-box groups" fxLayout="column">
-              <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
-                  <div class="title">Divisions</div>
-              </header>
-              <div class="content">
-                  
-              </div>
-          </div>
-        </div> -->
         </div>
     </div>
     <!-- / CONTENT -->

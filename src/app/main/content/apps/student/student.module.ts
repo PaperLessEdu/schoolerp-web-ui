@@ -20,7 +20,8 @@ import {
   MatTableModule,
   MatSortModule,
   MatRadioModule,
-  MatMenuModule
+  MatMenuModule,
+  MatExpansionModule
 } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseWidgetModule } from '@fuse/components';
@@ -75,6 +76,7 @@ const routes = [
     MatRadioModule,
     MatMenuModule,
     NgxDatatableModule,
+    MatExpansionModule,
 
     FuseSharedModule, // To add title on card panel
     FuseWidgetModule
