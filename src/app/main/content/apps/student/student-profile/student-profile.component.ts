@@ -14,6 +14,7 @@ export class StudentProfileComponent implements OnInit {
   studentId: number;
   studentDetails: any = {};
   private sub: any;
+  panelOpenState = false;
 
   constructor(
     private studentProfileService: StudentProfileService,
@@ -29,7 +30,6 @@ export class StudentProfileComponent implements OnInit {
       this.studentId = +params['id']; // (+) converts string 'id' to a number
       this.studentProfileService.getStudentDetails(this.studentId).subscribe((response: any) => {
         this.studentDetails = response;
-        console.log("details" + JSON.stringify(response));
       });
     });
   }
