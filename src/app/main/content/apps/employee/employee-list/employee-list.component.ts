@@ -2,12 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { fuseAnimations } from '@fuse/animations';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
-import { Router } from '@angular/router'; 
-import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { MatDialog, MatSnackBar} from '@angular/material';
 
 import { EmployeeListService } from './employee-list.service';
 import { ChangeRoleComponent } from '../change-role/change-role.component';
 import { ChangeStandardSubjectComponent } from '../change-standard-subject/change-standard-subject.component';
+import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -27,8 +28,9 @@ export class EmployeeListComponent implements OnInit {
 
     constructor(private emplService: EmployeeListService,
                 private router: Router,
-                public dialog: MatDialog) { }
-    
+                public dialog: MatDialog,
+                public snackBar: MatSnackBar) { }
+
     ngOnInit() {
         this.doRefresh();
     }
@@ -82,9 +84,9 @@ export class EmployeeListComponent implements OnInit {
             }
             const actionType: string = response[0];
             switch ( actionType ) {
-                case 'save': this.doRefresh(); break; 
+                case 'save': this.doRefresh(); break;
                 case 'close': break;
-            }   
+            }
         });
     }
 
@@ -98,6 +100,44 @@ export class EmployeeListComponent implements OnInit {
             data: {
                 selectedEmpl: this.selectedEmpl[0]
             }
+        });
+    }
+
+    onDeleteAction(): void {
+        const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+            width: '350px',
+            data: {
+                title: 'Confirmation',
+                content: 'Are you sure, you want delete this employee?'
+            }
+        });
+
+        dialogRef.afterClosed().subscribe(response => {
+            if (!response) {
+                return;
+            }
+            const actionType: string = response[0];
+            switch ( actionType ) {
+                case 'yes':
+                this.deleteEmployee();
+                break;
+                case 'no': break;
+            }
+        });
+    }
+
+    deleteEmployee(): void {
+        const me = this;
+        me.emplService.deleteEmployee(this.selectedEmpl[0]).subscribe((res: any) => {
+            me.displayNotification('Employee deleted successfully');
+            me.doRefresh();
+        });
+    }
+
+    displayNotification(msg): void {
+        this.snackBar.open(msg, 'OK', {
+            verticalPosition: 'top',
+            duration        : 3000
         });
     }
 }

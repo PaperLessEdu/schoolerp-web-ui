@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { 
+import {
   MatCheckboxModule,
   MatButtonModule,
   MatFormFieldModule,
@@ -11,10 +11,10 @@ import {
   MatStepperModule,
   MatDividerModule,
   MatDatepickerModule,
-  MatSnackBarModule, 
+  MatSnackBarModule,
   MatMenuModule,
   MatDialogModule,
-  MatToolbarModule, 
+  MatToolbarModule,
   MatRadioModule} from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
 
@@ -23,6 +23,7 @@ import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
+import { SharedModule } from '../shared/shared.module';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeAddEditComponent } from './employee-add-edit/employee-add-edit.component';
 import { EmployeeListService } from './employee-list/employee-list.service';
@@ -84,7 +85,8 @@ const routes = [
     FuseSharedModule,
     FuseWidgetModule,
 
-    NgxDatatableModule
+    NgxDatatableModule,
+    SharedModule
   ],
   declarations: [
     EmployeeListComponent,

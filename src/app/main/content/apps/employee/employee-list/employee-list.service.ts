@@ -9,4 +9,8 @@ export class EmployeeListService {
     getEmployees() {
         return this.http.get(ApiConst.BASE_URL + 'employees');
     }
+
+    deleteEmployee(empl) {
+        return this.http.delete(ApiConst.BASE_URL + 'employees/' + empl.id);
+    }
 }
