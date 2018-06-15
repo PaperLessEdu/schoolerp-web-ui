@@ -31,6 +31,10 @@
                         <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedEmpl.length === 1, 'primary-100-fg': selectedEmpl.length === 0 || selectedEmpl.length > 1}" role="img" aria-hidden="true">delete</mat-icon> 
                         DELETE
                     </button>
+                    <button mat-button class="font-weight-400" (click)="exportAsPdf()">
+                        <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">file_download</mat-icon>
+                        Download
+                    </button>
                     <!-- Moving for 2nd release
                     <button mat-button class="font-weight-400" [disabled]="selectedEmpl.length == 0">
                         <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedEmpl.length >= 1, 'primary-100-fg': selectedEmpl.length < 1}"

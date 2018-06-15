@@ -4,11 +4,13 @@ import { fuseAnimations } from '@fuse/animations';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Router } from '@angular/router';
 import { MatDialog, MatSnackBar} from '@angular/material';
+import { cloneDeep } from 'lodash';
 
 import { EmployeeListService } from './employee-list.service';
 import { ChangeRoleComponent } from '../change-role/change-role.component';
 import { ChangeStandardSubjectComponent } from '../change-standard-subject/change-standard-subject.component';
 import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/confirmation-dialog.component';
+import { ExportAsPdfService } from '../../shared/services/export-as-pdf.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -29,7 +31,8 @@ export class EmployeeListComponent implements OnInit {
     constructor(private emplService: EmployeeListService,
                 private router: Router,
                 public dialog: MatDialog,
-                public snackBar: MatSnackBar) { }
+                public snackBar: MatSnackBar,
+                private exportAsPdfService: ExportAsPdfService) { }
 
     ngOnInit() {
         this.doRefresh();
@@ -139,5 +142,18 @@ export class EmployeeListComponent implements OnInit {
             verticalPosition: 'top',
             duration        : 3000
         });
+    }
+
+    exportAsPdf() {
+        const columns = [
+            {title: 'Name', dataKey: 'name'},
+            {title: 'Phone Number', dataKey: 'phoneNumber'},
+            {title: 'Email Id', dataKey: 'emailId'},
+            {title: 'Gender', dataKey: 'gender'},
+            {title: 'Blood Group', dataKey: 'bloodGroup'}
+        ];
+        const temp = cloneDeep(this.rows);
+        temp.map( obj => obj['name'] = obj.firstName + ' ' + obj.lastName );
+        this.exportAsPdfService.exportGridData(columns, temp, 'employee-list');
     }
 }
