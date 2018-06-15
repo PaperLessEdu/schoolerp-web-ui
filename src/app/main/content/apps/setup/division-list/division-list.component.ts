@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
-import { cloneDeep } from 'lodash'; 
+import { cloneDeep } from 'lodash';
 
 import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/confirmation-dialog.component';
 import { DivisionAddEditComponent } from '../division-add-edit/division-add-edit.component';
@@ -20,7 +20,7 @@ export class DivisionListComponent implements OnInit {
   loadingIndicator = true;
   reorderable = true;
   selectedDivisions: any[] = [];
-  pageType: string = 'add';
+  pageType = 'add';
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
@@ -28,13 +28,13 @@ export class DivisionListComponent implements OnInit {
               public snackBar: MatSnackBar,
               private divisionListService: DivisionListService) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.doRefresh();
   }
 
   openDialog(): void {
-    let divisionObj = this.pageType == 'add' ? { name: '' } : this.selectedDivisions[0];
-    let dialogRef = this.dialog.open(DivisionAddEditComponent, {
+    const divisionObj = this.pageType === 'add' ? { name: '' } : this.selectedDivisions[0];
+    const dialogRef = this.dialog.open(DivisionAddEditComponent, {
       width: '350px',
       data: {
         pageType: this.pageType,
@@ -48,9 +48,9 @@ export class DivisionListComponent implements OnInit {
       }
       const actionType: string = response[0];
       switch ( actionType ) {
-        case 'save': this.doRefresh(); break; 
+        case 'save': this.doRefresh(); break;
         case 'close': break;
-      }   
+      }
     });
   }
 
@@ -92,34 +92,34 @@ export class DivisionListComponent implements OnInit {
   }
 
   onDeleteAction(): void {
-    let dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
-      data: { 
+      data: {
         title: 'Confirmation',
         content: 'Are you sure you want delete this division?'
       }
     });
-    
+
     dialogRef.afterClosed().subscribe(response => {
       if (!response) {
           return;
       }
       const actionType: string = response[0];
       switch ( actionType ) {
-        case 'yes': 
-          this.deleteDivision(); 
-          break; 
+        case 'yes':
+          this.deleteDivision();
+          break;
         case 'no': break;
-      }   
+      }
     });
   }
 
   deleteDivision(): void {
-    let me = this;
+    const me = this;
     me.divisionListService.deleteDivision(this.selectedDivisions[0]).subscribe((res: any) => {
-     me.displayNotification("Division deleted successfully");
+     me.displayNotification('Division deleted successfully');
      me.doRefresh();
-    });  
+    });
   }
 
   displayNotification(msg): void {

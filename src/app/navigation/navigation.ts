@@ -32,12 +32,12 @@ export const navigation = [
                         'type': 'item',
                         'url': '/apps/setup/divisions'
                     },
-                    // {
-                    //     'id': 'subjects',
-                    //     'title': 'Subjects',
-                    //     'type': 'item',
-                    //     'url': '/apps/setup/subjects'
-                    // },
+                    {
+                        'id': 'subjects',
+                        'title': 'Subjects',
+                        'type': 'item',
+                        'url': '/apps/setup/subjects'
+                    },
                     // {
                     //     'id': 'timetable',
                     //     'title': 'Timetable',

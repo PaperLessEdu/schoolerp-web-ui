@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { fuseAnimations } from '@fuse/animations';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
-
+import { cloneDeep } from 'lodash';
+import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/confirmation-dialog.component';
 import { SubjectAddEditComponent } from '../subject-add-edit/subject-add-edit.component';
 import { SubjectListService } from './subject-list.service';
 
@@ -17,21 +18,32 @@ export class SubjectListComponent implements OnInit {
   temp: any[];
   loadingIndicator = true;
   reorderable = true;
-  selectedSubjects: any[];
-  
+  selectedSubjects: any[] = [];
+  pageType = 'add';
+
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
   constructor(public dialog: MatDialog,
               private subjectListService: SubjectListService,
               public snackBar: MatSnackBar) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.doRefresh();
   }
 
+  onAddAction(): void {
+    this.pageType = 'add';
+    this.openDialog();
+  }
+
   openDialog(): void {
-    let dialogRef = this.dialog.open(SubjectAddEditComponent, {
-      width: '350px'
+    const subjectObj = this.pageType === 'add' ? { name: '' } : this.selectedSubjects[0];
+    const dialogRef = this.dialog.open(SubjectAddEditComponent, {
+      width: '350px',
+      data: {
+        pageType: this.pageType,
+        selectedSubject: cloneDeep(subjectObj)
+      }
     });
 
     dialogRef.afterClosed().subscribe(response => {
@@ -40,13 +52,14 @@ export class SubjectListComponent implements OnInit {
       }
       const actionType: string = response[0];
       switch ( actionType ) {
-        case 'save': this.doRefresh(); break; 
+        case 'save': this.doRefresh(); break;
         case 'close': break;
-      }     
+      }
     });
   }
 
   doRefresh() {
+    this.selectedSubjects = [];
     this.subjectListService.getSubjects().subscribe((standards: any) => {
         this.temp = [...standards];
         this.rows = standards;
@@ -73,6 +86,45 @@ export class SubjectListComponent implements OnInit {
   }
 
   onEditAction(): void {
-      
+    this.pageType = 'edit';
+    this.openDialog();
+  }
+
+  onDeleteAction(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: {
+        title: 'Confirmation',
+        content: 'Are you sure you want delete this subject?'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(response => {
+      if (!response) {
+          return;
+      }
+      const actionType: string = response[0];
+      switch ( actionType ) {
+        case 'yes':
+          this.deleteSubject();
+          break;
+        case 'no': break;
+      }
+    });
+  }
+
+  deleteSubject(): void {
+    const me = this;
+    me.subjectListService.deleteSubject(this.selectedSubjects[0]).subscribe((res: any) => {
+     me.displayNotification('Subject deleted successfully');
+     me.doRefresh();
+    });
+  }
+
+  displayNotification(msg): void {
+    this.snackBar.open(msg, 'OK', {
+      verticalPosition: 'top',
+      duration        : 3000
+    });
   }
 }

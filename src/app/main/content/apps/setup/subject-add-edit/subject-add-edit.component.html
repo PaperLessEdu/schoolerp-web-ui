@@ -12,29 +12,39 @@
     <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
         <form [formGroup]="subjectForm" class="event-form w-100-p" fxLayout="column" fxFlex>
             <mat-form-field>
-                <input matInput formControlName="name" placeholder="Subject Name" required>
+                <input [(ngModel)]="data.selectedSubject.name" matInput formControlName="name" placeholder="Subject Name" required>
                 <mat-error *ngIf="subjectFormErrors.name.required">
                     Subject name is required!
                 </mat-error>
             </mat-form-field>
-            <mat-form-field>
+            <!-- <mat-form-field>
                 <input matInput formControlName="abbreviation" placeholder="Abbreviation Name" required>
                 <mat-error *ngIf="subjectFormErrors.abbreviation.required">
                     Abbreviation is required!
                 </mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
         </form>
     </div>
     <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
-        <button mat-button 
+        <button mat-button
                 mat-raised-button
+                *ngIf="data.pageType=='add'"
                 [disabled]="subjectForm.invalid"
                 (click)="addSubject()"
                 class="save-button mat-accent"
                 aria-label="SAVE">
                 Add
         </button>
-        <button mat-button 
+        <button mat-button
+                mat-raised-button
+                *ngIf="data.pageType=='edit'"
+                [disabled]="subjectForm.invalid"
+                (click)="updateSubject()"
+                class="save-button mat-accent"
+                aria-label="SAVE">
+                Update
+        </button>
+        <button mat-button
         (click)="dialogRef.close(['close',subjectForm])">
                 Close
         </button>

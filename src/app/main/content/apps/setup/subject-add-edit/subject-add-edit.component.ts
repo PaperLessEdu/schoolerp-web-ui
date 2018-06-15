@@ -12,10 +12,6 @@ import { SubjectAddEditService } from './subject-add-edit.service';
   encapsulation: ViewEncapsulation.None
 })
 export class SubjectAddEditComponent implements OnInit {
-
-  //subjectName: string;
-  //subjectAbb: string;
-
   subjectForm: FormGroup;
   subjectFormErrors: any;
 
@@ -25,34 +21,45 @@ export class SubjectAddEditComponent implements OnInit {
               public dialogRef: MatDialogRef<SubjectAddEditService>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.subjectFormErrors = {
-      name: {},
-      abbreviation: {}
+      name: {}
     };
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.subjectForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      abbreviation: ['', Validators.required]
-    });  
+      name: ['', Validators.required]
+    });
   }
 
   addSubject(): void {
-    let data = this.subjectForm.getRawValue();
+    const data = this.subjectForm.getRawValue();
     this.subjectAddEditService.addSubject(data)
       .then(() => {
-          this.dialogRef.close(['save',this.subjectForm]);  
-          
-          //Show the success message
-          let msg = 'Subject added successfully';
-          this.snackBar.open(msg, 'OK', {
-              verticalPosition: 'top',
-              duration        : 3000
-          });
+          this.dialogRef.close(['save', this.subjectForm]);
+          // Show the success message
+          this.displayNotification('Subject added successfully');
+      });
+  }
+
+  updateSubject(): void {
+    const data = this.data.selectedSubject;
+    this.subjectAddEditService.updateSubject(data)
+      .then(() => {
+        this.dialogRef.close(['save', this.subjectForm]);
+
+        // Show the success message
+        this.displayNotification('Subject updated successfully');
       });
   }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  displayNotification(msg): void {
+    this.snackBar.open(msg, 'OK', {
+      verticalPosition: 'top',
+      duration: 3000
+    });
   }
 }

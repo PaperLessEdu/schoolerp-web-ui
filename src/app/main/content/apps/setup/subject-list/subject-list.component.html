@@ -1,15 +1,15 @@
-<div id="subjects" class="page-layout carded fullwidth" fusePerfectScrollbar>    
+<div id="subjects" class="page-layout carded fullwidth" fusePerfectScrollbar>
     <!-- TOP BACKGROUND -->
     <div class="top-bg mat-accent-bg"></div>
     <!-- / TOP BACKGROUND -->
-  
+
     <!-- CENTER -->
     <div class="center">
       <!-- HEADER -->
       <div class="header white-fg"
           fxLayout="column" fxLayoutAlign="center center"
           fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
-  
+
           <!-- APP TITLE -->
         <div class="logo my-12 m-sm-0"
               fxLayout="row" fxLayoutAlign="start center">
@@ -17,15 +17,32 @@
             <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Subjects</span>
         </div>
         <!-- / APP TITLE -->
-  
-        <button mat-raised-button
-              (click)="openDialog()"
-              class="add-product-button mat-white-bg my-12 mt-sm-0">
-          <span>Add Subject</span>
-        </button>
       </div>
       <!-- CONTENT CARD -->
       <div class="mat-white-bg">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center">
+                <button (click)="onAddAction()" mat-button class="font-weight-400">
+                    <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon>
+                    ADD
+                </button>
+                <button (click)="onEditAction()" mat-button class="font-weight-400" [disabled]="selectedSubjects.length == 0 || selectedSubjects.length > 1">
+                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedSubjects.length === 1, 'primary-100-fg': selectedSubjects.length === 0 || selectedSubjects.length > 1}" role="img" aria-hidden="true">edit</mat-icon> 
+                    EDIT
+                </button>
+                <button (click)="onDeleteAction()" mat-button class="font-weight-400" [disabled]="selectedSubjects.length == 0 || selectedSubjects.length > 1">
+                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedSubjects.length === 1, 'primary-100-fg': selectedSubjects.length === 0 || selectedSubjects.length > 1}" role="img" aria-hidden="true">delete</mat-icon> 
+                    DELETE
+                </button>
+            </div>
+            <!-- SEARCH -->
+            <div style="margin-right: 10px;">
+                <mat-form-field floatPlaceholder="never">
+                    <input id="search" (keyup)='updateFilter($event)' matInput #filter placeholder="Search" class="full-right">
+                </mat-form-field>
+            </div>
+            <!-- / SEARCH -->
+        </div>
         <ngx-datatable
             #table
             class="material"
@@ -37,39 +54,16 @@
             [rowHeight]="'auto'"
             [scrollbarH]="true"
             [reorderable]="reorderable"
-            [selectionType]="'checkbox'"
+            [selectionType]="'single'"
             [limit]="10"
+            [selected]="selectedSubjects"
             (select)='onSelect($event)'>
-
-            <ngx-datatable-column [width]="48"
-                                [canAutoResize]="false"
-                                [sortable]="false">
-                <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
-                            let-selectFn="selectFn">
-                    <mat-checkbox [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></mat-checkbox>
-                </ng-template>
-
-                <ng-template ngx-datatable-cell-template 
-                            let-value="value" 
-                            let-isSelected="isSelected"
-                            let-onCheckboxChangeFn="onCheckboxChangeFn"
-                            let-row="row">
-                    <mat-checkbox [checked]="isSelected" (change)="onCheckboxChangeFn(row)"></mat-checkbox>
-                </ng-template>
-            </ngx-datatable-column>
-
             <ngx-datatable-column name="Name">
                 <ng-template let-row="row" ngx-datatable-cell-template>
                     {{row.name}}
                 </ng-template>
             </ngx-datatable-column>
-
-            <ngx-datatable-column name="Abbreviation">
-                <ng-template let-row="row" ngx-datatable-cell-template>
-                    {{row.abbreviation}}
-                </ng-template>
-            </ngx-datatable-column>
         </ngx-datatable>
       </div>
-    </div>  
+    </div>
   </div>
