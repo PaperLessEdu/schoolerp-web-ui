@@ -5,6 +5,7 @@ import { MatButtonModule, MatIconModule, MatDialogModule, MatToolbarModule } fro
 import { FuseSharedModule } from '@fuse/shared.module';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ExportAsPdfService } from './services/export-as-pdf.service';
+import { DateUtilService } from './services/date-util.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { ExportAsPdfService } from './services/export-as-pdf.service';
   ],
   declarations: [ConfirmationDialogComponent],
   entryComponents: [ConfirmationDialogComponent],
-  providers: [ExportAsPdfService]
+  providers: [ExportAsPdfService, DateUtilService]
 })
 export class SharedModule { }
