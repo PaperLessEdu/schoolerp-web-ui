@@ -1,0 +1,68 @@
+<div id="academic-year" class="page-layout carded fullwidth" fusePerfectScrollbar>
+        <!-- TOP BACKGROUND -->
+        <div class="top-bg mat-accent-bg"></div>
+        <!-- / TOP BACKGROUND -->
+
+        <!-- CENTER -->
+        <div class="center">
+          <!-- HEADER -->
+          <div class="header white-fg"
+              fxLayout="column" fxLayoutAlign="center center"
+              fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+            <!-- APP TITLE -->
+            <div class="logo my-12 m-sm-0"
+                  fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">today</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Academic Year</span>
+            </div>
+            <!-- / APP TITLE -->
+          </div>
+          <!-- CONTENT CARD -->
+          <div class="mat-white-bg">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center">
+                    <button (click)="onAddAction()" mat-button class="font-weight-400">
+                        <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon> 
+                        ADD
+                    </button>
+                    <button (click)="onEditAction()" mat-button class="font-weight-400" [disabled]="selected.length == 0 || selected.length > 1">
+                        <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selected.length === 1, 'primary-100-fg': selected.length === 0 || selected.length > 1}" role="img" aria-hidden="true">edit</mat-icon> 
+                        EDIT
+                    </button>
+                    <button (click)="onDeleteAction()" mat-button class="font-weight-400" [disabled]="selected.length == 0 || selected.length > 1">
+                        <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selected.length === 1, 'primary-100-fg': selected.length === 0 || selected.length > 1}" role="img" aria-hidden="true">delete</mat-icon> 
+                        DELETE
+                    </button>
+                </div>
+                <!-- SEARCH -->
+                <div style="margin-right: 10px;">
+                    <mat-form-field floatPlaceholder="never">
+                        <input id="search" (keyup)='updateFilter($event)' matInput #filter placeholder="Search" class="full-right">
+                    </mat-form-field>
+                </div>
+                <!-- / SEARCH -->
+            </div>
+            <ngx-datatable
+                #table
+                class="material"
+                [rows]="rows"
+                [loadingIndicator]="loadingIndicator"
+                [columnMode]="'force'"
+                [headerHeight]="48"
+                [footerHeight]="56"
+                [rowHeight]="'auto'"
+                [scrollbarH]="true"
+                [reorderable]="reorderable"
+                [selectionType]="'single'"
+                [limit]="10"
+                [selected]="selected"
+                (select)='onSelect($event)'>
+                <ngx-datatable-column name="Name">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.name}}
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </div>
+      </div>

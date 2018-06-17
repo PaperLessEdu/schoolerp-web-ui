@@ -38,6 +38,10 @@ const routes = [
   {
     path: 'roles',
     loadChildren: './role/role.module#RoleModule'
+  },
+  {
+    path: 'academic-year',
+    loadChildren: './academic-year/academic-year.module#AcademicYearModule'
   }
 ];
 
@@ -59,11 +63,11 @@ const routes = [
     SharedModule
   ],
   declarations: [
-    StandardListComponent, 
-    StandardAddEditComponent, 
-    SubjectListComponent, 
-    SubjectAddEditComponent, 
-    DivisionListComponent, 
+    StandardListComponent,
+    StandardAddEditComponent,
+    SubjectListComponent,
+    SubjectAddEditComponent,
+    DivisionListComponent,
     DivisionAddEditComponent
   ],
   providers: [
@@ -75,7 +79,7 @@ const routes = [
     DivisionAddEditService
   ],
   entryComponents: [
-    StandardAddEditComponent, 
+    StandardAddEditComponent,
     SubjectAddEditComponent,
     DivisionAddEditComponent
   ]

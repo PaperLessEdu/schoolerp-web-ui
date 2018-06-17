@@ -21,6 +21,12 @@ export const navigation = [
                 'icon': 'settings',
                 'children': [
                     {
+                        'id': 'academic-year',
+                        'title': 'Academic Year',
+                        'type': 'item',
+                        'url': '/apps/setup/academic-year/list'
+                    },
+                    {
                         'id': 'standards',
                         'title': 'Standards',
                         'type': 'item',
