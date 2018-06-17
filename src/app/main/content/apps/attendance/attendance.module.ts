@@ -24,6 +24,10 @@ const routes = [
   {
     path: 'taker',
     component: AttendanceTakerComponent
+  },
+  {
+    path: 'report',
+    component: AttendanceTakerComponent
   }
 ];
 

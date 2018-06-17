@@ -107,14 +107,27 @@ export const navigation = [
                     }
                 ]
             },
-            // {
-            //     'id': 'attendance',
-            //     'title': 'Attendance',
-            //     'translate': 'NAV.ATTENDANCE',
-            //     'type': 'item',
-            //     'icon': 'today',
-            //     'url': '/apps/attendance/taker'
-            // },
+            {
+                'id': 'attendance',
+                'title': 'Attendance',
+                'translate': 'NAV.ATTENDANCE',
+                'type': 'collapse',
+                'icon': 'check_box',
+                'children': [
+                    {
+                        'id': 'taker',
+                        'title': 'Taker',
+                        'type': 'item',
+                        'url': '/apps/attendance/taker'
+                    },
+                    {
+                        'id': 'report',
+                        'title': 'Report',
+                        'type': 'item',
+                        'url': '/apps/attendance/taker'
+                    }
+                ]
+            },
             {
                 'id': 'holidays',
                 'title': 'Holidays',
