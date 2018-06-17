@@ -151,13 +151,13 @@ export class StudentListComponent implements OnInit {
     exportAsPdf(): void {
         const columns = [
             {title: 'Name', dataKey: 'name'},
-            {title: 'Phone Number', dataKey: 'phoneNumber'},
-            {title: 'Email Id', dataKey: 'emailId'},
+            {title: 'Phone Number', dataKey: 'father.phoneNumber'},
+            {title: 'Email Id', dataKey: 'father.emailId'},
             {title: 'Gender', dataKey: 'gender'},
             {title: 'Blood Group', dataKey: 'bloodGroup'}
         ];
         const temp = cloneDeep(this.rows);
         temp.map( obj => obj['name'] = obj.firstName + ' ' + obj.lastName );
-        this.exportAsPdfService.exportGridData(columns, temp, 'employee-list');
+        this.exportAsPdfService.exportGridData(columns, temp, 'student-list');
     }
 }
