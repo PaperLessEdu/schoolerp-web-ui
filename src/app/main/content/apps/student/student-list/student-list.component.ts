@@ -151,10 +151,10 @@ export class StudentListComponent implements OnInit {
     exportAsPdf(): void {
         const columns = [
             {title: 'Name', dataKey: 'name'},
-            {title: 'Phone Number', dataKey: 'father.phoneNumber'},
-            {title: 'Email Id', dataKey: 'father.emailId'},
             {title: 'Gender', dataKey: 'gender'},
-            {title: 'Blood Group', dataKey: 'bloodGroup'}
+            {title: 'Blood Group', dataKey: 'bloodGroup'},
+            {title: 'Father\'s Phone Number', dataKey: 'father.phoneNumber'},
+            {title: 'Father\'s Email Id', dataKey: 'father.emailId'}
         ];
         const temp = cloneDeep(this.rows);
         temp.map( obj => obj['name'] = obj.firstName + ' ' + obj.lastName );

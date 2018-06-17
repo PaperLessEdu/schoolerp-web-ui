@@ -27,7 +27,14 @@ export class ExportAsPdfService {
             tableLineWidth: 0,
             // Hooks
             createdHeaderCell: function (cell, data) {},
-            createdCell: function (cell, data) {},
+            createdCell: function (cell, data) {
+                const dataKeyParts = data.column.raw.dataKey.split('.');
+                if (dataKeyParts.length > 1) {
+                    let o = data.row.raw;
+                    dataKeyParts.forEach(key => {(o !== null || o !== '') ? o = o[key] : ''});
+                    cell.text = o;
+                }
+            },
             drawHeaderRow: function (row, data) {},
             drawRow: function (row, data) {},
             drawHeaderCell: function (cell, data) {},
