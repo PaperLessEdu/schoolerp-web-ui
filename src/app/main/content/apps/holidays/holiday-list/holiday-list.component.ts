@@ -2,10 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { cloneDeep } from 'lodash';
+import * as moment from 'moment';
 
 import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/confirmation-dialog.component';
 import { HolidayAddEditComponent } from '../holiday-add-edit/holiday-add-edit.component';
 import { HolidayListService } from './holiday-list.service';
+import { ExportAsPdfService } from '../../shared/services/export-as-pdf.service';
 
 @Component({
   selector: 'app-holiday-list',
@@ -25,8 +28,9 @@ export class HolidayListComponent implements OnInit {
 
   constructor(private holidayListService: HolidayListService,
               private snackBar: MatSnackBar,
-              public dialog: MatDialog) { }
-  
+              public dialog: MatDialog,
+              private exportAsPdfService: ExportAsPdfService) { }
+
   ngOnInit() {
     this.doRefresh();
   }
@@ -56,14 +60,14 @@ export class HolidayListComponent implements OnInit {
       }
       const actionType: string = response[0];
       switch ( actionType ) {
-        case 'save': 
-          this.doRefresh(); 
-          break; 
+        case 'save':
+          this.doRefresh();
+          break;
         case 'close': break;
-      }   
+      }
     });
   }
-  
+
   updateFilter(event): void {
       const val = event.target.value.toLowerCase();
 
@@ -95,23 +99,23 @@ export class HolidayListComponent implements OnInit {
   onDeleteAction(): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
-      data: { 
+      data: {
         title: 'Confirmation',
         content: 'Are you sure you want delete this holiday?'
       }
     });
-    
+
     dialogRef.afterClosed().subscribe(response => {
       if (!response) {
           return;
       }
       const actionType: string = response[0];
       switch ( actionType ) {
-        case 'yes': 
-          this.deleteHoliday(); 
-          break; 
+        case 'yes':
+          this.deleteHoliday();
+          break;
         case 'no': break;
-      }   
+      }
     });
   }
 
@@ -128,5 +132,15 @@ export class HolidayListComponent implements OnInit {
       verticalPosition: 'top',
       duration        : 3000
     });
+  }
+
+  exportAsPdf(): void {
+    const columns = [
+      {title: 'Date', dataKey: 'date'},
+      {title: 'Name', dataKey: 'name'}
+    ];
+    const temp = cloneDeep(this.rows);
+    temp.map( obj => obj['date'] = moment(obj['date']).format('DD MMM YYYY') );
+    this.exportAsPdfService.exportGridData(columns, temp, 'holiday-list');
   }
 }

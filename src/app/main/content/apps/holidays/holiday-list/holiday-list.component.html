@@ -1,16 +1,16 @@
-<div id="holidays" class="page-layout carded fullwidth" fusePerfectScrollbar>    
+<div id="holidays" class="page-layout carded fullwidth" fusePerfectScrollbar>
   <!-- TOP BACKGROUND -->
   <div class="top-bg mat-accent-bg"></div>
   <!-- / TOP BACKGROUND -->
 
   <!-- CENTER -->
   <div class="center">
-    
+
     <!-- HEADER -->
     <div class="header white-fg"
          fxLayout="column" fxLayoutAlign="center center"
          fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
-      
+
       <!-- APP TITLE -->
       <div class="logo my-12 m-sm-0"
            fxLayout="row" fxLayoutAlign="start center">
@@ -28,12 +28,17 @@
                     ADD
                 </button>
                 <button (click)="onEditAction();" mat-button class="font-weight-400" [disabled]="selectedholidays.length == 0 || selectedholidays.length > 1">
-                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedholidays.length === 1, 'primary-100-fg': selectedholidays.length === 0 || selectedholidays.length > 1}" role="img" aria-hidden="true">edit</mat-icon> 
+                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedholidays.length === 1, 'primary-100-fg': selectedholidays.length === 0 || selectedholidays.length > 1}" role="img" aria-hidden="true">edit</mat-icon>
                     EDIT
                 </button>
                 <button (click)="onDeleteAction();" mat-button class="font-weight-400" [disabled]="selectedholidays.length == 0 || selectedholidays.length > 1">
-                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedholidays.length === 1, 'primary-100-fg': selectedholidays.length === 0 || selectedholidays.length > 1}" role="img" aria-hidden="true">delete</mat-icon> 
+                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedholidays.length === 1, 'primary-100-fg': selectedholidays.length === 0 || selectedholidays.length > 1}" role="img" aria-hidden="true">delete</mat-icon>
                     DELETE
+                </button>
+                <button (click)="exportAsPdf()" mat-button class="font-weight-400" [disabled]="rows?.length == 0">
+                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':rows?.length > 1, 'primary-100-fg': rows?.length === 0}"
+                        role="img" aria-hidden="true">file_download</mat-icon>
+                    Download
                 </button>
             </div>
             <!-- SEARCH -->
@@ -43,7 +48,7 @@
                 </mat-form-field>
             </div>
         </div>
-        
+
         <ngx-datatable
             #table
             class="material"
@@ -65,9 +70,9 @@
                     <a>{{row.date | date: 'MMM d, y'}}</a>
                 </ng-template>
             </ngx-datatable-column>
-            
+
             <ngx-datatable-column name="Name" prop="name"></ngx-datatable-column>
-            
+
         </ngx-datatable>
     </div>
   </div>
