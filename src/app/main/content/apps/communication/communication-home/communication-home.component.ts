@@ -247,6 +247,10 @@ export class CommunicationHomeComponent implements OnInit {
     } else {
       this.showDivs = true;
       url = this.stundentsAPI + '?standardId=' + this.selectedStd;
+
+      if (this.selectedDiv !== '0') {
+        url += '&divisionId=' + this.selectedDiv;
+      }
     }
     this.fetchStudentDetails(url);
   }

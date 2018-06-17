@@ -27,7 +27,7 @@ import { ExportAsPdfService } from 'app/main/content/apps/shared/services/export
 })
 export class StudentListComponent implements OnInit {
     rows: any[];
-    studentList: any[];
+    studentList: any[] = [];
     temp: any[];
     loadingIndicator = true;
     reorderable = true;

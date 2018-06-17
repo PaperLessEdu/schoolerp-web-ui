@@ -8,13 +8,34 @@ import { fuseAnimations } from '@fuse/animations';
   animations : fuseAnimations
 })
 export class AcademicYearListComponent implements OnInit {
-    loadingIndicator = false;
-    rows = [];
-    selected = [];
+  loadingIndicator = false;
+  rows = [];
+  selected = [];
+  reorderable = true;
 
-    constructor() { }
+  constructor() { }
 
-    ngOnInit() {
+  ngOnInit() {
 
-    }
+  }
+
+  onAddAction() {
+
+  }
+
+  onEditAction() {
+
+  }
+
+  onDeleteAction() {
+
+  }
+
+  updateFilter(event): void {
+
+  }
+
+  onSelect(obj): void {
+    this.selected = obj.selected;
+}
 }
