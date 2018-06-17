@@ -296,10 +296,7 @@
 
                   <!-- Email Id -->
                   <mat-form-field fxFlex="50" formGroupName="fathersDetails">
-                    <input matInput placeholder="Email" formControlName="emailId" required>
-                    <mat-error *ngIf="parentsInfo['controls'].fathersDetails['controls'].emailId.errors?.required">
-                      Email is required!
-                    </mat-error>
+                    <input matInput placeholder="Email" formControlName="emailId">
                   </mat-form-field>
                 </div>
 
@@ -345,10 +342,7 @@
 
                   <!-- Email Id -->
                   <mat-form-field fxFlex="50" formGroupName="mothersDetails">
-                    <input matInput placeholder="Email" formControlName="emailId" required>
-                    <mat-error *ngIf="parentsInfo['controls'].mothersDetails['controls'].emailId.errors?.required">
-                      Email is required!
-                    </mat-error>
+                    <input matInput placeholder="Email" formControlName="emailId">
                   </mat-form-field>
                 </div>
 
@@ -374,10 +368,7 @@
                 <div>
                   <!-- Phone Number -->
                   <mat-form-field fxFlex="50" formGroupName="mothersDetails">
-                    <input matInput placeholder="Phone Number" formControlName="phoneNumber" required>
-                    <mat-error *ngIf="parentsInfo['controls'].mothersDetails['controls'].phoneNumber.errors?.required">
-                      Phone Number is required!
-                    </mat-error>
+                    <input matInput placeholder="Phone Number" formControlName="phoneNumber">
                   </mat-form-field>
                 </div>
               </fieldset>

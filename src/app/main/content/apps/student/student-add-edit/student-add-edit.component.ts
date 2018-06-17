@@ -228,14 +228,14 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
         occupation: ['', Validators.required],
         qualification: ['', Validators.required],
         phoneNumber: ['', Validators.required],
-        emailId: ['', Validators.required]
+        emailId: ['']
       }),
       mothersDetails: this.formBuilder.group({
         name: ['', Validators.required],
         occupation: ['', Validators.required],
         qualification: ['', Validators.required],
-        phoneNumber: ['', Validators.required],
-        emailId: ['', Validators.required]
+        phoneNumber: [''],
+        emailId: ['']
       }),
       guardianDetails: this.formBuilder.group({
         name: [''],

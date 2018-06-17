@@ -20,7 +20,7 @@ import { ExportAsPdfService } from '../../shared/services/export-as-pdf.service'
 })
 
 export class EmployeeListComponent implements OnInit {
-    rows: any[];
+    rows: any[] = [];
     temp: any[];
     loadingIndicator = false;
     reorderable = true;

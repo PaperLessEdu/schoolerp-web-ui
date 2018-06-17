@@ -35,8 +35,8 @@
                             role="img" aria-hidden="true">delete</mat-icon>
                         DELETE
                     </button>
-                    <button (click)="exportAsPdf()" mat-button class="font-weight-400" [disabled]="studentList.length === 0">
-                        <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':studentList.length > 1, 'primary-100-fg': studentList.length === 0}"
+                    <button (click)="exportAsPdf()" mat-button class="font-weight-400" [disabled]="studentList?.length === 0">
+                        <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':studentList?.length > 1, 'primary-100-fg': studentList?.length === 0}"
                             role="img" aria-hidden="true">file_download</mat-icon>
                         Download
                     </button>
