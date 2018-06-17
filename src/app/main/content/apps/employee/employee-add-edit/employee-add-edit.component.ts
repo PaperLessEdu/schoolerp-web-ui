@@ -135,7 +135,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
                     if (this.pageType === 'new') {
                         this.setDefaultValue();
                     }
-                    
+
                     // Country is not coming from backend, Added UI Fix.
                     // Need to fix this in backend. Once country added in backend we will delete this code.
                     this.horizontalStepperStep2.patchValue({
