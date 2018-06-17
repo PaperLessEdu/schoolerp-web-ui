@@ -32,6 +32,8 @@ import { StudentAddEditService } from './student-add-edit/student-add-edit.servi
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { StudentProfileService } from 'app/main/content/apps/student/student-profile/student-profile.service';
+import { AuthGuard } from 'app/main/content/authentication/auth.guard';
+import { SharedModule } from '../shared/shared.module';
 
 const routes = [
   {
@@ -41,6 +43,14 @@ const routes = [
   {
     path: 'new',
     component: StudentAddEditComponent
+  },
+  {
+    path: 'list/:id',
+    component: StudentAddEditComponent,
+    resolve: {
+      data: StudentAddEditService
+    },
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile/:id',
@@ -79,7 +89,8 @@ const routes = [
     MatExpansionModule,
 
     FuseSharedModule, // To add title on card panel
-    FuseWidgetModule
+    FuseWidgetModule,
+    SharedModule
   ],
   declarations: [
     StudentListComponent,

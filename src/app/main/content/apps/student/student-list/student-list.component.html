@@ -25,13 +25,19 @@
                         <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon>
                         ADD
                     </button>
-                    <button mat-button class="font-weight-400">
-                        <mat-icon class="s-20 mat-icon material-icons" role="img" aria-hidden="true">edit</mat-icon>
+                    <button (click)="onEditAction()" mat-button class="font-weight-400" [disabled]="selectedStudent.length === 0 || selectedStudent.length > 1">
+                        <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedStudent.length === 1, 'primary-100-fg': selectedStudent.length === 0 || selectedStudent.length > 1}"
+                            role="img" aria-hidden="true">edit</mat-icon>
                         EDIT
                     </button>
-                    <button mat-button class="font-weight-400">
-                        <mat-icon class="s-20 mat-icon material-icons" role="img" aria-hidden="true">delete</mat-icon>
+                    <button (click)="onDeleteAction()" mat-button class="font-weight-400" [disabled]="selectedStudent.length === 0 || selectedStudent.length > 1">
+                        <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedStudent.length === 1, 'primary-100-fg': selectedStudent.length === 0 || selectedStudent.length > 1}"
+                            role="img" aria-hidden="true">delete</mat-icon>
                         DELETE
+                    </button>
+                    <button mat-button class="font-weight-400" (click)="exportAsPdf()">
+                        <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">file_download</mat-icon>
+                        Download
                     </button>
                     <!-- TODO: for nect release
                         <button mat-button class="font-weight-400" [matMenuTriggerFor]="menu">
@@ -47,8 +53,18 @@
                     </mat-menu>-->
                 </div>
                 <!-- SEARCH -->
-                <div style="margin-right: 10px;">
-                    <mat-form-field floatPlaceholder="never">
+                <div class="text-right">
+                    <mat-select class="w-10-p" placeholder="Standard" [(ngModel)]="std" (change)="applyFilter()">
+                        <mat-option *ngFor="let std of standards" [value]="std.standard_id">
+                            {{std.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-select class="w-10-p" placeholder="Division" [(ngModel)]="division" (change)="applyFilter()">
+                        <mat-option *ngFor="let divi of divisions" [value]="divi.division_id">
+                            {{divi.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-form-field class="ml-32 mr-12" floatPlaceholder="never">
                         <input id="search" (keyup)='updateFilter($event)' matInput #filter placeholder="Search" class="full-right">
                     </mat-form-field>
                 </div>
@@ -57,7 +73,7 @@
 
             <ngx-datatable #table class="material" [rows]="studentList" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
                 [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
-                [selectionType]="'single'" [limit]="10">
+                [selectionType]="'single'" [limit]="10" (select)='onSelect($event)'>
 
                 <ngx-datatable-column name="Name" prop="name">
                     <ng-template let-row="row" ngx-datatable-cell-template>

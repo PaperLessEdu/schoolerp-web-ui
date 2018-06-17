@@ -144,7 +144,7 @@ export class EmployeeListComponent implements OnInit {
         });
     }
 
-    exportAsPdf() {
+    exportAsPdf(): void {
         const columns = [
             {title: 'Name', dataKey: 'name'},
             {title: 'Phone Number', dataKey: 'phoneNumber'},

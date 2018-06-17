@@ -53,10 +53,6 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
     horizontalStepperStep2: FormGroup;
     horizontalStepperStep3: FormGroup;
 
-    horizontalStepperStep1Errors: any;
-    horizontalStepperStep2Errors: any;
-    horizontalStepperStep3Errors: any;
-
     // getters for form control
     get firstName(): FormControl {
         return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('firstName'));
@@ -131,7 +127,6 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
                     } else {
                         this.pageType = 'new';
                         this.employee = new Employee();
-                        // this.setDefaultValue();
                     }
                     this.horizontalStepperStep1 = this.horizontalStepperStep1Form();
                     this.horizontalStepperStep2 = this.horizontalStepperStep2Form();

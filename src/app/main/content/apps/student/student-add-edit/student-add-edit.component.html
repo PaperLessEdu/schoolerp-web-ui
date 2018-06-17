@@ -18,8 +18,11 @@
           <mat-icon class="s-48">person_outline</mat-icon>
         </div>
         <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-          <div class="h2">
+          <div class="h2" *ngIf="pageType === 'new'">
             New Student
+          </div>
+          <div class="h2" *ngIf="pageType === 'edit'">
+            {{student.firstName}} {{student.lastName}}
           </div>
           <div class="subtitle secondary-text">
             <span>Student Registration</span>
@@ -55,6 +58,7 @@
                   </mat-error>
                 </mat-form-field>
               </div> -->
+
 
               <div>
                 <!-- First Name -->
@@ -424,17 +428,21 @@
             </form>
           </mat-step>
 
+          <!-- Final Step -->
           <mat-step>
             <ng-template matStepLabel>Done</ng-template>
             <div class="h2 m-16" fxLayout="row" fxLayoutAlign="center center">
-              Thank your for filling out our form.
+                {{pageType ==='new' ? 'Click on the Submit button to register new student' : 'Click on the Save button to update student details'}}
             </div>
             <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
               <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
                 Previous
               </button>
-              <button mat-raised-button type="button" color="accent" (click)="addStudent()">
-                Add
+              <button mat-raised-button type="button" color="accent" (click)="addStudent()" *ngIf="pageType ==='new'">
+                  Submit
+              </button>
+              <button mat-raised-button type="button" color="accent"  *ngIf="pageType ==='edit'">
+                  Save
               </button>
             </div>
           </mat-step>

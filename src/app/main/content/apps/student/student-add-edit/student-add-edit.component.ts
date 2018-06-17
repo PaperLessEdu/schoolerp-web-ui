@@ -23,7 +23,6 @@ import { Constants, MY_FORMATS } from 'app/main/content/apps/shared/constants';
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE]
     },
-
     {
       provide: MAT_DATE_FORMATS,
       useValue: MY_FORMATS
@@ -161,11 +160,22 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     this.onStudentChanged =
       this.studentAddEditService.onStudentChanged
         .subscribe(student => {
+          // will change this condition as once we get student if from backend
+          if (!student) {
+            this.student = new Student(student);
+            this.pageType = 'edit';
+          } else {
+            this.pageType = 'new';
+            this.student = new Student();
+            // this.setDefaultValue();
+          }
           this.generalInfo = this.generalInfoForm();
           this.contactInfo = this.contactInfoForm();
           this.parentsInfo = this.parentsInfoForm();
 
-          this.setDefaultValue();
+          if (this.pageType === 'new') {
+            this.setDefaultValue();
+          }
         });
   }
 
@@ -249,7 +259,7 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     });
   }
 
-  addStudent() {
+  addStudent(): void {
     const generalInfo = this.generalInfo.getRawValue();
     const contactInfo = this.contactInfo.getRawValue();
     const parentsInfo = this.parentsInfo.getRawValue();
