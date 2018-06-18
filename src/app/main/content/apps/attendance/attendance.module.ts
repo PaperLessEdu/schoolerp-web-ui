@@ -21,6 +21,7 @@ import { AttendanceTakerComponent } from './attendance-taker/attendance-taker.co
 import { AttendanceTakerService } from './attendance-taker/attendance-taker.service';
 import { AttendanceReportComponent } from './attendance-report/attendance-report.component';
 import { AttendanceReportService } from './attendance-report/attendance-report.service';
+import { ExportAsPdfService } from '../shared/services/export-as-pdf.service';
 
 const routes = [
   {
@@ -54,7 +55,8 @@ const routes = [
   declarations: [AttendanceTakerComponent, AttendanceReportComponent],
   providers: [
     AttendanceTakerService,
-    AttendanceReportService
+    AttendanceReportService,
+    ExportAsPdfService
   ]
 })
 export class AttendanceModule { }

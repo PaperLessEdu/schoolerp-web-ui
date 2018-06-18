@@ -43,6 +43,12 @@
                     (click)="fetchStudentAttendanceDetails()">
                 Go
             </button>
+
+            <button (click)="exportAsPdf()" mat-button class="font-weight-400 accent-600-fg" *ngIf="attendanceData?.length > 0">
+                <mat-icon class="s-20 mat-icon material-icons accent-600-fg"
+                    role="img" aria-hidden="true">file_download</mat-icon>
+                Download
+            </button>
         </div>
         <ngx-datatable
             class="material"

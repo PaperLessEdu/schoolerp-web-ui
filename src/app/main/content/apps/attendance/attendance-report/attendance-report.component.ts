@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 
+import { ExportAsPdfService } from '../../shared/services/export-as-pdf.service';
 import { AttendanceReportService } from './attendance-report.service';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { ApiConst } from '../../shared/constants';
@@ -20,7 +21,8 @@ export class AttendanceReportComponent implements OnInit {
   loadingIndicator = false;
   reorderable = true;
 
-  constructor(private attendanceReportService: AttendanceReportService) { }
+  constructor(private attendanceReportService: AttendanceReportService,
+              private exportAsPdfService: ExportAsPdfService) { }
 
   ngOnInit() {
     this.getStandards();
@@ -63,5 +65,15 @@ export class AttendanceReportComponent implements OnInit {
     // this.attendanceReportService.getStudentAttendanceDetails(url).subscribe((attendance: any) => {
 
     // });
+  }
+
+  exportAsPdf() {
+    const columns = [
+      {title: 'Name', dataKey: 'name'},
+      {title: 'Total Days', dataKey: 'totalDays'},
+      {title: 'Absent Days', dataKey: 'absentDays'},
+      {title: 'Present Days', dataKey: 'presentDays'}
+    ];
+    this.exportAsPdfService.exportGridData(columns, this.attendanceData, 'attendance-report');
   }
 }
