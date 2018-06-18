@@ -25,12 +25,13 @@ import { MY_FORMATS } from 'app/main/content/apps/shared/constants';
 })
 export class ScheduleExamComponent implements OnInit {
 
-    displayedColumns = ['subject', 'date', 'time', 'marks'];
+    // displayedColumns = ['subject', 'date', 'time', 'marks'];
     scheduleExamTemplate = [];
     examObj: any;
     standardList: any;
     subjectList: any;
     examName;
+    selectedStd = [];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -97,5 +98,15 @@ export class ScheduleExamComponent implements OnInit {
             time[0] = +time[0] % 12 || 12; // Adjust hours
         }
         return time.join(''); // return adjusted time or original string
+    }
+
+    toggleStd(std: string): void {
+        const index = this.selectedStd.indexOf(std);
+        if (index === -1) {
+            this.selectedStd.push(std);
+        }
+        else {
+            this.selectedStd.splice(index, 1);
+        }
     }
 }

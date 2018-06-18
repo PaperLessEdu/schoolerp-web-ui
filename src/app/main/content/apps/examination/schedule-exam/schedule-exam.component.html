@@ -42,13 +42,16 @@
                             reactive patterns, testing, and validation.
                         </p>
                         <mat-form-field class="pl-24 pb-16" fxFlex="80">
-                            <input matInput placeholder="Exam Name" name="examName" [(ngModel)]="examName" required>
+                            <input matInput placeholder="Exam Name" name="examName" [(ngModel)]="examName" #exaName="ngModel" required>
+                            <mat-error *ngIf="exaName.errors?.required">
+                                Exam name is required!
+                            </mat-error>
                         </mat-form-field>
                         <div class="pl-24 pb-16" *ngFor="let std of standardList">
-                            <mat-checkbox [(ngModel)]="std.selected">{{std.name}}</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="std.selected" #standard="ngModel" (click)="toggleStd(std.name)" (change)="selectedStd.indexOf(std.name) > -1">{{std.name}}</mat-checkbox>
                         </div>
                         <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
-                            <button mat-raised-button matStepperNext type="button" color="accent">
+                            <button mat-raised-button matStepperNext type="button" color="accent" [disabled]="exaName.invalid || selectedStd.length === 0 ? 'disabled': null">
                                 Next
                             </button>
                         </div>
