@@ -57,16 +57,16 @@
       </div>
       <div class="main-container">
         <div *ngIf="selectedRecipient!==''" class="list">
-            <ngx-datatable #table 
-                  class="material" 
-                  [rows]="rows" 
-                  [loadingIndicator]="loadingIndicator" 
-                  [columnMode]="'force'" 
+            <ngx-datatable #table
+                  class="material"
+                  [rows]="rows"
+                  [loadingIndicator]="loadingIndicator"
+                  [columnMode]="'force'"
                   [headerHeight]="48"
-                  [footerHeight]="56" 
-                  [rowHeight]="'auto'" 
-                  [scrollbarH]="true" 
-                  [reorderable]="reorderable" 
+                  [footerHeight]="56"
+                  [rowHeight]="'auto'"
+                  [scrollbarH]="true"
+                  [reorderable]="reorderable"
                   [selectionType]="'checkbox'"
                   [limit]="10"
                   [selected]="selected"
@@ -80,8 +80,8 @@
                         <mat-checkbox [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></mat-checkbox>
                     </ng-template>
 
-                    <ng-template ngx-datatable-cell-template 
-                                let-value="value" 
+                    <ng-template ngx-datatable-cell-template
+                                let-value="value"
                                 let-isSelected="isSelected"
                                 let-onCheckboxChangeFn="onCheckboxChangeFn"
                                 let-row="row">
@@ -122,10 +122,10 @@
                 </textarea>
               </mat-form-field>
               <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
-                <button mat-raised-button matStepperNext 
-                        type="submit" 
-                        [disabled]="!composeEmailForm.valid" 
-                        color="accent" 
+                <button mat-raised-button matStepperNext
+                        type="submit"
+                        [disabled]="!composeEmailForm.valid"
+                        color="accent"
                         (click)="sendEmail();">
                     Send
                 </button>
@@ -141,10 +141,10 @@
                   </textarea>
                 </mat-form-field>
                 <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
-                    <button mat-raised-button matStepperNext 
-                            type="submit" 
-                            [disabled]="!composeTextMsgForm.valid" 
-                            color="accent" 
+                    <button mat-raised-button matStepperNext
+                            type="submit"
+                            [disabled]="!composeTextMsgForm.valid"
+                            color="accent"
                             (click)="sendMessage();">
                         Send
                     </button>

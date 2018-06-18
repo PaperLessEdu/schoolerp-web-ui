@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
-import { 
+import {
   MatCheckboxModule,
   MatIconModule,
   MatFormFieldModule,
@@ -19,6 +19,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AttendanceTakerComponent } from './attendance-taker/attendance-taker.component';
 import { AttendanceTakerService } from './attendance-taker/attendance-taker.service';
+import { AttendanceReportComponent } from './attendance-report/attendance-report.component';
+import { AttendanceReportService } from './attendance-report/attendance-report.service';
 
 const routes = [
   {
@@ -27,7 +29,7 @@ const routes = [
   },
   {
     path: 'report',
-    component: AttendanceTakerComponent
+    component: AttendanceReportComponent
   }
 ];
 
@@ -49,9 +51,10 @@ const routes = [
     FuseWidgetModule,
     NgxDatatableModule
   ],
-  declarations: [AttendanceTakerComponent],
+  declarations: [AttendanceTakerComponent, AttendanceReportComponent],
   providers: [
-    AttendanceTakerService
+    AttendanceTakerService,
+    AttendanceReportService
   ]
 })
 export class AttendanceModule { }

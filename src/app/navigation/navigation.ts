@@ -124,7 +124,7 @@ export const navigation = [
                         'id': 'report',
                         'title': 'Report',
                         'type': 'item',
-                        'url': '/apps/attendance/taker'
+                        'url': '/apps/attendance/report'
                     }
                 ]
             },

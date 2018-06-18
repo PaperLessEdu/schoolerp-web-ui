@@ -1,0 +1,70 @@
+<div id="attendance-report" class="page-layout carded fullwidth attendance-report-container" fusePerfectScrollbar>
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+      <!-- HEADER -->
+      <div class="header white-fg"
+          fxLayout="column" fxLayoutAlign="center center"
+          fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+        <!-- APP TITLE -->
+        <div class="logo my-12 m-sm-0"
+              fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">today</mat-icon>
+            <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Attendance Report</span>
+        </div>
+      </div>
+      <!-- CONTENT CARD -->
+      <div class="mat-white-bg">
+        <div class="top-bar">
+            <mat-form-field class="form-field">
+                <mat-select placeholder="Standard" [(ngModel)]="selectedStd" (change)="onChangeStd($event)">
+                    <mat-option value="0"> Select </mat-option>
+                    <mat-option *ngFor="let std of standards" [value]="std.standard_id">
+                        {{std.name}}
+                    </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="form-field">
+                <mat-select placeholder="Division" [(ngModel)]="selectedDiv" (change)="onChangeDiv($event)">
+                    <mat-option value="0"> Select </mat-option>
+                    <mat-option *ngFor="let div of divisions" [value]="div.division_id">
+                        {{div.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-raised-button
+                    matStepperNext
+                    color="accent"
+                    [disabled]="selectedStd == '0' || selectedDiv == '0'"
+                    (click)="fetchStudentAttendanceDetails()">
+                Go
+            </button>
+        </div>
+        <ngx-datatable
+            class="material"
+            [rows]="attendanceData"
+            [loadingIndicator]="loadingIndicator"
+            [columnMode]="'force'"
+            [headerHeight]="48"
+            [footerHeight]="56"
+            [rowHeight]="'auto'"
+            [scrollbarH]="true"
+            [reorderable]="reorderable"
+            [limit]="100"
+            [scrollbarH]="true">
+
+            <ngx-datatable-column name="Student Name" prop="name"></ngx-datatable-column>
+
+            <ngx-datatable-column name="Total Schooling Days" prop="totalDays"></ngx-datatable-column>
+
+            <ngx-datatable-column name="Absent Days" prop="absentDays"></ngx-datatable-column>
+
+            <ngx-datatable-column name="Present Days" prop="presentDays"></ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
