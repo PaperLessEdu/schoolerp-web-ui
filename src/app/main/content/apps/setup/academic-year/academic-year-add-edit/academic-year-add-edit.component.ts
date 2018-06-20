@@ -45,12 +45,14 @@ export class AcademicYearAddEditComponent implements OnInit {
         startDate: new FormControl('', Validators.required),
         endDate: new FormControl('', Validators.required),
         weekendType: new FormControl('EverySunday', Validators.required),
-        currentAcademicYear: new FormControl(false, Validators.required)
+        current: new FormControl(false, Validators.required)
     });
   }
 
   addAcademicYear(): void {
     const data = this.academicYearForm.getRawValue();
+    data.startDate = data.startDate.format('YYYY-MM-DD');
+    data.endDate = data.endDate.format('YYYY-MM-DD');
     this.academicYearAddEditService.addAcademicYear(data)
       .then(() => {
         this.dialogRef.close(['save', this.academicYearForm]);

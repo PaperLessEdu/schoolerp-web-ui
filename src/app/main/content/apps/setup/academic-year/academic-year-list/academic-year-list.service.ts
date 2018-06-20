@@ -7,10 +7,10 @@ export class AcademicYearListService {
     constructor(private http: HttpClient) { }
 
     getAcademicYears() {
-        return this.http.get(ApiConst.BASE_URL + 'academicyears');
+        return this.http.get(ApiConst.BASE_URL + 'academicyear');
     }
 
     deleteAcademicYear(obj) {
-        return this.http.delete(ApiConst.BASE_URL + 'academicyears/' + obj.id);
+        return this.http.delete(ApiConst.BASE_URL + 'academicyear/' + obj.id);
     }
 }
