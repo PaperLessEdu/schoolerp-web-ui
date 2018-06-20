@@ -16,4 +16,8 @@ export class AttendanceReportService {
     getStudentAttendanceDetails(url) {
         return this.http.get(url);
     }
+
+    getAcademicYears() {
+        return this.http.get(ApiConst.BASE_URL + 'academicyear');
+    }
 }

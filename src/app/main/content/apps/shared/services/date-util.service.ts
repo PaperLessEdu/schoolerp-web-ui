@@ -22,16 +22,28 @@ export class DateUtilService {
 
     // startDate is school start days
     // endDate can be today's date
-    getTotalSchoolDays(startDate, endDate, saturdayClosed) {
-        const saturdaysCount = this.getDaysBetweenDates(new Date(2018, 5, 16), new Date(2018, 5, 30), 'sat').length;
-        const sundayssCount = this.getDaysBetweenDates(new Date(2018, 5, 16), new Date(2018, 5, 30), 'sun').length;
+    getTotalSchoolDays(startDate, endDate, weekendType) {
+        let totalDays = 0;
+        const saturdayClosed = weekendType === 'EverySaturdayEverySunday' ? true : false;
+        const sDate = new Date(startDate);
+        const eDate = new Date(endDate);
+        const todayDate = new Date();
+
+        const momentSdate = moment(startDate);
+        const momentTodayDate = moment(endDate);
+        totalDays = momentTodayDate.diff(momentSdate, 'days') + 2;
+
+        const sundaysCount = this.getDaysBetweenDates(sDate, todayDate, 'sun').length;
 
         // if school closed on saturdays also then minus saturdays also from total days
         if (saturdayClosed) {
-            return (startDate.diff(endDate, 'days') - saturdaysCount);
-        } else {
-            return startDate.diff(endDate, 'days');
+            const saturdaysCount = this.getDaysBetweenDates(sDate, todayDate, 'sat').length;
+            totalDays = totalDays - saturdaysCount;
         }
+
+        // minus sundays from totaldays
+        totalDays = totalDays - sundaysCount;
+        return totalDays;
     }
 
     /**
