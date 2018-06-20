@@ -16,9 +16,9 @@ export class HolidayAddEditService {
         });
     }
 
-    updateHoliday(holiday) {
+    updateHoliday(holidayId: number, data: any) {
         return new Promise((resolve, reject) => {
-            this.http.put(ApiConst.BASE_URL + 'holidays/' + holiday.holiday_id, holiday)
+            this.http.put(ApiConst.BASE_URL + 'holidays/' + holidayId, data)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);

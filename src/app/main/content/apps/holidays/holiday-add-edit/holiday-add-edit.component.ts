@@ -42,8 +42,8 @@ export class HolidayAddEditComponent implements OnInit {
 
   ngOnInit() {
     this.holidayForm = this.formBuilder.group({
-      date: new FormControl(moment(), Validators.required),
-      name: new FormControl('', Validators.required)
+      date: new FormControl(moment(this.data.selectedHoliday.date) || '', Validators.required),
+      name: new FormControl(this.data.selectedHoliday.name || '', Validators.required)
     });
   }
 
@@ -63,8 +63,8 @@ export class HolidayAddEditComponent implements OnInit {
   }
 
   updateHoliday(): void {
-    const data = this.data.selectedHoliday;
-    this.holidayAddEditService.updateHoliday(data)
+    const data = this.holidayForm.getRawValue();
+    this.holidayAddEditService.updateHoliday(this.data.selectedHoliday.holiday_id, data)
       .then(() => {
         this.dialogRef.close(['save', this.holidayForm]);
 

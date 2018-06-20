@@ -91,7 +91,7 @@
 
                 <ngx-datatable-column name="Name">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                        <a class="empl-name" (click)="showProfile(row.id);">{{row.firstName}} {{row.lastName}}</a>
+                        {{row.firstName}} {{row.lastName}}
                     </ng-template>
                 </ngx-datatable-column>
             </ngx-datatable>
