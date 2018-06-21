@@ -2,17 +2,19 @@
     <div class="content">
         <div class="left mr-32">
             <div>
-                <mat-card *ngFor="let tile of dashboardWebTiles"
+                <div *ngFor="let tile of dashboardWebTiles" class="{{tile.css}}">
+                <mat-card
                           [routerLink]="tile.url">
                   <mat-card-content>
                     <mat-icon class="card-icon">{{tile.icon}}</mat-icon>
                     <div class="card-lable">{{tile.title}}</div>
                   </mat-card-content>
                 </mat-card>
+                </div>
             </div>
         </div>
 
-        <div class="right">
+        <div class="right web-module">
             <div class="fuse-card bday-widget">
                 <img src="assets/images/cards/happy-bday.jpg">
                 <div class="p-16">
