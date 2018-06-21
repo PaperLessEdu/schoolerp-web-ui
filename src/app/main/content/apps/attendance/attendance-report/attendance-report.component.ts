@@ -49,12 +49,12 @@ export class AttendanceReportComponent implements OnInit {
   }
 
   getAcademicYear(): void {
-    this.attendanceReportService.getAcademicYears().subscribe((years: any) => {
-      this.currentAcademicYear = years.find(function( obj ) {
-        return obj.current === true;
-      });
-      this.buildAttenDanceReport();
-    });
+    // this.attendanceReportService.getAcademicYears().subscribe((years: any) => {
+    //   this.currentAcademicYear = years.find(function( obj ) {
+    //     return obj.current === true;
+    //   });
+    //   this.buildAttenDanceReport();
+    // });
   }
 
   buildAttenDanceReport() {
@@ -81,17 +81,19 @@ export class AttendanceReportComponent implements OnInit {
                 + 'attendance?standardId=' + this.selectedStd
                 + '&divisionId=' + this.selectedDiv;
 
-    this.attendanceData = [
-      {
-        name: 'Yuvraj Gawade',
-        totalDays: 60,
-        absentDays: 4,
-        presentDays: 54
-      }
-    ];
-    // this.attendanceReportService.getStudentAttendanceDetails(url).subscribe((attendance: any) => {
+    // this.attendanceData = [
+    //   {
+    //     name: 'Yuvraj Gawade',
+    //     totalDays: 60,
+    //     absentDays: 4,
+    //     presentDays: 54
+    //   }
+    // ];
 
-    // });
+    const obj = { standard_id: this.selectedStd, division_id: this.selectedDiv};
+    this.attendanceReportService.getStudentAttendanceDetails(obj).then((attendance: any) => {
+      debugger;
+    });
   }
 
   exportAsPdf() {

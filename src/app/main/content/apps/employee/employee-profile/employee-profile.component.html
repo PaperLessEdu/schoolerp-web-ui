@@ -1,6 +1,6 @@
 <div id="profile" class="page-layout simple tabbed" fusePerfectScrollbar>
   <!-- HEADER -->
-  <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center"> 
+  <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
     <!-- APP TITLE -->
     <div fxLayout="row" fxLayoutAlign="start center">
       <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="'/apps/employee/list'">
@@ -9,7 +9,7 @@
       <img class="profile-image avatar huge" src="assets/images/avatars/profile.jpg"
            *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
       <div class="name" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-        {{emplDetails.firstName}} {{emplDetails.middleName}} {{emplDetails.lastName}} 
+        {{emplDetails.firstName}} {{emplDetails.middleName}} {{emplDetails.lastName}}
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@
                       </div>
                       <div class="info-line">
                           <div class="title">Birthday</div>
-                          <div class="info">{{emplDetails.dob}}</div>
+                          <div class="info">{{emplDetails.dob | date: 'dd MMM, yyyy'}}</div>
                       </div>
                       <div class="info-line">
                           <div class="title">Marital Status</div>
@@ -55,12 +55,12 @@
                       </div>
                       <div class="info-line">
                           <div class="title">Date of joining</div>
-                          <div class="info">{{emplDetails.dateOfJoining}}</div>
+                          <div class="info">{{emplDetails.dateOfJoining | date: 'dd MMM, yyyy'}}</div>
                       </div>
                   </div>
                 </div>
             </div>
-            
+
             <div class="profile-box info-box contact" fxLayout="column">
                 <header class="mat-accent-bg">
                     <div class="title">Contact</div>
@@ -118,23 +118,20 @@
                 </div>
             </div>
         </div>
-    
         <!-- <div class="about-sidebar" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="35">
           <div class="profile-box friends" fxLayout="column">
               <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
                   <div class="title">Subjects</div>
               </header>
               <div class="content" fxLayout="row wrap">
-                  
               </div>
           </div>
-  
+
           <div class="profile-box groups" fxLayout="column">
               <header class="mat-accent-bg" fxLayout="row" fxLayoutAlign="space-between center">
                   <div class="title">Standards</div>
               </header>
               <div class="content">
-                  
               </div>
           </div>
 
@@ -143,11 +140,10 @@
                   <div class="title">Divisions</div>
               </header>
               <div class="content">
-                  
               </div>
           </div>
         </div> -->
-    </div>          
+    </div>
   </div>
   <!-- / CONTENT -->
 </div>
