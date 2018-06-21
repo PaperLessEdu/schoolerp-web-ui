@@ -16,7 +16,7 @@
           <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Attendance Taker</span>
       </div>
       <div *ngIf="studentList.length>0">
-        <span class="h2">Date: {{selectedDate}}</span>
+        <span class="h2">Date: {{selectedDate| date: 'MMM dd, yyyy'}}</span>
       </div>
     </div>
     <!-- CONTENT CARD -->
