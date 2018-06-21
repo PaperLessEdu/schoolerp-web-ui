@@ -13,16 +13,16 @@ export class AttendanceReportService {
         return this.http.get(ApiConst.BASE_URL + 'divisions');
     }
 
-    // getStudentAttendanceDetails(url) {
-    //     return this.http.get(url);
-    // }
-
     getStudentAttendanceDetails(obj) {
         return new Promise((resolve, reject) => {
-            this.http.post(ApiConst.BASE_URL + 'academicyear/report', obj)
+            this.http.post(ApiConst.BASE_URL + 'attendance/report', obj)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);
         });
+    }
+
+    getAcademicYears() {
+        return this.http.get(ApiConst.BASE_URL + 'academicyear');
     }
 }

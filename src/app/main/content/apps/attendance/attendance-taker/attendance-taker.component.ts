@@ -65,14 +65,14 @@ export class AttendanceTakerComponent implements OnInit {
     this.selectedDiv = event.value;
   }
 
-  // fetchStundets() {
-  //   this.selectedDate = moment(this.selectedDate).format('YYYY-MM-DD');
-  //   const url = ApiConst.BASE_URL + 'students?standardId=' + this.selectedStd + '&divisionId=' + this.selectedDiv;
-  //   this.attendanceTakerService.getStudents(url).subscribe((students: any) => {
-  //       this.studentList = [...students];
-  //       this.loadingIndicator = false;
-  //   });
-  // }
+  fetchStundets() {
+    // this.selectedDate = moment(this.selectedDate).format('YYYY-MM-DD');
+    const url = ApiConst.BASE_URL + 'students?standardId=' + this.selectedStd + '&divisionId=' + this.selectedDiv;
+    this.attendanceTakerService.getStudents(url).subscribe((students: any) => {
+        this.studentList = [...students];
+        this.loadingIndicator = false;
+    });
+  }
 
   back() {
     this.studentList = [];
