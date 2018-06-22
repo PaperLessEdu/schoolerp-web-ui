@@ -36,7 +36,7 @@
                         DELETE
                     </button>
                     <button (click)="exportAsPdf()" mat-button class="font-weight-400" [disabled]="studentList?.length === 0">
-                        <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':studentList?.length > 1, 'primary-100-fg': studentList?.length === 0}"
+                        <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':studentList?.length >= 1, 'primary-100-fg': studentList?.length === 0}"
                             role="img" aria-hidden="true">file_download</mat-icon>
                         Download
                     </button>
@@ -56,11 +56,12 @@
                 <!-- SEARCH -->
                 <div class="text-right">
                     <mat-select class="w-10-p" placeholder="Standard" [(ngModel)]="std" (change)="applyFilter()">
+                        <mat-option [value]="0">All</mat-option>
                         <mat-option *ngFor="let std of standards" [value]="std.standard_id">
                             {{std.name}}
                         </mat-option>
                     </mat-select>
-                    <mat-select class="w-10-p" placeholder="Division" [(ngModel)]="division" (change)="applyFilter()">
+                    <mat-select class="w-10-p" placeholder="Division" [(ngModel)]="division" (change)="applyFilter()" *ngIf="std !== 0">
                         <mat-option *ngFor="let divi of divisions" [value]="divi.division_id">
                             {{divi.name}}
                         </mat-option>
@@ -76,6 +77,8 @@
                 [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
                 [selectionType]="'single'" [limit]="10" (select)='onSelect($event)'>
 
+                <ngx-datatable-column name="Roll No" prop="rollNo"></ngx-datatable-column>
+
                 <ngx-datatable-column name="Name" prop="name">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                         <a class="empl-name" (click)="showProfile(row.student_id);">{{row.firstName}} {{row.lastName}}</a>
@@ -84,9 +87,9 @@
 
                 <ngx-datatable-column name="Gender" prop="gender"></ngx-datatable-column>
 
-                <ngx-datatable-column name="Email" prop="father.emailId"></ngx-datatable-column>
+                <ngx-datatable-column name="Father's Email" prop="father.emailId"></ngx-datatable-column>
 
-                <ngx-datatable-column name="Contact No" prop="father.phoneNumber"></ngx-datatable-column>
+                <ngx-datatable-column name="Father's Contact No" prop="father.phoneNumber"></ngx-datatable-column>
 
                 <ngx-datatable-column name="Address" prop="correspondenceAddress"></ngx-datatable-column>
 
