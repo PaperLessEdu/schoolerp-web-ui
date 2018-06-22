@@ -80,9 +80,12 @@
                 <mat-checkbox [checked]="isSelected" (change)="onCheckboxChangeFn(row)"></mat-checkbox>
               </ng-template>
             </ngx-datatable-column>
+
+            <ngx-datatable-column [width]="48" name="Roll Number" prop="rollNo"></ngx-datatable-column>
+
             <ngx-datatable-column name="Name" prop="name">
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                    <a class="empl-name">{{row.firstName}} {{row.lastName}}</a>
+                    {{row.firstName}} {{row.lastName}}
                 </ng-template>
             </ngx-datatable-column>
           </ngx-datatable>
