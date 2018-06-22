@@ -59,6 +59,13 @@
                 </mat-form-field>
               </div> -->
 
+              <div>
+                <!-- Roll No -->
+                <mat-form-field fxFlex="33">
+                  <input matInput type="number" placeholder="Roll No" formControlName="rollNo">
+                </mat-form-field>
+              </div>
+
 
               <div>
                 <!-- First Name -->
@@ -266,6 +273,16 @@
                     Postal Code is required!
                   </mat-error>
                 </mat-form-field>
+
+                <!-- Doctor Name-->
+                <mat-form-field fxFlex="34">
+                  <input matInput placeholder="Doctor Name" formControlName="doctorName">
+                </mat-form-field>
+
+                <!-- Doctor Phone No -->
+                <mat-form-field fxFlex="34">
+                  <input matInput placeholder="Doctor Phone No" formControlName="doctorPhoneNo">
+                </mat-form-field>
               </div>
               <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
                 <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
@@ -326,6 +343,16 @@
                       Phone Number is required!
                     </mat-error>
                   </mat-form-field>
+
+                  <!-- Date of Birth -->
+                  <mat-form-field fxFlex="50" formGroupName="fathersDetails">
+                    <input matInput [matDatepicker]="fdob" placeholder="Date of birth" formControlName="birthdate" required>
+                    <mat-datepicker-toggle matSuffix [for]="fdob"></mat-datepicker-toggle>
+                    <mat-datepicker #fdob></mat-datepicker>
+                    <mat-error *ngIf="birthdate.errors?.required">
+                      Date of birth is required!
+                    </mat-error>
+                  </mat-form-field>
                 </div>
               </fieldset>
 
@@ -369,6 +396,16 @@
                   <!-- Phone Number -->
                   <mat-form-field fxFlex="50" formGroupName="mothersDetails">
                     <input matInput placeholder="Phone Number" formControlName="phoneNumber">
+                  </mat-form-field>
+
+                  <!-- Date of Birth -->
+                  <mat-form-field fxFlex="50" formGroupName="mothersDetails">
+                    <input matInput [matDatepicker]="mdob" placeholder="Date of birth" formControlName="birthdate" required>
+                    <mat-datepicker-toggle matSuffix [for]="mdob"></mat-datepicker-toggle>
+                    <mat-datepicker #mdob></mat-datepicker>
+                    <mat-error *ngIf="birthdate.errors?.required">
+                      Date of birth is required!
+                    </mat-error>
                   </mat-form-field>
                 </div>
               </fieldset>
@@ -423,17 +460,18 @@
           <mat-step>
             <ng-template matStepLabel>Done</ng-template>
             <div class="h2 m-16" fxLayout="row" fxLayoutAlign="center center">
-                {{pageType ==='new' ? 'Click on the Submit button to register new student' : 'Click on the Save button to update student details'}}
+              {{pageType ==='new' ? 'Click on the Submit button to register new student' : 'Click on the Save button to update student
+              details'}}
             </div>
             <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
               <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
                 Previous
               </button>
               <button mat-raised-button type="button" color="accent" (click)="addStudent()" *ngIf="pageType ==='new'">
-                  Submit
+                Submit
               </button>
-              <button mat-raised-button type="button" color="accent"  *ngIf="pageType ==='edit'">
-                  Save
+              <button mat-raised-button type="button" color="accent" *ngIf="pageType ==='edit'">
+                Save
               </button>
             </div>
           </mat-step>

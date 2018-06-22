@@ -4,6 +4,7 @@ export class Student {
 
     id: string;
     academicYear: string;
+    rollNo: number;
     firstName: string;
     middleName: string;
     lastName: string;
@@ -24,6 +25,8 @@ export class Student {
     state: string;
     postalCode: string;
     phoneNumber: string;
+    doctorName: string;
+    doctorPhoneNo: string;
     
     emailId: string;
     
@@ -42,6 +45,7 @@ export class Student {
         // General Information
         this.id = student.id || '';
         this.academicYear = student.academicYear || '';
+        this.rollNo = student.rollNo || '';
         this.firstName = student.firstName || '';
         this.middleName = student.middleName || '';
         this.lastName = student.lastName || '';
@@ -62,6 +66,8 @@ export class Student {
         this.state = student.state || '';
         this.postalCode = student.postalCode || '';
         this.phoneNumber = student.phoneNumber || '';
+        this.doctorName = student.doctorName || '';
+        this.doctorPhoneNo = student.doctorPhoneNo || '';
         
         this.emailId = student.emailId || '';
         

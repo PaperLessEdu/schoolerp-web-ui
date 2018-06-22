@@ -161,13 +161,12 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
       this.studentAddEditService.onStudentChanged
         .subscribe(student => {
           // will change this condition as once we get student if from backend
-          if (!student) {
+          if (student && student.id) {
             this.student = new Student(student);
             this.pageType = 'edit';
           } else {
             this.pageType = 'new';
             this.student = new Student();
-            // this.setDefaultValue();
           }
           this.generalInfo = this.generalInfoForm();
           this.contactInfo = this.contactInfoForm();
@@ -195,6 +194,7 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
   private generalInfoForm(): FormGroup {
     return this.formBuilder.group({
       academicYear: [this.student.academicYear || ''],
+      rollNo: [this.student.rollNo || ''],
       firstName: [this.student.firstName || '', Validators.required],
       middleName: [this.student.middleName || ''],
       lastName: [this.student.lastName || '', Validators.required],
@@ -217,7 +217,9 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
       country: [this.student.country || '', Validators.required],
       state: [this.student.state || '', Validators.required],
       city: [this.student.city || '', Validators.required],
-      postalCode: [this.student.postalCode || '', [Validators.required, Validators.maxLength(6)]]
+      postalCode: [this.student.postalCode || '', [Validators.required, Validators.maxLength(6)]],
+      doctorName: [this.student.doctorName || ''],
+      doctorPhoneNo: [this.student.doctorPhoneNo || '']
     });
   }
 
@@ -225,6 +227,7 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     return this.formBuilder.group({
       fathersDetails: this.formBuilder.group({
         name: ['', Validators.required],
+        birthdate: ['', Validators.required],
         occupation: ['', Validators.required],
         qualification: ['', Validators.required],
         phoneNumber: ['', Validators.required],
@@ -232,6 +235,7 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
       }),
       mothersDetails: this.formBuilder.group({
         name: ['', Validators.required],
+        birthdate: ['', Validators.required],
         occupation: ['', Validators.required],
         qualification: ['', Validators.required],
         phoneNumber: [''],
