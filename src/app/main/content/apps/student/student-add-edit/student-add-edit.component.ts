@@ -175,7 +175,19 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
           if (this.pageType === 'new') {
             this.setDefaultValue();
           }
+
+          if (this.pageType === 'edit') {
+            this.setDataforEdit(student);
+          }
         });
+  }
+
+  setDataforEdit(student: any): void {
+    this.parentsInfo.patchValue({
+      fathersDetails: student.fathersDetails,
+      mothersDetails: student.mothersDetails,
+      guardianDetails: student.guardianDetails
+    });
   }
 
   setDefaultValue(): void {

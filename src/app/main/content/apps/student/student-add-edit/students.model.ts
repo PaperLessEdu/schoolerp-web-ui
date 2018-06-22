@@ -39,6 +39,10 @@ export class Student {
     qualification: string;
     occupation: string;
 
+    fathersDetails: any = {};
+    mothersDetails: any = {};
+    guardianDetails: any = {};
+
     constructor(student?) {
         student = student || {};
 
@@ -59,7 +63,7 @@ export class Student {
         this.division = student.division || '';
         this.nationality = student.nationality || '';
 
-        this.permanentAddress = student.address || '';
+        this.permanentAddress = student.permanentAddress || '';
         this.correspondenceAddress = student.correspondenceAddress || '';
         this.country = student.country || '';
         this.city = student.city || '';
@@ -81,5 +85,8 @@ export class Student {
         this.mothersName = student.mothersName || '';
         this.qualification = student.qualification || '';
         this.occupation = student.occupation || '';
+        this.fathersDetails = student.fathersDetails || {};
+        this.mothersDetails = student.mothersDetails || {};
+        this.guardianDetails = student.guardianDetails || {};
     }
 }
