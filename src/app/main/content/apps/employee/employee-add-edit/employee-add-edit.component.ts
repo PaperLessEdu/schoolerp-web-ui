@@ -154,7 +154,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
             dateOfJoining: [this.employee.dateOfJoining || moment()],
             gender: [this.employee.gender || '', Validators.required],
             dob: [this.employee.dob || moment()],
-            bloodGroup: [this.employee.bloodGroup || ''],
+            bloodGroup: [this.employee.bloodGroup || 'A +ve'],
             maritalStatus: new FormControl(this.employee.maritalStatus), // [this.employee.maritalStatus || '', Validators.required],
             // roleId: [this.employee.roleId || '', Validators.required],
             aadharCardNumber: new FormControl(this.employee.aadharCardNumber || '')
@@ -165,7 +165,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
         return this.formBuilder.group({
             country: new FormControl(this.employee.country || ''),
             state: new FormControl(this.employee.state || ''),
-            city: new FormControl(this.employee.city || ''),
+            city: new FormControl(this.employee.city || 'Pune'),
             permanentAddress: new FormControl(this.employee.permanentAddress || ''),
             correspondenceAddress: new FormControl(this.employee.correspondenceAddress || ''),
             postalCode: new FormControl(this.employee.postalCode || ''),
@@ -177,10 +177,10 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
 
     horizontalStepperStep3Form() {
         return this.formBuilder.group({
-            qualification: new FormControl(this.employee.qualification || ''),
-            occupation: new FormControl(this.employee.occupation || ''),
-            jobType: new FormControl(this.employee.jobType || ''),
-            employeeType: new FormControl(this.employee.employeeType || '')
+            qualification: new FormControl(this.employee.qualification || 'Graduation'),
+            occupation: new FormControl(this.employee.occupation || 'D.Ed.'),
+            jobType: new FormControl(this.employee.jobType || 'Full Time'),
+            employeeType: new FormControl(this.employee.employeeType || 'Teaching Staff')
         });
     }
 
