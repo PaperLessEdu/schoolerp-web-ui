@@ -292,13 +292,12 @@
               <div>
                 <!-- Postal Code -->
                 <mat-form-field fxFlex="33">
-                  <input matInput #postalCode placeholder="Postal Code" formControlName="postalCode" required>
-                  <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
-                  <mat-error *ngIf="postalCode.errors?.maxlength">
-                    Postal Code needs to be max 6 characters
-                  </mat-error>
+                  <input type="number" matInput placeholder="Postal Code" formControlName="postalCode" pattern="^[0-9]{6}" required>
                   <mat-error *ngIf="postalCode.errors?.required">
                     Postal Code is required!
+                  </mat-error>
+                  <mat-error *ngIf="postalCode.errors?.pattern">
+                      Enter valid postal code.
                   </mat-error>
                 </mat-form-field>
 
@@ -309,7 +308,7 @@
 
                 <!-- Doctor Phone No -->
                 <mat-form-field fxFlex="34">
-                  <input matInput placeholder="Doctor Phone No" formControlName="doctorPhoneNo">
+                  <input type="number" matInput placeholder="Doctor Phone No" formControlName="doctorPhoneNo">
                 </mat-form-field>
               </div>
               <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
@@ -348,18 +347,12 @@
                 <div>
                   <!-- Qualification -->
                   <mat-form-field fxFlex="50" formGroupName="fathersDetails">
-                    <input matInput placeholder="Qualification" formControlName="qualification" required>
-                    <mat-error *ngIf="parentsInfo['controls'].fathersDetails['controls'].qualification.errors?.required">
-                      qualification is required!
-                    </mat-error>
+                    <input matInput placeholder="Qualification" formControlName="qualification">
                   </mat-form-field>
 
                   <!-- Occupation -->
                   <mat-form-field fxFlex="50" formGroupName="fathersDetails">
-                    <input matInput placeholder="Occupation" formControlName="occupation" required>
-                    <mat-error *ngIf="parentsInfo['controls'].fathersDetails['controls'].occupation.errors?.required">
-                      Occupation is required!
-                    </mat-error>
+                    <input matInput placeholder="Occupation" formControlName="occupation">
                   </mat-form-field>
                 </div>
 
@@ -374,7 +367,7 @@
 
                   <!-- Date of Birth -->
                   <mat-form-field fxFlex="50" formGroupName="fathersDetails">
-                    <input matInput [matDatepicker]="fdob" placeholder="Date of birth" formControlName="birthdate" required>
+                    <input matInput [matDatepicker]="fdob" placeholder="Date of birth" formControlName="birthdate">
                     <mat-datepicker-toggle matSuffix [for]="fdob"></mat-datepicker-toggle>
                     <mat-datepicker #fdob></mat-datepicker>
                     <mat-error *ngIf="birthdate.errors?.required">

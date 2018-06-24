@@ -239,9 +239,9 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     return this.formBuilder.group({
       fathersDetails: this.formBuilder.group({
         name: ['', Validators.required],
-        birthdate: ['', Validators.required],
-        occupation: ['', Validators.required],
-        qualification: ['', Validators.required],
+        birthdate: [''],
+        occupation: [''],
+        qualification: [''],
         phoneNumber: ['', Validators.required],
         emailId: ['']
       }),

@@ -62,7 +62,7 @@ export class AcademicYearAddEditComponent implements OnInit {
       });
   }
 
-  uodateAcademicYear(): void {
+  updateAcademicYear(): void {
     const data = this.data.selectedAcademicYear;
     this.academicYearAddEditService.updateAcademicYear(data)
       .then(() => {

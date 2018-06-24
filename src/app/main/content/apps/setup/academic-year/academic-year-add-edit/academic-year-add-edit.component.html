@@ -24,9 +24,9 @@
                 <div>
                     <!-- Start Date -->
                     <mat-form-field fxFlex="50">
-                        <input matInput [matDatepicker]="startDate" placeholder="Start date" formControlName="startDate" required>
-                        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
-                        <mat-datepicker #startDate></mat-datepicker>
+                        <input matInput [matDatepicker]="sDate" placeholder="Start date" formControlName="startDate" required>
+                        <mat-datepicker-toggle matSuffix [for]="sDate"></mat-datepicker-toggle>
+                        <mat-datepicker #sDate></mat-datepicker>
                         <mat-error *ngIf="startDate.errors?.required">
                             Start date is required!
                         </mat-error>
@@ -34,9 +34,9 @@
 
                     <!-- End Date -->
                     <mat-form-field fxFlex="50">
-                        <input matInput [matDatepicker]="endDate" placeholder="End date" formControlName="endDate" required>
-                        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
-                        <mat-datepicker #endDate></mat-datepicker>
+                        <input matInput [matDatepicker]="eDate" placeholder="End date" formControlName="endDate" required>
+                        <mat-datepicker-toggle matSuffix [for]="eDate"></mat-datepicker-toggle>
+                        <mat-datepicker #eDate></mat-datepicker>
                         <mat-error *ngIf="endDate.errors?.required">
                             End date is required!
                         </mat-error>

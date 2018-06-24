@@ -1,28 +1,26 @@
 <div id="academic-year" class="page-layout carded fullwidth" fusePerfectScrollbar>
-        <!-- TOP BACKGROUND -->
-        <div class="top-bg mat-accent-bg"></div>
-        <!-- / TOP BACKGROUND -->
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
 
-        <!-- CENTER -->
-        <div class="center">
-          <!-- HEADER -->
-          <div class="header white-fg"
-              fxLayout="column" fxLayoutAlign="center center"
-              fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header white-fg" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
             <!-- APP TITLE -->
-            <div class="logo my-12 m-sm-0"
-                  fxLayout="row" fxLayoutAlign="start center">
+            <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
                 <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">today</mat-icon>
                 <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Academic Year</span>
             </div>
             <!-- / APP TITLE -->
-          </div>
-          <!-- CONTENT CARD -->
-          <div class="mat-white-bg">
+        </div>
+        <!-- CONTENT CARD -->
+        <div class="mat-white-bg">
             <div fxLayout="row" fxLayoutAlign="space-between center">
                 <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center">
                     <button (click)="onAddAction()" mat-button class="font-weight-400">
-                        <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon> 
+                        <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon>
                         ADD
                     </button>
                     <!-- <button (click)="onEditAction()" mat-button class="font-weight-400" [disabled]="selected.length == 0 || selected.length > 1">
@@ -42,22 +40,10 @@
                 </div> -->
                 <!-- / SEARCH -->
             </div>
-            <ngx-datatable
-                #table
-                class="material"
-                [rows]="rows"
-                [loadingIndicator]="loadingIndicator"
-                [columnMode]="'force'"
-                [headerHeight]="48"
-                [footerHeight]="56"
-                [rowHeight]="'auto'"
-                [scrollbarH]="true"
-                [reorderable]="reorderable"
-                [selectionType]="'single'"
-                [limit]="10"
-                [selected]="selected"
-                (select)='onSelect($event)'>
-                <ngx-datatable-column name="Name">
+            <ngx-datatable #table class="material" [rows]="rows" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="48"
+                [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [selectionType]="'single'"
+                [limit]="10" [selected]="selected" (select)='onSelect($event)'>
+                <ngx-datatable-column name="Name" style="width: 10%">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                         {{row.name}}
                     </ng-template>
@@ -72,7 +58,12 @@
                         {{row.endDate | date: 'dd MMM yyyy'}}
                     </ng-template>
                 </ngx-datatable-column>
+                <ngx-datatable-column>
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <span *ngIf="row.current" class="p-4 mat-accent-bg"> Current Year </span>
+                    </ng-template>
+                </ngx-datatable-column>
             </ngx-datatable>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
