@@ -180,19 +180,19 @@
                   </mat-error>
                 </mat-form-field>
 
-                <!-- Caste -->
-                <mat-form-field fxFlex="34">
-                  <input matInput placeholder="Caste" formControlName="caste" required>
-                  <mat-error *ngIf="caste.errors?.required">
-                    Caste is required!
-                  </mat-error>
-                </mat-form-field>
-
                 <!-- Religion -->
                 <mat-form-field fxFlex="34">
                   <input matInput placeholder="Religion" formControlName="religion" required>
                   <mat-error *ngIf="religion.errors?.required">
                     Religion is required!
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Caste -->
+                <mat-form-field fxFlex="34">
+                  <input matInput placeholder="Caste" formControlName="caste" required>
+                  <mat-error *ngIf="caste.errors?.required">
+                    Caste is required!
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -404,20 +404,13 @@
                 <div>
                   <!-- Qualification -->
                   <mat-form-field fxFlex="50" formGroupName="mothersDetails">
-                    <input matInput placeholder="Qualification" formControlName="qualification" required>
-                    <mat-error *ngIf="parentsInfo['controls'].mothersDetails['controls'].qualification.errors?.required">
-                      qualification is required!
-                    </mat-error>
+                    <input matInput placeholder="Qualification" formControlName="qualification">
                   </mat-form-field>
 
                   <!-- Occupation -->
                   <mat-form-field fxFlex="50" formGroupName="mothersDetails">
-                    <input matInput placeholder="Occupation" formControlName="occupation" required>
-                    <mat-error *ngIf="parentsInfo['controls'].mothersDetails['controls'].occupation.errors?.required">
-                      Occupation is required!
-                    </mat-error>
+                    <input matInput placeholder="Occupation" formControlName="occupation">
                   </mat-form-field>
-
                 </div>
 
                 <div>
@@ -428,12 +421,9 @@
 
                   <!-- Date of Birth -->
                   <mat-form-field fxFlex="50" formGroupName="mothersDetails">
-                    <input matInput [matDatepicker]="mdob" placeholder="Date of birth" formControlName="birthdate" required>
+                    <input matInput [matDatepicker]="mdob" placeholder="Date of birth" formControlName="birthdate">
                     <mat-datepicker-toggle matSuffix [for]="mdob"></mat-datepicker-toggle>
                     <mat-datepicker #mdob></mat-datepicker>
-                    <mat-error *ngIf="birthdate.errors?.required">
-                      Date of birth is required!
-                    </mat-error>
                   </mat-form-field>
                 </div>
               </fieldset>
