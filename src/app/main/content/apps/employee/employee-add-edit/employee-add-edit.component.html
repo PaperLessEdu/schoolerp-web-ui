@@ -63,28 +63,28 @@
                             <div>
                                 <!-- DOB -->
                                 <mat-form-field fxFlex="33">
-                                    <input matInput [matDatepicker]="birthdate" placeholder="Date of birth" formControlName="dob" required>
+                                    <input matInput [matDatepicker]="birthdate" placeholder="Date of birth" formControlName="dob">
                                     <mat-datepicker-toggle matSuffix [for]="birthdate"></mat-datepicker-toggle>
                                     <mat-datepicker #birthdate></mat-datepicker>
-                                    <mat-error *ngIf="dob.errors?.required">
+                                    <!-- <mat-error *ngIf="dob.errors?.required">
                                         Date of birth is required!
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
 
                                 <!-- Date of joining -->
                                 <mat-form-field fxFlex="33">
-                                    <input matInput [matDatepicker]="doj" placeholder="Date of joining" formControlName="dateOfJoining" required>
+                                    <input matInput [matDatepicker]="doj" placeholder="Date of joining" formControlName="dateOfJoining">
                                     <mat-datepicker-toggle matSuffix [for]="doj"></mat-datepicker-toggle>
                                     <mat-datepicker #doj></mat-datepicker>
-                                    <mat-error *ngIf="dateOfJoining.errors?.required">
+                                    <!-- <mat-error *ngIf="dateOfJoining.errors?.required">
                                         Date of joining is required!
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
                             </div>
                             <div>
                                 <!-- Naationality -->
                                 <mat-form-field fxFlex="33">
-                                    <input matInput placeholder="Nationality" formControlName="nationality" required>
+                                    <input matInput placeholder="Nationality" formControlName="nationality">
                                     <mat-error *ngIf="nationality.errors?.required">
                                         Nationality is required!
                                     </mat-error>
@@ -92,7 +92,7 @@
 
                                 <!--  Blood group -->
                                 <mat-form-field fxFlex="33">
-                                    <mat-select placeholder="Blood group" formControlName="bloodGroup" required>
+                                    <mat-select placeholder="Blood group" formControlName="bloodGroup">
                                         <mat-option [value]="'A +ve'">
                                             A +ve
                                         </mat-option>
@@ -118,21 +118,21 @@
                                             AB -ve
                                         </mat-option>
                                     </mat-select>
-                                    <mat-error *ngIf="bloodGroup.errors?.required">
+                                    <!-- <mat-error *ngIf="bloodGroup.errors?.required">
                                         Blood group is required!
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
                             </div>
                             <div>
                                 <!-- Aadhar Card Number -->
                                 <mat-form-field fxFlex="33">
                                     <input matInput placeholder="Aadhar Card Number" pattern="^[0-9]{4}-[0-9]{4}-[0-9]{4}$" formControlName="aadharCardNumber">
-                                    <mat-error *ngIf="aadharCardNumber.errors?.required">
+                                    <!-- <mat-error *ngIf="aadharCardNumber.errors?.required">
                                         Aadhar Card Number is required!
-                                    </mat-error>
-                                    <mat-error *ngIf="aadharCardNumber.errors?.pattern">
+                                    </mat-error> -->
+                                    <!-- <mat-error *ngIf="aadharCardNumber.errors?.pattern">
                                         Please enter valid aadhar no
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
                                 <!-- <mat-form-field fxFlex="33">
                                     <mat-select placeholder="Role" formControlName="roleId" [(ngModel)]="employee.roleId" required>
@@ -178,61 +178,61 @@
                             <div>
                                 <!-- Permanent Address -->
                                 <mat-form-field fxFlex="50">
-                                    <textarea matInput placeholder="Permanent Address" formControlName="permanentAddress" required>
-                                    1600 Amphitheatre Pkwy
-                                </textarea>
-                                    <mat-error *ngIf="permanentAddress.errors?.required">
+                                    <textarea matInput placeholder="Permanent Address" formControlName="permanentAddress">
+                                        1600 Amphitheatre Pkwy
+                                    </textarea>
+                                    <!-- <mat-error *ngIf="permanentAddress.errors?.required">
                                         Permanent address is required!
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
 
                                 <!-- Correspondence Address -->
                                 <mat-form-field fxFlex="50">
-                                    <textarea matInput placeholder="Correspondence Address" formControlName="correspondenceAddress" required>
+                                    <textarea matInput placeholder="Correspondence Address" formControlName="correspondenceAddress">
                                     1600 Amphitheatre Pkwy
-                                </textarea>
-                                    <mat-error *ngIf="correspondenceAddress.errors?.required">
+                                    </textarea>
+                                    <!-- <mat-error *ngIf="correspondenceAddress.errors?.required">
                                         Correspondence address is required!
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
                             </div>
                             <div>
                                 <!-- Country -->
                                 <mat-form-field fxFlex="33">
-                                    <input matInput placeholder="Country" formControlName="country" required>
-                                    <mat-error *ngIf="country.errors?.required">
+                                    <input matInput placeholder="Country" formControlName="country">
+                                    <!-- <mat-error *ngIf="country.errors?.required">
                                         Country is required!
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
 
                                 <!-- State -->
                                 <mat-form-field fxFlex="33">
-                                    <input matInput placeholder="State" formControlName="state" required>
-                                    <mat-error *ngIf="state.errors?.required">
+                                    <input matInput placeholder="State" formControlName="state">
+                                    <!-- <mat-error *ngIf="state.errors?.required">
                                         State is required!
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
                             </div>
 
                             <div>
                                 <!-- City -->
                                 <mat-form-field fxFlex="33">
-                                    <input matInput placeholder="City" formControlName="city" required>
-                                    <mat-error *ngIf="city.errors?.required">
+                                    <input matInput placeholder="City" formControlName="city">
+                                    <!-- <mat-error *ngIf="city.errors?.required">
                                         City is required!
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
 
                                 <!-- Postal Code -->
                                 <mat-form-field fxFlex="33">
-                                    <input matInput placeholder="Postal Code" formControlName="postalCode" pattern="^[0-9]{6}" required>
+                                    <input matInput placeholder="Postal Code" formControlName="postalCode" pattern="^[0-9]{6}">
                                     <!--<mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>-->
-                                    <mat-error *ngIf="postalCode.errors?.required">
+                                    <!-- <mat-error *ngIf="postalCode.errors?.required">
                                         Postal Code is required!
                                     </mat-error>
                                     <mat-error *ngIf="postalCode.errors?.pattern">
                                         Enter valid postal code.
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
                             </div>
 
@@ -247,22 +247,22 @@
 
                                 <!-- Alternate Phone Number -->
                                 <mat-form-field fxFlex="33">
-                                    <input type="number" matInput placeholder="Alternate Phone Number" formControlName="alternatePhoneNumber" required>
-                                    <mat-error *ngIf="alternatePhoneNumber.errors?.required">
+                                    <input type="number" matInput placeholder="Alternate Phone Number" formControlName="alternatePhoneNumber">
+                                    <!-- <mat-error *ngIf="alternatePhoneNumber.errors?.required">
                                         Alternate Phone number is required!
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
                             </div>
                             <div>
                                 <!-- Email -->
                                 <mat-form-field fxFlex="33">
-                                    <input matInput placeholder="Email" formControlName="emailId" required email="true">
-                                    <mat-error *ngIf="emailId.errors?.required">
+                                    <input matInput placeholder="Email" formControlName="emailId">
+                                    <!-- <mat-error *ngIf="emailId.errors?.required">
                                         Email is required!
                                     </mat-error>
                                     <mat-error *ngIf="emailId.errors?.email">
                                         Enter valid email id
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
                             </div>
                             <div class="pt-24 pb-24" fxLayout="row" fxLayoutAlign="center center">
@@ -282,7 +282,7 @@
                             <ng-template matStepLabel>Occupation Details</ng-template>
                             <div>
                                 <mat-form-field fxFlex="50">
-                                    <mat-select placeholder="Qualification" formControlName="qualification" required>
+                                    <mat-select placeholder="Qualification" formControlName="qualification">
                                         <mat-option [value]="'Under Graduation'">
                                             Under Graduation
                                         </mat-option>
@@ -293,16 +293,16 @@
                                             Post Graduation
                                         </mat-option>
                                     </mat-select>
-                                    <mat-error *ngIf="qualification.errors?.required">
+                                    <!-- <mat-error *ngIf="qualification.errors?.required">
                                         Qualification is required!
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
 
                                 <mat-form-field fxFlex="50">
-                                    <input matInput placeholder="Occupation" formControlName="occupation" required>
-                                    <mat-error *ngIf="occupation.errors?.required">
+                                    <input matInput placeholder="Occupation" formControlName="occupation">
+                                    <!-- <mat-error *ngIf="occupation.errors?.required">
                                         Occupation is required!
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
                             </div>
                             <div>
@@ -310,7 +310,7 @@
                             </div>
                             <div>
                                 <mat-form-field fxFlex="50">
-                                    <mat-select placeholder="Job type" formControlName="jobType" required>
+                                    <mat-select placeholder="Job type" formControlName="jobType">
                                         <mat-option [value]="'Full Time'">
                                             Full Time
                                         </mat-option>
@@ -321,12 +321,12 @@
                                             Intern
                                         </mat-option>
                                     </mat-select>
-                                    <mat-error *ngIf="jobType.errors?.required">
+                                    <!-- <mat-error *ngIf="jobType.errors?.required">
                                         Job type is required!
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
                                 <mat-form-field fxFlex="50">
-                                    <mat-select placeholder="Employee type" formControlName="employeeType" required>
+                                    <mat-select placeholder="Employee type" formControlName="employeeType">
                                         <mat-option [value]="'Teaching Staff'">
                                             Teaching Staff
                                         </mat-option>
@@ -334,9 +334,9 @@
                                             Non Teaching Staff
                                         </mat-option>
                                     </mat-select>
-                                    <mat-error *ngIf="employeeType.errors?.required">
+                                    <!-- <mat-error *ngIf="employeeType.errors?.required">
                                         Employee type is required!
-                                    </mat-error>
+                                    </mat-error> -->
                                 </mat-form-field>
                             </div>
                             <div class="pt-24 pb-24" fxLayout="row" fxLayoutAlign="center center">

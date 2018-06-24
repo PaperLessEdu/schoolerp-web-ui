@@ -62,17 +62,17 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
         return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('lastName'));
     }
 
-    get dob(): FormControl {
-        return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('dob'));
-    }
+    // get dob(): FormControl {
+    //     return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('dob'));
+    // }
 
     get bloodGroup(): FormControl {
         return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('bloodGroup'));
     }
 
-    get dateOfJoining(): FormControl {
-        return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('dateOfJoining'));
-    }
+    // get dateOfJoining(): FormControl {
+    //     return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('dateOfJoining'));
+    // }
 
     get nationality(): FormControl {
         return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('nationality'));
@@ -82,33 +82,33 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
     //     return <FormControl>(this.horizontalStepperStep1 && this.horizontalStepperStep1.get('roleId'));
     // }
 
-    get aadharCardNumber() { return this.horizontalStepperStep1.get('aadharCardNumber'); }
+    // get aadharCardNumber() { return this.horizontalStepperStep1.get('aadharCardNumber'); }
 
-    get permanentAddress() { return this.horizontalStepperStep2.get('permanentAddress'); }
+    // get permanentAddress() { return this.horizontalStepperStep2.get('permanentAddress'); }
 
-    get correspondenceAddress() { return this.horizontalStepperStep2.get('correspondenceAddress'); }
+    // get correspondenceAddress() { return this.horizontalStepperStep2.get('correspondenceAddress'); }
 
-    get country() { return this.horizontalStepperStep2.get('country'); }
+    // get country() { return this.horizontalStepperStep2.get('country'); }
 
-    get state() { return this.horizontalStepperStep2.get('state'); }
+    // get state() { return this.horizontalStepperStep2.get('state'); }
 
-    get city() { return this.horizontalStepperStep2.get('city'); }
+    // get city() { return this.horizontalStepperStep2.get('city'); }
 
-    get postalCode() { return this.horizontalStepperStep2.get('postalCode'); }
+    // get postalCode() { return this.horizontalStepperStep2.get('postalCode'); }
 
     get phoneNumber() { return this.horizontalStepperStep2.get('phoneNumber'); }
 
-    get alternatePhoneNumber() { return this.horizontalStepperStep2.get('alternatePhoneNumber'); }
+    // get alternatePhoneNumber() { return this.horizontalStepperStep2.get('alternatePhoneNumber'); }
 
-    get emailId() { return this.horizontalStepperStep2.get('emailId'); }
+    // get emailId() { return this.horizontalStepperStep2.get('emailId'); }
 
-    get qualification() { return this.horizontalStepperStep3.get('qualification'); }
+    // get qualification() { return this.horizontalStepperStep3.get('qualification'); }
 
-    get occupation() { return this.horizontalStepperStep3.get('occupation'); }
+    // get occupation() { return this.horizontalStepperStep3.get('occupation'); }
 
-    get jobType() { return this.horizontalStepperStep3.get('jobType'); }
+    // get jobType() { return this.horizontalStepperStep3.get('jobType'); }
 
-    get employeeType() { return this.horizontalStepperStep3.get('employeeType'); }
+    // get employeeType() { return this.horizontalStepperStep3.get('employeeType'); }
 
     constructor(private formBuilder: FormBuilder,
         private router: Router,
@@ -150,39 +150,37 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
             firstName: [this.employee.firstName || '', Validators.required],
             middleName: [this.employee.middleName || ''],
             lastName: [this.employee.lastName || '', Validators.required],
-            nationality: [this.employee.nationality || '', Validators.required],
-            dateOfJoining: [this.employee.dateOfJoining || '', Validators.required],
+            nationality: [this.employee.nationality || ''],
+            dateOfJoining: [this.employee.dateOfJoining || moment()],
             gender: [this.employee.gender || '', Validators.required],
-            dob: [this.employee.dob || '', Validators.required],
+            dob: [this.employee.dob || moment()],
             bloodGroup: [this.employee.bloodGroup || ''],
             maritalStatus: new FormControl(this.employee.maritalStatus), // [this.employee.maritalStatus || '', Validators.required],
             // roleId: [this.employee.roleId || '', Validators.required],
-            aadharCardNumber: new FormControl(this.employee.aadharCardNumber || '', [
-                Validators.required
-            ]),
+            aadharCardNumber: new FormControl(this.employee.aadharCardNumber || '')
         });
     }
 
     horizontalStepperStep2Form() {
         return this.formBuilder.group({
-            country: new FormControl(this.employee.country || '', Validators.required),
-            state: new FormControl(this.employee.state || '', Validators.required),
-            city: new FormControl(this.employee.city || '', Validators.required),
-            permanentAddress: new FormControl(this.employee.permanentAddress || '', Validators.required),
-            correspondenceAddress: new FormControl(this.employee.correspondenceAddress || '', Validators.required),
-            postalCode: new FormControl(this.employee.postalCode || '', [Validators.required]),
-            emailId: new FormControl(this.employee.emailId || '', Validators.required),
+            country: new FormControl(this.employee.country || ''),
+            state: new FormControl(this.employee.state || ''),
+            city: new FormControl(this.employee.city || ''),
+            permanentAddress: new FormControl(this.employee.permanentAddress || ''),
+            correspondenceAddress: new FormControl(this.employee.correspondenceAddress || ''),
+            postalCode: new FormControl(this.employee.postalCode || ''),
+            emailId: new FormControl(this.employee.emailId || ''),
             phoneNumber: new FormControl(this.employee.phoneNumber || '', Validators.required),
-            alternatePhoneNumber: new FormControl(this.employee.alternatePhoneNumber || '', Validators.required)
+            alternatePhoneNumber: new FormControl(this.employee.alternatePhoneNumber || '')
         });
     }
 
     horizontalStepperStep3Form() {
         return this.formBuilder.group({
-            qualification: new FormControl(this.employee.qualification || '', Validators.required),
-            occupation: new FormControl(this.employee.occupation || '', Validators.required),
-            jobType: new FormControl(this.employee.jobType || '', Validators.required),
-            employeeType: new FormControl(this.employee.employeeType || '', Validators.required)
+            qualification: new FormControl(this.employee.qualification || ''),
+            occupation: new FormControl(this.employee.occupation || ''),
+            jobType: new FormControl(this.employee.jobType || ''),
+            employeeType: new FormControl(this.employee.employeeType || '')
         });
     }
 
@@ -218,7 +216,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
         const step2Data = this.horizontalStepperStep2.getRawValue();
         const step3Data = this.horizontalStepperStep3.getRawValue();
         const data = { ...step1Data, ...step2Data, ...step3Data };
-        
+
         // for 1st release we are giving Admin roles to all the employees
         data.roleId = 1;
         this.employeeAddEditService.addEmployee(data)
@@ -242,7 +240,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
         const data = { ...step1Data, ...step2Data, ...step3Data };
         // for 1st release we are giving Admin roles to all the employees
         data.roleId = 1;
-        
+
         this.employeeAddEditService.updateEmployee(data)
             .then(() => {
                 // Trigger the subscription with new data
