@@ -68,6 +68,14 @@
 
 
               <div>
+                <!-- Last Name -->
+                <mat-form-field fxFlex="33">
+                  <input matInput placeholder="Last name" formControlName="lastName" required>
+                  <mat-error *ngIf="lastName.errors?.required">
+                    Last Name is required!
+                  </mat-error>
+                </mat-form-field>
+
                 <!-- First Name -->
                 <mat-form-field fxFlex="33">
                   <input matInput placeholder="First name" formControlName="firstName" required>
@@ -79,14 +87,6 @@
                 <!-- Middle Name -->
                 <mat-form-field fxFlex="34">
                   <input matInput placeholder="Middle name" formControlName="middleName">
-                </mat-form-field>
-
-                <!-- Last Name -->
-                <mat-form-field fxFlex="33">
-                  <input matInput placeholder="Last name" formControlName="lastName" required>
-                  <mat-error *ngIf="lastName.errors?.required">
-                    Last Name is required!
-                  </mat-error>
                 </mat-form-field>
               </div>
 
@@ -146,7 +146,35 @@
               <div>
                 <!-- Category -->
                 <mat-form-field fxFlex="33">
-                  <input matInput placeholder="Category" formControlName="category" required>
+                  <mat-select placeholder="Category" formControlName="category" required>
+                    <mat-option [value]="'OPEN'">
+                      OPEN
+                    </mat-option>
+                    <mat-option [value]="'SC'">
+                      SC
+                    </mat-option>
+                    <mat-option [value]="'ST'">
+                      ST
+                    </mat-option>
+                    <mat-option [value]="'OBC'">
+                      OBC
+                    </mat-option>
+                    <mat-option [value]="'SBC'">
+                      SBC
+                    </mat-option>
+                    <mat-option [value]="'VJ'">
+                      VJ
+                    </mat-option>
+                    <mat-option [value]="'NT-B'">
+                      NT-B
+                    </mat-option>
+                    <mat-option [value]="'NT-C'">
+                      NT-C
+                    </mat-option>
+                    <mat-option [value]="'NT-D'">
+                      NT-D
+                    </mat-option>
+                  </mat-select>
                   <mat-error *ngIf="category.errors?.required">
                     Category is required!
                   </mat-error>

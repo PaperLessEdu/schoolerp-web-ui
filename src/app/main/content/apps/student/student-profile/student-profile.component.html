@@ -24,11 +24,15 @@
                     <div class="content">
                         <div class="w-30-p" style="float: left;">
                             <div class="info-line">
+                                <div class="title">Roll No</div>
+                                <div class="info">{{studentDetails.rollNo}}</div>
+                            </div>
+                            <div class="info-line">
                                 <div class="title">Gender</div>
                                 <div class="info">{{studentDetails.gender}}</div>
                             </div>
                             <div class="info-line">
-                                <div class="title">Birthday</div>
+                                <div class="title">Date of Birth</div>
                                 <div class="info">{{studentDetails.dob | date: 'dd MMM, yyyy'}}</div>
                             </div>
                             <div class="info-line">
@@ -90,6 +94,12 @@
                                     <span>{{studentDetails.country}}</span>
                                 </div>
                             </div>
+                            <div class="info-line">
+                                <div class="title">Family Doctor Name</div>
+                                <div class="info">
+                                    <span>{{studentDetails.doctorName}}</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="w-50-p" style="float: left;">
                             <div class="info-line">
@@ -108,6 +118,12 @@
                                 <div class="title">Postal Code</div>
                                 <div class="info">
                                     <span>{{studentDetails.postalCode}}</span>
+                                </div>
+                            </div>
+                            <div class="info-line">
+                                <div class="title">Doctor Contact No</div>
+                                <div class="info">
+                                    <span>{{studentDetails.doctorPhoneNo}}</span>
                                 </div>
                             </div>
                         </div>
@@ -131,6 +147,10 @@
                                 <div class="info-line">
                                     <div class="title">Name</div>
                                     <div class="info">{{studentDetails.fathersDetails?.name}}</div>
+                                </div>
+                                <div class="info-line">
+                                    <div class="title">Date of Birth</div>
+                                    <div class="info">{{studentDetails.fathersDetails?.birthdate | date: 'dd MMM, yyyy'}}</div>
                                 </div>
                                 <div class="info-line">
                                     <div class="title">Email Id</div>
@@ -159,6 +179,10 @@
                                 <div class="info-line">
                                     <div class="title">Name</div>
                                     <div class="info">{{studentDetails.mothersDetails?.name}}</div>
+                                </div>
+                                <div class="info-line">
+                                    <div class="title">Date of Birth</div>
+                                    <div class="info">{{studentDetails.mothersDetails?.birthdate | date: 'dd MMM, yyyy'}}</div>
                                 </div>
                                 <div class="info-line">
                                     <div class="title">Email Id</div>

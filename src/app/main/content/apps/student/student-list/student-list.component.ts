@@ -145,6 +145,9 @@ export class StudentListComponent implements OnInit {
     }
 
     applyFilter(): void {
+        if (this.std === 0) {
+            this.division = 0;
+        }
         this.fetchStudentList(this.std, this.division);
     }
 
