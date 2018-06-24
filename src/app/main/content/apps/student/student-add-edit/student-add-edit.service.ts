@@ -58,9 +58,18 @@ export class StudentAddEditService {
     return this.http.get(ApiConst.BASE_URL + 'divisions');
   }
 
-  addStudent(student) {
+  addStudent(url, student) {
     return new Promise((resolve, reject) => {
-      this.http.post(ApiConst.BASE_URL + ApiConst.STUDENTS, student)
+      this.http.post(ApiConst.BASE_URL + url, student)
+        .subscribe((response: any) => {
+          resolve(response);
+        }, reject);
+    });
+  }
+
+  updateStudent(url, student) {
+    return new Promise((resolve, reject) => {
+      this.http.put(ApiConst.BASE_URL + url, student)
         .subscribe((response: any) => {
           resolve(response);
         }, reject);

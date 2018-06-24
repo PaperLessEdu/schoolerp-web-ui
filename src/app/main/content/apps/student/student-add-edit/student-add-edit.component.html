@@ -488,7 +488,7 @@
               <button mat-raised-button type="button" color="accent" (click)="addStudent()" *ngIf="pageType ==='new'">
                 Submit
               </button>
-              <button mat-raised-button type="button" color="accent" *ngIf="pageType ==='edit'">
+              <button mat-raised-button type="button" color="accent" (click)="updateStudent()" *ngIf="pageType ==='edit'">
                 Save
               </button>
             </div>

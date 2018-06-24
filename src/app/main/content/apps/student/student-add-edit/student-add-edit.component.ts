@@ -282,13 +282,35 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     const data = { ...generalInfo, ...contactInfo, ...parentsInfo };
 
     data.academicYear = 1;
-    this.studentAddEditService.addStudent(data)
+    this.studentAddEditService.addStudent('students', data)
       .then(() => {
         // Trigger the subscription with new data
         this.studentAddEditService.onStudentChanged.next(data);
         this.router.navigate(['/apps/student/list']);
         // Show the success message
         const msg = 'Student ' + data.firstName + ' ' + data.lastName + ' added successfully';
+        this.snackBar.open(msg, 'OK', {
+          verticalPosition: 'top',
+          duration: 3000
+        });
+      });
+  }
+
+  updateStudent(): void {
+    const generalInfo = this.generalInfo.getRawValue();
+    const contactInfo = this.contactInfo.getRawValue();
+    const parentsInfo = this.parentsInfo.getRawValue();
+    const data = { ...generalInfo, ...contactInfo, ...parentsInfo };
+
+    data.academicYear = 1;
+    data.id = this.student.id;
+    this.studentAddEditService.updateStudent('students/' + this.student.id, data)
+      .then(() => {
+        // Trigger the subscription with new data
+        this.studentAddEditService.onStudentChanged.next(data);
+        this.router.navigate(['/apps/student/list']);
+        // Show the success message
+        const msg = 'Student ' + data.firstName + ' ' + data.lastName + ' updated successfully';
         this.snackBar.open(msg, 'OK', {
           verticalPosition: 'top',
           duration: 3000

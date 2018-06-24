@@ -34,8 +34,8 @@ export class StudentListComponent implements OnInit {
     selectedStudent: any[] = [];
     standards;
     divisions;
-    division;
-    std;
+    division = 0;
+    std = 0;
 
     @ViewChild(DatatableComponent) table: DatatableComponent;
 
