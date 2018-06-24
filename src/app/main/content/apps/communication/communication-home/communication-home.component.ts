@@ -27,7 +27,7 @@ export class CommunicationHomeComponent implements OnInit {
   selectedRecipient = '';
   selectedStd = '0';
   selectedDiv = '0';
-  selectedType = 'byEmail';
+  selectedType = 'byTextMessage';
   selectedStdRecipient: any[] = [];
 
   composeEmailForm: FormGroup;
