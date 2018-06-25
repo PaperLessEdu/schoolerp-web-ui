@@ -142,8 +142,18 @@
                 </mat-form-field>
                 <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
                     <button mat-raised-button matStepperNext
+                            *ngIf="selectedRecipient === 'students'"
                             type="submit"
-                            [disabled]="!composeTextMsgForm.valid || selectedStdRecipient.length==0"
+                            [disabled]="!composeTextMsgForm.valid || selectedStdRecipient.length===0 || selected.length===0"
+                            color="accent"
+                            (click)="sendMessage();">
+                        Send
+                    </button>
+
+                    <button mat-raised-button matStepperNext
+                            *ngIf="selectedRecipient === 'employees'"
+                            type="submit"
+                            [disabled]="!composeTextMsgForm.valid || selected.length===0"
                             color="accent"
                             (click)="sendMessage();">
                         Send
