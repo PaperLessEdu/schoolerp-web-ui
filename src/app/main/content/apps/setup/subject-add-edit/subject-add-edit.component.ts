@@ -13,21 +13,19 @@ import { SubjectAddEditService } from './subject-add-edit.service';
 })
 export class SubjectAddEditComponent implements OnInit {
   subjectForm: FormGroup;
-  subjectFormErrors: any;
+
+  get name() { return this.subjectForm.get('name'); }
 
   constructor(private formBuilder: FormBuilder,
-              private snackBar: MatSnackBar,
-              private subjectAddEditService: SubjectAddEditService,
-              public dialogRef: MatDialogRef<SubjectAddEditService>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.subjectFormErrors = {
-      name: {}
-    };
+    private snackBar: MatSnackBar,
+    private subjectAddEditService: SubjectAddEditService,
+    public dialogRef: MatDialogRef<SubjectAddEditService>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {
     this.subjectForm = this.formBuilder.group({
-      name: ['', Validators.required]
+      name: new FormControl('', Validators.required),
     });
   }
 
@@ -35,9 +33,9 @@ export class SubjectAddEditComponent implements OnInit {
     const data = this.subjectForm.getRawValue();
     this.subjectAddEditService.addSubject(data)
       .then(() => {
-          this.dialogRef.close(['save', this.subjectForm]);
-          // Show the success message
-          this.displayNotification('Subject added successfully');
+        this.dialogRef.close(['save', this.subjectForm]);
+        // Show the success message
+        this.displayNotification('Subject added successfully');
       });
   }
 

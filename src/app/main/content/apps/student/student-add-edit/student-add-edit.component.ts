@@ -108,14 +108,6 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     return <FormControl>(this.contactInfo && this.contactInfo.get('postalCode'));
   }
 
-  get fathersName(): FormControl {
-    return <FormControl>(this.parentsInfo && this.parentsInfo.get('fathersName'));
-  }
-
-  get mothersName(): FormControl {
-    return <FormControl>(this.parentsInfo && this.parentsInfo.get('mothersName'));
-  }
-
   get qualification(): FormControl {
     return <FormControl>(this.parentsInfo && this.parentsInfo.get('qualification'));
   }
@@ -218,7 +210,8 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
       religion: [this.student.religion || '', Validators.required],
       standard: [this.student.standard || '', Validators.required],
       division: [this.student.division || '', Validators.required],
-      nationality: [this.student.nationality || '', Validators.required]
+      nationality: [this.student.nationality || '', Validators.required],
+      birthPlace: [this.student.birthPlace || '', Validators.required]
     });
   }
 
@@ -243,7 +236,8 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
         occupation: [''],
         qualification: [''],
         phoneNumber: ['', Validators.required],
-        emailId: ['']
+        emailId: [''],
+        monthlyIncome: ['']
       }),
       mothersDetails: this.formBuilder.group({
         name: ['', Validators.required],
@@ -258,7 +252,8 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
         occupation: [''],
         qualification: [''],
         phoneNumber: [''],
-        emailId: ['']
+        emailId: [''],
+        relationship: ['']
       }),
     });
   }
