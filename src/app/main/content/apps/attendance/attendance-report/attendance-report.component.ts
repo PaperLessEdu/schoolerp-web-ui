@@ -28,7 +28,9 @@ export class AttendanceReportComponent implements OnInit {
   totalDays = 0;
   loadingIndicator = false;
   reorderable = true;
-
+  allMonths = [];
+  selectedMonth = '00';
+  allStundets = [];
   constructor(private attendanceReportService: AttendanceReportService,
               private exportAsPdfService: ExportAsPdfService,
               private dateUtilService: DateUtilService,
@@ -62,7 +64,12 @@ export class AttendanceReportComponent implements OnInit {
   }
 
   buildAttenDanceReport() {
+    this.allMonths = this.getAllMonths(this.currentAcademicYear.startDate);
     this.totalDays = this.getTotalDays(this.currentAcademicYear);
+  }
+
+  getAllMonths(academicYearStartDate) {
+    return this.dateUtilService.getMonths(academicYearStartDate, moment().format('YYYY-MM-DD'));
   }
 
   getTotalDays(academicYear) {
@@ -80,15 +87,41 @@ export class AttendanceReportComponent implements OnInit {
     this.selectedDiv = event.value;
   }
 
-  fetchStudentAttendanceDetails() {
-    const obj = { standard_id: this.selectedStd, division_id: this.selectedDiv};
-    this.attendanceReportService.getStudentAttendanceDetails(obj).then((attendance: any) => {
-      attendance.forEach(element => {
-        element['totalDays'] = this.totalDays;
-        element['presentDays'] = this.totalDays - element['absentDays'];
-      });
-      this.attendanceData = attendance;
+  onChangeMonth(event): void {
+    this.selectedMonth = event.value;
+  }
+
+  fetchStudents() {
+    this.attendanceReportService.getStudentList(this.selectedStd, this.selectedDiv).subscribe((students: any) => {
+      this.allStundets = students;
+      this.fetchStudentAttendanceDetails(students);
     });
+  }
+
+  fetchStudentAttendanceDetails(students) {
+    const me = this;
+    const obj = {standard_id: this.selectedStd, division_id: this.selectedDiv};
+    this.attendanceReportService.getStudentAttendanceDetails(obj).then((attendance: any) => {
+      let att = null;
+      me.allStundets.forEach(element => {
+        att = null;
+        att = me.getAttendanceDetailsById(attendance, element.student_id);
+        if (att) {
+          element['absentDays'] = att['absentDays'];
+          element['presentDays'] = this.totalDays - element['absentDays'];
+          element['totalDays'] = this.totalDays;
+        } else {
+          element['absentDays'] = 0;
+          element['presentDays'] = this.totalDays - element['absentDays'];
+          element['totalDays'] = this.totalDays;
+        }
+      });
+      this.attendanceData = me.allStundets;
+    });
+  }
+
+  getAttendanceDetailsById(attendance, stundetId) {
+    return attendance.find( x => x.student_id === stundetId );
   }
 
   exportAsPdf() {

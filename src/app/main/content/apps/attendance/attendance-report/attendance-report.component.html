@@ -26,8 +26,8 @@
                         {{std.name}}
                     </mat-option>
                 </mat-select>
-              </mat-form-field>
-              <mat-form-field class="form-field">
+            </mat-form-field>
+            <mat-form-field class="form-field">
                 <mat-select placeholder="Division" [(ngModel)]="selectedDiv" (change)="onChangeDiv($event)">
                     <mat-option value="0"> Select </mat-option>
                     <mat-option *ngFor="let div of divisions" [value]="div.division_id">
@@ -35,12 +35,19 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-
+            <mat-form-field class="form-field">
+                <mat-select placeholder="Month" [(ngModel)]="selectedMonth" (change)="onChangeMonth($event)">
+                    <mat-option value="00"> All </mat-option>
+                    <mat-option *ngFor="let month of allMonths" [value]="month.id">
+                        {{month.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
             <button mat-raised-button
                     matStepperNext
                     color="accent"
                     [disabled]="selectedStd == '0' || selectedDiv == '0'"
-                    (click)="fetchStudentAttendanceDetails()">
+                    (click)="fetchStudents()">
                 Go
             </button>
 
@@ -63,11 +70,12 @@
             [limit]="100"
             [scrollbarH]="true">
 
-            <!-- <ngx-datatable-column [width]="48" name="Roll Number" prop="rollNo"></ngx-datatable-column> -->
+            <ngx-datatable-column [width]="48" name="Roll Number" prop="rollNo"></ngx-datatable-column>
 
             <ngx-datatable-column name="Student Name" prop="name">
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                    <a class="empl-name" (click)="showProfile(row.student_id);">{{row.firstName}} {{row.lastName}}</a>
+                    <!-- <a class="empl-name" (click)="showProfile(row.student_id);">{{row.firstName}} {{row.lastName}}</a> -->
+                    {{row.firstName}} {{row.middleName}} {{row.lastName}}
                 </ng-template>
             </ngx-datatable-column>
 

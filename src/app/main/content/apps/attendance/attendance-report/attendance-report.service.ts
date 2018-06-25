@@ -25,4 +25,10 @@ export class AttendanceReportService {
     getAcademicYears() {
         return this.http.get(ApiConst.BASE_URL + 'academicyear');
     }
+
+    getStudentList(stdId, divisionId) {
+        const standardId = stdId ? stdId : '';
+        const divId = divisionId ? divisionId : '';
+        return this.http.get(ApiConst.BASE_URL + 'students?' + 'standardId=' + standardId + '&divisionId=' + divId);
+    }
 }

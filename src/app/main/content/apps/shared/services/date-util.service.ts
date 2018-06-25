@@ -3,7 +3,9 @@ import * as moment from 'moment';
 
 @Injectable()
 export class DateUtilService {
-
+    monthsMap = {
+        Jun: '06'
+    };
     getDaysBetweenDates(start, end, dayName) {
         const result = [];
         const days = {sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
@@ -46,6 +48,20 @@ export class DateUtilService {
         return totalDays;
     }
 
+
+    getMonths(startDate, endDate) {
+        let momentSdate = moment(startDate);
+        const momentEdate = moment(endDate);
+        const allMonths = [];
+        const obj = {};
+        while (momentSdate.isBefore(momentEdate)) {
+            obj['name'] = momentSdate.format('MMM');
+            obj['id'] = this.monthsMap[momentSdate.format('MMM')];
+            allMonths.push(obj);
+            momentSdate = momentSdate.add(1, 'month');
+        }
+        return allMonths;
+    }
     /**
      * console.log(moment().format('D'), moment().format('M'), moment().format('YYYY'));
      * const date = moment(moment(new Date()).format('YYYY/MM/DD'));
