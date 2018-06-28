@@ -211,7 +211,7 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
       standard: [this.student.standard || '', Validators.required],
       division: [this.student.division || '', Validators.required],
       nationality: [this.student.nationality || '', Validators.required],
-      birthPlace: [this.student.birthPlace || '', Validators.required]
+      birthPlace: [this.student.birthPlace || '']
     });
   }
 
