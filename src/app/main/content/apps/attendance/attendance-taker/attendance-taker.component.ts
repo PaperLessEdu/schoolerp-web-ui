@@ -86,7 +86,7 @@ export class AttendanceTakerComponent implements OnInit {
     const absentStudentIds = [];
     const parentsPhNos = [];
     this.selected.forEach((student) => {
-      parentsPhNos.push('91' + student.father.phoneNumber);
+      parentsPhNos.push(student.father.phoneNumber);
       absentStudentIds.push(student.student_id);
     });
     const obj = {
