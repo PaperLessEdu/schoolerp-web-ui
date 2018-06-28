@@ -4,9 +4,11 @@ import { MY_FORMATS } from '../../shared/constants';
 import { AttendanceTakerService } from './attendance-taker.service';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { ApiConst } from '../../shared/constants';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import * as moment from 'moment';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/confirmation-dialog.component';
+import { CommunicationService } from '../../shared/services/communication.service';
 @Component({
   selector: 'app-attendance-taker',
   templateUrl: './attendance-taker.component.html',
@@ -37,7 +39,9 @@ export class AttendanceTakerComponent implements OnInit {
   loadingIndicator = true;
   reorderable = true;
 
-  constructor( public snackBar: MatSnackBar,
+  constructor( private communicationService: CommunicationService,
+               public dialog: MatDialog,
+               public snackBar: MatSnackBar,
                private attendanceTakerService: AttendanceTakerService) { }
 
   ngOnInit() {
@@ -80,7 +84,9 @@ export class AttendanceTakerComponent implements OnInit {
 
   submitAttendance() {
     const absentStudentIds = [];
+    const parentsPhNos = [];
     this.selected.forEach((student) => {
+      parentsPhNos.push(student.father.phoneNumber);
       absentStudentIds.push(student.student_id);
     });
     const obj = {
@@ -90,9 +96,44 @@ export class AttendanceTakerComponent implements OnInit {
       division: this.selectedDiv,
       studentIds: absentStudentIds
     };
+
     this.attendanceTakerService.postAttendance(obj).then((res) => {
       this.studentList = [];
       this.snackBar.open('Attendance updated successfully', 'OK', {
+        verticalPosition: 'top',
+        duration        : 3000
+      });
+
+      this.openSendSMSDialog(parentsPhNos);
+    });
+  }
+
+  openSendSMSDialog(parentsPhNos): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+        width: '350px',
+        data: {
+            title: 'Confirmation',
+            content: 'You want to send message to the parents of absent stundents?'
+        }
+    });
+
+    dialogRef.afterClosed().subscribe(response => {
+        if (!response) {
+            return;
+        }
+        const actionType: string = response[0];
+        switch ( actionType ) {
+            case 'yes': this.sendSms(parentsPhNos);
+              break;
+            case 'no': break;
+        }
+    });
+  }
+
+  sendSms(phoneNumbers) {
+    console.log(phoneNumbers);
+    this.communicationService.sendSms(phoneNumbers).then((res) => {
+      this.snackBar.open('Message send successfully.', 'OK', {
         verticalPosition: 'top',
         duration        : 3000
       });

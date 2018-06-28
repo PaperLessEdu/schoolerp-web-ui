@@ -17,12 +17,14 @@ import {
   } from '@angular/material';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
+import { SharedModule } from '../shared/shared.module';
 import { AttendanceTakerComponent } from './attendance-taker/attendance-taker.component';
 import { AttendanceTakerService } from './attendance-taker/attendance-taker.service';
 import { AttendanceReportComponent } from './attendance-report/attendance-report.component';
 import { AttendanceReportService } from './attendance-report/attendance-report.service';
 import { ExportAsPdfService } from '../shared/services/export-as-pdf.service';
 import { DateUtilService } from '../shared/services/date-util.service';
+import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
 
 const routes = [
   {
@@ -51,7 +53,8 @@ const routes = [
     MatDatepickerModule,
     FuseSharedModule,
     FuseWidgetModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    SharedModule
   ],
   declarations: [AttendanceTakerComponent, AttendanceReportComponent],
   providers: [
@@ -59,6 +62,9 @@ const routes = [
     AttendanceReportService,
     ExportAsPdfService,
     DateUtilService
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent
   ]
 })
 export class AttendanceModule { }
