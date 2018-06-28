@@ -86,7 +86,7 @@ export class AttendanceTakerComponent implements OnInit {
     const absentStudentIds = [];
     const parentsPhNos = [];
     this.selected.forEach((student) => {
-      parentsPhNos.push(student.father.phoneNumber);
+      parentsPhNos.push('91' + student.father.phoneNumber);
       absentStudentIds.push(student.student_id);
     });
     const obj = {
@@ -98,7 +98,6 @@ export class AttendanceTakerComponent implements OnInit {
     };
 
     this.attendanceTakerService.postAttendance(obj).then((res) => {
-      this.studentList = [];
       this.snackBar.open('Attendance updated successfully', 'OK', {
         verticalPosition: 'top',
         duration        : 3000
@@ -118,12 +117,13 @@ export class AttendanceTakerComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(response => {
+        this.studentList = [];
         if (!response) {
             return;
         }
         const actionType: string = response[0];
         switch ( actionType ) {
-            case 'yes': this.sendSms(parentsPhNos);
+            case 'yes': this.sendSms(parentsPhNos.join(','));
               break;
             case 'no': break;
         }
