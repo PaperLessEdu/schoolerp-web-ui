@@ -132,7 +132,11 @@ export class AttendanceTakerComponent implements OnInit {
 
   sendSms(phoneNumbers) {
     console.log(phoneNumbers);
-    this.communicationService.sendSms(phoneNumbers).then((res) => {
+    const msgObj = {
+      phonenumber: phoneNumbers,
+      body: 'Your child is absent today. Please contact class teacher.'
+     };
+    this.communicationService.sendSms(msgObj).then((res) => {
       this.snackBar.open('Message send successfully.', 'OK', {
         verticalPosition: 'top',
         duration        : 3000
