@@ -36,6 +36,7 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
   pageType: string;
   standards;
   divisions;
+  academicYears;
 
   form: FormGroup;
 
@@ -141,6 +142,7 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     this.subscribeStudentChangeEvent();
     this.fetchStandardList();
     this.fetchDivisionList();
+    this.fetchAcademicYearList();
   }
 
   ngOnDestroy() {
@@ -267,6 +269,12 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
   private fetchDivisionList(): void {
     this.studentAddEditService.getDivisions().subscribe((divisions: any) => {
       this.divisions = divisions;
+    });
+  }
+
+  private fetchAcademicYearList(): void {
+    this.studentAddEditService.getAcademicYear().subscribe((academicYears: any) => {
+      this.academicYears = academicYears;
     });
   }
 

@@ -51,11 +51,15 @@ export class StudentAddEditService {
   }
 
   getStandards() {
-    return this.http.get(ApiConst.BASE_URL + 'standards');
+    return this.http.get(ApiConst.BASE_URL + ApiConst.STANDARDS);
   }
 
   getDivisions() {
-    return this.http.get(ApiConst.BASE_URL + 'divisions');
+    return this.http.get(ApiConst.BASE_URL + ApiConst.DIVISIONS);
+  }
+
+  getAcademicYear() {
+    return this .http.get(ApiConst.BASE_URL + ApiConst.ACADEMIC_YEAR);
   }
 
   addStudent(url, student) {

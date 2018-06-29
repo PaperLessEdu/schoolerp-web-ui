@@ -39,27 +39,19 @@
           <mat-step [stepControl]="generalInfo">
             <form [formGroup]="generalInfo">
               <ng-template matStepLabel>General Information</ng-template>
-              <!-- <div>
-                 Academic Year
+              <div>
+                <!-- Academic Year -->
                 <mat-form-field fxFlex="33">
                   <mat-select placeholder="Academic Year" formControlName="academicYear" required>
-                    <mat-option [value]="'1'">
-                      2010-2011
-                    </mat-option>
-                    <mat-option [value]="'2'">
-                      2011-2012
-                    </mat-option>
-                    <mat-option [value]="'3'">
-                      2012-2013
+                    <mat-option *ngFor="let academic of academicYears" [value]="academic.academicYearId">
+                      {{academic.name}}
                     </mat-option>
                   </mat-select>
                   <mat-error *ngIf="academicYear.errors?.required">
                     Academic Year is required!
                   </mat-error>
                 </mat-form-field>
-              </div> -->
 
-              <div>
                 <!-- Roll No -->
                 <mat-form-field fxFlex="33">
                   <input matInput type="number" placeholder="Roll No" formControlName="rollNo">

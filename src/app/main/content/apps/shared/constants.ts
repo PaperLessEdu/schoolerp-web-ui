@@ -3,6 +3,8 @@ export class ApiConst {
     public static readonly STUDENTS = 'students';
     public static readonly SUBJECTS = 'subjects';
     public static readonly STANDARDS = 'standards';
+    public static readonly ACADEMIC_YEAR = 'academicyear';
+    public static readonly DIVISIONS = 'divisions';
     // public static readonly BASE_URL = 'http://localhost:3000/';
 }
 
