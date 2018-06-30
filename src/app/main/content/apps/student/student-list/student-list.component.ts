@@ -155,8 +155,8 @@ export class StudentListComponent implements OnInit {
         const columns = [
             {title: 'Roll No', dataKey: 'rollNo'},
             {title: 'Name', dataKey: 'name'},
-            {title: 'Gender', dataKey: 'gender'},
-            {title: 'Father\'s Email Id', dataKey: 'father.emailId'},
+            {title: 'Mother\'s Name', dataKey: 'mother.name'},
+            {title: 'Father\'s Phone No', dataKey: 'father.phoneNumber'},
             {title: 'Religion', dataKey: 'religion'},
             {title: 'Caste', dataKey: 'caste'},
             {title: 'Category', dataKey: 'category'}
