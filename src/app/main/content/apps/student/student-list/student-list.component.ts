@@ -153,14 +153,16 @@ export class StudentListComponent implements OnInit {
 
     exportAsPdf(): void {
         const columns = [
+            {title: 'Roll No', dataKey: 'rollNo'},
             {title: 'Name', dataKey: 'name'},
             {title: 'Gender', dataKey: 'gender'},
-            {title: 'Blood Group', dataKey: 'bloodGroup'},
-            {title: 'Father\'s Phone Number', dataKey: 'father.phoneNumber'},
-            {title: 'Father\'s Email Id', dataKey: 'father.emailId'}
+            {title: 'Father\'s Email Id', dataKey: 'father.emailId'},
+            {title: 'Religion', dataKey: 'religion'},
+            {title: 'Caste', dataKey: 'caste'},
+            {title: 'Category', dataKey: 'category'}
         ];
         const temp = cloneDeep(this.rows);
-        temp.map( obj => obj['name'] = obj.firstName + ' ' + obj.lastName );
+        temp.map( obj => obj['name'] = obj.lastName + ' ' + obj.firstName + ' ' + obj.middleName );
         this.exportAsPdfService.exportGridData(columns, temp, 'student-list');
     }
 }
