@@ -27,12 +27,13 @@ export class Student {
     phoneNumber: string;
     doctorName: string;
     doctorPhoneNo: string;
-    
+
     emailId: string;
-    
-    aadharCardNumber: string;
+
+    aadharCardNo: string;
+    castValidityNo: string;
     birthPlace: string;
-    
+
     previousSchoolName: string;
     fathersName: string;
     mothersName: string;
@@ -72,13 +73,14 @@ export class Student {
         this.phoneNumber = student.phoneNumber || '';
         this.doctorName = student.doctorName || '';
         this.doctorPhoneNo = student.doctorPhoneNo || '';
-        
+
         this.emailId = student.emailId || '';
-        
-        
-        this.aadharCardNumber = student.aadharCardNumber || '';
+
+        this.aadharCardNo = student.aadharCardNumber || '';
+        this.castValidityNo = student.castValidtyNo || '';
+
         this.birthPlace = student.birthPlace || '';
-        
+
         this.previousSchoolName = student.previousSchoolName || '';
 
         this.fathersName = student.fathersName || '';

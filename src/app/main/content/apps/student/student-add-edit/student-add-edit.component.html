@@ -22,7 +22,7 @@
             New Student
           </div>
           <div class="h2" *ngIf="pageType === 'edit'">
-            {{student.firstName}} {{student.lastName}}
+            {{student.lastName}} {{student.firstName}} {{student.middleName}}
           </div>
           <div class="subtitle secondary-text">
             <span>Student Registration</span>
@@ -103,7 +103,7 @@
 
                 <!--  Blood group -->
                 <mat-form-field fxFlex="33">
-                  <mat-select placeholder="Blood group" formControlName="bloodGroup" required>
+                  <mat-select placeholder="Blood group" formControlName="bloodGroup">
                     <mat-option [value]="'A +ve'">
                       A +ve
                     </mat-option>
@@ -129,9 +129,9 @@
                       AB -ve
                     </mat-option>
                   </mat-select>
-                  <mat-error *ngIf="bloodGroup.errors?.required">
+                  <!-- <mat-error *ngIf="bloodGroup.errors?.required">
                     Blood group is required!
-                  </mat-error>
+                  </mat-error> -->
                 </mat-form-field>
               </div>
 
@@ -174,18 +174,18 @@
 
                 <!-- Religion -->
                 <mat-form-field fxFlex="34">
-                  <input matInput placeholder="Religion" formControlName="religion" required>
-                  <mat-error *ngIf="religion.errors?.required">
+                  <input matInput placeholder="Religion" formControlName="religion">
+                  <!-- <mat-error *ngIf="religion.errors?.required">
                     Religion is required!
-                  </mat-error>
+                  </mat-error> -->
                 </mat-form-field>
 
                 <!-- Caste -->
                 <mat-form-field fxFlex="34">
-                  <input matInput placeholder="Caste" formControlName="caste" required>
-                  <mat-error *ngIf="caste.errors?.required">
+                  <input matInput placeholder="Caste" formControlName="caste">
+                  <!-- <mat-error *ngIf="caste.errors?.required">
                     Caste is required!
-                  </mat-error>
+                  </mat-error> -->
                 </mat-form-field>
               </div>
 
@@ -220,6 +220,17 @@
                   <mat-error *ngIf="nationality.errors?.required">
                     Nationality is required!
                   </mat-error>
+                </mat-form-field>
+              </div>
+              <div>
+                <!-- Caste -->
+                <mat-form-field fxFlex="34">
+                  <input matInput placeholder="Aadhar card Number" formControlName="aadharCardNo">
+                </mat-form-field>
+
+                <!-- Caste -->
+                <mat-form-field fxFlex="34">
+                  <input matInput placeholder="Caste Validity Number" formControlName="castValidityNo">
                 </mat-form-field>
               </div>
               <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">

@@ -29,7 +29,7 @@ export class AttendanceReportComponent implements OnInit {
   loadingIndicator = false;
   reorderable = true;
   allMonths = [];
-  selectedMonth = '00';
+  selectedMonth = '0';
   allStundets = [];
   constructor(private attendanceReportService: AttendanceReportService,
               private exportAsPdfService: ExportAsPdfService,
@@ -89,6 +89,7 @@ export class AttendanceReportComponent implements OnInit {
 
   onChangeMonth(event): void {
     this.selectedMonth = event.value;
+    this.fetchStudents();
   }
 
   fetchStudents() {
@@ -100,7 +101,8 @@ export class AttendanceReportComponent implements OnInit {
 
   fetchStudentAttendanceDetails(students) {
     const me = this;
-    const obj = {standard_id: this.selectedStd, division_id: this.selectedDiv};
+    const obj = {standard_id: this.selectedStd, division_id: this.selectedDiv, month: this.selectedMonth};
+    debugger;
     this.attendanceReportService.getStudentAttendanceDetails(obj).then((attendance: any) => {
       let att = null;
       me.allStundets.forEach(element => {

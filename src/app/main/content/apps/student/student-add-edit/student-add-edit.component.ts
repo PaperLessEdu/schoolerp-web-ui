@@ -57,9 +57,9 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     return <FormControl>(this.generalInfo && this.generalInfo.get('dob'));
   }
 
-  get bloodGroup(): FormControl {
-    return <FormControl>(this.generalInfo && this.generalInfo.get('bloodGroup'));
-  }
+  // get bloodGroup(): FormControl {
+  //   return <FormControl>(this.generalInfo && this.generalInfo.get('bloodGroup'));
+  // }
 
   get category(): FormControl {
     return <FormControl>(this.generalInfo && this.generalInfo.get('category'));
@@ -206,14 +206,16 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
       lastName: [this.student.lastName || '', Validators.required],
       dob: [this.student.dob || '', Validators.required],
       gender: [this.student.gender || '', Validators.required],
-      bloodGroup: [this.student.bloodGroup || '', Validators.required],
+      bloodGroup: [this.student.bloodGroup || ''],
       category: [this.student.category || '', Validators.required],
-      caste: [this.student.caste || '', Validators.required],
-      religion: [this.student.religion || '', Validators.required],
+      caste: [this.student.caste || ''],
+      religion: [this.student.religion || ''],
       standard: [this.student.standard || '', Validators.required],
       division: [this.student.division || '', Validators.required],
       nationality: [this.student.nationality || '', Validators.required],
-      birthPlace: [this.student.birthPlace || '']
+      birthPlace: [this.student.birthPlace || ''],
+      adharcardNo: [this.student.aadharCardNo || ''],
+      castValidityNo: [this.student.castValidityNo || '']
     });
   }
 
