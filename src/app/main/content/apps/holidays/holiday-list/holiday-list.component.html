@@ -24,7 +24,7 @@
         <div fxLayout="row" fxLayoutAlign="space-between center">
             <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center">
                 <button (click)="onAddAction();" mat-button class="font-weight-400">
-                    <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon> 
+                    <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon>
                     ADD
                 </button>
                 <button (click)="onEditAction();" mat-button class="font-weight-400" [disabled]="selectedholidays.length == 0 || selectedholidays.length > 1">
@@ -36,7 +36,7 @@
                     DELETE
                 </button>
                 <button (click)="exportAsPdf()" mat-button class="font-weight-400" [disabled]="rows?.length == 0">
-                    <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':rows?.length > 1, 'primary-100-fg': rows?.length === 0}"
+                    <mat-icon class="s-20 mat-icon material-icons accent-600-fg"
                         role="img" aria-hidden="true">file_download</mat-icon>
                     Download
                 </button>
