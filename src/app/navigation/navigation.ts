@@ -144,13 +144,13 @@ export const navigation = [
                 'icon': 'forum',
                 'url': '/apps/communication/home'
             },
-            {
-                'id': 'examination',
-                'title': 'Examination',
-                'translate': 'NAV.EXAMINATION',
-                'type': 'item',
-                'url': '/apps/examination/list'
-            }
+            // {
+            //     'id': 'examination',
+            //     'title': 'Examination',
+            //     'translate': 'NAV.EXAMINATION',
+            //     'type': 'item',
+            //     'url': '/apps/examination/list'
+            // }
         ]
     }
 ];
