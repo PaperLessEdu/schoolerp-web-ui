@@ -304,7 +304,6 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     const parentsInfo = this.parentsInfo.getRawValue();
     const data = { ...generalInfo, ...contactInfo, ...parentsInfo };
 
-    data.academicYear = 1;
     data.id = this.student.id;
     this.studentAddEditService.updateStudent('students/' + this.student.id, data)
       .then(() => {
