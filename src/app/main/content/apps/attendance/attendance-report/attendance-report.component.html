@@ -37,7 +37,8 @@
             </mat-form-field>
             <mat-form-field class="form-field">
                 <mat-select placeholder="Month" [(ngModel)]="selectedMonth" (change)="onChangeMonth($event)">
-                    <mat-option value="0"> All </mat-option>
+                    <mat-option [value]="-1"> Select </mat-option>
+                    <mat-option [value]="0"> All </mat-option>
                     <mat-option *ngFor="let month of allMonths" [value]="month.id">
                         {{month.name}}
                     </mat-option>
@@ -46,7 +47,7 @@
             <button mat-raised-button
                     matStepperNext
                     color="accent"
-                    [disabled]="selectedStd == '0' || selectedDiv == '0'"
+                    [disabled]="selectedStd == '0' || selectedDiv == '0' || selectedMonth == -1"
                     (click)="go()">
                 Go
             </button>

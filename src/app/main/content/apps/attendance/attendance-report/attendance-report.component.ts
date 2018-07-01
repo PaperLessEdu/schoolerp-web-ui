@@ -29,7 +29,7 @@ export class AttendanceReportComponent implements OnInit {
   loadingIndicator = false;
   reorderable = true;
   allMonths = [];
-  selectedMonth = 0;
+  selectedMonth = -1;
   allStundets = [];
   currentMonth = 0;
 
@@ -56,20 +56,6 @@ export class AttendanceReportComponent implements OnInit {
     });
   }
 
-  // getAcademicYear(): void {
-  //   this.attendanceReportService.getAcademicYears().subscribe((years: any) => {
-  //     this.currentAcademicYear = years.find(function( obj ) {
-  //       return obj.current === true;
-  //     });
-  //     this.buildAttenDanceReport();
-  //   });
-  // }
-
-  // buildAttenDanceReport() {
-  //   this.allMonths = this.getAllMonths(this.currentAcademicYear.startDate);
-  //   this.totalDays = this.getTotalDays(this.currentAcademicYear);
-  // }
-
   getAllMonths(academicYearStartDate) {
     return this.dateUtilService.getMonths(moment(academicYearStartDate).format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
   }
@@ -95,32 +81,6 @@ export class AttendanceReportComponent implements OnInit {
   }
 
   go() {
-    // if selectedMonth == 0
-    // then startDate = Academic Year's Start Date and endDate = Today's Date
-    // this.dateUtilService.getTotalSchoolDays(academicYear.startDate, moment().format('YYYY-MM-DD'), academicYear.weekendType);
-    // if selectedMonth != 0
-    // then startDate = Month's Start Date and endDate = Month's End Date
-    // this.dateUtilService.getTotalSchoolDays(attendance.startdate, attendance.enddate, academicYear.weekendType);
-    // if selectedMonth === Today's Month
-    // then StartDate = Month's Start Date and endDate = Today's Date
-    // this.dateUtilService.getTotalSchoolDays(attendance.startdate, moment().format('YYYY-MM-DD'), academicYear.weekendType);
-
-    // 1. Fetch All stundents by Std and Div Id
-    // 2. Fetch Academic Year Details
-    // 3. Get current month
-    //    If selected month === current month
-    //      then StartDate = Month's Start Date and endDate = Today's Date
-    //    If selcted month !== current month
-    //      then startDate = Month's Start Date and endDate = Month's End Date
-    //    If selected month === 0 (All)
-    //      then startDate = Academic Year's Start Date and endDate = Today's Date
-    //    Calculate total Working days based on above condition
-    // 4. Fetch attendance details by std, div and month
-    // 5. Generate Attendance Report
-
-    // const query = { division_id: this.selectedMonth, standard_id: this.selectedStd, month: this.selectedMonth};
-    // this.fetchStudentAttendanceDetails(query);
-
     this.fetchStudents();
   }
 
@@ -178,29 +138,6 @@ export class AttendanceReportComponent implements OnInit {
       this.attendanceData = me.allStundets;
     });
   }
-
-  // fetchStudentAttendanceDetails(students) {
-  //   const me = this;
-  //   // const obj = {standard_id: this.selectedStd, division_id: this.selectedDiv, month: this.selectedMonth};
-  //   const obj = {standard_id: this.selectedStd, division_id: this.selectedDiv};
-  //   this.attendanceReportService.getStudentAttendanceDetails(obj).then((attendance: any) => {
-  //     let att = null;
-  //     me.allStundets.forEach(element => {
-  //       att = null;
-  //       att = me.getAttendanceDetailsById(attendance, element.student_id);
-  //       if (att) {
-  //         element['absentDays'] = att['absentDays'];
-  //         element['presentDays'] = this.totalDays - element['absentDays'];
-  //         element['totalDays'] = this.totalDays;
-  //       } else {
-  //         element['absentDays'] = 0;
-  //         element['presentDays'] = this.totalDays - element['absentDays'];
-  //         element['totalDays'] = this.totalDays;
-  //       }
-  //     });
-  //     this.attendanceData = me.allStundets;
-  //   });
-  // }
 
   getAttendanceDetailsById(attendance, stundetId) {
     return attendance.find( x => x.student_id === stundetId );
