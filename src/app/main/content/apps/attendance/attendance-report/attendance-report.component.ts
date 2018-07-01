@@ -89,10 +89,10 @@ export class AttendanceReportComponent implements OnInit {
     this.selectedDiv = event.value;
   }
 
-  // onChangeMonth(event): void {
-  //   this.selectedMonth = event.value;
-  //   this.fetchStudents();
-  // }
+  onChangeMonth(event): void {
+    this.selectedMonth = event.value;
+    this.fetchStudents();
+  }
 
   go() {
     // if selectedMonth == 0
