@@ -284,7 +284,6 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     const parentsInfo = this.parentsInfo.getRawValue();
     const data = { ...generalInfo, ...contactInfo, ...parentsInfo };
 
-    data.academicYear = 1;
     this.studentAddEditService.addStudent('students', data)
       .then(() => {
         // Trigger the subscription with new data
