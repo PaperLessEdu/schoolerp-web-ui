@@ -44,7 +44,11 @@ export class DateUtilService {
 
         const momentSdate = moment(startDate);
         const momentTodayDate = moment(endDate);
-        totalDays = momentTodayDate.diff(momentSdate, 'days') + 2;
+        if (momentSdate.isSame(momentTodayDate)) {
+            totalDays = 1;
+        } else {
+            totalDays = momentTodayDate.diff(momentSdate, 'days') + 2;
+        }
 
         const sundaysCount = this.getDaysBetweenDates(sDate, todayDate, 'sun').length;
 

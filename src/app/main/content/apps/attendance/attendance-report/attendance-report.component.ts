@@ -147,9 +147,7 @@ export class AttendanceReportComponent implements OnInit {
     const me = this;
     let startDate = null, endDate = null;
     const query = {division_id: this.selectedDiv, standard_id: this.selectedStd, month: this.selectedMonth};
-    debugger;
     this.attendanceReportService.getStudentAttendanceDetails(query).then((attendance: any) => {
-      debugger;
       // depending on the selection of month get starDate and endDate
       if (this.selectedMonth === this.currentMonth) {
         startDate = this.dateUtilService.getMonthDateRange(moment().format('YYYY'), this.selectedMonth).startDate;
