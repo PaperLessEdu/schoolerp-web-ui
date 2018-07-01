@@ -90,8 +90,8 @@ export class AttendanceReportComponent implements OnInit {
   }
 
   onChangeMonth(event): void {
-    this.selectedMonth = event.value;
-    this.fetchStudents();
+    this.selectedMonth = parseInt(event.value);
+    // this.fetchStudents();
   }
 
   go() {
@@ -146,7 +146,7 @@ export class AttendanceReportComponent implements OnInit {
   fetchStudentAttendanceDetails(students): void {
     const me = this;
     let startDate = null, endDate = null;
-    const query = {division_id: this.selectedMonth, standard_id: this.selectedStd, month: this.selectedMonth};
+    const query = {division_id: this.selectedDiv, standard_id: this.selectedStd, month: this.selectedMonth};
     debugger;
     this.attendanceReportService.getStudentAttendanceDetails(query).then((attendance: any) => {
       debugger;
