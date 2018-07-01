@@ -71,7 +71,7 @@ export class AttendanceReportComponent implements OnInit {
   // }
 
   getAllMonths(academicYearStartDate) {
-    return this.dateUtilService.getMonths(academicYearStartDate, moment().format('YYYY-MM-DD'));
+    return this.dateUtilService.getMonths(moment(academicYearStartDate).format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
   }
 
   getTotalDays(startDate, endDate, weekendType) {

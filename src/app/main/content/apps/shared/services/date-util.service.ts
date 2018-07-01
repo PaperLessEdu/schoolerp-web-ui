@@ -82,8 +82,8 @@ export class DateUtilService {
         let momentSdate = moment(startDate);
         const momentEdate = moment(endDate);
         const allMonths = [];
-        const obj = {};
-        while (momentSdate.isBefore(momentEdate)) {
+        while (momentSdate.isSameOrBefore(momentEdate)) {
+            const obj = {};
             obj['name'] = momentSdate.format('MMM');
             obj['id'] = this.monthsMap[momentSdate.format('MMM')];
             allMonths.push(obj);
