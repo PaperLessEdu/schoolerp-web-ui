@@ -59,6 +59,24 @@ export class DateUtilService {
         return totalDays;
     }
 
+    getCurrentMonth() {
+        return this.monthsMap[moment().format('MMM')];
+    }
+
+    getMonthDateRange(year, month) {
+        // month in moment is 0 based, so 9 is actually october, subtract 1 to compensate
+        // array is 'year', 'month', 'day', etc
+        const startDate = moment([year, month - 1]);
+
+        // Clone the value before .endOf()
+        const endDate = moment(startDate).endOf('month');
+
+        // just for demonstration:
+        console.log(startDate.format('YYYY-MM-DD'));
+        console.log(endDate.format('YYYY-MM-DD'));
+
+        return { startDate: startDate.format('YYYY-MM-DD'), endDate: endDate.format('YYYY-MM-DD') };
+    }
 
     getMonths(startDate, endDate) {
         let momentSdate = moment(startDate);
