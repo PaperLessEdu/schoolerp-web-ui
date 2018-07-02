@@ -43,18 +43,14 @@ export class DateUtilService {
         const todayDate = new Date();
 
         const momentSdate = moment(startDate);
-        const momentTodayDate = moment(endDate);
-        if (momentSdate.isSame(momentTodayDate)) {
-            totalDays = 1;
-        } else {
-            totalDays = momentTodayDate.diff(momentSdate, 'days') + 2;
-        }
+        const momentEdate = moment(endDate);
+        totalDays = momentEdate.diff(momentSdate, 'days') + 1;
 
-        const sundaysCount = this.getDaysBetweenDates(sDate, todayDate, 'sun').length;
+        const sundaysCount = this.getDaysBetweenDates(sDate, eDate, 'sun').length;
 
         // if school closed on saturdays also then minus saturdays also from total days
         if (saturdayClosed) {
-            const saturdaysCount = this.getDaysBetweenDates(sDate, todayDate, 'sat').length;
+            const saturdaysCount = this.getDaysBetweenDates(sDate, eDate, 'sat').length;
             totalDays = totalDays - saturdaysCount;
         }
 
