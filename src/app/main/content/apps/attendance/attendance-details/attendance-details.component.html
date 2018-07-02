@@ -1,0 +1,18 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Absent Dates</span>
+        </div>
+    </mat-toolbar>
+    <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+        <div *ngFor="let row of data.attendanceDetails" class="date-style">
+            {{row | date}}
+        </div>
+    </div>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-button
+                (click)="dialogRef.close(['close',standardForm])">
+                Close
+        </button>
+    </div>
+</div>

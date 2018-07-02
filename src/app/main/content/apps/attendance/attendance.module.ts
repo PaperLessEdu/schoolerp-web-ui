@@ -25,6 +25,7 @@ import { AttendanceReportService } from './attendance-report/attendance-report.s
 import { ExportAsPdfService } from '../shared/services/export-as-pdf.service';
 import { DateUtilService } from '../shared/services/date-util.service';
 import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
+import { AttendanceDetailsComponent } from './attendance-details/attendance-details.component';
 
 const routes = [
   {
@@ -56,7 +57,7 @@ const routes = [
     NgxDatatableModule,
     SharedModule
   ],
-  declarations: [AttendanceTakerComponent, AttendanceReportComponent],
+  declarations: [AttendanceTakerComponent, AttendanceReportComponent, AttendanceDetailsComponent],
   providers: [
     AttendanceTakerService,
     AttendanceReportService,
@@ -64,7 +65,8 @@ const routes = [
     DateUtilService
   ],
   entryComponents: [
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    AttendanceDetailsComponent
   ]
 })
 export class AttendanceModule { }

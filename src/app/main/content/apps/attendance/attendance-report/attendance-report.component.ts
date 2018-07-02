@@ -5,12 +5,14 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import * as moment from 'moment';
 import { cloneDeep } from 'lodash';
 import { Router } from '@angular/router';
+import { MatDialog, MatSnackBar } from '@angular/material';
 
 import { ExportAsPdfService } from '../../shared/services/export-as-pdf.service';
 import { AttendanceReportService } from './attendance-report.service';
 import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 import { ApiConst } from '../../shared/constants';
 import { DateUtilService } from '../../shared/services/date-util.service';
+import { AttendanceDetailsComponent } from '../attendance-details/attendance-details.component';
 
 @Component({
   selector: 'app-attendance-report',
@@ -36,7 +38,8 @@ export class AttendanceReportComponent implements OnInit {
   constructor(private attendanceReportService: AttendanceReportService,
               private exportAsPdfService: ExportAsPdfService,
               private dateUtilService: DateUtilService,
-              private router: Router) { }
+              private router: Router,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getStandards();
@@ -129,10 +132,12 @@ export class AttendanceReportComponent implements OnInit {
           element['absentDays'] = att['absentDays'];
           element['presentDays'] = this.totalDays - element['absentDays'];
           element['totalDays'] = this.totalDays;
+          element['absentDaysDetails'] = att['date'];
         } else {
           element['absentDays'] = 0;
           element['presentDays'] = this.totalDays - element['absentDays'];
           element['totalDays'] = this.totalDays;
+          element['absentDaysDetails'] = null;
         }
       });
       this.attendanceData = me.allStundets;
@@ -158,5 +163,28 @@ export class AttendanceReportComponent implements OnInit {
   // to display selected student information
   showProfile(student_id: number): void {
     this.router.navigate(['/apps/student/profile/' + student_id]);
+  }
+
+  showAttendanceDetails(attendanceDetails) {
+    this.openDialog(attendanceDetails);
+  }
+
+  openDialog(attendanceDetails): void {
+    const dialogRef = this.dialog.open(AttendanceDetailsComponent, {
+      width: '350px',
+      data: {
+        attendanceDetails: attendanceDetails
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(response => {
+      if (!response) {
+          return;
+      }
+      const actionType: string = response[0];
+      switch ( actionType ) {
+        case 'close': break;
+      }
+    });
   }
 }

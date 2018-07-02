@@ -75,7 +75,6 @@
 
             <ngx-datatable-column name="Student Name" prop="name">
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                    <!-- <a class="empl-name" (click)="showProfile(row.student_id);">{{row.firstName}} {{row.lastName}}</a> -->
                     {{row.lastName}} {{row.firstName}} {{row.middleName}}
                 </ng-template>
             </ngx-datatable-column>
@@ -85,6 +84,12 @@
             <ngx-datatable-column name="Absent Days" prop="absentDays"></ngx-datatable-column>
 
             <ngx-datatable-column name="Present Days" prop="presentDays"></ngx-datatable-column>
+
+            <ngx-datatable-column name="Details">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <a *ngIf="row.absentDaysDetails" class="details-link" (click)="showAttendanceDetails(row.absentDaysDetails);">Show Details</a>
+                </ng-template>
+            </ngx-datatable-column>
         </ngx-datatable>
       </div>
     </div>
