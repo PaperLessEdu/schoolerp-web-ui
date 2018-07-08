@@ -45,6 +45,13 @@ export const navigation = [
                         'url': '/apps/setup/subjects'
                     },
                     // {
+                    //     'id': 'feeStructure',
+                    //     'title': 'Fee Structure',
+                    //     'translate': 'NAV.FEE_STRUCTURE',
+                    //     'type': 'item',
+                    //     'url': '/apps/setup/fee-structure/list'
+                    // },
+                    // {
                     //     'id': 'timetable',
                     //     'title': 'Timetable',
                     //     'type': 'collapse',

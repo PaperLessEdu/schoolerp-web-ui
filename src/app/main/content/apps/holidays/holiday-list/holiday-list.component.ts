@@ -141,6 +141,6 @@ export class HolidayListComponent implements OnInit {
     ];
     const temp = cloneDeep(this.rows);
     temp.map( obj => obj['date'] = moment(obj['date']).format('DD MMM YYYY') );
-    this.exportAsPdfService.exportGridData(columns, temp, 'holiday-list');
+    this.exportAsPdfService.exportGridData(columns, temp, 'holiday-list', 'Holiday List');
   }
 }

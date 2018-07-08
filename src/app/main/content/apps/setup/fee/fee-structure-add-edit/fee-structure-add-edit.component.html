@@ -1,0 +1,70 @@
+<div id="fee-structure-add-edit" class="page-layout carded fullwidth" fusePerfectScrollbar>
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <button [routerLink]="'/apps/setup/fee-structure/list'" class="mr-0 mr-sm-16" mat-icon-button>
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+                <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    <mat-icon class="s-48">person_outline</mat-icon>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2">
+                        Fee Structure
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>Define Fee Structure</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="horizontal-stepper-wrapper">
+                <!-- HORIZONTAL STEPPER -->
+                <mat-horizontal-stepper class="mat-elevation-z4" [linear]="true">
+                    <!-- STEP 1: Primary Information-->
+                    <mat-step>
+                        <ng-template matStepLabel>Primary Info</ng-template>
+                        <!-- Academic Year -->
+                        <mat-form-field fxFlex="80">
+                            <mat-select placeholder="Academic Year" [(ngModel)]="feeStructureObj.academicYearId" #academicYear="ngModel" required>
+                                <mat-option *ngFor="let academic of academicYears" [value]="academic.academicYearId">
+                                    {{academic.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <div>
+                            <label>Select Standards:</label>
+                            <div class="pl-24 pb-16" *ngFor="let std of standardList">
+                                <mat-checkbox [(ngModel)]="std.selected" #standard="ngModel" (click)="toggleStd(std.name)" (change)="selectedStd.indexOf(std.name) > -1">{{std.name}}</mat-checkbox>
+                            </div>
+                        </div>
+
+                        <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
+                            <button mat-raised-button matStepperNext type="button" color="accent" [disabled]="selectedStd.length === 0 ? 'disabled': null">
+                                Next
+                            </button>
+                        </div>
+                    </mat-step>
+                    <!-- STEP 2: Fee Breakdowns-->
+                    <mat-step>
+                        <ng-template matStepLabel>Fee Breakdowns</ng-template>
+                    </mat-step>
+                    <!-- STEP 3: Review-->
+                    <mat-step>
+                        <ng-template matStepLabel>Review</ng-template>
+                    </mat-step>
+                </mat-horizontal-stepper>
+            </div>
+        </div>
+    </div>
+</div>

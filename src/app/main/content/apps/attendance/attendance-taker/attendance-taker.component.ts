@@ -38,7 +38,7 @@ export class AttendanceTakerComponent implements OnInit {
   selected = [];
   loadingIndicator = true;
   reorderable = true;
-
+  disableSubmit = false;
   constructor( private communicationService: CommunicationService,
                public dialog: MatDialog,
                public snackBar: MatSnackBar,
@@ -97,7 +97,9 @@ export class AttendanceTakerComponent implements OnInit {
       studentIds: absentStudentIds
     };
 
+    this.disableSubmit = true;
     this.attendanceTakerService.postAttendance(obj).then((res) => {
+      this.disableSubmit = false;
       this.snackBar.open('Attendance updated successfully', 'OK', {
         verticalPosition: 'top',
         duration        : 3000

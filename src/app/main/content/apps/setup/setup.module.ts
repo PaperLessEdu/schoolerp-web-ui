@@ -42,6 +42,10 @@ const routes = [
   {
     path: 'academic-year',
     loadChildren: './academic-year/academic-year.module#AcademicYearModule'
+  },
+  {
+    path: 'fee-structure',
+    loadChildren: './fee/fee-structure.module#FeeStructureModule'
   }
 ];
 

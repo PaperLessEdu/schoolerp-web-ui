@@ -40,6 +40,9 @@ export class CommunicationHomeComponent implements OnInit {
 
   stundentsAPI = ApiConst.BASE_URL + 'students';
   showDivs = false;
+  disabledSendAct = false;
+  showLoadingMsg = false;
+  loadingMsg = '';
 
   constructor(private communicationHomeService: CommunicationHomeService,
               public snackBar: MatSnackBar,
@@ -139,11 +142,19 @@ export class CommunicationHomeComponent implements OnInit {
       subject: this.mailSubject,
       body: this.mailBody
     };
+
+    this.disabledSendAct = true;
+    this.showLoadingMsg = true;
+    this.loadingMsg = 'Please wait, we are sending your email. It will take sometime.';
+
     this.communicationHomeService.sendEmail(emailObj)
       .then((res) => {
         // reset subject and body
         this.mailSubject = '';
         this.mailBody = '';
+        this.disabledSendAct = false;
+        this.showLoadingMsg = false;
+        this.loadingMsg = '';
 
         this.displayToastMsg('Your message has been sent.');
       });
@@ -193,8 +204,14 @@ export class CommunicationHomeComponent implements OnInit {
       msgObj['phonenumber'] = this.getParentsPhoneNumbers();
     }
     msgObj['body'] = this.msgBody;
+    this.disabledSendAct = true;
+    this.showLoadingMsg = true;
+    this.loadingMsg = 'Please wait, we are sending your message. It will take sometime.';
     this.communicationHomeService.sendSms(msgObj)
       .then((res) => {
+        this.disabledSendAct = false;
+        this.showLoadingMsg = false;
+        this.loadingMsg = '';
         this.msgBody = '';
         this.displayToastMsg('Your message has been sent.');
       });

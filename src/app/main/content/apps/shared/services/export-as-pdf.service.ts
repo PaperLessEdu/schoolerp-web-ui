@@ -6,12 +6,13 @@ export class ExportAsPdfService {
 
     constructor() { }
 
-    exportGridData(columns, gridData, fileName) {
+    exportGridData(columns, gridData, fileName, pageTitle) {
         // Only pt supported (not mm or in)
         const doc = new jsPDF('p', 'pt');
+        doc.text(35, 25, pageTitle);
         doc.autoTable(columns, gridData, {
             // Styling
-            theme: 'striped', // 'striped', 'grid' or 'plain'
+            theme: 'grid', // 'striped', 'grid' or 'plain'
             styles: {},
             headerStyles: {},
             bodyStyles: {},

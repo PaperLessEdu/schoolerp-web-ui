@@ -154,6 +154,6 @@ export class EmployeeListComponent implements OnInit {
         ];
         const temp = cloneDeep(this.rows);
         temp.map( obj => obj['name'] = obj.firstName + ' ' + obj.lastName );
-        this.exportAsPdfService.exportGridData(columns, temp, 'employee-list');
+        this.exportAsPdfService.exportGridData(columns, temp, 'employee-list', 'Employee List');
     }
 }

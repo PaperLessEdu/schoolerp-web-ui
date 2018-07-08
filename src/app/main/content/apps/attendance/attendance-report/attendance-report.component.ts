@@ -157,7 +157,7 @@ export class AttendanceReportComponent implements OnInit {
     ];
     const temp = cloneDeep(this.attendanceData);
     temp.map( obj => obj['name'] = obj.firstName + ' ' + obj.lastName );
-    this.exportAsPdfService.exportGridData(columns, temp, 'attendance-report');
+    this.exportAsPdfService.exportGridData(columns, temp, 'attendance-report', 'Attendance Report');
   }
 
   // to display selected student information

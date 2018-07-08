@@ -163,6 +163,6 @@ export class StudentListComponent implements OnInit {
         ];
         const temp = cloneDeep(this.rows);
         temp.map( obj => obj['name'] = obj.lastName + ' ' + obj.firstName + ' ' + obj.middleName );
-        this.exportAsPdfService.exportGridData(columns, temp, 'student-list');
+        this.exportAsPdfService.exportGridData(columns, temp, 'student-list', 'Student List');
     }
 }

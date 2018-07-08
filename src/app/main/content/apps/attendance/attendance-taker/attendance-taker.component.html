@@ -55,7 +55,7 @@
           <div class="top-bar attendance-taker-top-bar">
               <a mat-raised-button routerLink="." (click)="back()">Back</a>
               <button mat-button mat-raised-button
-                      [disabled]="selected.length==0 || selectedDate == ''"
+                      [disabled]="disableSubmit || selected.length==0 || selectedDate == ''"
                       (click)="submitAttendance()"
                       class="save-button mat-accent"
                       aria-label="SAVE">

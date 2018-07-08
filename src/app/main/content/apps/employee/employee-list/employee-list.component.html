@@ -42,7 +42,7 @@
                         <mat-icon class="s-20 mat-icon material-icons" [ngClass]="{'accent-600-fg':selectedEmpl.length >= 1, 'primary-100-fg': selectedEmpl.length < 1}"
                             role="img" aria-hidden="true">delete</mat-icon>
                         DELETE
-                    </button> 
+                    </button>
                     <button mat-button class="font-weight-400" [matMenuTriggerFor]="menu">
                         <mat-icon class="s-20 mat-icon material-icons accent-600-fg">settings</mat-icon> ACTIONS
                     </button>
@@ -77,7 +77,11 @@
 
                 <ngx-datatable-column name="Phone Number" prop="phoneNumber"></ngx-datatable-column>
 
-                <ngx-datatable-column name="Email Id" prop="emailId"></ngx-datatable-column>
+                <ngx-datatable-column name="Date of Birth">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row.dob | date: 'dd MMM yyyy' }}
+                    </ng-template>
+                </ngx-datatable-column>
             </ngx-datatable>
         </div>
     </div>

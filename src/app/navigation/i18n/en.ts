@@ -10,7 +10,8 @@ export const locale = {
             'HOLIDAYS': 'Holidays',
             'EXAMINATION': 'Examination',
             'COMMUNICATION': 'Communication',
-            'ATTENDANCE': 'Attendance'
+            'ATTENDANCE': 'Attendance',
+            'FEE_STRUCTURE': 'Fee Structure'
         }
     }
 };
