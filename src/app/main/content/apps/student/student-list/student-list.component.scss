@@ -1,55 +1,9 @@
 @import "src/@fuse/scss/fuse";
 
-#profile {
-
-    .header {
-        height: 100px;
-        min-height: 100px;
-        max-height: 100px;
-        background-color: #03a9f4;
-        background-size: 100% auto;
-
-        .profile-image {
-            margin-right: 24px;
-
-            @include media-breakpoint('sm') {
-                margin: 0 0 16px 0;
-            }
-        }
-
-        .name {
-            font-size: 24px;
-            color: #FFFFFF;
-
-            @include media-breakpoint('sm') {
-                margin-bottom: 32px;
-            }
-        }
-
-        .avatar.huge {
-            width: 66px;
-            min-width: 66px;
-            height: 66px;
-            line-height: 66px;
-        }
-    }
-
-    .content {
-        flex: 1;
-
-        mat-tab-group {
-            height: 100%;
-
-            .mat-tab-body-wrapper {
-                flex-grow: 1;
-            }
-        }
-    }
-}
-
-@import "src/@fuse/scss/fuse";
-
 :host {
+    .student-name {
+        cursor: pointer;
+    }
 
     #about {
         max-width: 1200px;

@@ -75,13 +75,13 @@
 
             <ngx-datatable #table class="material" [rows]="studentList" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
                 [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
-                [selectionType]="'single'" [limit]="10" (select)='onSelect($event)'>
+                [selectionType]="'single'" [limit]="25" (select)='onSelect($event)'>
 
                 <ngx-datatable-column name="Roll No" prop="rollNo"></ngx-datatable-column>
 
-                <ngx-datatable-column name="Name" prop="name">
+                <ngx-datatable-column name="Name" prop="name" [width]="250">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                        <a class="empl-name" (click)="showProfile(row.student_id);">{{row.lastName}} {{row.firstName}} {{row.middleName}}</a>
+                        <a class="student-name" (click)="showProfile(row.student_id);">{{row.lastName}} {{row.firstName}} {{row.middleName}}</a>
                     </ng-template>
                 </ngx-datatable-column>
 

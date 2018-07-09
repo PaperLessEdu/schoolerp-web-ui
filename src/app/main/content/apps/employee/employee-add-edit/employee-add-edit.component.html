@@ -39,6 +39,14 @@
                         <form [formGroup]="horizontalStepperStep1">
                             <ng-template matStepLabel>General Information</ng-template>
                             <div>
+                                <!-- Last Name -->
+                                <mat-form-field fxFlex="33">
+                                    <input matInput placeholder="Last name" formControlName="lastName" required>
+                                    <mat-error *ngIf="lastName.errors?.required">
+                                        Last Name is required!
+                                    </mat-error>
+                                </mat-form-field>
+
                                 <!-- First Name -->
                                 <mat-form-field fxFlex="33">
                                     <input matInput placeholder="First name" formControlName="firstName" required>
@@ -50,14 +58,6 @@
                                 <!-- Middle Name -->
                                 <mat-form-field fxFlex="34">
                                     <input matInput placeholder="Middle name" formControlName="middleName">
-                                </mat-form-field>
-
-                                <!-- Last Name -->
-                                <mat-form-field fxFlex="33">
-                                    <input matInput placeholder="Last name" formControlName="lastName" required>
-                                    <mat-error *ngIf="lastName.errors?.required">
-                                        Last Name is required!
-                                    </mat-error>
                                 </mat-form-field>
                             </div>
                             <div>
