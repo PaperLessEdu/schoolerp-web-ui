@@ -175,7 +175,7 @@ export class StudentListComponent implements OnInit {
             title = this.getStandardNameById(this.std) + ' standard students list';
         } else {
             title = this.getStandardNameById(this.std) + ' standard ' +
-                    this.getDivisionNameById(this.division) + ' divsion students list';
+                    this.getDivisionNameById(this.division) + ' division students list';
         }
         const columns = [
             {title: 'Roll No', dataKey: 'rollNo'},
