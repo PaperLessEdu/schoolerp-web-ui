@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
 import { FuseUtils } from '@fuse/utils';
 import { Router } from '@angular/router';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, find } from 'lodash';
 
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
@@ -151,18 +151,48 @@ export class StudentListComponent implements OnInit {
         this.fetchStudentList(this.std, this.division);
     }
 
+    getStandardNameById(id) {
+        const obj = find(this.standards, (x) => {
+            return x.standard_id === id;
+        });
+
+        return obj.name;
+    }
+
+    getDivisionNameById(id) {
+        const obj = find(this.divisions, (x) => {
+            return x.division_id === id;
+        });
+
+        return obj.name;
+    }
+
     exportAsPdf(): void {
+        let title = '';
+        if (this.std === 0 && this.division === 0) {
+            title = 'All students list';
+        } else if (this.std !== 0 && this.division === 0) {
+            title = this.getStandardNameById(this.std) + ' standard students list';
+        } else {
+            title = this.getStandardNameById(this.std) + ' standard ' +
+                    this.getDivisionNameById(this.division) + ' divsion students list';
+        }
         const columns = [
             {title: 'Roll No', dataKey: 'rollNo'},
             {title: 'Name', dataKey: 'name'},
             {title: 'Mother\'s Name', dataKey: 'mother.name'},
-            {title: 'Father\'s Phone No', dataKey: 'father.phoneNumber'},
-            {title: 'Religion', dataKey: 'religion'},
-            {title: 'Caste', dataKey: 'caste'},
-            {title: 'Category', dataKey: 'category'}
+            {title: 'Std / Div', dataKey: 'stdDiv'},
+            {title: 'Phone No', dataKey: 'father.phoneNumber'},
+            // {title: 'Religion', dataKey: 'religion'},
+            // {title: 'Caste', dataKey: 'caste'},
+            // {title: 'Category', dataKey: 'category'},
+            {title: 'Remark/Sign', dataKey: 'other'}
         ];
         const temp = cloneDeep(this.rows);
-        temp.map( obj => obj['name'] = obj.lastName + ' ' + obj.firstName + ' ' + obj.middleName );
-        this.exportAsPdfService.exportGridData(columns, temp, 'student-list', 'Student List');
+        temp.map( obj => {
+            obj['name'] = obj.lastName + ' ' + obj.firstName + ' ' + obj.middleName;
+            obj['stdDiv'] = obj.standard.name + ' / ' + obj.division.name;
+        } );
+        this.exportAsPdfService.exportGridData(columns, temp, 'student-list', title);
     }
 }

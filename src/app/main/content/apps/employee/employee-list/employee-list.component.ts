@@ -148,12 +148,15 @@ export class EmployeeListComponent implements OnInit {
         const columns = [
             {title: 'Name', dataKey: 'name'},
             {title: 'Phone Number', dataKey: 'phoneNumber'},
-            {title: 'Email Id', dataKey: 'emailId'},
             {title: 'Gender', dataKey: 'gender'},
-            {title: 'Blood Group', dataKey: 'bloodGroup'}
+            {title: 'Blood Group', dataKey: 'bloodGroup'},
+            {title: 'Remark/Sign', dataKey: 'other'}
         ];
         const temp = cloneDeep(this.rows);
-        temp.map( obj => obj['name'] = obj.firstName + ' ' + obj.lastName );
+        temp.map( obj => {
+            obj['name'] = obj.lastName + ' ' + obj.firstName + ' ' + obj.middleName;
+            obj['other'] = '';
+        } );
         this.exportAsPdfService.exportGridData(columns, temp, 'employee-list', 'Employee List');
     }
 }
