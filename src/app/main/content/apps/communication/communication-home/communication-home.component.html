@@ -43,6 +43,13 @@
                   </mat-option>
               </mat-select>
           </mat-form-field>
+          <mat-form-field class="form-field" *ngIf="selectedRecipient === 'employees'">
+            <mat-select placeholder="Employee Type" [(ngModel)]="selectedEmplType" [disabled]="selectedRecipient===''" (change)="onChangeEmplType($event)">
+                <mat-option value="all"> All </mat-option>
+                <mat-option value="Teaching Staff"> Teaching Staff </mat-option>
+                <mat-option value="Non Teaching Staff"> Non Teaching Staff </mat-option>
+            </mat-select>
+          </mat-form-field>
           <mat-form-field class="form-field">
               <mat-select placeholder="Communication Type" [(ngModel)]="selectedType" [disabled]="selectedRecipient===''">
                 <mat-option value="byTextMessage"> By Text Message </mat-option>
@@ -59,7 +66,7 @@
         <div *ngIf="selectedRecipient!==''" class="list">
             <ngx-datatable #table
                   class="material"
-                  [rows]="rows"
+                  [rows]="list"
                   [loadingIndicator]="loadingIndicator"
                   [columnMode]="'force'"
                   [headerHeight]="48"
@@ -91,7 +98,7 @@
 
                 <ngx-datatable-column name="Name">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                        {{row.firstName}} {{row.lastName}}
+                        {{row.lastName}} {{row.firstName}} {{row.middleName}}
                     </ng-template>
                 </ngx-datatable-column>
             </ngx-datatable>

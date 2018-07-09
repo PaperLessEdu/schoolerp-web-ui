@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { MatSnackBar } from '@angular/material';
 import { ApiConst } from '../../shared/constants';
+import { cloneDeep } from 'lodash';
 
 import { CommunicationHomeService } from './communication-home.service';
 
@@ -14,7 +15,8 @@ import { CommunicationHomeService } from './communication-home.service';
   animations : fuseAnimations
 })
 export class CommunicationHomeComponent implements OnInit {
-  rows: any[];
+  list: any[];
+  originalList: any[];
   temp: any[];
   loadingIndicator = true;
   reorderable = true;
@@ -43,6 +45,7 @@ export class CommunicationHomeComponent implements OnInit {
   disabledSendAct = false;
   showLoadingMsg = false;
   loadingMsg = '';
+  selectedEmplType = 'all';
 
   constructor(private communicationHomeService: CommunicationHomeService,
               public snackBar: MatSnackBar,
@@ -60,7 +63,8 @@ export class CommunicationHomeComponent implements OnInit {
     this.communicationHomeService.getEmployees().subscribe((empls: any) => {
         this.selected = [...empls];
         this.temp = [...empls];
-        this.rows = empls;
+        this.list = empls;
+        this.originalList = cloneDeep(this.list);
         this.loadingIndicator = false;
     });
   }
@@ -69,7 +73,7 @@ export class CommunicationHomeComponent implements OnInit {
     this.communicationHomeService.getStudents(url).subscribe((students: any) => {
         this.selected = [...students];
         this.temp = [...students];
-        this.rows = students;
+        this.list = students;
         this.loadingIndicator = false;
     });
   }
@@ -276,5 +280,21 @@ export class CommunicationHomeComponent implements OnInit {
     this.selectedDiv = event.value;
     const url = this.stundentsAPI + '?standardId=' + this.selectedStd + '&divisionId=' + this.selectedDiv;
     this.fetchStudentDetails(url);
+  }
+
+  onChangeEmplType(event): void {
+    this.list = cloneDeep(this.originalList);
+    this.selectedEmplType = event.value;
+
+    if (this.selectedEmplType === 'all') {
+      this.selected = [...this.list];
+      return;
+    }
+    this.list = this.list.filter((item) => {
+      if (this.selectedEmplType === item.employeeType) {
+        return item;
+      }
+    });
+    this.selected = [...this.list];
   }
 }
