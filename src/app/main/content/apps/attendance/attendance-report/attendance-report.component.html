@@ -73,7 +73,7 @@
 
             <ngx-datatable-column [width]="48" name="Roll Number" prop="rollNo"></ngx-datatable-column>
 
-            <ngx-datatable-column name="Student Name" prop="name">
+            <ngx-datatable-column name="Student Name" prop="name" [width]="250">
                 <ng-template let-row="row" ngx-datatable-cell-template>
                     {{row.lastName}} {{row.firstName}} {{row.middleName}}
                 </ng-template>
