@@ -133,11 +133,13 @@ export class AttendanceReportComponent implements OnInit {
           element['presentDays'] = this.totalDays - element['absentDays'];
           element['totalDays'] = this.totalDays;
           element['absentDaysDetails'] = att['date'];
+          element['percentage'] = 100 - (att['absentDays'] * 100 / element['totalDays']);
         } else {
           element['absentDays'] = 0;
           element['presentDays'] = this.totalDays - element['absentDays'];
           element['totalDays'] = this.totalDays;
           element['absentDaysDetails'] = null;
+          element['percentage'] = 100;
         }
       });
       this.attendanceData = me.allStundets;
