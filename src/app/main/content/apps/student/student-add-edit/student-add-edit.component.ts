@@ -57,10 +57,6 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     return <FormControl>(this.generalInfo && this.generalInfo.get('dob'));
   }
 
-  // get bloodGroup(): FormControl {
-  //   return <FormControl>(this.generalInfo && this.generalInfo.get('bloodGroup'));
-  // }
-
   get category(): FormControl {
     return <FormControl>(this.generalInfo && this.generalInfo.get('category'));
   }
@@ -83,6 +79,10 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
 
   get nationality(): FormControl {
     return <FormControl>(this.generalInfo && this.generalInfo.get('nationality'));
+  }
+
+  get schoolType(): FormControl {
+    return <FormControl>(this.generalInfo && this.generalInfo.get('schoolType'));
   }
 
   get permanentAddress(): FormControl {
@@ -199,6 +199,7 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
 
   private generalInfoForm(): FormGroup {
     return this.formBuilder.group({
+      admissionDate: [this.student.admissionDate || ''],
       academicYear: [this.student.academicYear || ''],
       rollNo: [this.student.rollNo || ''],
       firstName: [this.student.firstName || '', Validators.required],
@@ -213,7 +214,9 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
       standard: [this.student.standard || '', Validators.required],
       division: [this.student.division || '', Validators.required],
       nationality: [this.student.nationality || '', Validators.required],
-      birthPlace: [this.student.birthPlace || '']
+      birthPlace: [this.student.birthPlace || ''],
+      schoolType: [this.student.schoolType || ''],
+      previousSchoolName: [this.student.previousSchoolName || '']
     });
   }
 

@@ -4,6 +4,7 @@ export class Student {
 
     id: string;
     academicYear: string;
+    admissionDate: string;
     rollNo: number;
     firstName: string;
     middleName: string;
@@ -17,6 +18,7 @@ export class Student {
     standard: string;
     division: string;
     nationality: string;
+    schoolType: string;
 
     permanentAddress: string;
     correspondenceAddress: string;
@@ -50,6 +52,7 @@ export class Student {
         // General Information
         this.id = student.id || '';
         this.academicYear = student.academicYear || '';
+        this.admissionDate = student.admissionDate || '';
         this.rollNo = student.rollNo || '';
         this.firstName = student.firstName || '';
         this.middleName = student.middleName || '';
@@ -63,6 +66,7 @@ export class Student {
         this.standard = student.standard || '';
         this.division = student.division || '';
         this.nationality = student.nationality || '';
+        this.schoolType = student.schoolType || '';
 
         this.permanentAddress = student.permanentAddress || '';
         this.correspondenceAddress = student.correspondenceAddress || '';

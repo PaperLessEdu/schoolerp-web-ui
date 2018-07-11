@@ -40,6 +40,13 @@
             <form [formGroup]="generalInfo">
               <ng-template matStepLabel>General Information</ng-template>
               <div>
+                <!-- Date of Admission -->
+                <mat-form-field fxFlex="33">
+                  <input matInput [matDatepicker]="doa" placeholder="Date of Admission" formControlName="admissionDate">
+                  <mat-datepicker-toggle matSuffix [for]="doa"></mat-datepicker-toggle>
+                  <mat-datepicker #doa></mat-datepicker>
+                </mat-form-field>
+
                 <!-- Academic Year -->
                 <mat-form-field fxFlex="33">
                   <mat-select placeholder="Academic Year" formControlName="academicYear" required>
@@ -222,6 +229,38 @@
                   </mat-error>
                 </mat-form-field>
               </div>
+              <div>
+                <!-- Birth Place -->
+                <mat-form-field fxFlex="33">
+                  <input matInput placeholder="Birth Place" formControlName="birthPlace">
+                </mat-form-field>
+
+                <!-- School Type-->
+                <mat-form-field fxFlex="33">
+                  <mat-select placeholder="School Type" formControlName="schoolType" required>
+                    <mat-option [value]="'Pre-Primary'">
+                      Pre-Primary
+                    </mat-option>
+                    <mat-option [value]="'Primary'">
+                      Primary
+                    </mat-option>
+                    <mat-option [value]="'Secondary'">
+                      Secondary
+                    </mat-option>
+                    <mat-option [value]="'Higher Secondary'">
+                      Higher Secondary
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="schoolType.errors?.required">
+                    School Type is required!
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Previous School Name -->
+                <mat-form-field fxFlex="33">
+                  <input matInput placeholder="Previous School Name" formControlName="previousSchoolName">
+                </mat-form-field>
+              </div>
               <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
                 <button mat-raised-button matStepperNext type="button" color="accent">
                   Next
@@ -367,6 +406,12 @@
                     </mat-error>
                   </mat-form-field>
                 </div>
+                <div>
+                  <!-- Monthly Income -->
+                  <mat-form-field fxFlex="50" formGroupName="fathersDetails">
+                    <input matInput placeholder="Monthly Income" formControlName="monthlyIncome">
+                  </mat-form-field>
+                </div>
               </fieldset>
 
               <fieldset>
@@ -437,13 +482,17 @@
                   <mat-form-field fxFlex="50" formGroupName="guardianDetails">
                     <input matInput placeholder="Occupation" formControlName="occupation">
                   </mat-form-field>
-
                 </div>
 
                 <div>
                   <!-- Phone Number -->
                   <mat-form-field fxFlex="50" formGroupName="guardianDetails">
                     <input matInput placeholder="Phone Number" formControlName="phoneNumber">
+                  </mat-form-field>
+
+                  <!-- Relationship -->
+                  <mat-form-field fxFlex="50" formGroupName="guardianDetails">
+                    <input matInput placeholder="Relationship" formControlName="relationship">
                   </mat-form-field>
                 </div>
               </fieldset>
