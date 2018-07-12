@@ -14,6 +14,7 @@
                 <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">group</mat-icon>
                 <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Students</span>
             </div>
+            <div class="text-boxed white-bg black-fg m-0" style="font-size: medium"> {{studentList.length}} students </div>
             <!-- / APP TITLE -->
         </div>
 
@@ -62,6 +63,7 @@
                         </mat-option>
                     </mat-select>
                     <mat-select class="w-10-p" placeholder="Division" [(ngModel)]="division" (change)="applyFilter()" *ngIf="std !== 0">
+                        <mat-option [value]="0">All</mat-option>
                         <mat-option *ngFor="let divi of divisions" [value]="divi.division_id">
                             {{divi.name}}
                         </mat-option>

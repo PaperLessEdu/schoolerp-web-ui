@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
   }
 
   doLogin(): void {
-    if (this.username.value === 'admin' && this.password.value === 'admin') {
+    if (this.username.value === 'admin' && this.password.value === 'Admin!23') {
       localStorage.setItem('userToken', 'sfsf-sdfsd-fsdfds-fsdf-dsf-dsf-sdf');
       this.router.navigate(['/apps/dashboard/home']);
     } else {
