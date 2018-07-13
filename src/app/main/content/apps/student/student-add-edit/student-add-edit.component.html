@@ -519,12 +519,16 @@
               <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
                 Previous
               </button>
-              <button mat-raised-button type="button" color="accent" (click)="addStudent()" *ngIf="pageType ==='new'">
+              <button mat-raised-button type="button" color="accent" (click)="addStudent()" *ngIf="pageType ==='new' && showLoadingMsg===false">
                 Submit
               </button>
-              <button mat-raised-button type="button" color="accent" (click)="updateStudent()" *ngIf="pageType ==='edit'">
+              <button mat-raised-button type="button" color="accent" (click)="updateStudent()" *ngIf="pageType ==='edit' && showLoadingMsg===false">
                 Save
               </button>
+            </div>
+
+            <div *ngIf="showLoadingMsg" class="pt-24" fxLayout="row" fxLayoutAlign="center center">
+                {{loadingMsg}}
             </div>
           </mat-step>
         </mat-horizontal-stepper>

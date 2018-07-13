@@ -40,6 +40,9 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
 
+  showLoadingMsg = false;
+  loadingMsg = '';
+
   // getters for form control
   get academicYear(): FormControl {
     return <FormControl>(this.generalInfo && this.generalInfo.get('academicYear'));
@@ -287,6 +290,8 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     const parentsInfo = this.parentsInfo.getRawValue();
     const data = { ...generalInfo, ...contactInfo, ...parentsInfo };
 
+    this.showLoadingMsg = true;
+    this.loadingMsg = 'Please wait, we are adding this student in our system.';
     this.studentAddEditService.addStudent('students', data)
       .then(() => {
         // Trigger the subscription with new data
@@ -294,6 +299,7 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
         this.router.navigate(['/apps/student/list']);
         // Show the success message
         const msg = 'Student ' + data.firstName + ' ' + data.lastName + ' added successfully';
+        this.showLoadingMsg = false;
         this.snackBar.open(msg, 'OK', {
           verticalPosition: 'top',
           duration: 3000
@@ -308,6 +314,8 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     const data = { ...generalInfo, ...contactInfo, ...parentsInfo };
 
     data.id = this.student.id;
+    this.showLoadingMsg = true;
+    this.loadingMsg = 'Please wait, we are updating student info in our system.';
     this.studentAddEditService.updateStudent('students/' + this.student.id, data)
       .then(() => {
         // Trigger the subscription with new data
@@ -315,6 +323,7 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
         this.router.navigate(['/apps/student/list']);
         // Show the success message
         const msg = 'Student ' + data.firstName + ' ' + data.lastName + ' updated successfully';
+        this.showLoadingMsg = false;
         this.snackBar.open(msg, 'OK', {
           verticalPosition: 'top',
           duration: 3000
