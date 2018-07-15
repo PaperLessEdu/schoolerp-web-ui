@@ -37,6 +37,10 @@ const routes = [
     loadChildren: './communication/communication.module#CommunicationModule'
   },
   {
+    path: 'daily-report',
+    loadChildren: './daily-report/daily-report.module#DailyReportModule'
+  },
+  {
     path: '**',
     redirectTo: 'dashboard'
   },

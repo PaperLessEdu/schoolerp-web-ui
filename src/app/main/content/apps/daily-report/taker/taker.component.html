@@ -1,0 +1,103 @@
+<div id="holidays" class="page-layout carded fullwidth" fusePerfectScrollbar>
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header white-fg"
+            fxLayout="column" fxLayoutAlign="center center"
+            fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+            <!-- APP TITLE -->
+            <div class="logo my-12 m-sm-0"
+                    fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">today</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Daily Report Taker</span>
+            </div>
+            <!-- <div *ngIf="studentList.length>0">
+                <span class="h2">Date: {{selectedDate| date: 'MMM dd, yyyy'}}</span>
+            </div> -->
+        </div>
+        <!-- CONTENT CARD -->
+        <div class="mat-white-bg dailyreport-taker-container">
+            <div class="taker-form" *ngIf="studentList.length===0">
+                <mat-form-field class="form-field">
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" placeholder="Select date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field> <br>
+                <mat-form-field class="form-field">
+                    <mat-select placeholder="Standard" [(ngModel)]="selectedStd" (change)="onChangeStd($event)">
+                    <mat-option value="0"> Select </mat-option>
+                    <mat-option *ngFor="let std of standards" [value]="std.standard_id">
+                        {{std.name}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field> <br>
+                <mat-form-field class="form-field">
+                    <mat-select placeholder="Division" [(ngModel)]="selectedDiv" (change)="onChangeDiv($event)">
+                    <mat-option value="0"> Select </mat-option>
+                    <mat-option *ngFor="let div of divisions" [value]="div.division_id">
+                        {{div.name}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field> <br>
+                <button mat-button mat-raised-button
+                        [disabled]="this.selectedDate=='' || selectedStd==0 || selectedDiv==0"
+                        (click)="fetchStundets()"
+                        class="save-button mat-accent"
+                        aria-label="SAVE">
+                    Go
+                </button>
+            </div>
+            <div *ngIf="studentList.length>0">
+                <div class="top-bar attendance-taker-top-bar">
+                    <mat-form-field class="form-field">
+                        <mat-select placeholder="Check List" [(ngModel)]="selectedChecklist" (change)="onChangeChecklist($event)">
+                            <mat-option value="0"> Select </mat-option>
+                            <mat-option *ngFor="let x of subjects" [value]="x.subject_id">
+                                {{x.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <a mat-raised-button routerLink="." (click)="back()">Back</a>
+                    <button mat-button mat-raised-button
+                            [disabled]="disableSubmit || selected.length==0 || selectedDate == ''"
+                            (click)="submitAttendance()"
+                            class="save-button mat-accent"
+                            aria-label="SAVE">
+                        Submit
+                    </button>
+                </div>
+                <ngx-datatable #table class="material" [rows]="studentList" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
+                    [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable"
+                    [selectionType]="'checkbox'" [limit]="100" [selected]="selected">
+                    <ngx-datatable-column [width]="48"
+                                [canAutoResize]="false"
+                                [sortable]="false">
+                        <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                            let-selectFn="selectFn">
+                        <mat-checkbox [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></mat-checkbox>
+                        </ng-template>
+                        <ng-template ngx-datatable-cell-template
+                                let-value="value"
+                                let-isSelected="isSelected"
+                                let-onCheckboxChangeFn="onCheckboxChangeFn"
+                                let-row="row">
+                        <mat-checkbox [checked]="isSelected" (change)="onCheckboxChangeFn(row)"></mat-checkbox>
+                    </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column [width]="48" name="Roll Number" prop="rollNo"></ngx-datatable-column>
+
+                    <ngx-datatable-column name="Name" prop="name">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.lastName}} {{row.firstName}} {{row.middleName}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+            </div>
+        </div>
+    </div>
+</div>
