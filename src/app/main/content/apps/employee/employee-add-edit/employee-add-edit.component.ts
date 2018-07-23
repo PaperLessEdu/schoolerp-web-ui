@@ -19,6 +19,7 @@ import { Constants, MY_FORMATS } from '../../shared/constants';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import * as moment from 'moment';
+import { UtilsService } from 'app/main/content/apps/shared/services/utils.service';
 
 @Component({
     selector: 'app-employee-add-edit',
@@ -113,7 +114,8 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
     constructor(private formBuilder: FormBuilder,
         private router: Router,
         public snackBar: MatSnackBar,
-        private employeeAddEditService: EmployeeAddEditService) {
+        private employeeAddEditService: EmployeeAddEditService,
+        private utilsService: UtilsService) {
     }
 
     ngOnInit() {
@@ -178,7 +180,7 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
     horizontalStepperStep3Form() {
         return this.formBuilder.group({
             qualification: new FormControl(this.employee.qualification || 'Graduation'),
-            occupation: new FormControl(this.employee.occupation || 'D.Ed.'),
+            occupation: new FormControl(this.employee.occupation || ''),
             jobType: new FormControl(this.employee.jobType || 'Full Time'),
             employeeType: new FormControl(this.employee.employeeType || 'Teaching Staff')
         });
@@ -215,6 +217,10 @@ export class EmployeeAddEditComponent implements OnInit, OnDestroy {
         const step1Data = this.horizontalStepperStep1.getRawValue();
         const step2Data = this.horizontalStepperStep2.getRawValue();
         const step3Data = this.horizontalStepperStep3.getRawValue();
+
+        step1Data.firstName = this.utilsService.capitalize(this.firstName.value);
+        step2Data.middleName = this.utilsService.capitalize(this.horizontalStepperStep1.get('middleName').value);
+        step3Data.lastName = this.utilsService.capitalize(this.lastName.value);
         const data = { ...step1Data, ...step2Data, ...step3Data };
 
         // for 1st release we are giving Admin roles to all the employees

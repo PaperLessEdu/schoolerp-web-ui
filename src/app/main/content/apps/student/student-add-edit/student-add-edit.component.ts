@@ -10,6 +10,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import * as moment from 'moment';
 import { Constants, MY_FORMATS } from 'app/main/content/apps/shared/constants';
+import { UtilsService } from 'app/main/content/apps/shared/services/utils.service';
 
 @Component({
   selector: 'app-student-add-edit',
@@ -137,7 +138,8 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private router: Router,
     public snackBar: MatSnackBar,
-    private studentAddEditService: StudentAddEditService
+    private studentAddEditService: StudentAddEditService,
+    private utilsService: UtilsService
   ) {
   }
 
@@ -288,6 +290,10 @@ export class StudentAddEditComponent implements OnInit, OnDestroy {
     const generalInfo = this.generalInfo.getRawValue();
     const contactInfo = this.contactInfo.getRawValue();
     const parentsInfo = this.parentsInfo.getRawValue();
+
+    generalInfo.firstName = this.utilsService.capitalize(this.firstName.value);
+    generalInfo.middleName = this.utilsService.capitalize(this.generalInfo.get('middleName').value);
+    generalInfo.lastName = this.utilsService.capitalize(this.lastName.value);
     const data = { ...generalInfo, ...contactInfo, ...parentsInfo };
 
     this.showLoadingMsg = true;
