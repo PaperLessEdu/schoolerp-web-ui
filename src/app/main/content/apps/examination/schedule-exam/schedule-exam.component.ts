@@ -32,6 +32,9 @@ export class ScheduleExamComponent implements OnInit {
     subjectList: any;
     examName;
     selectedStd = [];
+    academicYears; // academic year list fetched from backend
+    academicYear; // ngModel value
+    standard;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -56,6 +59,7 @@ export class ScheduleExamComponent implements OnInit {
     ngOnInit() {
         this.getStandards();
         this.getSubjects();
+        this.fetchAcademicYearList();
     }
 
     getStandards(): void {
@@ -67,6 +71,12 @@ export class ScheduleExamComponent implements OnInit {
     getSubjects(): void {
         this.scheduleExamService.getSubjects().subscribe((subjects: any) => {
             this.subjectList = subjects;
+        });
+    }
+
+    private fetchAcademicYearList(): void {
+        this.scheduleExamService.getAcademicYear().subscribe((academicYears: any) => {
+            this.academicYears = academicYears;
         });
     }
 

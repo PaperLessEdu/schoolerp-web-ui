@@ -14,4 +14,8 @@ export class ScheduleExamService {
   getSubjects() {
     return this.http.get(ApiConst.BASE_URL + ApiConst.SUBJECTS);
   }
+
+  getAcademicYear() {
+    return this .http.get(ApiConst.BASE_URL + ApiConst.ACADEMIC_YEAR);
+  }
 }

@@ -16,7 +16,8 @@ import {
   MatSelectModule,
   MatTableModule,
   MatDatepickerModule,
-  MatListModule
+  MatListModule,
+  MatRadioModule
   } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { SharedModule } from './../shared/shared.module';
@@ -55,7 +56,7 @@ const routes = [
     MatTableModule,
     MatDatepickerModule,
     MatListModule,
-
+    MatRadioModule,
     MatStepperModule
   ],
   declarations: [
