@@ -225,7 +225,7 @@ export class CommunicationHomeComponent implements OnInit {
    * This method will return employee email Ids csv of selected employees
    */
   getEmployeePhoneNumbers() {
-    const mobileNos = this.selected.map((obj) => '91' + obj.phoneNumber);
+    const mobileNos = this.selected.map((obj) => obj.phoneNumber);
     return mobileNos.join(',');
   }
 

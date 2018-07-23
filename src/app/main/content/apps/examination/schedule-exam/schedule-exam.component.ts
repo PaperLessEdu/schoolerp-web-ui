@@ -25,8 +25,8 @@ import { MY_FORMATS } from 'app/main/content/apps/shared/constants';
 })
 export class ScheduleExamComponent implements OnInit {
 
-    // displayedColumns = ['subject', 'date', 'time', 'marks'];
-    scheduleExamTemplate = [];
+    distribution = [];
+    examSchedule = [];
     examObj: any;
     standardList: any;
     subjectList: any;
@@ -46,8 +46,9 @@ export class ScheduleExamComponent implements OnInit {
             date: null,
             startTime: null,
             endTime: null,
-            marksOutOf: null,
+            examType: null,
             scoreType: null,
+            marksOutOf: null,
             passingMarks: null
         };
     }
@@ -69,18 +70,43 @@ export class ScheduleExamComponent implements OnInit {
         });
     }
 
-    insertRowInTemplate(examObj: any): void {
-        this.scheduleExamTemplate.push(examObj);
-        this.examObj = {
-            subjectName: '',
-            date: '',
-            time: '',
-            marksOutOf: ''
+    insertRowInTemplate(): void {
+        const examScheduleObj = {
+            subjectId: null,
+            distribution: [
+                {
+                    date: null,
+                    startTime: null,
+                    endTime: null,
+                    examType: null,
+                    scoreType: null,
+                    marksOutOf: null,
+                    passingMarks: null
+                }
+            ]
         };
+
+        this.examSchedule.push(examScheduleObj);
+    }
+
+    addSubjectDistribution(index: number): void {
+        this.examSchedule[index].distribution.push({
+            date: null,
+            startTime: null,
+            endTime: null,
+            examType: null,
+            scoreType: null,
+            marksOutOf: null,
+            passingMarks: null
+        });
+    }
+
+    removeSubjectDistribution(examIndex: number, distIndex: number): void {
+        this.examSchedule[examIndex].distribution.splice(distIndex, 1);
     }
 
     deleteRowInTemplate(index: number): void {
-        this.scheduleExamTemplate.splice(index, 1);
+        // this.scheduleExamTemplate.splice(index, 1);
     }
 
     getSubjectName(subjectId: number): void {

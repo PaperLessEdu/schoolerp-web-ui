@@ -66,7 +66,150 @@
                             the states and values of the HTML controls on screen. Reactive forms offer the ease of using
                             reactive patterns, testing, and validation.
                         </p>
-                        <div class="mat-elevation-z8">
+
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center">
+                                <button mat-button class="font-weight-400" (click)="insertRowInTemplate()">
+                                    <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon>
+                                    ADD
+                                </button>
+                                <button mat-button class="font-weight-400">
+                                    <mat-icon class="s-20 mat-icon material-icons" role="img" aria-hidden="true">edit</mat-icon>
+                                    EDIT
+                                </button>
+                            </div>
+                        </div>
+
+                        <mat-list>
+                            <mat-list-item class="font-weight-600 exam-row">
+                                <div fxFlex="13"></div>
+                                <div fxFlex="13">Date</div>
+                                <div fxFlex="11">Start Time</div>
+                                <div fxFlex="11">End Time</div>
+                                <div fxFlex="11">Exam Type</div>
+                                <div fxFlex="12">Score Type</div>
+                                <div fxFlex="12">Marks out of</div>
+                                <div fxFlex="15">Passing marks</div>
+                                <div fxFlex="5"></div>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <div *ngFor="let examObj of examSchedule; let examIndex = index">
+                                <mat-list-item class="primary-50-bg exam-row">
+                                    <mat-icon class="s-20 mat-icon material-icons accent-600-fg mr-20" style="cursor: pointer">add</mat-icon>
+                                    <div fxFlex="80">
+                                        <mat-form-field fxFlex="10">
+                                            <mat-select name="subject" [(ngModel)]="examObj.subjectId" #subject="ngModel" required>
+                                                <mat-option *ngFor="let subject of subjectList" [value]="subject.subject_id">
+                                                    {{subject.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="subject.errors?.required">
+                                                Subject is required!
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="text-right" fxFlex="20">
+                                        <mat-icon class="accent-600-fg" style="cursor: pointer" (click)="deleteRowInTemplate(i)">delete</mat-icon>
+                                    </div>
+                                </mat-list-item>
+                                <mat-list-item class="exam-row" *ngFor="let dist of examObj.distribution; let distIndex = index; let last = last">
+                                    <div fxFlex="13">
+                                    </div>
+                                    <div fxFlex="13">
+                                        <mat-form-field fxFlex="80">
+                                            <input matInput name="date" [matDatepicker]="picker" [(ngModel)]="dist.date" #date="ngModel" required>
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                            <mat-error *ngIf="date.errors?.required">
+                                                Date is required!
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxFlex="11">
+                                        <mat-form-field fxFlex="80">
+                                            <input matInput type="time" [(ngModel)]="dist.startTime">
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxFlex="11">
+                                        <mat-form-field fxFlex="80">
+                                            <input matInput type="time" [(ngModel)]="dist.endTime">
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxFlex="11">
+                                        <mat-form-field fxFlex="80">
+                                            <mat-select name="examType" [(ngModel)]="dist.examType" #examType="ngModel" required>
+                                                <mat-option [value]="'Theory'">Theory</mat-option>
+                                                <mat-option [value]="'Oral'">Oral</mat-option>
+                                                <mat-option [value]="'Practical'">Practical</mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="examType.errors?.required">
+                                                Score Type is required!
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxFlex="12">
+                                        <mat-form-field fxFlex="80">
+                                            <mat-select name="scoreType" [(ngModel)]="dist.scoreType" #scoreType="ngModel" required>
+                                                <mat-option [value]="'marks'">Marks</mat-option>
+                                                <mat-option [value]="'grade'">Grade</mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="scoreType.errors?.required">
+                                                Score Type is required!
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxFlex="12">
+                                        <mat-form-field fxFlex="80">
+                                            <input matInput type="number" name="marksOutOf" [(ngModel)]="dist.marksOutOf" #marksOutOf="ngModel" required>
+                                            <mat-error *ngIf="marksOutOf.errors?.required">
+                                                Marks is required!
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxFlex="15">
+                                        <mat-form-field fxFlex="80">
+                                            <input matInput type="number" name="passingMarks" [(ngModel)]="dist.passingMarks" #passingMarks="ngModel" required>
+                                            <mat-error *ngIf="passingMarks.errors?.required">
+                                                Marks is required!
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxFlex="5">
+                                        <mat-icon class="accent-600-fg" style="cursor: pointer" *ngIf="examObj.distribution.length > 1" (click)="removeSubjectDistribution(examIndex, distIndex)">remove_circle_outline</mat-icon>
+                                        <mat-icon class="accent-600-fg" style="cursor: pointer" *ngIf="last" (click)="addSubjectDistribution(examIndex)">add_circle_outline</mat-icon>
+                                    </div>
+                                    <mat-divider></mat-divider>
+                                </mat-list-item>
+                                <!--<mat-list-item class="exam-row">
+                                    <div fxFlex="13">
+                                    </div>
+                                    <div fxFlex="17">
+                                        ggg
+                                    </div>
+                                    <div fxFlex="10">
+                                        hbhbhb
+                                    </div>
+                                    <div fxFlex="10">
+                                        jnjnj
+                                    </div>
+                                    <div fxFlex="12">
+                                        fcftcr
+                                    </div>
+                                    <div fxFlex="12">
+                                        hhhb
+                                    </div>
+                                    <div fxFlex="21">
+                                        jhbhb
+                                    </div>
+                                    <div fxFlex="5">
+                                        <mat-icon class="accent-600-fg" style="cursor: pointer" (click)="deleteRowInTemplate(i)">delete</mat-icon>
+                                    </div>
+                                    <mat-divider></mat-divider>
+                                </mat-list-item>-->
+                            </div>
+                        </mat-list>
+
+                        <!-- <div class="mat-elevation-z8">
                             <mat-list class="p-20">
                                 <mat-list-item>
                                     <div fxFlex="20">
@@ -182,7 +325,7 @@
                                     <mat-divider></mat-divider>
                                 </mat-list-item>
                             </mat-list>
-                        </div>
+                        </div>-->
                         <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
                             <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
                                 Previous
@@ -203,8 +346,10 @@
                             reactive patterns, testing, and validation.
                         </p>
                         <div>
-                            <span><strong>Name:</strong> {{examName}}</span>
-                            <span class="pl-96"><strong>Standards:</strong> 
+                            <span>
+                                <strong>Name:</strong> {{examName}}</span>
+                            <span class="pl-96">
+                                <strong>Standards:</strong>
                                 <span *ngFor="let std of standardList">{{std.name}}, </span>
                             </span>
                         </div>
@@ -220,7 +365,7 @@
                                     <div fxFlex="15">Passing marks</div>
                                 </mat-list-item>
                                 <mat-divider></mat-divider>
-                                <mat-list-item *ngFor="let element of scheduleExamTemplate; let i = index">
+                                <!--<mat-list-item *ngFor="let element of scheduleExamTemplate; let i = index">
                                     <div fxFlex="13">
                                         {{getSubjectName(element.subjectId)}}
                                     </div>
@@ -243,7 +388,7 @@
                                         {{element.passingMarks}}
                                     </div>
                                     <mat-divider></mat-divider>
-                                </mat-list-item>
+                                </mat-list-item>-->
                             </mat-list>
                         </div>
                         <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
