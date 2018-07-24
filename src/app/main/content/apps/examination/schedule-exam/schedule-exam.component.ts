@@ -33,8 +33,8 @@ export class ScheduleExamComponent implements OnInit {
     examName;
     selectedStd = [];
     academicYears; // academic year list fetched from backend
-    academicYear; // ngModel value
-    standard;
+    academicYearId = null; // ngModel value
+    standardId; // Selected standardId
 
     constructor(
         private formBuilder: FormBuilder,
@@ -62,13 +62,13 @@ export class ScheduleExamComponent implements OnInit {
         this.fetchAcademicYearList();
     }
 
-    getStandards(): void {
+    private getStandards(): void {
         this.scheduleExamService.getStandards().subscribe((standards: any) => {
             this.standardList = standards;
         });
     }
 
-    getSubjects(): void {
+    private getSubjects(): void {
         this.scheduleExamService.getSubjects().subscribe((subjects: any) => {
             this.subjectList = subjects;
         });
@@ -119,9 +119,14 @@ export class ScheduleExamComponent implements OnInit {
         // this.scheduleExamTemplate.splice(index, 1);
     }
 
-    getSubjectName(subjectId: number): void {
-        const subjectObj = this.subjectList.find(function (obj) { return obj.subject_id === subjectId; });
-        return subjectObj.name;
+    getStandardName(standardId: number): void {
+        const standardObj = this.standardList.find(function (obj) { return obj.standard_id === standardId; });
+        return standardObj.name;
+    }
+
+    getAcademicYear(academicYearId: number): void {
+        const academicYearObj = this.academicYears.find(function (obj) { return obj.academicYearId === academicYearId; });
+        return academicYearObj.name;
     }
 
     tConvert(time): string {

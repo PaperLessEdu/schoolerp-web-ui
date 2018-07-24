@@ -44,7 +44,7 @@
                         <div>
                             <!-- Academic Year -->
                             <mat-form-field class="pl-24" fxFlex="20">
-                                <mat-select placeholder="Academic Year" name="academicYear" [(ngModel)]="academicYear" #acaYear="ngModel" required>
+                                <mat-select placeholder="Academic Year" name="academicYear" [(ngModel)]="academicYearId" #acaYear="ngModel" required>
                                     <mat-option *ngFor="let academic of academicYears" [value]="academic.academicYearId">
                                         {{academic.name}}
                                     </mat-option>
@@ -65,7 +65,7 @@
                         </div>
 
                         <!-- Standard List -->
-                        <mat-radio-group class="example-radio-group pl-24 pb-16" name="std" [(ngModel)]="standard" #std="ngModel" required>
+                        <mat-radio-group class="example-radio-group pl-24 pb-16" name="std" [(ngModel)]="standardId" #std="ngModel" required>
                             <mat-radio-button class="example-radio-button"  *ngFor="let std of standardList" [value]="std.standard_id">
                                 {{std.name}}
                             </mat-radio-button>
@@ -347,11 +347,11 @@
                                 </mat-list-item>
                             </mat-list>
                         </div>-->
-                        <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
-                            <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                        <div class="pt-24 pb-24" fxLayout="row" fxLayoutAlign="center center">
+                            <button class="mr-8" mat-raised-button matStepperPrevious type="button">
                                 Previous
                             </button>
-                            <button mat-raised-button matStepperNext type="button" color="accent">
+                            <button mat-raised-button matStepperNext type="button" color="accent" [disabled]="examSchedule.length > 1 ? 'disabled': null">
                                 Next
                             </button>
                         </div>
@@ -367,11 +367,14 @@
                             reactive patterns, testing, and validation.
                         </p>
                         <div>
-                            <span>
-                                <strong>Name:</strong> {{examName}}</span>
+                            <span *ngIf="academicYearId">
+                                Academic Year: <strong>{{getAcademicYear(academicYearId)}}</strong>
+                            </span>
                             <span class="pl-96">
-                                <strong>Standards:</strong>
-                                <span *ngFor="let std of standardList">{{std.name}}, </span>
+                                Name: <strong>{{examName}}</strong>
+                            </span>
+                            <span class="pl-96" *ngIf="standardId">
+                                Standards: <strong>{{getStandardName(standardId)}}</strong>
                             </span>
                         </div>
                         <div class="mt-16" style="max-height:430px; min-height: 200px; overflow-y:scroll">
@@ -412,9 +415,12 @@
                                 </mat-list-item>-->
                             </mat-list>
                         </div>
-                        <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
-                            <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                        <div class="pt-24 pb-24" fxLayout="row" fxLayoutAlign="center center">
+                            <button class="mr-8" mat-raised-button matStepperPrevious type="button">
                                 Previous
+                            </button>
+                            <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                                create
                             </button>
                         </div>
                     </mat-step>
