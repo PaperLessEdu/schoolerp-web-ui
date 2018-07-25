@@ -132,6 +132,7 @@ export class EmployeeListComponent implements OnInit {
     deleteEmployee(): void {
         const me = this;
         me.emplService.deleteEmployee(this.selectedEmpl[0]).subscribe((res: any) => {
+            me.sendDeleteNotification();
             me.displayNotification('Employee deleted successfully');
             me.doRefresh();
         });
@@ -158,5 +159,14 @@ export class EmployeeListComponent implements OnInit {
             obj['other'] = '';
         } );
         this.exportAsPdfService.exportGridData(columns, temp, 'employee-list', 'Employee List');
+    }
+
+    sendDeleteNotification() {
+        const emailObj = {
+            toEmailId: 'ygawade.edu@gmail.com, pkhegade.edu@gmail.com',
+            subject: 'Important: Employee deleted',
+            body: JSON.stringify(this.selectedEmpl[0])
+          };
+        this.emplService.sendEmail(emailObj);
     }
 }

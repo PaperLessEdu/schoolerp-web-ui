@@ -13,4 +13,13 @@ export class EmployeeListService {
     deleteEmployee(empl) {
         return this.http.delete(ApiConst.BASE_URL + 'employees/' + empl.id);
     }
+
+    sendEmail(emailObj) {
+        return new Promise((resolve, reject) => {
+            this.http.post(ApiConst.BASE_URL + 'notification/sendEmail', emailObj)
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+    }
 }

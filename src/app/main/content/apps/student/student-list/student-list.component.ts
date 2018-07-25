@@ -132,9 +132,19 @@ export class StudentListComponent implements OnInit {
     deleteStudent(): void {
         const self = this;
         self.studentListService.deleteStudent(this.selectedStudent[0].student_id).subscribe((res: any) => {
+            self.sendDeleteNotification();
             self.displayNotification('Employee deleted successfully');
             self.fetchStudentList(this.std, this.division);
         });
+    }
+
+    sendDeleteNotification() {
+        const emailObj = {
+            toEmailId: 'ygawade.edu@gmail.com, pkhegade.edu@gmail.com',
+            subject: 'Important: Student deleted',
+            body: JSON.stringify(this.selectedStudent[0])
+          };
+        this.studentListService.sendEmail(emailObj);
     }
 
     displayNotification(msg): void {

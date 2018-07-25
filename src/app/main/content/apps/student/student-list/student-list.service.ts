@@ -26,4 +26,13 @@ export class StudentListService {
     deleteStudent(studentId: number) {
         return this.http.delete(ApiConst.BASE_URL + 'students/' + studentId);
     }
+
+    sendEmail(emailObj) {
+        return new Promise((resolve, reject) => {
+            this.http.post(ApiConst.BASE_URL + 'notification/sendEmail', emailObj)
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+    }
 }
