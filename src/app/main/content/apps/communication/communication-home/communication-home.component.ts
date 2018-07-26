@@ -225,7 +225,13 @@ export class CommunicationHomeComponent implements OnInit {
    * This method will return employee email Ids csv of selected employees
    */
   getEmployeePhoneNumbers() {
-    const mobileNos = this.selected.map((obj) => obj.phoneNumber);
+    // const mobileNos = this.selected.map((obj) => obj.phoneNumber);
+    const mobileNos = [];
+    this.selected.forEach((obj) => {
+      if (obj.phoneNumber.length === 10) {
+        mobileNos.push(obj.phoneNumber);
+      }
+    });
     return mobileNos.join(',');
   }
 
@@ -237,14 +243,40 @@ export class CommunicationHomeComponent implements OnInit {
     let mobileNos = '';
     for (let i = 0 ; i < this.selectedStdRecipient.length ; i++) {
       const type = this.selectedStdRecipient[i];
+      // if (type === 'father') {
+      //   const ids = this.selected.map((obj) => obj['father'].phoneNumber);
+      //   mobileNos += ids.join(',');
+      // } else if (type === 'mother') {
+      //   const ids = this.selected.map((obj) => obj['mother'].phoneNumber);
+      //   mobileNos += ids.join(',');
+      // } else {
+      //   const ids = this.selected.map((obj) => obj['guardian'].phoneNumber);
+      //   mobileNos += ids.join(',');
+      // }
+
       if (type === 'father') {
-        const ids = this.selected.map((obj) => obj['father'].phoneNumber);
+        const ids = [];
+        this.selected.forEach((obj) => {
+          if(obj['father'].phoneNumber.length === 10) {
+            ids.push(obj['father'].phoneNumber);
+          }
+        });
         mobileNos += ids.join(',');
       } else if (type === 'mother') {
-        const ids = this.selected.map((obj) => obj['mother'].phoneNumber);
+        const ids = [];
+        this.selected.forEach((obj) => {
+          if(obj['mother'].phoneNumber.length === 10) {
+            ids.push(obj['mother'].phoneNumber);
+          }
+        });
         mobileNos += ids.join(',');
       } else {
-        const ids = this.selected.map((obj) => obj['guardian'].phoneNumber);
+        const ids = [];
+        this.selected.forEach((obj) => {
+          if(obj['guardian'].phoneNumber.length === 10) {
+            ids.push(obj['guardian'].phoneNumber);
+          }
+        });
         mobileNos += ids.join(',');
       }
     }
