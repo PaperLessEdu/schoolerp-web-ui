@@ -13,6 +13,7 @@ import { FuseWidgetModule } from '@fuse/components/widget/widget.module';
 import { ApiConst } from '../../shared/constants';
 import { DateUtilService } from '../../shared/services/date-util.service';
 import { AttendanceDetailsComponent } from '../attendance-details/attendance-details.component';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-attendance-report',
@@ -143,6 +144,9 @@ export class AttendanceReportComponent implements OnInit {
         }
       });
       this.attendanceData = me.allStundets;
+    }, (err) => {
+      this.attendanceData = [];
+      alert("Error in fetching attendance report. Please contact system Admin.");
     });
   }
 

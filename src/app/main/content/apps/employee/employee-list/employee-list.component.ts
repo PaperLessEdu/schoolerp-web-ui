@@ -44,6 +44,9 @@ export class EmployeeListComponent implements OnInit {
             this.temp = [...empls];
             this.rows = empls;
             this.loadingIndicator = false;
+        }, err => {
+            this.rows = [];
+            alert("Error in fetching employee list. Please contact system Admin.");
         });
     }
 

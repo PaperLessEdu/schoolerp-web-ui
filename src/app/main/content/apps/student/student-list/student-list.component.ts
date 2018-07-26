@@ -72,6 +72,9 @@ export class StudentListComponent implements OnInit {
             this.rows = students;
             this.studentList = [...students];
             this.loadingIndicator = false;
+        }, err => {
+            this.studentList = [];
+            alert("Error in fetching student list. Please contact system Admin.");
         });
     }
 
