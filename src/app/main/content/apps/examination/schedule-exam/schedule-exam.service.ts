@@ -18,4 +18,13 @@ export class ScheduleExamService {
   getAcademicYear() {
     return this .http.get(ApiConst.BASE_URL + ApiConst.ACADEMIC_YEAR);
   }
+
+  createExam(obj) {
+    return new Promise((resolve, reject) => {
+      this.http.post(ApiConst.BASE_URL + ApiConst.EXAMINATION, obj)
+        .subscribe((response: any) => {
+          resolve(response);
+        }, reject);
+    });
+  }
 }

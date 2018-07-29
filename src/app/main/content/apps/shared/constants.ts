@@ -5,6 +5,7 @@ export class ApiConst {
     public static readonly STANDARDS = 'standards';
     public static readonly ACADEMIC_YEAR = 'academicyear';
     public static readonly DIVISIONS = 'divisions';
+    public static readonly EXAMINATION = 'examination';
     // public static readonly BASE_URL = 'http://localhost:3000/';
 }
 

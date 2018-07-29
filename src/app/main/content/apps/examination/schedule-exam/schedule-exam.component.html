@@ -66,15 +66,16 @@
 
                         <!-- Standard List -->
                         <mat-radio-group class="example-radio-group pl-24 pb-16" name="std" [(ngModel)]="standardId" #std="ngModel" required>
-                            <mat-radio-button class="example-radio-button"  *ngFor="let std of standardList" [value]="std.standard_id">
+                            <mat-radio-button class="example-radio-button" *ngFor="let std of standardList" [value]="std.standard_id">
                                 {{std.name}}
                             </mat-radio-button>
                         </mat-radio-group>
 
                         <div class="pt-24" fxLayout="row" fxLayoutAlign="center center">
-                            <button mat-raised-button matStepperNext type="button" color="accent" >
+                            <button mat-raised-button matStepperNext type="button" color="accent" [disabled]="exaName.invalid || std.invalid || acaYear.invalid ? 'disabled': null">
                                 Next
                             </button>
+
                         </div>
                     </mat-step>
 
@@ -90,19 +91,15 @@
 
                         <div fxLayout="row" fxLayoutAlign="space-between center">
                             <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center">
-                                <button mat-button class="font-weight-400" (click)="insertRowInTemplate()">
+                                <button mat-button class="font-weight-400 p-0" style="text-align: left" (click)="insertRowInTemplate()">
                                     <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon>
                                     ADD
-                                </button>
-                                <button mat-button class="font-weight-400">
-                                    <mat-icon class="s-20 mat-icon material-icons" role="img" aria-hidden="true">edit</mat-icon>
-                                    EDIT
                                 </button>
                             </div>
                         </div>
 
                         <mat-list>
-                            <mat-list-item class="font-weight-600 exam-row">
+                            <mat-list-item class="exam-row">
                                 <div fxFlex="13"></div>
                                 <div fxFlex="13">Date</div>
                                 <div fxFlex="11">Start Time</div>
@@ -115,7 +112,7 @@
                             </mat-list-item>
                             <mat-divider></mat-divider>
                             <div class="exam-container">
-                                <div *ngIf="examSchedule.length === 0">No records found</div>
+                                <div class="no-records" *ngIf="examSchedule.length === 0">No records found</div>
                                 <div *ngFor="let examObj of examSchedule; let examIndex = index">
                                     <mat-list-item class="primary-50-bg exam-row">
                                         <mat-icon class="s-20 mat-icon material-icons accent-600-fg mr-20" style="cursor: pointer">add</mat-icon>
@@ -132,7 +129,7 @@
                                             </mat-form-field>
                                         </div>
                                         <div class="text-right" fxFlex="20">
-                                            <mat-icon class="accent-600-fg" style="cursor: pointer" (click)="deleteRowInTemplate(i)">delete</mat-icon>
+                                            <mat-icon class="accent-600-fg" style="cursor: pointer" (click)="deleteRowInTemplate(examIndex)">delete</mat-icon>
                                         </div>
                                     </mat-list-item>
                                     <mat-list-item class="exam-row" *ngFor="let dist of examObj.distribution; let distIndex = index; let last = last">
@@ -173,8 +170,8 @@
                                         <div fxFlex="12">
                                             <mat-form-field fxFlex="80">
                                                 <mat-select name="scoreType" [(ngModel)]="dist.scoreType" #scoreType="ngModel" required>
-                                                    <mat-option [value]="'marks'">Marks</mat-option>
-                                                    <mat-option [value]="'grade'">Grade</mat-option>
+                                                    <mat-option [value]="'Marks'">Marks</mat-option>
+                                                    <mat-option [value]="'Grade'">Grade</mat-option>
                                                 </mat-select>
                                                 <mat-error *ngIf="scoreType.errors?.required">
                                                     Score Type is required!
@@ -183,7 +180,8 @@
                                         </div>
                                         <div fxFlex="12">
                                             <mat-form-field fxFlex="80">
-                                                <input matInput type="number" name="marksOutOf" [(ngModel)]="dist.marksOutOf" #marksOutOf="ngModel" required>
+                                                <input matInput type="number" name="marksOutOf" [(ngModel)]="dist.marksOutOf" #marksOutOf="ngModel" [disabled]="dist.scoreType === 'Grade'"
+                                                    required>
                                                 <mat-error *ngIf="marksOutOf.errors?.required">
                                                     Marks is required!
                                                 </mat-error>
@@ -191,7 +189,8 @@
                                         </div>
                                         <div fxFlex="15">
                                             <mat-form-field fxFlex="80">
-                                                <input matInput type="number" name="passingMarks" [(ngModel)]="dist.passingMarks" #passingMarks="ngModel" required>
+                                                <input matInput type="number" name="passingMarks" [(ngModel)]="dist.passingMarks" #passingMarks="ngModel" [disabled]="dist.scoreType === 'Grade'"
+                                                    required>
                                                 <mat-error *ngIf="passingMarks.errors?.required">
                                                     Marks is required!
                                                 </mat-error>
@@ -203,32 +202,6 @@
                                         </div>
                                         <mat-divider></mat-divider>
                                     </mat-list-item>
-                                    <!--<mat-list-item class="exam-row">
-                                        <div fxFlex="13">
-                                        </div>
-                                        <div fxFlex="17">
-                                            ggg
-                                        </div>
-                                        <div fxFlex="10">
-                                            hbhbhb
-                                        </div>
-                                        <div fxFlex="10">
-                                            jnjnj
-                                        </div>
-                                        <div fxFlex="12">
-                                            fcftcr
-                                        </div>
-                                        <div fxFlex="12">
-                                            hhhb
-                                        </div>
-                                        <div fxFlex="21">
-                                            jhbhb
-                                        </div>
-                                        <div fxFlex="5">
-                                            <mat-icon class="accent-600-fg" style="cursor: pointer" (click)="deleteRowInTemplate(i)">delete</mat-icon>
-                                        </div>
-                                        <mat-divider></mat-divider>
-                                    </mat-list-item>-->
                                 </div>
                             </div>
                         </mat-list>
@@ -254,24 +227,28 @@
                         </p>
                         <div>
                             <span *ngIf="academicYearId">
-                                Academic Year: <strong>{{getAcademicYear(academicYearId)}}</strong>
+                                Academic Year:
+                                <strong>{{getAcademicYear(academicYearId)}}</strong>
                             </span>
                             <span class="pl-96">
-                                Name: <strong>{{examName}}</strong>
+                                Name:
+                                <strong>{{examName}}</strong>
                             </span>
                             <span class="pl-96" *ngIf="standardId">
-                                Standards: <strong>{{getStandardName(standardId)}}</strong>
+                                Standards:
+                                <strong>{{getStandardName(standardId)}}</strong>
                             </span>
                         </div>
                         <div class="mt-16" style="max-height:430px; min-height: 200px; overflow-y:scroll">
                             <mat-list>
-                                <mat-list-item class="font-weight-600 primary-50-bg">
-                                    <div fxFlex="13">Subject</div>
-                                    <div fxFlex="17">Date</div>
-                                    <div fxFlex="10">Start Time</div>
-                                    <div fxFlex="10">End Time</div>
-                                    <div fxFlex="12">Score Type</div>
-                                    <div fxFlex="12">Marks out of</div>
+                                <mat-list-item class="exam-row">
+                                    <div fxFlex="13"></div>
+                                    <div fxFlex="14">Date</div>
+                                    <div fxFlex="12">Start Time</div>
+                                    <div fxFlex="12">End Time</div>
+                                    <div fxFlex="12">Exam Type</div>
+                                    <div fxFlex="13">Score Type</div>
+                                    <div fxFlex="13">Marks out of</div>
                                     <div fxFlex="15">Passing marks</div>
                                 </mat-list-item>
                                 <mat-divider></mat-divider>
@@ -281,8 +258,8 @@
                                     <div *ngFor="let examObj of examSchedule; let examIndex = index">
                                         <mat-list-item class="primary-50-bg exam-row">
                                             <mat-icon class="s-20 mat-icon material-icons accent-600-fg mr-20" style="cursor: pointer">add</mat-icon>
-                                            <div fxFlex="80">
-                                                {{examObj.subjectId}}
+                                            <div fxFlex="80" *ngIf="examObj.subjectId">
+                                                {{getSubjectName(examObj.subjectId)}}
                                             </div>
                                             <div class="text-right" fxFlex="20">
                                                 Total : 100
@@ -291,22 +268,22 @@
                                         <mat-list-item class="exam-row" *ngFor="let dist of examObj.distribution; let distIndex = index; let last = last">
                                             <div fxFlex="13">
                                             </div>
-                                            <div fxFlex="13">
-                                                {{dist.date}}
+                                            <div fxFlex="14">
+                                                {{dist.date | date:'mediumDate'}}
                                             </div>
-                                            <div fxFlex="11">
-                                                {{dist.startTime}}
+                                            <div fxFlex="12" *ngIf="dist.startTime">
+                                                {{tConvert(dist.startTime)}}
                                             </div>
-                                            <div fxFlex="11">
-                                                {{dist.endTime}}
+                                            <div fxFlex="12" *ngIf="dist.endTime">
+                                                {{tConvert(dist.endTime)}}
                                             </div>
-                                            <div fxFlex="11">
+                                            <div fxFlex="12">
                                                 {{dist.examType}}
                                             </div>
-                                            <div fxFlex="12">
+                                            <div fxFlex="13">
                                                 {{dist.scoreType}}
                                             </div>
-                                            <div fxFlex="12">
+                                            <div fxFlex="13">
                                                 {{dist.marksOutOf}}
                                             </div>
                                             <div fxFlex="15">
@@ -322,7 +299,7 @@
                             <button class="mr-8" mat-raised-button matStepperPrevious type="button">
                                 Previous
                             </button>
-                            <button class="mr-8" mat-raised-button matStepperPrevious type="button" color="accent">
+                            <button class="mr-8" mat-raised-button type="button" color="accent" (click)="createExam()">
                                 create
                             </button>
                         </div>

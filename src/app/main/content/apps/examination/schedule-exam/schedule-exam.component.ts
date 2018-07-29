@@ -5,6 +5,7 @@ import { ScheduleExamService } from './schedule-exam.service';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MY_FORMATS } from 'app/main/content/apps/shared/constants';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     selector: 'app-schedule-exam',
@@ -31,7 +32,6 @@ export class ScheduleExamComponent implements OnInit {
     standardList: any;
     subjectList: any;
     examName;
-    selectedStd = [];
     academicYears; // academic year list fetched from backend
     academicYearId = null; // ngModel value
     standardId; // Selected standardId
@@ -39,6 +39,7 @@ export class ScheduleExamComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private scheduleExamService: ScheduleExamService,
+        public snackBar: MatSnackBar
     ) {
         this.init();
     }
@@ -116,7 +117,7 @@ export class ScheduleExamComponent implements OnInit {
     }
 
     deleteRowInTemplate(index: number): void {
-        // this.scheduleExamTemplate.splice(index, 1);
+        this.examSchedule.splice(index, 1);
     }
 
     getStandardName(standardId: number): void {
@@ -127,6 +128,11 @@ export class ScheduleExamComponent implements OnInit {
     getAcademicYear(academicYearId: number): void {
         const academicYearObj = this.academicYears.find(function (obj) { return obj.academicYearId === academicYearId; });
         return academicYearObj.name;
+    }
+
+    getSubjectName(subjectId: number): void {
+        const subjectObj = this.subjectList.find(function (obj) { return obj.subject_id === subjectId; }); 
+        return subjectObj.name;
     }
 
     tConvert(time): string {
@@ -141,13 +147,25 @@ export class ScheduleExamComponent implements OnInit {
         return time.join(''); // return adjusted time or original string
     }
 
-    toggleStd(std: string): void {
-        const index = this.selectedStd.indexOf(std);
-        if (index === -1) {
-            this.selectedStd.push(std);
-        }
-        else {
-            this.selectedStd.splice(index, 1);
-        }
+    createExam(): void {
+        const data = {
+            academicYearId: this.academicYearId,
+            standardId: this.standardId,
+            name: this.examName,
+            examSchedule: this.examSchedule
+        };
+        console.log('submit this data' + JSON.stringify(data));
+
+        this.scheduleExamService.createExam(data)
+          .then(() => {
+
+            // Show the success message
+            const msg = 'Exam Created successfully';
+
+            this.snackBar.open(msg, 'OK', {
+              verticalPosition: 'top',
+              duration: 3000
+            });
+          });
     }
 }
