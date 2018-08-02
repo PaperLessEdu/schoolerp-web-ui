@@ -16,7 +16,7 @@ export class ScheduleExamService {
   }
 
   getAcademicYear() {
-    return this .http.get(ApiConst.BASE_URL + ApiConst.ACADEMIC_YEAR);
+    return this.http.get(ApiConst.BASE_URL + ApiConst.ACADEMIC_YEAR);
   }
 
   createExam(obj) {

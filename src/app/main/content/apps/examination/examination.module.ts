@@ -25,6 +25,7 @@ import { SharedModule } from './../shared/shared.module';
 import { ExaminationListComponent } from './examination-list/examination-list.component';
 import { ScheduleExamComponent } from './schedule-exam/schedule-exam.component';
 import { ScheduleExamService } from 'app/main/content/apps/examination/schedule-exam/schedule-exam.service';
+import { ExaminationListService } from 'app/main/content/apps/examination/examination-list/examination-list.service';
 
 const routes = [
   {
@@ -64,7 +65,8 @@ const routes = [
     ScheduleExamComponent
   ],
   providers: [
-    ScheduleExamService
+    ScheduleExamService,
+    ExaminationListService
   ]
 })
 export class ExaminationModule { }

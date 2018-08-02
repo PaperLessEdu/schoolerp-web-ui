@@ -1,49 +1,147 @@
-<div id="holidays" class="page-layout carded fullwidth" fusePerfectScrollbar>    
-  <!-- TOP BACKGROUND -->
-  <div class="top-bg mat-accent-bg"></div>
-  <!-- / TOP BACKGROUND -->
+<div id="holidays" class="page-layout carded fullwidth" fusePerfectScrollbar>
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
 
-  <!-- CENTER -->
-  <div class="center">
-    
-    <!-- HEADER -->
-    <div class="header white-fg"
-         fxLayout="column" fxLayoutAlign="center center"
-         fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
-      
-      <!-- APP TITLE -->
-      <div class="logo my-12 m-sm-0"
-           fxLayout="row" fxLayoutAlign="start center">
-          <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">today</mat-icon>
-          <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Examination</span>
-      </div>
-      <!-- / APP TITLE -->
-    </div>
-    <!-- CONTENT CARD -->
-    <div class="mat-white-bg">
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-            <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center">
-                <button mat-button class="font-weight-400" [routerLink]="'/apps/examination/new'">
-                    <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon> 
-                    ADD
-                </button>
-                <button mat-button class="font-weight-400">
-                    <mat-icon class="s-20 mat-icon material-icons" role="img" aria-hidden="true">edit</mat-icon> 
-                    EDIT
-                </button>
-                <button mat-button class="font-weight-400">
-                    <mat-icon class="s-20 mat-icon material-icons" role="img" aria-hidden="true">delete</mat-icon> 
-                    DELETE
-                </button>
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header white-fg" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">today</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Examination</span>
             </div>
-            <!-- SEARCH -->
-            <div style="margin-right: 10px;">
-                <!--<mat-form-field floatPlaceholder="never">
+            <!-- / APP TITLE -->
+        </div>
+        <!-- CONTENT CARD -->
+        <div class="mat-white-bg">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="accent-600-fg" fxLayout="row" fxLayoutAlign="start center">
+                    <button mat-button class="font-weight-400" [routerLink]="'/apps/examination/new'">
+                        <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon>
+                        ADD
+                    </button>
+                    <button mat-button class="font-weight-400">
+                        <mat-icon class="s-20 mat-icon material-icons" role="img" aria-hidden="true">edit</mat-icon>
+                        EDIT
+                    </button>
+                    <button mat-button class="font-weight-400">
+                        <mat-icon class="s-20 mat-icon material-icons" role="img" aria-hidden="true">delete</mat-icon>
+                        DELETE
+                    </button>
+                </div>
+                <!-- SEARCH -->
+                <div style="margin-right: 10px;">
+                    <!--<mat-form-field floatPlaceholder="never">
                     <input id="search" matInput #filter placeholder="Search" class="full-right">
                 </mat-form-field>-->
+                </div>
+            </div>
+
+            <div class="mt-16">
+                <mat-list>
+                    <div class="exam-container m-20">
+                        <!--<div *ngIf="examSchedule.length === 0">No records found</div>-->
+                        <div class="border" *ngFor="let exam of examList">
+                            <mat-list-item class="mat-accent-bg exam-row">
+                                <mat-icon class="s-20 mat-icon material-icons accent-600-fg mr-20" (click)="exam.isexpand = !exam.isexpand" style="cursor: pointer">add</mat-icon>
+                                <div fxFlex="80">
+                                    {{exam.name}}
+                                </div>
+                                <div class="text-right" fxFlex="20">
+                                    Edit Icon
+                                </div>
+                            </mat-list-item>
+
+                            <div class="mt-16" *ngIf="exam.isexpand" style="max-height:430px; min-height: 200px; overflow-y:scroll">
+                                <mat-list>
+                                    <mat-list-item class="exam-row border ml-20 mr-20">
+                                        <div fxFlex="13"></div>
+                                        <div fxFlex="14">Date</div>
+                                        <div fxFlex="12">Start Time</div>
+                                        <div fxFlex="12">End Time</div>
+                                        <div fxFlex="12">Exam Type</div>
+                                        <div fxFlex="13">Score Type</div>
+                                        <div fxFlex="13">Marks out of</div>
+                                        <div fxFlex="15">Passing marks</div>
+                                    </mat-list-item>
+
+                                    <div class="exam-container ml-20 mr-20 mb-20">
+                                        <div class="border" *ngFor="let examObj of exam.examSchedule">
+                                            <mat-list-item class="primary-50-bg exam-row">
+                                                <mat-icon class="s-20 mat-icon material-icons accent-600-fg mr-20" (click)="examObj.isexpand = !examObj.isexpand" style="cursor: pointer">add</mat-icon>
+                                                <div fxFlex="80">
+                                                    {{examObj.subjectName}}
+                                                </div>
+                                                <div class="text-right" fxFlex="20">
+                                                    Total : 100
+                                                </div>
+                                            </mat-list-item>
+                                            <div *ngIf="examObj.isexpand">
+                                                <mat-list-item class="exam-row" *ngFor="let dist of examObj.distribution; let last = last">
+                                                    <div fxFlex="13">
+                                                    </div>
+                                                    <div fxFlex="14">
+                                                        {{dist.date | date:'mediumDate'}}
+                                                    </div>
+                                                    <div fxFlex="12" *ngIf="dist.startTime">
+                                                        {{dist.startTime}}
+                                                    </div>
+                                                    <div fxFlex="12" *ngIf="dist.endTime">
+                                                        {{dist.endTime}}
+                                                    </div>
+                                                    <div fxFlex="12">
+                                                        {{dist.examType}}
+                                                    </div>
+                                                    <div fxFlex="13">
+                                                        {{dist.scoreType}}
+                                                    </div>
+                                                    <div fxFlex="13">
+                                                        {{dist.marksOutOf}}
+                                                    </div>
+                                                    <div fxFlex="15">
+                                                        {{dist.passingMarks}}
+                                                    </div>
+                                                    <mat-divider></mat-divider>
+                                                </mat-list-item>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-list>
+                            </div>
+                            <!--<mat-list-item class="exam-row" *ngFor="let dist of examObj.distribution; let distIndex = index; let last = last">
+                                <div fxFlex="13">
+                                </div>
+                                <div fxFlex="14">
+                                    {{dist.date | date:'mediumDate'}}
+                                </div>
+                                <div fxFlex="12" *ngIf="dist.startTime">
+                                    {{tConvert(dist.startTime)}}
+                                </div>
+                                <div fxFlex="12" *ngIf="dist.endTime">
+                                    {{tConvert(dist.endTime)}}
+                                </div>
+                                <div fxFlex="12">
+                                    {{dist.examType}}
+                                </div>
+                                <div fxFlex="13">
+                                    {{dist.scoreType}}
+                                </div>
+                                <div fxFlex="13">
+                                    {{dist.marksOutOf}}
+                                </div>
+                                <div fxFlex="15">
+                                    {{dist.passingMarks}}
+                                </div>
+                                <mat-divider></mat-divider>
+                            </mat-list-item>-->
+                        </div>
+                    </div>
+                </mat-list>
             </div>
         </div>
-
     </div>
-  </div>
 </div>
