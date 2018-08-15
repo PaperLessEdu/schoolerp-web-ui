@@ -24,20 +24,6 @@
                         <mat-icon class="s-20 mat-icon material-icons accent-600-fg" role="img" aria-hidden="true">add</mat-icon>
                         ADD
                     </button>
-                    <button mat-button class="font-weight-400">
-                        <mat-icon class="s-20 mat-icon material-icons" role="img" aria-hidden="true">edit</mat-icon>
-                        EDIT
-                    </button>
-                    <button mat-button class="font-weight-400">
-                        <mat-icon class="s-20 mat-icon material-icons" role="img" aria-hidden="true">delete</mat-icon>
-                        DELETE
-                    </button>
-                </div>
-                <!-- SEARCH -->
-                <div style="margin-right: 10px;">
-                    <!--<mat-form-field floatPlaceholder="never">
-                    <input id="search" matInput #filter placeholder="Search" class="full-right">
-                </mat-form-field>-->
                 </div>
             </div>
 
@@ -47,12 +33,14 @@
                         <!--<div *ngIf="examSchedule.length === 0">No records found</div>-->
                         <div class="border" *ngFor="let exam of examList">
                             <mat-list-item class="mat-accent-bg exam-row">
-                                <mat-icon class="s-20 mat-icon material-icons accent-600-fg mr-20" (click)="exam.isexpand = !exam.isexpand" style="cursor: pointer">add</mat-icon>
+                                <mat-icon class="s-20 mat-icon material-icons white-500-fg mr-20" (click)="exam.isexpand = !exam.isexpand" style="cursor: pointer">add</mat-icon>
                                 <div fxFlex="80">
                                     {{exam.name}}
                                 </div>
                                 <div class="text-right" fxFlex="20">
-                                    Edit Icon
+                                    <button mat-button class="font-weight-400 mat-icon-button">
+                                        <mat-icon class="s-20 mat-icon material-icons white-500-fg" role="img" aria-hidden="true">edit</mat-icon>
+                                    </button>
                                 </div>
                             </mat-list-item>
 

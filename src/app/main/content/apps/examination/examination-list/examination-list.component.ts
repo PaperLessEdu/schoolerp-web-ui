@@ -10,99 +10,18 @@ import { ExaminationListService } from './examination-list.service';
 })
 export class ExaminationListComponent implements OnInit {
 
-  examList = [
-    {
-      "name": "Unit Test 1",
-      "examSchedule": [
-        {
-          "subjectName": "Marathi",
-          "distribution": [
-            {
-              "date": "2018-07-29T18:30:00.000Z",
-              "startTime": "14:00",
-              "endTime": "15:00",
-              "examType": "Theory",
-              "scoreType": "Marks",
-              "marksOutOf": 80,
-              "passingMarks": 35
-            },
-            {
-              "date": "2018-07-30T18:30:00.000Z",
-              "startTime": "13:00",
-              "endTime": "14:30",
-              "examType": "Oral",
-              "scoreType": "Marks",
-              "marksOutOf": 20,
-              "passingMarks": 7
-            }
-          ],
-          "isexpand": false
-        },
-        {
-          "subjectName": "Maths",
-          "distribution": [
-            {
-              "date": "2018-07-30T18:30:00.000Z",
-              "startTime": "16:00",
-              "endTime": "17:00",
-              "examType": "Theory",
-              "scoreType": "Grade",
-              "marksOutOf": null,
-              "passingMarks": null
-            }
-          ],
-          "isexpand": false
-        }
-      ],
-      "isexpand": false
-    },
-    {
-      "name": "Unit Test 2",
-      "examSchedule": [
-        {
-          "subjectName": "Science",
-          "distribution": [
-            {
-              "date": "2018-07-29T18:30:00.000Z",
-              "startTime": "14:00",
-              "endTime": "15:00",
-              "examType": "Theory",
-              "scoreType": "Marks",
-              "marksOutOf": 80,
-              "passingMarks": 35
-            }
-          ],
-          "isexpand": false
-        },
-        {
-          "subjectName": "History",
-          "distribution": [
-            {
-              "date": "2018-07-30T18:30:00.000Z",
-              "startTime": "16:00",
-              "endTime": "17:00",
-              "examType": "Theory",
-              "scoreType": "Grade",
-              "marksOutOf": null,
-              "passingMarks": null
-            }
-          ],
-          "isexpand": false
-        }
-      ],
-      "isexpand": false
-    }
-  ];
+  examList;
 
   constructor(
     private examinationListService: ExaminationListService) { }
 
   ngOnInit() {
+    this.fetchExamList();
   }
 
-  private fetchAcademicYearList(): void {
-    this.examinationListService.getExamList().subscribe((academicYears: any) => {
-      // this.academicYears = academicYears;
+  private fetchExamList(): void {
+    this.examinationListService.getExamList().subscribe((data: any) => {
+      this.examList = data; 
     });
   }
 }
