@@ -36,6 +36,7 @@
                                 <mat-icon class="s-20 mat-icon material-icons white-500-fg mr-20" (click)="exam.isexpand = !exam.isexpand" style="cursor: pointer">add</mat-icon>
                                 <div fxFlex="80">
                                     {{exam.name}}
+                                    <button (click)="exportAsPdf(exam)"> Download Timetable </button>
                                 </div>
                                 <div class="text-right" fxFlex="20">
                                     <button mat-button class="font-weight-400 mat-icon-button">
